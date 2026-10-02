@@ -15,3 +15,6 @@ Thumbs.db
 # ...and the lemo-opuscar campaign archive (reference films + treatments)
 !films/lemo-opuscar/
 !films/lemo-opuscar/**
+# ...and the sources plates (real product/hero/looks footage, kept in git)
+!sources/
+!sources/**
