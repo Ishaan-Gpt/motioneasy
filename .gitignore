@@ -18,3 +18,6 @@ Thumbs.db
 # ...and the sources plates (real product/hero/looks footage, kept in git)
 !sources/
 !sources/**
+# ...and vendored reference tools (their demo clips are reference, kept in git)
+!vendor/
+!vendor/**
