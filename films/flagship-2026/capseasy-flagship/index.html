@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=1920, height=1080" />
+<title>CapsEasy — Stop timing captions. Start posting.</title>
+<script src="assets/vendor/gsap.min.js"></script>
+<style>
+@font-face { font-family: "Instrument Serif"; font-weight: 400; font-display: block; src: url("assets/fonts/instrument-serif-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Instrument Serif"; font-style: italic; font-weight: 400; font-display: block; src: url("assets/fonts/instrument-serif-latin-400-italic.woff2") format("woff2"); }
+@font-face { font-family: "Manrope"; font-weight: 200 800; font-display: block; src: url("assets/fonts/manrope-latin-wght-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 400; font-display: block; src: url("assets/fonts/jetbrains-mono-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "JetBrains Mono"; font-weight: 600; font-display: block; src: url("assets/fonts/jetbrains-mono-latin-600-normal.woff2") format("woff2"); }
+
+:root {
+  --cream: #ffffeb; --ink: #1a1a1a; --lav: #f0d7ff; --green: #034f46;
+  --serif: "Instrument Serif", Georgia, serif;
+  --sans: "Manrope", system-ui, sans-serif;
+  --mono: "JetBrains Mono", ui-monospace, monospace;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body { width: 1920px; height: 1080px; overflow: hidden; background: var(--cream); }
+#root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: var(--sans); color: var(--ink); }
+.scene { position: absolute; inset: 0; visibility: hidden; }
+.mask { overflow: hidden; display: block; }
+.rise { display: block; }
+.serif { font-family: var(--serif); font-weight: 400; letter-spacing: -0.015em; }
+.mono { font-family: var(--mono); }
+
+/* ---------- SCENE 1: hook ---------- */
+#hook { display: flex; align-items: center; justify-content: center; }
+#hook-inner { text-align: center; }
+#h-l1 { font-size: 120px; line-height: 1.05; }
+#h-min { font-size: 120px; line-height: 1.15; position: relative; display: inline-block; }
+#strike { position: absolute; left: -12px; right: -12px; top: 52%; height: 14px; background: var(--ink); border-radius: 7px; transform-origin: 0 50%; }
+#h-l3 { font-size: 120px; line-height: 1.05; }
+#zero { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 400px; opacity: 0; }
+#core { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0; }
+#core1 { font-size: 118px; line-height: 1.05; }
+#core2 { font-size: 118px; line-height: 1.1; font-style: italic; color: var(--green); }
+
+/* ---------- SCENE 2: drop ---------- */
+#drop { display: flex; align-items: center; justify-content: center; gap: 120px; padding-top: 110px; }
+#pill-upload { position: absolute; top: 30px; left: 50%; background: var(--ink); color: var(--cream); font: 600 46px/1 var(--sans); letter-spacing: -0.01em; padding: 26px 54px; border-radius: 999px; white-space: nowrap; }
+#pill-upload .mask { display: inline-block; }
+#browser { width: 600px; background: var(--cream); border: 3px solid var(--ink); border-radius: 28px; overflow: hidden; box-shadow: 18px 18px 0 rgba(26,26,26,.12); }
+#b-bar { display: flex; align-items: center; gap: 12px; padding: 20px 26px; border-bottom: 3px solid var(--ink); }
+.dot { width: 20px; height: 20px; border-radius: 50%; border: 2px solid var(--ink); }
+#b-url { margin-left: 14px; font: 400 24px/1 var(--mono); color: var(--ink); opacity: .55; }
+#v-gereon { display: block; width: 600px; height: 834px; object-fit: cover; background: var(--ink); }
+#drop-copy { max-width: 620px; }
+#drop-line { font-size: 104px; line-height: 1.02; }
+#drop-label { margin-top: 34px; font: 400 30px/1.5 var(--mono); color: var(--ink); opacity: .7; min-height: 96px; }
+
+/* ---------- SCENE 3: how ---------- */
+#how { display: flex; }
+#rail { width: 520px; display: flex; flex-direction: column; justify-content: center; padding-left: 130px; gap: 26px; }
+.step { display: flex; align-items: baseline; gap: 26px; opacity: .28; }
+.step .n { font-family: var(--serif); font-size: 150px; line-height: 1; color: var(--green); }
+.step .t { font: 600 34px/1.2 var(--sans); letter-spacing: -0.01em; }
+.step.active { opacity: 1; }
+#stage { position: relative; flex: 1; }
+.how-panel { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; visibility: hidden; }
+/* 01 upload */
+#upload-zone { width: 620px; height: 760px; border: 4px dashed var(--ink); border-radius: 32px; position: relative; overflow: hidden; background: rgba(26,26,26,.03); }
+#v-aisha { position: absolute; left: 50%; top: 40px; width: 432px; height: 600px; object-fit: cover; border-radius: 18px; }
+#shimmer { position: absolute; left: 60px; right: 60px; bottom: 56px; height: 22px; border-radius: 11px; background: rgba(26,26,26,.12); overflow: hidden; }
+#shimmer i { display: block; height: 100%; width: 40%; border-radius: 11px; background: var(--green); transform: translateX(-110%); }
+#up-label { position: absolute; left: 0; right: 0; bottom: -70px; text-align: center; font: 400 28px/1 var(--mono); opacity: .65; }
+/* 02 transcribe */
+#trs-box { width: 900px; text-align: left; }
+#waveform { display: flex; align-items: flex-end; gap: 10px; height: 120px; margin-bottom: 48px; }
+.wbar { flex: 1; background: var(--green); border-radius: 6px; height: 100%; transform-origin: 50% 100%; }
+#words { font-size: 62px; line-height: 1.35; min-height: 280px; }
+#words .word { display: inline-block; opacity: 0; margin-right: .28em; }
+#words .word.hot { color: var(--green); }
+#how2-label { margin-top: 40px; font: 400 30px/1.5 var(--mono); opacity: .7; }
+/* 03 style */
+#flip-stage { width: 480px; height: 668px; border-radius: 26px; overflow: hidden; border: 3px solid var(--ink); box-shadow: 14px 14px 0 rgba(26,26,26,.12); position: relative; background: var(--ink); }
+#flip-stage video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; visibility: hidden; }
+#look-chip { position: absolute; left: 50%; bottom: 120px; background: var(--ink); color: var(--cream); font: 600 30px/1 var(--mono); padding: 18px 34px; border-radius: 999px; white-space: nowrap; }
+
+/* ---------- SCENE 4: montage ---------- */
+#montage { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 54px; }
+#grid { display: grid; grid-template-columns: repeat(4, 400px); gap: 26px; }
+.cell { width: 400px; height: 150px; border-radius: 20px; overflow: hidden; border: 3px solid var(--ink); background: var(--cream); }
+.cell video { width: 100%; height: 100%; object-fit: cover; }
+#looks-line { font-size: 96px; text-align: center; }
+#looks-line em { font-style: italic; color: var(--green); }
+
+/* ---------- SCENE 5: export ---------- */
+#export { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 46px; }
+#btn-export { background: var(--ink); color: var(--cream); font: 700 64px/1 var(--sans); letter-spacing: -0.02em; padding: 40px 110px; border-radius: 999px; }
+#chips { display: flex; gap: 28px; }
+.chip { font: 600 44px/1 var(--mono); padding: 26px 52px; border-radius: 999px; border: 3px solid var(--ink); background: var(--cream); }
+#chip-srt { background: var(--lav); }
+#export-line { font-size: 88px; text-align: center; max-width: 1500px; }
+
+/* ---------- SCENE 6: end ---------- */
+#end { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; }
+#wordmark { width: 760px; opacity: 0; }
+#end-line { font: 400 40px/1 var(--mono); opacity: 0; }
+#url-pill { background: var(--lav); border: 3px solid var(--ink); font: 600 40px/1 var(--mono); padding: 28px 64px; border-radius: 999px; opacity: 0; }
+#credit { position: absolute; bottom: 44px; font: 400 22px/1 var(--mono); opacity: 0; color: var(--ink); }
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="main" data-start="0" data-duration="60" data-width="1920" data-height="1080">
+  <audio id="music" class="clip" data-timeline-role="music" data-start="0" data-duration="60" data-fade-out="3" src="assets/music/kevin-macleod_Inspired.mp3" preload="auto"></audio>
+
+  <!-- SCENE 1: hook -->
+  <section id="hook" class="scene">
+    <div id="hook-inner">
+      <span class="mask"><span class="rise serif" id="h-l1">You spent</span></span>
+      <span class="mask"><span class="rise mono" id="h-min">47 minutes<span id="strike"></span></span></span>
+      <span class="mask"><span class="rise serif" id="h-l3">timing captions.</span></span>
+    </div>
+    <div id="zero" class="serif">0.</div>
+    <div id="core">
+      <span class="mask"><span class="rise serif" id="core1">Stop timing captions.</span></span>
+      <span class="mask"><span class="rise serif" id="core2">Start posting.</span></span>
+    </div>
+  </section>
+
+  <!-- SCENE 2: drop -->
+  <section id="drop" class="scene">
+    <div id="pill-upload"><span class="mask"><span class="rise" id="pill-t">Don&rsquo;t edit. Just upload.</span></span></div>
+    <div id="browser">
+      <div id="b-bar"><span class="dot"></span><span class="dot" style="background:var(--lav)"></span><span class="dot" style="background:var(--green)"></span><span id="b-url">captionseasy.vercel.app/studio</span></div>
+      <video id="v-gereon" class="clip" data-start="6.6" data-duration="6.2" src="assets/clips/gereon.mp4" muted playsinline preload="auto"></video>
+    </div>
+    <div id="drop-copy">
+      <div id="drop-line" class="serif">Words appear<br/>as they&rsquo;re <em style="color:var(--green)">spoken.</em></div>
+      <div id="drop-label" class="mono"></div>
+    </div>
+  </section>
+
+  <!-- SCENE 3: how -->
+  <section id="how" class="scene">
+    <div id="rail">
+      <div class="step" id="step1"><span class="n">01</span><span class="t">Upload<br/>the clip</span></div>
+      <div class="step" id="step2"><span class="n">02</span><span class="t">Whisper<br/>transcribes</span></div>
+      <div class="step" id="step3"><span class="n">03</span><span class="t">Pick<br/>a look</span></div>
+    </div>
+    <div id="stage">
+      <div class="how-panel" id="panel1">
+        <div id="upload-zone">
+          <video id="v-aisha" class="clip" data-start="14.4" data-duration="6.2" src="assets/clips/aisha.mp4" muted playsinline preload="auto"></video>
+          <div id="shimmer"><i></i></div>
+          <div id="up-label" class="mono">shrunk to fit · stays on your device</div>
+        </div>
+      </div>
+      <div class="how-panel" id="panel2">
+        <div id="trs-box">
+          <div id="waveform"></div>
+          <div id="words" class="serif"></div>
+          <div id="how2-label" class="mono">on-device Whisper · nothing uploads</div>
+        </div>
+      </div>
+      <div class="how-panel" id="panel3">
+        <div id="flip-stage">
+          <video id="v-sam" class="clip" data-start="27.5" data-duration="2.0" data-media-start="1" src="assets/clips/sam.mp4" muted playsinline preload="auto"></video>
+          <video id="v-gianna" class="clip" data-start="29.5" data-duration="2.0" data-media-start="1" src="assets/clips/gianna.mp4" muted playsinline preload="auto"></video>
+          <video id="v-aisha2" class="clip" data-start="31.5" data-duration="2.0" data-media-start="1" src="assets/clips/aisha.mp4" muted playsinline preload="auto"></video>
+          <div id="look-chip" class="mono">hormozi_box</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 4: montage -->
+  <section id="montage" class="scene">
+    <div id="grid">
+      <div class="cell"><video id="look-hormozi_box" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/hormozi_box.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-karaoke_fill" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/karaoke_fill.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-desi_clean" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/desi_clean.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-bold_pill" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/bold_pill.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-pop_clean" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/pop_clean.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-gradient_pop" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/gradient_pop.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-film_noir" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/film_noir.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-chat_bubble" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/chat_bubble.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-comic_burst" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/comic_burst.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-storytime" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/storytime.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-outline_fill" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/outline_fill.mp4" muted loop playsinline preload="auto"></video></div>
+      <div class="cell"><video id="look-wave_bounce" class="clip" data-start="34.3" data-duration="8.5" src="assets/looks/wave_bounce.mp4" muted loop playsinline preload="auto"></video></div>
+    </div>
+    <div id="looks-line" class="serif" style="opacity:0">33 looks. <em>Zero timing.</em></div>
+  </section>
+
+  <!-- SCENE 5: export -->
+  <section id="export" class="scene">
+    <div id="btn-export">Export</div>
+    <div id="chips"><div class="chip" id="chip-mp4">MP4</div><div class="chip" id="chip-srt">SRT</div></div>
+    <div id="export-line" class="serif" style="opacity:0">MP4 + SRT. In your browser. <em style="color:var(--green)">Free.</em></div>
+  </section>
+
+  <!-- SCENE 6: end -->
+  <section id="end" class="scene">
+    <img id="wordmark" src="assets/brand/captionseasy-wordmark.svg" alt="CaptionsEasy" />
+    <div id="end-line" class="mono">Free and open source.</div>
+    <div id="url-pill" class="mono">captionseasy.vercel.app</div>
+    <div id="credit" class="mono">Music: &ldquo;Inspired&rdquo; by Kevin MacLeod (CC-BY 4.0)</div>
+  </section>
+
+</div>
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+
+  /* ----- build dynamic content ----- */
+  // waveform bars (deterministic heights)
+  var wave = $("waveform"), pat = [];
+  var seed = [0.9,0.5,0.75,0.35,1,0.6,0.85,0.45,0.7,0.95,0.4,0.8,0.55,1,0.65,0.35,0.9,0.5,0.75,0.6,0.85,0.45,0.95,0.7];
+  for (var i = 0; i < 24; i++) { var b = document.createElement("div"); b.className = "wbar"; wave.appendChild(b); pat.push(seed[i]); }
+  // transcript words (real Whisper output, gereon.json)
+  var words = ["Now,","that's","a","very","nice","thing","because","you","have","experienced","Wikipedians","on","site."];
+  var hot = {3:1, 4:1, 5:1};
+  var wbox = $("words");
+  words.forEach(function (w, i) {
+    var s = document.createElement("span"); s.className = "word" + (hot[i] ? " hot" : ""); s.textContent = w; wbox.appendChild(s);
+  });
+
+  function build() {
+    var tl = gsap.timeline({ paused: true });
+    gsap.set(".rise", { yPercent: 115, y: 0 });
+    gsap.set("#strike", { scaleX: 0 });
+    gsap.set(".wbar", { scaleY: 0.15 });
+    gsap.set(".cell", { scale: 0 });
+    gsap.set("#btn-export, .chip", { scale: 0 });
+    gsap.set("#pill-upload,#look-chip,#v-aisha", { xPercent: -50 });
+    gsap.set(".scene", { autoAlpha: 0 });
+
+    /* ============ SCENE 1 · HOOK 0-6.2 ============ */
+    tl.set("#hook", { autoAlpha: 1 }, 0);
+    tl.to("#h-l1", { yPercent: 0, duration: 0.55, ease: "expo.out" }, 0.1);
+    tl.to("#h-min", { yPercent: 0, duration: 0.55, ease: "expo.out" }, 0.4);
+    tl.to("#h-l3", { yPercent: 0, duration: 0.55, ease: "expo.out" }, 0.7);
+    tl.to("#strike", { scaleX: 1, duration: 0.35, ease: "expo.inOut" }, 2.4);
+    // counter 47 -> 0
+    var steps = [47, 32, 18, 7, 0], minEl = $("h-min").firstChild;
+    steps.forEach(function (v, k) {
+      tl.call(function () { minEl.textContent = v + (v === 0 ? "" : " minutes"); if (v === 0) minEl.textContent = "0 minutes"; }, null, 2.8 + k * 0.22);
+    });
+    tl.to("#hook-inner", { autoAlpha: 0, y: -50, duration: 0.4, ease: "expo.in" }, 3.9);
+    tl.fromTo("#zero", { autoAlpha: 0, scale: 0.55 }, { autoAlpha: 1, scale: 1, duration: 0.55, ease: "back.out(1.3)" }, 4.0);
+    tl.to("#zero", { autoAlpha: 0, scale: 1.18, duration: 0.35, ease: "expo.in" }, 4.75);
+    tl.set("#core", { autoAlpha: 1 }, 4.85);
+    tl.to("#core1", { yPercent: 0, duration: 0.6, ease: "expo.out" }, 4.9);
+    tl.to("#core2", { yPercent: 0, duration: 0.6, ease: "expo.out" }, 5.35);
+    tl.to("#hook", { x: -170, autoAlpha: 0, duration: 0.5, ease: "expo.in" }, 6.0);
+
+    /* ============ SCENE 2 · DROP 6.2-13.8 ============ */
+    tl.fromTo("#drop", { autoAlpha: 0, x: 170 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: "expo.out" }, 6.2);
+    tl.to("#pill-t", { yPercent: 0, duration: 0.5, ease: "expo.out" }, 6.35);
+    tl.fromTo("#browser", { scale: 0, transformOrigin: "50% 60%" }, { scale: 1, duration: 0.8, ease: "expo.out" }, 6.7);
+    tl.fromTo("#drop-line", { autoAlpha: 0, y: 60 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: "expo.out" }, 7.6);
+    var labelText = "captioned in your browser · no install", lo = { i: 0 }, dl = $("drop-label");
+    tl.to(lo, { i: labelText.length, duration: 1.1, ease: "none",
+      onUpdate: function () { dl.textContent = labelText.slice(0, Math.round(lo.i)); } }, 9.6);
+    tl.to("#drop", { x: -170, autoAlpha: 0, duration: 0.5, ease: "expo.in" }, 13.4);
+
+    /* ============ SCENE 3 · HOW 13.8-34 ============ */
+    tl.fromTo("#how", { autoAlpha: 0, x: 170 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: "expo.out" }, 13.8);
+    // 01 upload
+    tl.to("#step1", { opacity: 1, duration: 0.4, ease: "sine.out" }, 14.0);
+    tl.set("#panel1", { autoAlpha: 1 }, 14.1);
+    tl.fromTo("#upload-zone", { autoAlpha: 0, y: 80 }, { autoAlpha: 1, y: 0, duration: 0.6, ease: "expo.out" }, 14.1);
+    tl.fromTo("#v-aisha", { y: -260 }, { y: 0, duration: 0.7, ease: "expo.out" }, 14.5);
+    tl.fromTo("#shimmer i", { x: "-110%" }, { x: "290%", duration: 1.4, ease: "expo.inOut" }, 15.6);
+    tl.fromTo("#up-label", { autoAlpha: 0, y: 24 }, { autoAlpha: 0.65, y: 0, duration: 0.5, ease: "expo.out" }, 16.8);
+    // 02 transcribe
+    tl.to("#step1", { opacity: 0.28, duration: 0.35 }, 20.3);
+    tl.to("#step2", { opacity: 1, duration: 0.4, ease: "sine.out" }, 20.3);
+    tl.to("#panel1", { x: -110, autoAlpha: 0, duration: 0.45, ease: "expo.in" }, 20.35);
+    tl.set("#panel2", { autoAlpha: 1 }, 20.6);
+    tl.fromTo("#panel2", { x: 110 }, { x: 0, duration: 0.55, ease: "expo.out" }, 20.6);
+    tl.to(".wbar", { scaleY: function (i) { return pat[i]; }, duration: 0.4, ease: "expo.out", stagger: 0.02 }, 20.9);
+    tl.to(".wbar", { scaleY: "+=0.22", duration: 0.26, yoyo: true, repeat: 7, ease: "sine.inOut", stagger: { each: 0.03 } }, 21.6);
+    tl.to("#words .word", { opacity: 1, duration: 0.25, ease: "sine.out", stagger: 0.28 }, 21.2);
+    tl.fromTo("#how2-label", { autoAlpha: 0, y: 24 }, { autoAlpha: 0.7, y: 0, duration: 0.5, ease: "expo.out" }, 24.9);
+    // 03 style
+    tl.to("#step2", { opacity: 0.28, duration: 0.35 }, 27.0);
+    tl.to("#step3", { opacity: 1, duration: 0.4, ease: "sine.out" }, 27.0);
+    tl.to("#panel2", { x: -110, autoAlpha: 0, duration: 0.45, ease: "expo.in" }, 27.05);
+    tl.set("#panel3", { autoAlpha: 1 }, 27.3);
+    tl.fromTo("#flip-stage", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.6, ease: "expo.out" }, 27.3);
+    function flip(at, hideId, showId, label) {
+      tl.to("#flip-stage", { scaleX: 0, duration: 0.22, ease: "power2.in", transformOrigin: "50% 50%" }, at);
+      tl.call(function () { $("look-chip").textContent = label; }, null, at + 0.22);
+      tl.to("#flip-stage", { scaleX: 1, duration: 0.38, ease: "expo.out" }, at + 0.22);
+    }
+    flip(29.3, "#v-sam", "#v-gianna", "karaoke_fill");
+    flip(31.1, "#v-gianna", "#v-aisha2", "pop_clean");
+    tl.fromTo("#look-chip", { autoAlpha: 0, y: 18 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "expo.out" }, 27.9);
+    tl.to("#how", { x: -170, autoAlpha: 0, duration: 0.5, ease: "expo.in" }, 33.6);
+
+    /* ============ SCENE 4 · MONTAGE 34-46 ============ */
+    tl.fromTo("#montage", { autoAlpha: 0, x: 170 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: "expo.out" }, 34.0);
+    tl.to(".cell", { scale: 1, duration: 0.55, ease: "back.out(1.5)", stagger: 0.09 }, 34.3);
+    tl.fromTo("#looks-line", { autoAlpha: 0, y: 44 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: "expo.out" }, 43.0);
+    tl.to("#montage", { x: -170, autoAlpha: 0, duration: 0.5, ease: "expo.in" }, 45.6);
+
+    /* ============ SCENE 5 · EXPORT 46-54 ============ */
+    tl.fromTo("#export", { autoAlpha: 0, x: 170 }, { autoAlpha: 1, x: 0, duration: 0.6, ease: "expo.out" }, 46.0);
+    tl.to("#btn-export", { scale: 1, duration: 0.7, ease: "back.out(1.4)" }, 46.3);
+    tl.to("#chip-mp4", { scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 47.4);
+    tl.to("#chip-srt", { scale: 1, duration: 0.5, ease: "back.out(1.6)" }, 48.1);
+    tl.fromTo("#export-line", { autoAlpha: 0, y: 44 }, { autoAlpha: 1, y: 0, duration: 0.7, ease: "expo.out" }, 48.9);
+    tl.to("#export", { x: -170, autoAlpha: 0, duration: 0.5, ease: "expo.in" }, 53.6);
+
+    /* ============ SCENE 6 · END 54-60 ============ */
+    tl.set("#end", { autoAlpha: 1 }, 54.0);
+    tl.fromTo("#wordmark", { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: "expo.out" }, 54.3);
+    tl.to("#end-line", { autoAlpha: 1, duration: 0.5, ease: "sine.out" }, 55.3);
+    tl.fromTo("#url-pill", { autoAlpha: 0, scale: 0.8 }, { autoAlpha: 1, scale: 1, duration: 0.6, ease: "back.out(1.5)" }, 56.1);
+    tl.to("#credit", { autoAlpha: 0.75, duration: 0.5, ease: "sine.out" }, 58.3);
+
+    tl.seek(0);
+    window.__timelines = window.__timelines || {};
+    window.__timelines["main"] = tl;
+  }
+
+  Promise.all([
+    document.fonts.load('400 120px "Instrument Serif"'),
+    document.fonts.load('italic 400 118px "Instrument Serif"'),
+    document.fonts.load('600 46px "Manrope"'),
+    document.fonts.load('400 30px "JetBrains Mono"')
+  ]).then(function () { return document.fonts.ready; }).then(build);
+})();
+</script>
+</body>
+</html>
