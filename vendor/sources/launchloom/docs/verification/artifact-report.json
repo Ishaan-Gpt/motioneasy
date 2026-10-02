@@ -1,0 +1,50 @@
+{
+  "campaign_id": "f1627e9682304dc6",
+  "revision": 0,
+  "checks": {
+    "campaign_ready": true,
+    "zip_integrity": true,
+    "all_manifest_hashes_match": true,
+    "no_raw_capture_or_input": true,
+    "private_evidence_not_exported": true,
+    "landscape_full_decode": true,
+    "portrait_full_decode": true,
+    "no_publication_records": true,
+    "authenticated_kit_download": true,
+    "unauthenticated_artifacts_blocked": true,
+    "live_publish_disabled": true
+  },
+  "videos": {
+    "landscape": {
+      "file": "landscape.mp4",
+      "width": 1280,
+      "height": 720,
+      "duration": 12.0,
+      "fps": 24,
+      "codec": "h264",
+      "bytes": 361270,
+      "audio": false
+    },
+    "portrait": {
+      "file": "portrait.mp4",
+      "width": 720,
+      "height": 1280,
+      "duration": 12.0,
+      "fps": 24,
+      "codec": "h264",
+      "bytes": 417892,
+      "audio": false
+    }
+  },
+  "provenance": {
+    "capture": "upload",
+    "concept": "local",
+    "copy": "local-template",
+    "visual_style": "editorial",
+    "reviewed_before_render": false,
+    "imported_event_track": true,
+    "raw_recording_in_export": false
+  },
+  "python": "3.14.6",
+  "ffmpeg": "ffmpeg version 9.0.1 Copyright (c) 2000-2026 the FFmpeg developers"
+}

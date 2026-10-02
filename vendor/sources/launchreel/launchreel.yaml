@@ -1,0 +1,96 @@
+project:
+  name: "GudCal"
+  url: "https://www.gudcal.com"
+  viewport: { width: 1440, height: 900, deviceScaleFactor: 2 }
+  theme: "light"
+
+scenarios:
+  - id: "update-availability"
+    name: "Update Availability"
+    type: "screenshot+video"
+    page: "/docs/api"
+    actions:
+      - dismiss_cookies: true
+      - wait: 2000
+      - scroll: { to: 750, duration: 1500 }
+      - wait: 1500
+      - screenshot: { name: "01-before-update-availability" }
+      - navigate: { url: "/docs/api" }
+      - wait_for_url: { contains: "/docs/api" }
+      - wait: 2000
+      - scroll: { to: 40000, duration: 1500 }
+      - wait: 1500
+      - screenshot: { name: "02-update-availability-section" }
+      
+  - id: "get-event-link"
+    name: "Get Event Link"
+    type: "screenshot+video"
+    page: "/docs/mcp"
+    actions:
+      - wait: 2000
+      - navigate: { url: "/docs/mcp" }
+      - wait_for_url: { contains: "/docs/mcp" }
+      - wait: 2000
+      - scroll: { to: 25000, duration: 1500 }
+      - wait: 1500
+      - screenshot: { name: "03-event-link-section" }
+      
+  - id: "book-meeting"
+    name: "Book a Meeting"
+    type: "screenshot+video"
+    page: "/register"
+    actions:
+      - wait: 2000
+      - navigate: { url: "/register" }
+      - wait_for_url: { contains: "/register" }
+      - wait: 2000
+      - fill_form: { text: "John Doe" }
+      - fill_form: { text: "john.doe@example.com" }
+      - fill_form: { text: "password123" }
+      - screenshot: { name: "04-before-book-meeting" }
+      - click: { text: "Create Account" }
+      - wait: 2000
+      - navigate: { url: "/dashboard" }
+      - wait_for_url: { contains: "/dashboard" }
+      - wait: 2000
+      - click: { text: "Book Meeting" }
+      - wait: 2000
+      - screenshot: { name: "05-book-meeting-confirmation" }
+      
+  - id: "accept-booking"
+    name: "Accept Booking"
+    type: "screenshot+video"
+    page: "/login"
+    actions:
+      - wait: 2000
+      - navigate: { url: "/login" }
+      - wait_for_url: { contains: "/login" }
+      - wait: 2000
+      - fill_form: { text: "john.doe@example.com" }
+      - fill_form: { text: "password123" }
+      - click: { text: "Sign In" }
+      - wait: 2000
+      - navigate: { url: "/calendar" }
+      - wait_for_url: { contains: "/calendar" }
+      - wait: 2000
+      - click: { text: "Accept" }
+      - wait: 2000
+      - screenshot: { name: "06-booking-accepted" }
+
+  - id: "show-stats"
+    name: "Show Stats"
+    type: "screenshot+video"
+    page: "/dashboard"
+    actions:
+      - wait: 2000
+      - wait_for_url: { contains: "/dashboard" }
+      - wait: 2000
+      - scroll: { to: 1000, duration: 1500 }
+      - wait: 1500
+      - click: { text: "View Stats" }
+      - wait: 2000
+      - screenshot: { name: "07-stats-shown" }
+
+export:
+  videos: { format: "mp4", fps: 24, crf: 18 }
+  combined_video: { enabled: true, name: "demo-recording.mp4" }

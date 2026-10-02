@@ -1,0 +1,51 @@
+project:
+  name: CaptionsEasy
+  url: https://captionseasy.vercel.app
+  viewport:
+    width: 1440
+    height: 900
+    deviceScaleFactor: 2
+  theme: light
+scenarios:
+  - id: homepage
+    name: CaptionsEasy homepage tour
+    type: screenshot+video
+    page: /
+    actions:
+      - dismiss_cookies: true
+      - finish_animations: true
+      - wait: 2500
+      - screenshot:
+          name: 01-hero
+      - scroll:
+          to: 900
+          duration: 2000
+      - wait: 1200
+      - screenshot:
+          name: 02-product
+      - scroll:
+          to: 1800
+          duration: 2000
+      - wait: 1200
+      - screenshot:
+          name: 03-looks
+      - scroll:
+          to: 2700
+          duration: 2000
+      - wait: 1200
+      - screenshot:
+          name: 04-features
+      - scroll:
+          to: 3600
+          duration: 2000
+      - wait: 1500
+      - screenshot:
+          name: 05-cta
+export:
+  videos:
+    format: mp4
+    fps: 30
+    crf: 18
+  combined_video:
+    enabled: true
+    name: launch-reel.mp4
