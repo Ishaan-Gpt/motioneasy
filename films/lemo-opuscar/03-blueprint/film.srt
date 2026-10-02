@@ -1,0 +1,31 @@
+1
+00:00:01,300 --> 00:00:02,400
+your clip, straight in
+
+2
+00:00:02,700 --> 00:00:03,500
+01 · UPLOAD — your clip, straight in
+
+3
+00:00:03,550 --> 00:00:04,350
+02 · TRANSCRIBE — whisper · your groq key
+
+4
+00:00:04,400 --> 00:00:05,200
+03 · STYLE — 13 cinematic templates
+
+5
+00:00:05,250 --> 00:00:06,300
+04 · RENDER — 1080 × 1920 · this machine
+
+6
+00:00:06,300 --> 00:00:07,000
+FOOTAGE TRAVELS 0 mm — STAYS ON THIS MACHINE
+
+7
+00:00:10,900 --> 00:00:12,900
+the one part that leaves the drawing.
+
+8
+00:00:13,200 --> 00:00:15,900
+free · open source · local-first

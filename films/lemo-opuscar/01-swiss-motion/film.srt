@@ -1,0 +1,23 @@
+1
+00:00:02,200 --> 00:00:04,500
+stop timing captions.
+
+2
+00:00:04,700 --> 00:00:09,200
+the old way: type. time. drag. repeat.
+
+3
+00:00:09,700 --> 00:00:14,700
+capseasy: transcribe, time, style, render.
+
+4
+00:00:15,400 --> 00:00:17,500
+your key. your machine. your footage never leaves it.
+
+5
+00:00:18,700 --> 00:00:20,500
+capseasy — free, open source, local-first.
+
+6
+00:00:21,000 --> 00:00:23,000
+stop timing captions. start posting.

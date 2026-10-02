@@ -1,0 +1,27 @@
+1
+00:00:03,800 --> 00:00:05,600
+who has time to caption?
+
+2
+00:00:05,800 --> 00:00:08,000
+the old way: drag. sync. repeat.
+
+3
+00:00:10,200 --> 00:00:12,000
+tick… tock… time’s up!
+
+4
+00:00:13,500 --> 00:00:15,300
+upload your clip.
+
+5
+00:00:15,400 --> 00:00:17,300
+whisper transcribes it. your groq key.
+
+6
+00:00:17,500 --> 00:00:19,300
+pick 1 of 13 templates.
+
+7
+00:00:19,400 --> 00:00:21,500
+footage stays on your machine.

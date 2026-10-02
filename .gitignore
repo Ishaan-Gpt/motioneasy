@@ -12,3 +12,6 @@ Thumbs.db
 # ...except source assets Ishaan pushes for compositing (kept in git)
 !assets/
 !assets/**
+# ...and the lemo-opuscar campaign archive (reference films + treatments)
+!films/lemo-opuscar/
+!films/lemo-opuscar/**

@@ -1,0 +1,23 @@
+1
+00:00:00,300 --> 00:00:03,000
+your video has no captions. yet.
+
+2
+00:00:03,000 --> 00:00:09,000
+manual captioning: endless files, endless fixing.
+
+3
+00:00:12,400 --> 00:00:14,000
+one press. every word, timed.
+
+4
+00:00:14,000 --> 00:00:17,000
+13 templates. rendered on your machine, 1080 by 1920.
+
+5
+00:00:18,200 --> 00:00:19,600
+zero bytes uploaded. it never leaves your machine.
+
+6
+00:00:19,800 --> 00:00:22,000
+capseasy. start posting.
