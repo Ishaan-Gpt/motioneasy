@@ -9,3 +9,6 @@ node_modules/
 __pycache__/
 .DS_Store
 Thumbs.db
+# ...except source assets Ishaan pushes for compositing (kept in git)
+!assets/
+!assets/**
