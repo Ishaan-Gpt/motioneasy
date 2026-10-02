@@ -6,31 +6,32 @@ import subprocess, sys
 
 MUSIC_BAKED = True  # set True if film-raw.mp4 already contains the music
 SFX = "/home/hatch/workspace/motioneasy/assets/audio/sfx/kenney-interface-sounds"
-MUSIC = "/home/hatch/workspace/motioneasy/films/flagship-2026/capseasy-flagship/assets/music/kevin-macleod_Inspired.mp3"
+MUSIC = "/home/hatch/workspace/motioneasy/films/flagship-2026/capseasy-flagship/assets/music/mixkit-raising-me-higher.mp3"
 
 # (time_s, file, volume)
 CUES = []
-def at(t, f, v=0.5, n=1, gap=0.0):
+def at(t, f, v=0.5, n=1, gap=0):
     for i in range(n):
         CUES.append((round(t + i * gap, 3), f, v))
 
-at(0.1, "select_002.ogg", 0.5, 3, 0.3)          # word rises
-at(2.4, "maximize_001.ogg", 0.6)                # strike whoosh
-at(2.8, "tick_001.ogg", 0.4, 5, 0.22)           # counter ticks
-at(4.0, "confirmation_001.ogg", 0.8)            # zero punch
-at(4.9, "open_002.ogg", 0.5); at(5.35, "open_002.ogg", 0.5)
-at(6.7, "maximize_002.ogg", 0.6); at(6.78, "open_003.ogg", 0.5)
-at(9.6, "click_001.ogg", 0.35, 8, 0.14)         # typewriter
-at(14.5, "drop_002.ogg", 0.7)                   # clip drop
-at(15.6, "scroll_002.ogg", 0.4)                 # shimmer
-at(21.2, "pluck_001.ogg", 0.35, 13, 0.28)       # word blips
-at(27.3, "open_001.ogg", 0.6)
-at(29.3, "switch_001.ogg", 0.6); at(31.1, "switch_001.ogg", 0.6)
-at(34.3, "select_004.ogg", 0.4, 12, 0.09)       # grid cascade
-at(46.3, "confirmation_002.ogg", 0.7)
-at(47.4, "click_003.ogg", 0.5); at(48.1, "click_003.ogg", 0.5)
-at(56.1, "confirmation_003.ogg", 0.5)
-at(58.3, "glass_001.ogg", 0.4)
+at(0.09, "select_002.ogg", 0.5, 3, 0.3)          # word rises
+at(2.21, "maximize_001.ogg", 0.6)                # strike whoosh
+at(2.58, "tick_001.ogg", 0.4, 5, 0.22)           # counter ticks
+at(3.68, "confirmation_001.ogg", 0.8)            # zero punch
+at(4.51, "open_002.ogg", 0.5); at(4.92, "open_002.ogg", 0.5)
+at(6.16, "maximize_002.ogg", 0.6); at(6.24, "open_003.ogg", 0.5)
+at(8.83, "click_001.ogg", 0.35, 8, 0.14)         # typewriter
+at(13.34, "drop_002.ogg", 0.7)                   # clip drop
+at(14.35, "scroll_002.ogg", 0.4)                 # shimmer
+at(19.5, "pluck_001.ogg", 0.35, 13, 0.28)       # word blips
+at(25.12, "open_001.ogg", 0.6)
+at(26.96, "switch_001.ogg", 0.6); at(28.61, "switch_001.ogg", 0.6)
+for i in range(12):  # grid cascade: accelerating, matches the visual ramp
+    at(round(31.56 + i * 0.065 - i * i * 0.0018, 3), "select_004.ogg", 0.4)
+at(42.6, "confirmation_002.ogg", 0.7)
+at(43.61, "click_003.ogg", 0.5); at(44.25, "click_003.ogg", 0.5)
+at(51.61, "confirmation_003.ogg", 0.5)
+at(53.64, "glass_001.ogg", 0.4)
 
 src, film_raw, film_out = sys.argv[1], sys.argv[1], sys.argv[2]
 cmd = ["ffmpeg", "-y", "-v", "error", "-i", film_raw]

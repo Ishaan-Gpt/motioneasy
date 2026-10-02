@@ -21,3 +21,7 @@ Thumbs.db
 # ...and vendored reference tools (their demo clips are reference, kept in git)
 !vendor/
 !vendor/**
+
+# Mixkit/Pixabay site-licensed audio: free to use in videos, not for raw redistribution
+mixkit-*.mp3
+pixabay-*.mp3

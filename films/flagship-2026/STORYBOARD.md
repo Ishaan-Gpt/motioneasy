@@ -1,11 +1,11 @@
-# STORYBOARD — "Stop timing captions. Start posting." (flagship, 60s, 1920x1080, 60fps)
+# STORYBOARD — "Stop timing captions. Start posting." (flagship, 55.2s, 1920x1080, 60fps)
 
 Message & tone: "CapsEasy captions your videos in the browser, free." in a
 confident Apple-keynote tone, so the viewer feels the drudgery evaporate.
 
 Palette: cream #ffffeb (dominant), ink #1a1a1a, lavender #f0d7ff, deep green #034f46.
 Type: Instrument Serif (headlines), Manrope (UI), JetBrains Mono (labels).
-Music: Kevin MacLeod "Inspired" (CC-BY, credit in end card/description). SFX: Kenney CC0.
+Music: "Raising Me Higher" by Ahjay Stelino (Mixkit Free License, free commercial use; site-licensed so the MP3 stays local/gitignored, baked into the render only). SFX: Kenney CC0.
 All footage real: hero captioned clips, looks previews, brand wordmark. No fake UI.
 
 ## Beat map
@@ -22,7 +22,7 @@ All footage real: hero captioned clips, looks previews, brand wordmark. No fake 
 | 27.0-34.0 | HOW 03 | "03". Same slot flips sam → gianna → aisha, look-name chips rise: "hormozi_box / karaoke_fill / pop_clean" | Spring flip (scaleX) | pop per flip |
 | 34.0-46.0 | MONTAGE | 12 looks previews cascade into a 4x3 grid on the beat, each springing from 0; grid settles, line rises: "33 looks. Zero timing." | Staggered springs | pop cascade |
 | 46.0-54.0 | EXPORT | Ink button "Export" grows; chips pop: "MP4" "SRT". Line: "MP4 + SRT. In your browser. Free." | Grow + pops | click, pop, pop |
-| 54.0-60.0 | END | Wordmark SVG draws in; "Free and open source." mono; lavender pill: "captionseasy.vercel.app"; music credit microcopy | Draw + rise | soft chime |
+| 54.0-60.0 | END | Wordmark SVG draws in; "Free and open source." mono; lavender pill: "start free"; music credit microcopy | Draw + rise | soft chime |
 
 ## Transition families (≥3, none twice in a row)
 1. Masked text rise (hook, labels, end lines)

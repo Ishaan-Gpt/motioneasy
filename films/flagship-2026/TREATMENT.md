@@ -1,4 +1,4 @@
-# TREATMENT — "Stop timing captions. Start posting." (Flagship, 60s, 1920x1080, 60fps)
+# TREATMENT — "Stop timing captions. Start posting." (Flagship, 55.2s, 1920x1080, 60fps)
 
 Logline: the 47 minutes you waste timing captions, counted down to zero —
 then the product itself takes over: upload, on-device Whisper, 33 looks,
@@ -13,7 +13,7 @@ one-take keynote (prompt #1, adapted from @twoclipping) for structure.
 Every transition answers "why here": masked rises for type, spring pops
 for objects, pushes between scenes, one ink wipe for the strike-through.
 
-Sound: Kevin MacLeod "Inspired" (CC-BY 4.0, credited in end card), 57
+Sound: "Raising Me Higher" by Ahjay Stelino (Mixkit, free commercial use), 57
 Kenney CC0 SFX cues (pops, ticks, whooshes, chimes). Mix at -14.3 LUFS.
 
 Type: Instrument Serif (headlines), Manrope (UI), JetBrains Mono (labels) —
