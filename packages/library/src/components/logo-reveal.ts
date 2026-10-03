@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, mix, pr, spring, SPRING } from "@motioneasy/engine";
-import { blockWindow, maskRise, stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style, heroWord } from "../kit";
 import { BRAND } from "../demo";
 import { drawPill } from "../parts";
 
@@ -14,6 +14,7 @@ export default defineComponent<Props>({
   description: "Your real logo, out of focus to sharp with a settle, one light sweep across it, then the tagline rises and the URL pill lands.",
   tags: ["logo", "end card", "brand", "sting", "outro"],
   added: "2026-10-03",
+  camera: "push-out",
   featured: true,
   theme: { mode: "light", lighting: 0.7, grain: 0.3, vignette: 0.3 },
   notes: "Upload your official logo file (SVG or PNG with transparency). Never redraw a brand mark.",
@@ -43,7 +44,7 @@ export default defineComponent<Props>({
     const hasTag = !!p.tagline;
     const cy = c.cy - (hasTag ? 80 : 0);
     const land = pr(t, 0.05, 0.6, E.out);
-    stage(c, { kind: "soft", focus: [c.cx, cy], flare: Math.exp(-Math.max(0, t - 0.55) * 4) * (t > 0.55 ? 1 : 0) });
+    stage(c, { word: heroWord(p.tagline), kind: "soft", focus: [c.cx, cy], flare: Math.exp(-Math.max(0, t - 0.55) * 4) * (t > 0.55 ? 1 : 0) });
     const s = 1.18 - 0.18 * land + 0.03 * Math.exp(-Math.max(0, t - 0.55) * 8) * Math.cos((t - 0.55) * 26) * (t > 0.55 ? 1 : 0) + 0.02 * c.p;
     const L = c.layer(lw, lh, (lc) => {
       lc.media(p.logo, 0, 0, lw, lh, { fit: "contain", key: "logo" });

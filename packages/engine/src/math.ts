@@ -87,14 +87,30 @@ export const pr = (t: number, a: number, b: number, ease: Ease = E.linear) => (t
 /** Keyframe track: [[time, value, easeIntoThisKey?], ...] */
 export type Key = [number, number, Ease?];
 export const kf = (t: number, keys: Key[]) => {
+  const n = keys.length;
   if (t <= keys[0][0]) return keys[0][1];
-  for (let i = 0; i < keys.length - 1; i++) {
-    const [a, va] = keys[i];
-    const [b, vb, ease] = keys[i + 1];
-    if (t <= b) return tw(t, a, b, va, vb, ease ?? E.ramp);
-  }
-  return keys[keys.length - 1][1];
+  if (t >= keys[n - 1][0]) return keys[n - 1][1];
+  let i = 0;
+  while (i < n - 2 && t > keys[i + 1][0]) i++;
+  const [a, va] = keys[i];
+  const [b, vb, ease] = keys[i + 1];
+  if (ease) return tw(t, a, b, va, vb, ease);
+  // Keys without an explicit ease flow through each other (monotone cubic, Fritsch–Carlson): motion only
+  // comes to rest at the ends, at holds and at turning points, never at every key.
+  const ma = flowSlope(keys, i), mb = flowSlope(keys, i + 1);
+  if (ma === 0 && mb === 0) return tw(t, a, b, va, vb, E.ramp);
+  const h = b - a, u = (t - a) / h, u2 = u * u, u3 = u2 * u;
+  return va * (2 * u3 - 3 * u2 + 1) + h * ma * (u3 - 2 * u2 + u) + vb * (-2 * u3 + 3 * u2) + h * mb * (u3 - u2);
 };
+
+function flowSlope(keys: Key[], k: number) {
+  if (k <= 0 || k >= keys.length - 1) return 0;
+  if (keys[k][2] || keys[k + 1][2]) return 0;
+  const d0 = (keys[k][1] - keys[k - 1][1]) / Math.max(1e-6, keys[k][0] - keys[k - 1][0]);
+  const d1 = (keys[k + 1][1] - keys[k][1]) / Math.max(1e-6, keys[k + 1][0] - keys[k][0]);
+  if (d0 * d1 <= 0) return 0;
+  return 2 / (1 / d0 + 1 / d1);
+}
 
 // ── Springs: closed-form damped oscillator, 0 → 1, time in seconds ─────────
 export interface SpringCfg {
@@ -186,6 +202,29 @@ export function fbm1(x: number, seed = 0, octaves = 3): number {
 
 /** Idle breathing: a small, slow, organic offset for anything that holds on screen. */
 export const breathe = (t: number, seed = 0, amp = 1, speed = 0.35) => fbm1(t * speed, seed) * amp;
+
+// ── Motion rules (docs/reference/prompts/02ui-video-copy/references/motion-feel.md) ─────────────
+/**
+ * Progress that is already moving at u = 0 and still moving at u = 1 (half drift, half ease-out), for
+ * camera moves that cut in and out on motion instead of starting or stopping dead.
+ */
+export const glide = (u: number) => {
+  const x = clamp(u);
+  return 0.5 * x + 0.5 * (1 - (1 - x) * (1 - x));
+};
+/** Big scale changes interpolate in log space, so the move doesn't spend its time big and then lurch. */
+export const logLerp = (s0: number, s1: number, u: number) => {
+  const a = Math.log(Math.max(1e-4, s0)), b = Math.log(Math.max(1e-4, s1));
+  return Math.exp(a + (b - a) * u);
+};
+/** Float-in: a quick ease-out that keeps drifting (p = A(1 − e^(−t/τ)) + B·t), never reaching zero speed. */
+export const floatIn = (t: number, a: number, tau: number, from: number, to: number, drift = 0) => {
+  if (t <= a) return from;
+  const k = 1 - Math.exp(-(t - a) / Math.max(1e-3, tau));
+  return from + (to - from) * k + drift * (t - a);
+};
+/** Stagger with a little seeded irregularity, so a group never starts in lockstep. */
+export const jitterStagger = (i: number, step: number, seed = 0, jitter = 0.35) => i * step * (1 + (rand(seed * 977 + i * 131) - 0.5) * jitter);
 
 // ── Beat grid ─────────────────────────────────────────────────────────────
 export const beatLen = (bpm: number) => 60 / bpm;

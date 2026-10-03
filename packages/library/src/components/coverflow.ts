@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, breathe, type RC, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { clipList, lookList } from "../demo";
 
 type Props = { media: string[]; labels: string[]; title: string; step: number; advances: number; tilt: number; spacing: number; depth: number; radius: number; reflection: boolean; showLabels: boolean; size: number };
@@ -62,7 +62,7 @@ export default defineComponent<Props>({
     const cardH = cardW * (600 / 432);
     const floorY = (c.vertical ? 140 : 70) + cardH / 2 * 0; // card centre sits a bit below centre
     const cy = floorY;
-    stage(c, { kind: "studio", focus: [c.cx, c.cy + cy - cardH * 0.1] });
+    stage(c, { word: heroWord(p.title), kind: "studio", focus: [c.cx, c.cy + cy - cardH * 0.1] });
 
     // Title above the wheel.
     if (p.title) {

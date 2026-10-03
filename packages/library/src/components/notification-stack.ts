@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { BRAND } from "../demo";
 import { drawGlassCard } from "../parts";
 
@@ -39,7 +39,7 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     const V = c.vertical;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const w = Math.min(c.safe.w, V ? 900 : 780), h = V ? 176 : 140;
     const gap = 18;
     const n = p.items.length;

@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { lineWindow, stage, style } from "../kit";
+import { lineWindow, stage, style, heroWord } from "../kit";
 import { drawMarker, drawScribble } from "../parts";
 
 type Props = { text: string; align: "left" | "center"; stagger: number; mark: "marker" | "box" | "underline" | "none"; markColor: string; size: number; font: string; weight: number; hold: number };
@@ -48,7 +48,7 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     const center = p.align === "center";
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.text), kind: "soft" });
     const st = style(c, (c.vertical ? 140 : 130) * p.size, { fontParam: p.font, weight: p.weight, lineHeight: 1.08 });
     // Every written line stays one line: shrink rather than wrap.
     const L = c.fit(p.text, st, c.safe.w * 0.94, c.safe.h * 0.62, { align: center ? "center" : "left", maxLines: p.text.split("\n").length });

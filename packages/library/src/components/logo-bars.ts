@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, kf, pr, spring, SPRING, type Key } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { BRAND } from "../demo";
 
 type Props = { wordmark: string | null; bars: number; colors: string[]; tagline: string; font: string };
@@ -17,6 +17,7 @@ export default defineComponent<Props>({
   description: "The mark's bars bounce like a voice meter, settle into the logo shape, then slide left as the wordmark wipes out from behind them.",
   tags: ["logo", "audio", "bars", "sting", "captionseasy"],
   added: "2026-10-03",
+  camera: "push-out",
   featured: false,
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
   notes: "Built on the CaptionsEasy mark (three bars). Swap the wordmark file for another bar-based mark.",
@@ -39,7 +40,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.tagline), kind: "soft" });
     const slide = pr(t, 1.5, 2.1, E.ramp);
     const wmInfo = c.mediaInfo(p.wordmark);
     const wmAspect = wmInfo ? wmInfo.w / wmInfo.h : 5;

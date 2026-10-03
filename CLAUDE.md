@@ -9,7 +9,7 @@
 
 1. **Goal:** make social posts (Reels, Shorts, TikToks, LinkedIn/X video, stills) for CaptionsEasy and later other
    brands in minutes, deterministically, with very few tokens.
-2. **How:** 52 reusable **components** (pure render functions of time + props, drawn on a canvas). A post is a
+2. **How:** 58 reusable **components** (+ 12 transitions) (pure render functions of time + props, drawn on a canvas). A post is a
    small **JSON spec**: a list of clips (component + changed props + transition), plus music. Pick, tweak, export.
 3. **Engine:** TypeScript + canvas 2D/WebGL in the browser and in a headless Chromium (Playwright) for the CLI.
    Next.js site for browsing/composing. Same spec → same frame in preview, site export and CLI render.
@@ -22,10 +22,13 @@
 ```
 packages/engine/   component contract, params/coerce, canvas+GL helpers, text layout, fonts, camera, theme,
                    formats, player, exporter (mediabunny, MP4), audio mixer + synth + CC0 sound library
-packages/library/  components/ (52, one file each) · registry.ts · categories.ts · transitions.ts ·
-                   sequence.ts (PostSpec, layoutPost) · remix.ts (deck+seed → posts, auditPosts) · prompt.ts
+packages/library/  components/ (one file each) · registry.ts · categories.ts · transitions.ts ·
+                   backdrops.ts (the layer behind every staged shot) · kit.ts (stage, type helpers) ·
+                   sequence.ts (PostSpec, layoutPost) · remix.ts (deck+seed → posts, auditPosts) · prompt.ts ·
+                   music.gen.ts (generated music library)
 apps/web/          Next.js site: Library, /c/[id] component page, /compose, /sounds, /docs
-cli/               bundle · render · stills · previews · sounds · remix · audit · test (+ server, shot, library)
+cli/               bundle · render · stills · matrix · previews · sounds · music · remix · audit · test (+ server, shot, library)
+docs/reference/prompts/  imported launch-video prompt corpus + motion-feel rules (INDEX.md first)
 decks/             copy decks for remix (captionseasy.json: verified facts only)
 posts/             one JSON spec per post (git-tracked)
 brands/ sources/   brand files, source media, captures
@@ -46,6 +49,21 @@ Dependency rule: `engine` ← `library` ← (`apps/web`, `cli`). Nothing imports
   music?, notes?, recipe?, seed? }`. Time in seconds; fps 60 for masters. Formats: vertical 1080×1920, square,
   portrait 1080×1350, landscape 1920×1080. Sizes scale from a 1080 short edge.
 
+## 2b. What makes a shot look finished (every component gets these for free)
+
+- **Shot camera** (`camera` look prop, engine `shotCamera`): a slow push-in / push-out / drift over the whole
+  component, already moving on frame 1 and still moving on the last (`glide`), scale in log space. Components
+  with their own move set `camera: "drift" | "push-out" | "still"` in their definition.
+- **Backdrop** (`backdrop` look prop, `library/src/backdrops.ts`): grid, dots, rings, giant type, colour block,
+  split, stripes or framed panel, drawn inside `stage()` on a parallax plane. "auto" picks per component. Pass
+  `word: heroWord(text)` to `stage()` so the giant-type backdrop uses the headline's accent word.
+- **Motion rules** (`docs/reference/prompts/02ui-video-copy/references/motion-feel.md`): no dead stops between
+  keys (`kf` flows through interior keys), stagger groups with `jitterStagger` (never one start frame), big scale
+  changes with `logLerp`, drift-style settles with `floatIn`, cut in on motion.
+- **Sound kit** (`soundKit` prop, default recorded): synth roles (`whoosh.swipe`, `impact.land` …) are swapped
+  for matching CC0 recordings at cue time (`recordedFor` in `audio/library.ts`); recorded risers are re-timed so
+  they still end on the hit.
+
 ## 3. Golden rules
 
 1. Render is a **pure function of `c.t` and props**. No timers, CSS animation, `Date.now()` or `Math.random()`;
@@ -61,7 +79,14 @@ Dependency rule: `engine` ← `library` ← (`apps/web`, `cli`). Nothing imports
 ## 4. Audio
 
 - Only CC0 / CC-BY files are committed (`.claude/skills/capseasy-audio/SKILL.md`, `assets/audio/LICENSES.md`);
-  credit CC-BY tracks in the spec's `music.credit`.
+  credit CC-BY tracks in the spec's `music.credit` and on the end card.
+- **Music library:** `pnpm music` fetches 32 curated Kevin MacLeod tracks (CC-BY) into
+  `assets/audio/music/library/` (git-ignored, re-fetched on demand), measures BPM, first beat and bar-aligned
+  entries into strong sections, and writes `packages/library/src/music.gen.ts`. Moods: soft, uplifting, groove,
+  driving, dramatic. Decks set `musicMood`; remix never repeats a bed within 3 posts and starts on `starts[0]`.
+  Match the post's BPM props (beat-slam, kinetic-stack) to the track's measured `bpm`.
+- **SFX:** `node cli/sounds.mjs --freesound` imports 40 curated Freesound CC0 recordings (keyless: reads the public
+  search page) plus 19 Kenney CC0 sounds → `packages/engine/assets/sounds` + `samples.gen.ts`.
 - The mixer limits and re-measures: posts land at about **−14 LUFS**, peaks ≤ −1 dB. `pnpm sounds` imports the
   recorded CC0 sounds; set `FREESOUND_API_KEY` and run `node cli/sounds.mjs --freesound` for more.
 
@@ -72,7 +97,9 @@ Dependency rule: `engine` ← `library` ← (`apps/web`, `cli`). Nothing imports
 | `pnpm dev` / `pnpm build` | site dev server (port 3000) / bundle engine + production Next build |
 | `pnpm render posts/<id>.json [--all-formats]` | MP4 + poster per format, ffprobe-checked, loudness measured |
 | `pnpm stills <ids\|spec.json>` · `pnpm gallery` | contact sheets → `out/stills/` |
-| `pnpm previews` | card posters + hover loops for the site (re-runs only what changed) |
+| `pnpm previews [--force]` | card posters + hover loops for the site (re-runs only what changed; --force after engine/kit changes) |
+| `node cli/matrix.mjs --ids a,b --vary backdrop=grid,type` | review sheet: components × prop values at one moment |
+| `pnpm music [--list]` | fetch + measure the music library, write music.gen.ts |
 | `pnpm remix decks/captionseasy.json --count N --seed S` | N varied specs, audited |
 | `pnpm audit [posts/*.json]` | variety audit (repeat recipe/opener/music, transition spam, uniform shots) |
 | `pnpm test` | every component's defaults and every example spec (posts, examples, Docs snippets) parse clean |
@@ -94,6 +121,9 @@ Dependency rule: `engine` ← `library` ← (`apps/web`, `cli`). Nothing imports
 
 ## 8. Status
 
-Done: engine, 52 components, transitions, compose page, sounds, docs, previews, remix, audit, schema tests.
+Done: engine, 58 components + 12 transitions, compose page, sounds, docs, previews, remix, audit, schema tests.
+2026-10-04: motion overhaul — shot camera, 8 backdrops, motion-rule helpers, 6 new type blocks (char-cascade,
+kinetic-stack, type-marquee, image-type, bar-wipe, split-flap), match + recede transitions, recorded sound kit
+(59 CC0 recordings), 32-track tagged music library.
 Next: Posts group in the site (`/compose/#post=<id>`), render + review the 8 example posts, dedicated list titles in the
 deck, lazy AAC encoder, mobile pass on the component page, Tone.js beds, optional Remotion adapter / agent API / Vercel deploy.

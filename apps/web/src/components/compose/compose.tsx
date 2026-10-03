@@ -509,15 +509,32 @@ function PostPanel({ draft, update, length }: { draft: Draft; update: (fn: (d: D
       </div>
       <div className="panel space-y-3 p-4">
         <div className="label">Music</div>
+        <select
+          className="field"
+          value={current === "none" || current === "upload" ? "" : current}
+          onChange={(e) => {
+            const t = MUSIC.find((x) => x.id === e.target.value);
+            // Start on the track's first strong, bar-aligned section so the edit opens with energy.
+            if (t) setMusic({ src: t.src, credit: t.credit, gain: m?.gain ?? 0.5, offset: t.starts[0] ?? 0 });
+          }}
+        >
+          <option value="" disabled>
+            {current === "upload" ? "Your upload" : "Pick a track…"}
+          </option>
+          {[...new Set(MUSIC.map((t) => t.mood.split(" · ")[0]))].map((mood) => (
+            <optgroup key={mood} label={mood}>
+              {MUSIC.filter((t) => t.mood.startsWith(mood)).map((t) => (
+                <option key={t.id} value={t.id}>
+                  {t.name} · {Math.round(t.bpm)} BPM
+                </option>
+              ))}
+            </optgroup>
+          ))}
+        </select>
         <div className="grid grid-cols-2 gap-1.5">
           <button className={`chip !h-9 justify-center ${current === "none" ? "!border-ink !bg-ink !text-cream" : ""}`} onClick={() => setMusic(null)}>
             None
           </button>
-          {MUSIC.map((t) => (
-            <button key={t.id} className={`chip !h-9 justify-center ${current === t.id ? "!border-ink !bg-ink !text-cream" : ""}`} onClick={() => setMusic({ src: t.src, credit: t.credit, gain: m?.gain ?? 0.5 })} title={t.mood}>
-              {t.name}
-            </button>
-          ))}
           <button className={`chip !h-9 justify-center ${current === "upload" ? "!border-ink !bg-ink !text-cream" : ""}`} onClick={() => file.current?.click()}>
             Upload…
           </button>

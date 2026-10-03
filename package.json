@@ -16,7 +16,8 @@
     "sounds": "node cli/sounds.mjs",
     "remix": "node cli/remix.mjs",
     "gallery": "node cli/stills.mjs --gallery",
-    "audit": "node cli/audit.mjs"
+    "audit": "node cli/audit.mjs",
+    "music": "node cli/music.mjs"
   },
   "engines": {
     "node": ">=20"

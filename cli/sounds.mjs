@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // Recorded (CC0) sounds for the engine library.
 //   node cli/sounds.mjs                 import the curated Kenney CC0 sounds from assets/audio/sfx
-//   FREESOUND_API_KEY=… node cli/sounds.mjs --freesound
-//                                       also fetch curated CC0 searches from Freesound (HQ previews)
+//   node cli/sounds.mjs --freesound      also fetch curated CC0 searches from Freesound (HQ previews);
+//                                       uses the API when FREESOUND_API_KEY is set, else the public search page
 // Writes packages/engine/assets/sounds/*.wav (48 kHz mono, leading silence trimmed, peak -1 dBFS),
 // packages/engine/src/audio/samples.gen.ts (the manifest the engine registers) and CREDITS.md.
 import { execFileSync, spawnSync } from "node:child_process";
@@ -39,17 +39,51 @@ const KENNEY_PICKS = [
 ];
 
 // Freesound searches (CC0 only). Each keeps the top `take` results by rating within the duration range.
+// Roles a launch edit needs: directional whooshes of different weights, risers that land, impacts from soft
+// to cinematic, type and UI foley, shimmer for reveals, glitch for cuts.
 const FREESOUND_QUERIES = [
   { q: "whoosh", cat: "whoosh", dur: [0.3, 1.6], take: 3 },
   { q: "swoosh transition", cat: "whoosh", dur: [0.3, 1.8], take: 2 },
-  { q: "cinematic impact", cat: "impact", dur: [0.6, 4], take: 2 },
-  { q: "punch hit", cat: "impact", dur: [0.1, 1], take: 2 },
+  { q: "whoosh soft", cat: "whoosh", dur: [0.4, 2], take: 2 },
+  { q: "swish fast", cat: "whoosh", dur: [0.1, 0.8], take: 2 },
+  { q: "whoosh deep cinematic", cat: "whoosh", dur: [0.8, 3], take: 2 },
   { q: "riser", cat: "riser", dur: [1, 4], take: 2 },
-  { q: "camera shutter", cat: "foley", dur: [0.1, 1.2], take: 1 },
+  { q: "uplifter", cat: "riser", dur: [1, 4], take: 2 },
+  { q: "reverse cymbal", cat: "riser", dur: [0.8, 3], take: 1 },
+  { q: "cinematic impact", cat: "impact", dur: [0.6, 4], take: 2 },
+  { q: "boom hit", cat: "impact", dur: [0.5, 4], take: 2 },
+  { q: "punch hit", cat: "impact", dur: [0.1, 1], take: 2 },
+  { q: "thud soft", cat: "impact", dur: [0.1, 1.2], take: 2 },
+  { q: "bass drop", cat: "impact", dur: [0.5, 3], take: 1 },
   { q: "typewriter key", cat: "foley", dur: [0.05, 0.6], take: 2 },
+  { q: "keyboard typing", cat: "foley", dur: [0.3, 3], take: 1 },
+  { q: "camera shutter", cat: "foley", dur: [0.1, 1.2], take: 1 },
+  { q: "paper swipe", cat: "foley", dur: [0.1, 1.2], take: 1 },
   { q: "chime", cat: "tonal", dur: [0.4, 3], take: 2 },
+  { q: "sparkle shimmer", cat: "tonal", dur: [0.4, 3], take: 2 },
+  { q: "notification ding", cat: "tonal", dur: [0.2, 1.5], take: 1 },
   { q: "pop", cat: "ui", dur: [0.05, 0.6], take: 2 },
+  { q: "bubble pop", cat: "ui", dur: [0.05, 0.6], take: 1 },
+  { q: "button click", cat: "ui", dur: [0.03, 0.4], take: 1 },
+  { q: "glitch", cat: "fx", dur: [0.2, 1.5], take: 2 },
 ];
+
+// Highly rated but wrong for product edits (instruments, creatures, cartoons, stations): skipped on every run.
+const SKIP = /fur|bamboo|insect|ukulele|metro|station|hardstyle|cartoon|furby|inside piano|shaking|distorted|scream|fart|laugh/i;
+
+/** Keyless search: the public CC0-filtered results page carries id, author, title, duration and preview. */
+async function searchWeb(q, dur, n) {
+  const f = `license:"Creative Commons 0" duration:[${dur[0]} TO ${dur[1]}]`;
+  const url = `https://freesound.org/search/?q=${encodeURIComponent(q)}&f=${encodeURIComponent(f)}&s=Rating+highest+first`;
+  const html = await (await fetch(url, { headers: { "user-agent": "MotionEasy sound importer" } })).text();
+  const out = [];
+  for (const m of html.matchAll(/data-sound-id="(\d+)"[\s\S]*?data-username="([^"]+)"[\s\S]*?data-mp3="([^"]+)"[\s\S]*?data-title="([^"]*)"[\s\S]*?data-duration="([\d.]+)"/g)) {
+    const [, id, username, mp3, title, d] = m;
+    out.push({ id: Number(id), username, name: title.replace(/&amp;/g, "&").replace(/&#x27;|&#39;/g, "'").replace(/&quot;/g, '"'), duration: Number(d), license: "publicdomain/zero", previews: { "preview-hq-mp3": mp3.replace("-lq.mp3", "-hq.mp3") }, url: `https://freesound.org/people/${username}/sounds/${id}/` });
+    if (out.length >= n) break;
+  }
+  return out;
+}
 
 const ff = (args) => {
   const r = spawnSync("ffmpeg", ["-hide_banner", "-v", "error", "-y", ...args], { encoding: "utf8" });
@@ -84,20 +118,20 @@ for (const [id, name, category, description, file] of KENNEY_PICKS) {
 
 if (process.argv.includes("--freesound")) {
   const key = process.env.FREESOUND_API_KEY;
-  if (!key) {
-    console.error("sounds   --freesound needs FREESOUND_API_KEY (free: https://freesound.org/apiv2/apply/)");
-    process.exit(1);
-  }
   const seen = new Set();
   for (const s of FREESOUND_QUERIES) {
-    const filter = `license:"Creative Commons 0" duration:[${s.dur[0]} TO ${s.dur[1]}]`;
-    const url = `https://freesound.org/apiv2/search/text/?query=${encodeURIComponent(s.q)}&filter=${encodeURIComponent(filter)}&sort=rating_desc&page_size=${s.take * 3}&fields=id,name,username,license,previews,duration,url&token=${key}`;
-    const res = await fetch(url);
-    if (!res.ok) {
-      console.error(`sounds   freesound "${s.q}": HTTP ${res.status} ${await res.text()}`);
-      process.exit(1);
-    }
-    const hits = (await res.json()).results.filter((r) => /publicdomain\/zero/.test(r.license) && !seen.has(r.id)).slice(0, s.take);
+    let results;
+    if (key) {
+      const filter = `license:"Creative Commons 0" duration:[${s.dur[0]} TO ${s.dur[1]}]`;
+      const url = `https://freesound.org/apiv2/search/text/?query=${encodeURIComponent(s.q)}&filter=${encodeURIComponent(filter)}&sort=rating_desc&page_size=${s.take * 3}&fields=id,name,username,license,previews,duration,url&token=${key}`;
+      const res = await fetch(url);
+      if (!res.ok) {
+        console.error(`sounds   freesound "${s.q}": HTTP ${res.status} ${await res.text()}`);
+        process.exit(1);
+      }
+      results = (await res.json()).results;
+    } else results = await searchWeb(s.q, s.dur, s.take * 3);
+    const hits = results.filter((r) => /publicdomain\/zero/.test(r.license) && !seen.has(r.id) && !SKIP.test(r.name)).slice(0, s.take);
     for (const r of hits) {
       seen.add(r.id);
       const slug = r.name.toLowerCase().replace(/\.[a-z0-9]+$/, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 28) || String(r.id);
@@ -113,7 +147,7 @@ if (process.argv.includes("--freesound")) {
   }
 }
 
-const line = (e) => `  { id: ${JSON.stringify(e.id)}, name: ${JSON.stringify(e.name)}, category: ${JSON.stringify(e.category)}, kind: "sample", description: ${JSON.stringify(e.description)}, file: ${JSON.stringify(e.file)}, credit: ${JSON.stringify(e.credit)}, license: "CC0", source: ${JSON.stringify(e.source)} },`;
+const line = (e) => `  { id: ${JSON.stringify(e.id)}, name: ${JSON.stringify(e.name)}, category: ${JSON.stringify(e.category)}, kind: "sample", description: ${JSON.stringify(e.description)}, file: ${JSON.stringify(e.file)}, credit: ${JSON.stringify(e.credit)}, license: "CC0", source: ${JSON.stringify(e.source)}, len: ${Number(e.len ?? 0).toFixed(3)} },`;
 writeFileSync(
   MANIFEST,
   `// Generated by cli/sounds.mjs: CC0 recordings in packages/engine/assets/sounds. Do not edit by hand.\nimport type { SoundInfo } from "./library";\n\nexport const SAMPLE_SOUNDS: SoundInfo[] = [\n${[...entries, ...kept].map(line).join("\n")}\n];\n`,

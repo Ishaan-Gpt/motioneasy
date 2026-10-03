@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr, smoothstep } from "@motioneasy/engine";
-import { stage, style, wordFx } from "../kit";
+import { stage, style, wordFx, heroWord } from "../kit";
 
 type Props = { headline: string; sub: string; align: "center" | "left"; size: number; font: string; weight: number; stagger: number; focus: number; rule: boolean; hold: number };
 
@@ -48,10 +48,7 @@ export default defineComponent<Props>({
     const ox = center ? c.cx - L.width / 2 : box.x;
     const oy = c.cy - blockH / 2 - (c.vertical ? 40 : 0);
 
-    stage(c, { kind: "soft", focus: [c.cx, oy + L.height / 2] });
-
-    // Camera creep: the whole frame pushes in ~4% over the shot.
-    const push = 1 + 0.04 * E.cine(c.p);
+    stage(c, { word: heroWord(p.headline), kind: "soft", focus: [c.cx, oy + L.height / 2] });    const push = 1; // the shot camera (Camera prop) does the push
     c.with({ x: c.cx, y: c.cy, scale: push }, () => {
       c.translate(-c.cx, -c.cy);
       const n = L.words.length;

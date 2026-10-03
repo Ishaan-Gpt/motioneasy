@@ -1,0 +1,17 @@
+{
+  "id": "2026-10-04-library-showcase",
+  "title": "Library showcase: new type, backdrops, match cut",
+  "format": "vertical",
+  "fps": 60,
+  "clips": [
+    { "component": "kinetic-stack", "props": { "text": "Stop\ntiming\n*captions.*", "bpm": 120.06 } },
+    { "component": "char-cascade", "transition": "whip", "props": { "text": "Every word, *on time.*", "variant": "drop" } },
+    { "component": "image-type", "transition": "push", "props": { "text": "LOOKS", "sub": "33 caption looks" } },
+    { "component": "stat-trio", "transition": "match", "props": { "backdrop": "split" } },
+    { "component": "bar-wipe", "transition": "recede", "props": { "text": "Free.\nOpen source.\n*On your machine.*", "backdrop": "grid" } },
+    { "component": "type-marquee", "transition": "zoom", "props": { "text": "Post *more.*", "echo": "CAPTIONSEASY" } },
+    { "component": "end-card", "transition": "match", "props": { "backdrop": "frame", "credit": "Music: \"Electrodoodle\" by Kevin MacLeod (CC BY 4.0)" } }
+  ],
+  "music": { "src": "media/music/library/electrodoodle.mp3", "gain": 0.5, "offset": 18.042, "fadeIn": 0.05, "fadeOut": 1.2, "credit": "\"Electrodoodle\" by Kevin MacLeod (incompetech.com), CC-BY 4.0" },
+  "notes": "Showcase of the motion overhaul: shot camera, backdrops, new type blocks, match/recede transitions, recorded SFX, library music."
+}

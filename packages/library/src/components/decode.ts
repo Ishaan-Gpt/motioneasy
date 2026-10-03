@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, rand, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { text: string; charset: string; span: number; size: number; font: string; weight: number; hold: number };
 
@@ -38,7 +38,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.text), kind: "soft" });
     const st = style(c, (c.vertical ? 150 : 140) * p.size, { fontParam: p.font, weight: p.weight, tracking: 0, lineHeight: 1.1, em: { font: c.theme.accentFont, italic: true, weight: 400, scale: 1.12 } });
     const L = c.fit(p.text, st, c.safe.w * 0.92, c.safe.h * 0.5, { align: "center" });
     const ox = c.cx - L.width / 2, oy = c.cy - L.height / 2;

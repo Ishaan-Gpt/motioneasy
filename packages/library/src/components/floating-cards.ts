@@ -1,5 +1,5 @@
 import { E, P, alpha, breathe, defineComponent, mix, pr, tw } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { CLIPS, SCREENS } from "../demo";
 
 type Props = { media: string[]; headline: string; depth: number; dof: number; radius: number; font: string };
@@ -36,7 +36,7 @@ export default defineComponent<Props>({
     const t = c.t;
     const media = p.media.length >= 3 ? p.media : [SCREENS.product, CLIPS.jesse.src, SCREENS.looks];
     const intro = pr(t, 0, 1.8, E.cine);
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const hasHead = !!p.headline;
     const D = 360 * p.depth;
     // Back, hero, front: position, size (w,h), rotation.

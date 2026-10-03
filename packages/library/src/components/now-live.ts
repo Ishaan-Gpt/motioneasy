@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { drawPill } from "../parts";
 
 type Props = { stamp: string; headline: string; url: string; tilt: number; font: string };
@@ -15,6 +15,7 @@ export default defineComponent<Props>({
   description: "A rubber-stamp badge slams onto the frame with a tilt and an ink ripple, then the headline and the link settle in under it.",
   tags: ["launch", "stamp", "announcement", "badge", "news"],
   added: "2026-10-03",
+  camera: "push-out",
   featured: false,
   theme: { mode: "light", lighting: 0.6, grain: 0.35, vignette: 0.3 },
   notes: "Announcements: launches, new features, price drops. One stamp per post.",
@@ -37,7 +38,7 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     const after = t - STAMP;
-    stage(c, { kind: "soft", flare: after > 0 ? Math.exp(-after * 4) : 0 });
+    stage(c, { word: heroWord(p.headline), kind: "soft", flare: after > 0 ? Math.exp(-after * 4) : 0 });
     const V = c.vertical;
     const sy = c.cy - (V ? 300 : 150);
     // Stamp: falls from the lens, slams, recoils.

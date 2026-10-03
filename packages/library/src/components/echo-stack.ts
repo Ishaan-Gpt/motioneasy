@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style, textFx } from "../kit";
+import { stage, style, textFx, heroWord } from "../kit";
 
 type Props = { text: string; rows: number; scroll: number; size: number; font: string; weight: number; outline: boolean };
 
@@ -40,7 +40,7 @@ export default defineComponent<Props>({
     const t = c.t;
     const rows = Math.max(3, Math.round(p.rows) | 1);
     const half = (rows - 1) / 2;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.text), kind: "soft" });
     const st = style(c, (c.vertical ? 210 : 190) * p.size, { fontParam: p.font, weight: p.weight, tracking: -0.045 });
     const L = c.fit(p.text, st, c.safe.w * 0.94, 400, { maxLines: 1 });
     const lh = L.cap * 1.45;

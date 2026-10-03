@@ -1,5 +1,5 @@
 import { E, P, clamp, defineComponent, invEase, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { richWords, stage, style } from "../kit";
+import { richWords, stage, style, heroWord } from "../kit";
 
 type Props = { text: string; spacing: number; travel: number; size: number; font: string; weight: number; dof: number };
 
@@ -14,6 +14,7 @@ export default defineComponent<Props>({
   description: "The camera flies forward through a corridor of words. Each one rushes out of the fog, passes the lens in a blur, and the last one lands sharp.",
   tags: ["3d", "camera", "depth of field", "cinematic", "hook"],
   added: "2026-10-03",
+  camera: "still",
   featured: true,
   theme: { mode: "dark", lighting: 0.7, grain: 0.4, vignette: 0.55 },
   notes: "3–6 short words. The landing word should be the payoff.",
@@ -56,7 +57,7 @@ export default defineComponent<Props>({
       bank += Math.sin(Math.PI * k) * Math.sign(pos[i + 1][0] - pos[i][0]) * 2.5;
     }
     const after = Math.max(0, t - START - p.travel);
-    stage(c, { kind: "soft", flare: Math.exp(-after * 4) * (t > START + p.travel ? 1 : 0) });
+    stage(c, { word: heroWord(p.text), kind: "soft", flare: Math.exp(-after * 4) * (t > START + p.travel ? 1 : 0) });
     const cam = c.camera({ fov: 38, x: camX, y: camY, z: camZ + after * 40, rz: bank, focus: camZ, aperture: 34 * p.dof });
     const st = style(c, (c.vertical ? 190 : 200) * p.size, { fontParam: p.font, weight: p.weight });
     // Draw far → near.

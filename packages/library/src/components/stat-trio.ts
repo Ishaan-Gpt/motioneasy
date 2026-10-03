@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { headline: string; stats: string[]; hero: number; stagger: number; font: string };
 
@@ -43,7 +43,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const V = c.vertical;
     const n = p.stats.length;
     const stats = p.stats.map(parse);

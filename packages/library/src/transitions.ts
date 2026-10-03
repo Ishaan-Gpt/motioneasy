@@ -1,9 +1,9 @@
 // Transitions between two rendered clips. Each is a pure function of progress u (0..1) and draws in
 // reference units onto the context. A and B are full-frame layers of the outgoing and incoming clip.
 
-import { E, alpha, mix, pr, type Layer, type RC, type SoundCue } from "@motioneasy/engine";
+import { E, alpha, logLerp, mix, pr, type Layer, type RC, type SoundCue } from "@motioneasy/engine";
 
-export type TransitionId = "cut" | "whip" | "push" | "zoom" | "iris" | "flash" | "blur" | "slide" | "shutter" | "wipe";
+export type TransitionId = "cut" | "whip" | "push" | "zoom" | "iris" | "flash" | "blur" | "slide" | "shutter" | "wipe" | "match" | "recede";
 
 export interface TransitionDef {
   id: TransitionId;
@@ -58,9 +58,10 @@ export const TRANSITIONS: Record<TransitionId, TransitionDef> = {
     draw: (c, A, B, u) => {
       const a = pr(u, 0, 0.55, E.in);
       const b = pr(u, 0.45, 1, E.out);
-      // B lands zoomed in and settles to 1 (always fills the frame), under A as A flies past.
-      if (u > 0.45) full(c, B, { scale: 1 + (1 - b) * 0.6, blur: (1 - b) * 18 });
-      if (u < 0.55) full(c, A, { scale: 1 + a * 1.6, blur: a * 22, alpha: 1 - pr(u, 0.45, 0.55) });
+      // B lands zoomed in and settles to 1 (always fills the frame), under A as A flies past. Scale moves in
+      // log space so neither half spends its time big and then lurches.
+      if (u > 0.45) full(c, B, { scale: logLerp(1.6, 1, b), blur: (1 - b) * 18 });
+      if (u < 0.55) full(c, A, { scale: logLerp(1, 2.6, a), blur: a * 22, alpha: 1 - pr(u, 0.45, 0.55) });
     },
   },
   iris: {
@@ -154,6 +155,47 @@ export const TRANSITIONS: Record<TransitionId, TransitionDef> = {
       full(c, B);
       c.restore();
       c.sweep(X - k / 2, (Math.atan2(k, c.H) * 180) / Math.PI, 150, "#FFFFFF", 0.5 * Math.sin(Math.PI * u), "screen");
+    },
+  },
+  match: {
+    id: "match", name: "Match grow", description: "The next shot appears as a card inside this one and grows until it is the frame. The scene becomes the next scene.", duration: 0.75,
+    sounds: (len) => [{ at: 0, sound: "whoosh.air", gain: 0.5, role: "grow" }, { at: len * 0.82, sound: "impact.land", gain: 0.45, role: "lock" }],
+    draw: (c, A, B, u) => {
+      // A recedes and dims; B is a card already growing on the first frame (cut in on motion), in log space,
+      // its corners squaring off as it reaches the frame edge.
+      const g = E.inOut(u);
+      full(c, A, { scale: logLerp(1, 0.9, E.out(u)), blur: g * 6 });
+      c.rect(0, 0, c.W, c.H, alpha("#000000", 0.3 * g));
+      const s = logLerp(0.16, 1, g);
+      const w = c.W * s, h = c.H * s;
+      const x = c.cx - w / 2, y = c.cy - h / 2 + (1 - g) * c.H * 0.06;
+      const r = c.short * 0.06 * (1 - g) + 0.5;
+      const a = pr(u, 0, 0.12);
+      c.save();
+      c.alpha(a);
+      c.cardShadow(x, y, w, h, r, 0.7 * (1 - g), 1.2);
+      c.clipRRect(x, y, w, h, r);
+      c.with({ x: c.cx, y: y + h / 2, scale: s * logLerp(1.25, 1, g) }, () => c.drawLayer(B, -c.W / 2, -c.H / 2));
+      c.restore();
+    },
+  },
+  recede: {
+    id: "recede", name: "Recede", description: "This shot shrinks into a card and slides away, revealing the next one already pushing in behind it.", duration: 0.7,
+    sounds: (len) => [{ at: len * 0.15, sound: "whoosh.swipe", gain: 0.55, role: "leave" }],
+    draw: (c, A, B, u) => {
+      const g = E.inOut(u);
+      full(c, B, { scale: logLerp(1.12, 1, E.out(u)) });
+      const s = logLerp(1, 0.32, g);
+      const w = c.W * s, h = c.H * s;
+      const lift = pr(u, 0.45, 1, E.in);
+      const x = c.cx - w / 2 - lift * c.W * 0.7, y = c.cy - h / 2 - lift * c.H * 0.25;
+      const r = c.short * 0.06 * g;
+      c.save();
+      c.alpha(1 - pr(u, 0.85, 1));
+      c.cardShadow(x, y, w, h, r, 0.6 * g, 1.1);
+      c.clipRRect(x, y, w, h, r);
+      c.with({ x: x + w / 2, y: y + h / 2, scale: s }, () => c.drawLayer(lift > 0.02 ? c.smearLayer(A, -lift * c.W * 0.25, 0) : A, -c.W / 2, -c.H / 2));
+      c.restore();
     },
   },
 };

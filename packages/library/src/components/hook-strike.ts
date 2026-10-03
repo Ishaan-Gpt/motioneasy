@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr } from "@motioneasy/engine";
-import { lineWindow, maskRise, stage, style, textFx } from "../kit";
+import { lineWindow, maskRise, stage, style, textFx, heroWord } from "../kit";
 import { drawScribble } from "../parts";
 
 type Props = { line: string; strike: string; replace: string; size: number; font: string; weight: number };
@@ -36,7 +36,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.replace), kind: "soft" });
     const st = style(c, (c.vertical ? 130 : 120) * p.size, { fontParam: p.font, weight: p.weight, lineHeight: 1.04 });
     const L = c.fit(p.line, st, c.safe.w * 0.94, c.safe.h * 0.38, { align: "center" });
     const R = c.fit(p.replace, { ...st, size: L.size * 1.05 }, c.safe.w * 0.94, L.size * 1.4, { maxLines: 1, align: "center" });

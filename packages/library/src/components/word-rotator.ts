@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, spring, SPRING, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { prefix: string; words: string[]; hold: number; variant: "drum" | "slide" | "focus"; box: boolean; size: number; font: string; weight: number };
 
@@ -48,7 +48,7 @@ export default defineComponent<Props>({
     const t = c.t;
     const words = p.words.length ? p.words : ["…"];
     const n = words.length;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.prefix), kind: "soft" });
     const base = (c.vertical ? 150 : 130) * p.size;
     const st = style(c, base, { fontParam: p.font, weight: p.weight });
     // One size for prefix and all words: fit the widest.

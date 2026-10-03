@@ -2,6 +2,9 @@
 // Keeping these here makes every component read the same and keeps the lighting consistent.
 
 import { alpha, fbm1, mix, parseRich, type LineBox, type RC, type TextLayout, type TextOpts, type TextStyle, type WordBox } from "@motioneasy/engine";
+import { drawBackdrop, pickBackdrop, type BackdropId } from "./backdrops";
+
+export { heroWord, tint } from "./backdrops";
 
 export type StageKind = "soft" | "spot" | "horizon" | "studio" | "flat";
 
@@ -10,11 +13,12 @@ export type StageKind = "soft" | "spot" | "horizon" | "studio" | "flat";
  * Dark mode: ink with a warm key behind the subject, a cool rim and a floor bounce.
  * `focus` is where the key light sits (ref units); `flare` (0..1) briefly brightens it (impacts).
  */
-export function stage(c: RC, o: { kind?: StageKind; focus?: [number, number]; flare?: number; drift?: number } = {}) {
+export function stage(c: RC, o: { kind?: StageKind; focus?: [number, number]; flare?: number; drift?: number; word?: string; backdrop?: BackdropId } = {}) {
   const T = c.theme;
   const L = T.lighting;
   const kind = o.kind ?? "soft";
   const [fx, fy] = o.focus ?? [c.cx, c.cy];
+  drawBackdrop(c, pickBackdrop(c, kind, o.backdrop), { focus: [fx, fy], word: o.word });
   const d = (o.drift ?? 1) * c.short * 0.06;
   const t = c.t;
   const nx = (k: number) => fbm1(t * 0.18 + k * 9.1, k) * d;

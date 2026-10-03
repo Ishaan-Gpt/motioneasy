@@ -1,5 +1,5 @@
 import { E, P, defineComponent, mix, pr, type FontId } from "@motioneasy/engine";
-import { stage } from "../kit";
+import { stage, heroWord } from "../kit";
 
 type Props = { text: string; font: string; from: number; to: number; waves: number; size: number; tracking: number };
 
@@ -39,7 +39,7 @@ export default defineComponent<Props>({
     const waveEnd = 0.6 + p.waves * 1.3;
     const settle = pr(t, waveEnd - 0.3, waveEnd + 0.5, E.inOut);
     const intro = pr(t, 0, 0.9, E.out);
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.text), kind: "soft" });
     // Size so the boldest version fits.
     const base = (c.vertical ? 220 : 240) * p.size;
     const wide = c.fit(p.text || " ", { font, size: base, weight: p.to, tracking: p.tracking }, c.safe.w * 0.92, base * 1.4, { maxLines: 1 }).size;
@@ -55,7 +55,7 @@ export default defineComponent<Props>({
     const cap = c.layout("H", { font, size: wide, weight: 600 }).cap;
     let x = c.cx - total / 2;
     const y = c.cy - cap / 2;
-    const push = 1 + 0.03 * E.cine(c.p);
+    const push = 1; // the shot camera (Camera prop) does the push
     c.with({ x: c.cx, y: c.cy, scale: push }, () => {
       c.translate(-c.cx, -c.cy);
       chars.forEach((ch, i) => {

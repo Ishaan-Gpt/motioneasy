@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { clipList, lookList } from "../demo";
 
 type Props = { media: string[]; labels: string[]; title: string; step: number; radius: number; size: number; font: string };
@@ -43,7 +43,7 @@ export default defineComponent<Props>({
     const V = c.vertical;
     const cw = (V ? 640 : c.landscape ? 420 : 500) * p.size, ch = cw * (600 / 432);
     const cy = c.cy + (p.title ? (V ? 120 : 60) : 0);
-    stage(c, { kind: "studio", focus: [c.cx, cy] });
+    stage(c, { word: heroWord(p.title), kind: "studio", focus: [c.cx, cy] });
     if (p.title) {
       const L = c.fit(p.title, style(c, V ? 92 : 76, { fontParam: p.font, weight: 750 }), c.safe.w * 0.92, 130, { maxLines: 1 });
       const u = pr(t, 0.1, 0.8, E.out);

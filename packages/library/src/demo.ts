@@ -1,3 +1,4 @@
+import { MUSIC_LIBRARY, type MusicMood } from "./music.gen";
 // Demo media every component starts with. Paths are served at /media by the site and the CLI
 // (copied from the repo's sources/ folder). Replace any of them with your own media in the controls.
 
@@ -52,8 +53,6 @@ export const LOOKS = [
 
 export const MEDIA_CREDITS = Object.values(CLIPS).map((c) => c.credit);
 
-/** Music beds for posts (from assets/audio/music). CC-BY: the credit must ship with the post. */
-export const MUSIC = [
-  { id: "funkorama", name: "Funkorama", mood: "Upbeat funk", src: "media/music/kevin-macleod_Funkorama.mp3", credit: '"Funkorama" by Kevin MacLeod (incompetech.com), CC-BY 4.0' },
-  { id: "inspired", name: "Inspired", mood: "Bright, motivational", bpm: 120.19, src: "media/music/kevin-macleod_Inspired.mp3", credit: '"Inspired" by Kevin MacLeod (incompetech.com), CC-BY 4.0' },
-] as { id: string; name: string; mood: string; bpm?: number; src: string; credit: string }[];
+/** Music beds for posts (cli/music.mjs → music.gen.ts). CC-BY: the credit must ship with the post. */
+const MOOD_NAMES: Record<MusicMood, string> = { soft: "Soft", uplifting: "Uplifting", groove: "Groove", driving: "Driving", dramatic: "Dramatic" };
+export const MUSIC = MUSIC_LIBRARY.map((t) => ({ id: t.id, name: t.name, mood: `${MOOD_NAMES[t.mood]} · ${t.feel}`, bpm: t.bpm, src: t.src, credit: t.credit, starts: t.starts }));

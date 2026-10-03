@@ -17,6 +17,8 @@ export interface SoundInfo {
   license?: string;
   source?: string;
   stretch?: boolean;
+  /** Length in seconds (recordings). */
+  len?: number;
 }
 
 export const SOUND_CATEGORIES: { id: SoundCategory; name: string; blurb: string }[] = [
@@ -65,3 +67,35 @@ export function registerSounds(list: SoundInfo[]) {
 
 export const allSounds = () => [...SYNTH_SOUNDS, ...SAMPLE_SOUNDS, ...extra];
 export const soundInfo = (id: string) => allSounds().find((s) => s.id === id);
+
+/**
+ * The recorded kit: for each synth role, real recordings that do the same job. Components cue roles
+ * ("whoosh.swipe"); with the Sound kit prop on Recorded, cuesOf swaps in one of these (picked by the cue's
+ * seed, so repeated cues vary). Roles without a good recording stay synthesised.
+ */
+const RECORDED_FOR: Record<string, string[]> = {
+  "whoosh.air": ["fs.whoosh.digital-whoosh-soft", "fs.whoosh.whoosh2", "fs.whoosh.swosh-whoosh-air-cut"],
+  "whoosh.whip": ["fs.whoosh.swoosh", "fs.whoosh.swsh-badminton-racquet-recor", "fs.whoosh.wooden-stick-swing-1-4"],
+  "whoosh.deep": ["fs.whoosh.cinematic-woosh-sfx-011", "fs.whoosh.cinematic-woosh-sfx-010", "fs.whoosh.electric-transition"],
+  "whoosh.swipe": ["fs.whoosh.swoosh-v2", "fs.foley.fh-paper-swipe-surface2-shor", "fs.whoosh.whoosh-fx"],
+  "impact.sub": ["fs.impact.drama-boom-02-192khz-32fp-ve", "fs.impact.sound-design-elements-impact"],
+  "impact.punch": ["fs.impact.punch2", "fs.impact.hit"],
+  "impact.land": ["fs.impact.soft-hit", "fs.impact.soft-impact-pillow-hit", "kenney.drop"],
+  "impact.trailer": ["fs.impact.sound-design-elements-impact", "fs.impact.plasma-impact-one"],
+  "riser.build": ["fs.riser.riser-sound-effect-short", "fs.riser.lunar-short-uplifter-fx-3"],
+  "riser.reverse": ["fs.riser.reverse-cymbal", "fs.riser.wow-rev-noise"],
+  "tonal.shimmer": ["fs.tonal.fashion-shimmer-luxury-runwa"],
+  "tonal.chime": ["fs.tonal.chime-ping", "fs.tonal.chime-improper", "kenney.glass"],
+  "tonal.notify": ["fs.tonal.soft-notifications-bell-ding", "kenney.confirm"],
+  "ui.click": ["fs.ui.mouse-2-button-fast-click", "kenney.mouse", "kenney.click"],
+  "ui.tick": ["kenney.tick", "kenney.select"],
+  "ui.pop": ["fs.ui.pop-9", "fs.ui.pop-4", "fs.ui.bubble-pop"],
+  "foley.key": ["fs.foley.typewriter", "fs.foley.typewriter-snippet-02"],
+  "foley.shutter": ["fs.foley.pentax-k1000-camera-shutter"],
+  "fx.glitch": ["fs.fx.gritch-glitch-snippets-fx-pe", "fs.fx.dsgnrythm-glitch-stutter-one"],
+};
+
+export function recordedFor(id: string, seed = 0): SoundInfo | null {
+  const have = (RECORDED_FOR[id] ?? []).map(soundInfo).filter((s): s is SoundInfo => !!s && s.kind === "sample");
+  return have.length ? have[Math.abs(Math.floor(seed)) % have.length] : null;
+}

@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { headline: string; sub: string; sweep: number; angle: number; size: number; font: string; weight: number };
 
@@ -45,8 +45,8 @@ export default defineComponent<Props>({
     const band = Math.max(L.width * 0.35, 260);
     // Sweep position across the text block, from beyond the left edge to beyond the right.
     const sx = ox - band + u * (L.width + band * 2);
-    stage(c, { kind: "soft", focus: [clamp(sx, ox, ox + L.width), oy + L.height / 2], flare: Math.sin(Math.PI * u) * 0.6 });
-    const push = 1 + 0.035 * E.cine(c.p);
+    stage(c, { word: heroWord(p.headline), kind: "soft", focus: [clamp(sx, ox, ox + L.width), oy + L.height / 2], flare: Math.sin(Math.PI * u) * 0.6 });
+    const push = 1; // the shot camera (Camera prop) does the push
     c.with({ x: c.cx, y: c.cy, scale: push }, () => {
       c.translate(-c.cx, -c.cy);
       // 1. Dormant type: a faint emboss.

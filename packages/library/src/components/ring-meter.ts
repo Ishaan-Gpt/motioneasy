@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { value: number; label: string; caption: string; fill: number; ticks: boolean; size: number; font: string };
 
@@ -40,7 +40,7 @@ export default defineComponent<Props>({
     const v = (p.value / 100) * u;
     const R = (c.vertical ? 330 : c.short * 0.3) * p.size;
     const cy = c.cy - (p.caption ? 60 : 0);
-    stage(c, { kind: "soft", focus: [c.cx, cy], flare: u * (1 - u) * 1.5 });
+    stage(c, { word: heroWord(p.label), kind: "soft", focus: [c.cx, cy], flare: u * (1 - u) * 1.5 });
     const intro = pr(t, 0, START + 0.3, E.out);
     c.with({ x: c.cx, y: cy, scale: 0.9 + 0.1 * intro, alpha: intro }, () => {
       c.arc(0, 0, R, 0, 1, alpha(T.fg, 0.08), R * 0.07, "butt");

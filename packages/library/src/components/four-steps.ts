@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { title: string; steps: string[]; step: number; font: string };
 
@@ -36,7 +36,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "studio" });
+    stage(c, { word: heroWord(p.title), kind: "studio" });
     const V = c.vertical;
     const n = p.steps.length;
     const steps = p.steps.map((s) => {

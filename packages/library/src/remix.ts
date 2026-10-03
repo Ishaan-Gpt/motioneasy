@@ -7,6 +7,7 @@ import { durationOf, propsFor, rng, type Component, type FormatId, type Props } 
 import { componentById } from "./registry";
 import { layoutPost, type ClipSpec, type MusicSpec, type PostSpec } from "./sequence";
 import type { TransitionId } from "./transitions";
+import { MUSIC_LIBRARY, type MusicMood } from "./music.gen";
 
 export interface Deck {
   id: string;
@@ -27,6 +28,8 @@ export interface Deck {
   /** "Title|detail" steps. */
   steps?: string[];
   checklist?: string[];
+  /** Single bold words (≤ 8 letters) for type that carries footage (Image Type). */
+  words?: string[];
   rotators?: { prefix: string; words: string[] }[];
   /** Real quotes from real people only. */
   quotes?: { quote: string; author: string; role: string; avatar?: string }[];
@@ -46,7 +49,17 @@ export interface Deck {
     /** The logo is three bars (enables the equaliser sting). */
     barMark?: boolean;
   };
-  music: MusicSpec[];
+  /** Explicit beds. Optional when musicMood is set. */
+  music?: MusicSpec[];
+  /** Pick beds from the music library by mood (one or several); each post enters on a strong, bar-aligned section. */
+  musicMood?: MusicMood | MusicMood[];
+}
+
+/** The deck's beds: its own list, plus every library track in its moods. */
+export function deckMusic(deck: Deck): MusicSpec[] {
+  const moods = deck.musicMood ? (Array.isArray(deck.musicMood) ? deck.musicMood : [deck.musicMood]) : [];
+  const lib = MUSIC_LIBRARY.filter((t) => moods.includes(t.mood)).map((t) => ({ src: t.src, gain: 0.5, offset: t.starts[0] ?? t.beat, fadeIn: 0.05, fadeOut: 1.2, credit: t.credit }));
+  return [...(deck.music ?? []), ...lib];
 }
 
 export interface RemixOptions {
@@ -102,6 +115,16 @@ const CANDIDATES: Record<Slot, Record<string, Fill>> = {
     "echo-stack": (d, p) => (has(d.shorts) ? { text: p.next("shorts", d.shorts!) } : null),
     "scroll-stop": (d, p) => (d.media.clips.length >= 4 ? { media: d.media.clips, sub: p.next("claims", d.claims) } : null),
     decode: (d, p) => (has(d.shorts) ? { text: p.next("shorts", d.shorts!) } : null),
+    "kinetic-stack": (d, p) => {
+      const s = p.next("stackShorts", (d.shorts ?? []).concat(d.claims.filter((c) => plain(c).split(" ").length <= 4)));
+      return s ? { text: s.replace(/\s+/g, " ").trim().split(" ").join("\n") } : null;
+    },
+    "char-cascade": (d, p) => ({ text: p.next("claims", d.claims), variant: p.next("cascadeVariant", ["rise", "drop", "scatter"]) }),
+    "type-marquee": (d, p) => (has(d.shorts) ? { text: p.next("shorts", d.shorts!), echo: d.name.toUpperCase().slice(0, 20) } : null),
+    "split-flap": (d, p) => {
+      const rows = (has(d.shorts) ? plain(p.next("shorts", d.shorts!)) : "").toUpperCase().split(" ");
+      return rows.length && rows.length <= 3 && rows.every((r) => r.length <= 12) ? { text: rows.join("\n") } : null;
+    },
   },
   body: {
     "product-orbit": (d, p) => ({ media: p.next("clips", d.media.clips), headline: `Meet *${d.name}.*`, features: d.features.slice(0, 3) }),
@@ -110,6 +133,7 @@ const CANDIDATES: Record<Slot, Record<string, Fill>> = {
     "coverflow-3d": (d, p) => (d.media.clips.length >= 5 ? { media: d.media.clips.slice(0, 7), labels: [], showLabels: false, title: p.next("claims", d.claims) } : null),
     "infinite-wall": (d, p) => (d.media.clips.length >= 6 ? { media: d.media.clips, headline: p.next("claims", d.claims) } : null),
     "caption-karaoke": (d, p) => (has(d.media.talking) ? { media: p.next("talking", d.media.talking!) } : null),
+    "image-type": (d, p) => (has(d.words) ? { text: p.next("words", d.words!).slice(0, 8), media: p.next("clips", d.media.clips), sub: plain(p.next("features", d.features)).slice(0, 40) } : null),
     "caption-pop": (d, p) => (has(d.media.talking) ? { media: p.next("talking", d.media.talking!), keywords: "" } : null),
     "before-after": (d, p) => {
       if (!has(d.media.pairs)) return null;
@@ -121,6 +145,7 @@ const CANDIDATES: Record<Slot, Record<string, Fill>> = {
     "four-steps": (d, p) => (d.steps && d.steps.length >= 2 ? { title: p.next("claims", d.claims), steps: d.steps.slice(0, 4) } : null),
     "mask-rise": (d) => (d.steps && d.steps.length >= 3 ? { text: d.steps.slice(0, 3).map((s, i, a) => (i === a.length - 1 ? `*${s.split("|")[0]}.*` : `${s.split("|")[0]}.`)).join("\n") } : null),
     checklist: (d, p) => (has(d.checklist) ? { headline: p.next("claims", d.claims), items: d.checklist!.slice(0, 6) } : null),
+    "bar-wipe": (d) => (d.steps && d.steps.length >= 3 ? { text: d.steps.slice(0, 3).map((s, i, a) => (i === a.length - 1 ? `*${s.split("|")[0]}.*` : `${s.split("|")[0]}.`)).join("\n") } : null),
   },
   proof: {
     "stat-trio": (d, p) => (d.stats.length >= 2 ? { headline: p.next("claims", d.claims), stats: d.stats.slice(0, 3) } : null),
@@ -156,7 +181,7 @@ const RECIPES: Record<string, Slot[]> = {
 };
 
 /** Transitions with a look of their own: one per post, never the same as the post before. */
-const SIGNATURE: TransitionId[] = ["whip", "zoom", "push", "iris", "slide", "shutter", "wipe", "blur", "flash"];
+const SIGNATURE: TransitionId[] = ["whip", "zoom", "push", "match", "iris", "slide", "recede", "shutter", "wipe", "blur", "flash"];
 
 /** Long components are trimmed so a post keeps moving. */
 const MAX_CLIP = 5.5;
@@ -237,8 +262,13 @@ export function remix(deck: Deck, o: RemixOptions): RemixResult {
     const lens = clips.map((c) => c.duration ?? durationOf(componentById(c.component) as Component, propsFor(componentById(c.component) as Component, c.props).props));
     if (lens.length > 2 && Math.max(...lens) - Math.min(...lens) < 0.5) clips[Math.floor(r() * clips.length)].duration = lens[0] + 0.8;
     // 5. music alternates
-    const tracks = deck.music.filter((m) => m.src !== last()?.music?.src);
-    const music = tracks.length ? { ...choose(tracks) } : deck.music[0] ? { ...deck.music[0] } : null;
+    const beds = deckMusic(deck);
+    const recent = prev.slice(-3).map((q) => q.music?.src);
+    const tracks = beds.filter((m) => !recent.includes(m.src));
+    const music = tracks.length ? { ...choose(tracks) } : beds[0] ? { ...beds[0] } : null;
+    // Beat-locked components follow the bed's measured tempo, so their hits land on its beats.
+    const track = MUSIC_LIBRARY.find((t) => t.src === music?.src);
+    if (track) for (const c of clips) if (componentById(c.component)?.schema.bpm) c.props = { ...c.props, bpm: Math.round(track.bpm * 100) / 100 };
 
     const id = `${o.prefix ? `${o.prefix}-` : ""}${deck.id}-${o.seed ?? 1}-${String(n + 1).padStart(2, "0")}`;
     const post: PostSpec = { id, title: titleOf(clips[0], recipe), format: o.format ?? "vertical", fps: 60, recipe, seed: o.seed ?? 1, clips, music, notes: `remix: ${recipe}; ${clips.map((c) => c.component).join(" → ")}; signature ${sig}` };

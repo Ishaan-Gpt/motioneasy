@@ -53,6 +53,6 @@ function make(id: TransitionId, featured: boolean): Component {
   }) as unknown as Component;
 }
 
-export const TRANSITION_COMPONENTS: Component[] = (["whip", "zoom", "push", "slide", "iris", "wipe", "shutter", "flash", "blur", "cut"] as TransitionId[]).map((id) =>
+export const TRANSITION_COMPONENTS: Component[] = (["whip", "zoom", "push", "slide", "match", "recede", "iris", "wipe", "shutter", "flash", "blur", "cut"] as TransitionId[]).map((id) =>
   make(id, id === "whip" || id === "zoom"),
 );

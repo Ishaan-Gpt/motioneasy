@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, tw, type RC, type SoundCue } from "@motioneasy/engine";
-import { beat, ladder, richWords, stage, style, textFx } from "../kit";
+import { beat, ladder, richWords, stage, style, textFx, heroWord } from "../kit";
 
 type Props = { text: string; variant: "punch" | "stack" | "impact"; bpm: number; hold: number; size: number; font: string; weight: number; invert: boolean };
 
@@ -64,7 +64,7 @@ export default defineComponent<Props>({
 
     if (p.variant === "impact") return impact(c, p, words, k, since, flare);
 
-    stage(c, { kind: "spot", flare, focus: [c.cx, c.cy] });
+    stage(c, { word: heroWord(p.text), kind: "spot", flare, focus: [c.cx, c.cy] });
     const T = c.theme;
     c.with({ x: c.cx, y: c.cy, scale: 1 + kick * 0.012 }, () => {
       c.translate(-c.cx, -c.cy);
@@ -145,7 +145,7 @@ function impact(c: RC, p: Props, words: string[], k: number, since: number, flar
   const bg = inv ? T.fg : T.bg;
   const fg = inv ? T.bg : T.fg;
   c.clear(bg);
-  stage(c, { kind: "soft", flare: flare * 0.6 });
+  stage(c, { word: heroWord(p.text), kind: "soft", flare: flare * 0.6 });
   if (k < 0) return;
   const t = c.t;
   const land = landAt(p, idx);

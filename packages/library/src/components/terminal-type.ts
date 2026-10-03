@@ -110,7 +110,7 @@ export default defineComponent<Props>({
     const h = bar + pad * 2 + lines.length * lh;
     const x = c.cx - w / 2, y = c.cy - h / 2;
     const intro = pr(t, 0, 0.6, E.out);
-    const push = 1 + 0.03 * E.cine(c.p);
+    const push = 1; // the shot camera (Camera prop) does the push
     c.with({ x: c.cx, y: c.cy + (1 - intro) * 60, scale: push * (0.96 + 0.04 * intro), alpha: intro }, () => {
       c.translate(-c.cx, -c.cy);
       if (p.window) {

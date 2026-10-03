@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, lerp, mix, pr } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { clipList } from "../demo";
 
 type Props = { media: string[]; headline: string; speed: number; tilt: number; dive: boolean; cols: number; font: string };
@@ -15,6 +15,7 @@ export default defineComponent<Props>({
   description: "A tilted 3D wall of clips, columns scrolling against each other. Then the camera dives into one tile until it fills the frame: a built-in match cut.",
   tags: ["3d", "wall", "grid", "volume", "match cut"],
   added: "2026-10-03",
+  camera: "drift",
   featured: true,
   theme: { mode: "dark", lighting: 0.6, grain: 0.4, vignette: 0.6 },
   notes: "Shows scale ('33 looks', '1,000 creators'). The dive is a transition: cut to the full clip next.",
@@ -45,7 +46,7 @@ export default defineComponent<Props>({
     const cols = Math.round(p.cols);
     const tw0 = 300, th0 = tw0 * (600 / 432), gap = 26;
     const diveU = p.dive ? pr(t, 2.8, 4.5, E.hard) : 0;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     // Wall transform eases to flat-on as we dive; the camera flies to the target tile.
     const k = 1 - diveU;
     const rx = 28 * p.tilt * k, ry = -20 * p.tilt * k, rz = 10 * p.tilt * k;

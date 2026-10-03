@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style, textFx } from "../kit";
+import { stage, style, textFx, heroWord } from "../kit";
 
 type Props = { label: string; from: number; beat: number; reveal: string; sub: string; font: string };
 
@@ -41,7 +41,7 @@ export default defineComponent<Props>({
     const end = START + p.from * p.beat;
     const after = t - end;
     const flare = after > 0 ? Math.exp(-after * 3) : 0;
-    stage(c, { kind: "spot", flare });
+    stage(c, { word: heroWord(p.reveal), kind: "spot", flare });
     const R = c.short * (c.vertical ? 0.36 : 0.3);
     if (after < 0) {
       const i = clamp(Math.floor((t - START) / p.beat), 0, p.from - 1);

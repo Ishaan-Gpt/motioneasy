@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING, tw, type SoundCue } from "@motioneasy/engine";
-import { blockWindow, maskRise, stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style, heroWord } from "../kit";
 import { CLIPS } from "../demo";
 import { PHONE, drawGlassCard, drawPhone, phoneIn3D, phoneSlab } from "../parts";
 
@@ -40,7 +40,7 @@ export default defineComponent<Props>({
     const intro = pr(t, 0, 1.3, E.cine);
     const scale = V ? 0.95 : 0.72;
     const py = V ? 120 : 40;
-    stage(c, { kind: "studio", focus: [c.cx, c.cy + py] });
+    stage(c, { word: heroWord(p.headline), kind: "studio", focus: [c.cx, c.cy + py] });
     if (p.headline) {
       const L = c.fit(p.headline, style(c, V ? 100 : 82, { fontParam: p.font, weight: 750 }), c.safe.w, 160, { maxLines: 1 });
       const u = pr(t, 0.7, 1.5, E.out);

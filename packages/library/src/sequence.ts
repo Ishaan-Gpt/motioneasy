@@ -54,7 +54,7 @@ interface Built {
   trans: TransitionId;
 }
 
-const LOOK_KEYS = ["mode", "bg", "fg", "accent", "glow", "lighting", "grain", "vignette"];
+const LOOK_KEYS = ["mode", "bg", "fg", "accent", "glow", "lighting", "grain", "vignette", "backdrop", "camera", "cameraAmount"];
 
 export function layoutPost(spec: PostSpec): { clips: Built[]; duration: number } {
   const clips: Built[] = [];

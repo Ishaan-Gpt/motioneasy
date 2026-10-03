@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr, type RC, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { value: number; from: number; decimals: number; prefix: string; suffix: string; label: string; count: number; hold: number; size: number; font: string; weight: number; separator: boolean };
 
@@ -90,7 +90,7 @@ export default defineComponent<Props>({
     const x0 = c.cx - totalW / 2;
 
     const landed = pr(t, START + p.count * 0.8, START + p.count * 0.8 + 0.6, E.out);
-    stage(c, { kind: "soft", focus: [c.cx, top + capH / 2], flare: landed * (1 - landed) * 2 });
+    stage(c, { word: heroWord(p.suffix || p.label), kind: "soft", focus: [c.cx, top + capH / 2], flare: landed * (1 - landed) * 2 });
     const intro = pr(t, 0.05, START + 0.3, E.out);
 
     // Odometer: each digit column is a wheel at (v / 10^place) mod 10.

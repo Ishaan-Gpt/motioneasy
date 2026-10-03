@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr, rand, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { clipList } from "../demo";
 
 type Props = { media: string[]; headline: string; push: boolean; gap: number; radius: number; font: string };
@@ -24,6 +24,7 @@ export default defineComponent<Props>({
   description: "Nine tiles fly in from depth and lock into a grid, centre first like dealt cards. Then the camera pushes into the middle tile.",
   tags: ["grid", "3d", "assemble", "collection", "showcase"],
   added: "2026-10-03",
+  camera: "drift",
   featured: false,
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.3 },
   notes: "Nine items that belong together. The centre tile is the hero (the push lands on it).",
@@ -53,7 +54,7 @@ export default defineComponent<Props>({
     const tw = (size - p.gap * 2) / 3, th = tw * (V ? 1.25 : 1);
     const gridH = th * 3 + p.gap * 2;
     const cy = c.cy + (p.headline ? (V ? 110 : 50) : 0);
-    stage(c, { kind: "soft", focus: [c.cx, cy] });
+    stage(c, { word: heroWord(p.headline), kind: "soft", focus: [c.cx, cy] });
     const pushU = p.push ? pr(t, 3.0, 4.6, E.cine) : 0;
     const cam = c.camera({ fov: 34, z: pushU * 820, y: pushU * (cy - c.cy) });
     // Centre tile drawn last so it sits on top during the push.

@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, fbm1, mix, pr } from "@motioneasy/engine";
-import { stage, style, type StageKind } from "../kit";
+import { stage, style, type StageKind, heroWord } from "../kit";
 
 type Props = { kind: StageKind; headline: string; sub: string; length: number; font: string };
 
@@ -34,7 +34,7 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     const fy = c.cy + fbm1(t * 0.2, 3) * 20;
-    stage(c, { kind: p.kind, focus: [c.cx, fy], flare: 0.15 + 0.1 * Math.sin(t * 0.8) });
+    stage(c, { word: heroWord(p.headline), kind: p.kind, focus: [c.cx, fy], flare: 0.15 + 0.1 * Math.sin(t * 0.8) });
     // Dust-free haze: a very soft second pool that breathes.
     c.light(c.cx + fbm1(t * 0.15, 9) * 80, fy - 120, c.short * 0.6, T.glow, 0.05 * T.lighting, T.mode === "dark" ? "screen" : "source-over");
     if (p.headline) {

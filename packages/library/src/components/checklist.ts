@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { drawCheck } from "../parts";
 
 type Props = { headline: string; items: string[]; stagger: number; font: string };
@@ -35,7 +35,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const V = c.vertical;
     const H = p.headline ? c.fit(p.headline, style(c, V ? 104 : 80, { fontParam: p.font, weight: 750 }), c.safe.w, 300, { maxLines: 3 }) : null;
     const n = p.items.length;

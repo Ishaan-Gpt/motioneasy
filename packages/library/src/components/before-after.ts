@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, kf, pr, type Key } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { RAW, CLIPS } from "../demo";
 
 type Props = { before: string | null; after: string | null; beforeLabel: string; afterLabel: string; headline: string; radius: number; size: number; font: string };
@@ -41,7 +41,7 @@ export default defineComponent<Props>({
     const cw = (V ? 820 : c.landscape ? 620 : 640) * p.size;
     const ch = Math.min(cw * (600 / 432), c.safe.h * (p.headline ? 0.72 : 0.9));
     const cy = c.cy + (p.headline ? (V ? 110 : 60) : 0);
-    stage(c, { kind: "studio", focus: [c.cx, cy] });
+    stage(c, { word: heroWord(p.headline), kind: "studio", focus: [c.cx, cy] });
     const x0 = c.cx - cw / 2, y0 = cy - ch / 2;
     const intro = pr(t, 0, 0.7, E.out);
     if (p.headline) {

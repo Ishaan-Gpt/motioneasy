@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, lerp, pr } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { SCREENS } from "../demo";
 import { drawArrow, drawCircleMark } from "../parts";
 
@@ -14,6 +14,7 @@ export default defineComponent<Props>({
   description: "Point at the detail that matters: the camera pushes toward it, a hand-drawn circle loops around it and an arrow carries your note in.",
   tags: ["annotation", "arrow", "highlight", "tutorial", "ui"],
   added: "2026-10-03",
+  camera: "drift",
   featured: false,
   theme: { mode: "light", lighting: 0.55, grain: 0.25, vignette: 0.25 },
   notes: "Set the target box (x, y, w, h as fractions of the image) on the feature you're pointing at.",
@@ -39,7 +40,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.label), kind: "soft" });
     const info = c.mediaInfo(p.media);
     const ar = info ? info.w / info.h : 16 / 10;
     // Image card fills the width; the camera pushes toward the target.

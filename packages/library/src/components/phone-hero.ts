@@ -1,5 +1,5 @@
 import { E, P, alpha, breathe, defineComponent, mix, pr, tw } from "@motioneasy/engine";
-import { blockWindow, maskRise, stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style, heroWord } from "../kit";
 import { CLIPS } from "../demo";
 import { PHONE, drawPhone, phoneIn3D, phoneSlab } from "../parts";
 
@@ -44,7 +44,7 @@ export default defineComponent<Props>({
     const intro = pr(t, 0, 1.4, E.cine);
     const scale = (c.vertical ? 1.18 : c.landscape ? 0.86 : 0.98) * p.size;
     const py = hasHead ? (c.vertical ? 150 : 110) : 0;
-    stage(c, { kind: "studio", focus: [c.cx, c.cy + py] });
+    stage(c, { word: heroWord(p.headline), kind: "studio", focus: [c.cx, c.cy + py] });
     // Floor shadow: tightens as the phone settles.
     const fh = PHONE.h * scale;
     c.lightEllipse(c.cx, c.cy + py + fh * 0.53, PHONE.w * scale * (0.55 - 0.1 * intro), 34 * scale, T.mode === "dark" ? "#000" : mix(T.fg, "#3b2f12", 0.35), 0.3 * intro);

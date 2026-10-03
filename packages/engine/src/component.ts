@@ -6,7 +6,9 @@ import type { RC } from "./context";
 import { FORMAT_IDS, type FormatId } from "./formats";
 import { P, coerce, defaults, type ParamSchema, type Props } from "./params";
 import type { SoundCue } from "./audio/mix";
-import { themeParams, type ThemeDefaults } from "./theme";
+import { recordedFor } from "./audio/library";
+import { SYNTHS } from "./audio/synth";
+import { themeParams, type CameraMove, type ThemeDefaults } from "./theme";
 import { mediaRefs } from "./media";
 
 export type Group = "scenes" | "elements";
@@ -25,6 +27,8 @@ export interface ComponentDef<Pr extends Props = Props> {
   params: ParamSchema;
   /** Default look (mode, lighting, grain, vignette); false = component handles its own look. */
   theme?: ThemeDefaults | false;
+  /** Preferred camera move when the Camera prop is "auto" (default push-in; "still" for shots with their own 3D camera). */
+  camera?: CameraMove;
   sounds?: (p: Pr, info: { dur: number; format: FormatId }) => SoundCue[];
   render: (c: RC, p: Pr) => void;
   /** Extra media this component draws that isn't in a media param (e.g. the clips inside a post). */
@@ -50,6 +54,10 @@ const STANDARD = (theme: ThemeDefaults | false | undefined): ParamSchema => ({
   ...(theme === false ? {} : themeParams(theme ?? {})),
   sound: P.bool(true, "Sound", { group: "sound" }),
   volume: P.number(1, "Volume", { min: 0, max: 1.5, step: 0.05, group: "sound" }),
+  soundKit: P.select("recorded", "Sound kit", [
+    { value: "recorded", label: "Recorded (real whooshes, hits, foley)" },
+    { value: "synth", label: "Synthesised" },
+  ], { group: "sound", help: "Recorded swaps each sound role for a matching CC0 recording where one exists." }),
   soundTone: P.number(0.5, "Sound brightness", { min: 0, max: 1, step: 0.05, group: "sound", advanced: true }),
 });
 
@@ -73,13 +81,16 @@ export function cuesOf(c: ComponentDef, props: Props, format: FormatId): SoundCu
   const base = typeof c.duration === "function" ? c.duration(props) : c.duration;
   const vol = typeof props.volume === "number" ? props.volume : 1;
   const tone = typeof props.soundTone === "number" ? props.soundTone : 0.5;
-  return c.sounds(props, { dur: base, format }).map((q) => ({
-    ...q,
-    at: q.at / speed,
-    len: q.len !== undefined ? q.len / speed : undefined,
-    gain: (q.gain ?? 1) * vol,
-    tone: q.tone ?? tone,
-  }));
+  const recorded = props.soundKit !== "synth";
+  return c.sounds(props, { dur: base, format }).map((q, i) => {
+    const cue: SoundCue = { ...q, at: q.at / speed, len: q.len !== undefined ? q.len / speed : undefined, gain: (q.gain ?? 1) * vol, tone: q.tone ?? tone };
+    const rec = recorded ? recordedFor(q.sound, (q.seed ?? 0) + i) : null;
+    if (!rec) return cue;
+    // A recorded riser can't stretch: start it so its end still lands where the synth's would.
+    const synth = SYNTHS[q.sound];
+    const end = synth?.stretch ? cue.at + (cue.len ?? synth.dur / speed) : null;
+    return { ...cue, sound: rec.id, len: undefined, at: end !== null && rec.len ? Math.max(0, end - rec.len) : cue.at };
+  });
 }
 
 export function propsFor(c: Component, input?: Props) {

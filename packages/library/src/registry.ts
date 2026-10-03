@@ -8,12 +8,18 @@ import wordRotator from "./components/word-rotator";
 import weightWave from "./components/weight-wave";
 import echoStack from "./components/echo-stack";
 import flyThrough from "./components/fly-through";
+import charCascade from "./components/char-cascade";
+import kineticStack from "./components/kinetic-stack";
+import typeMarquee from "./components/type-marquee";
+import imageType from "./components/image-type";
 // text reveals
 import focusPull from "./components/focus-pull";
 import lightSweep from "./components/light-sweep";
 import maskRise from "./components/mask-rise";
 import terminalType from "./components/terminal-type";
 import decode from "./components/decode";
+import barWipe from "./components/bar-wipe";
+import splitFlap from "./components/split-flap";
 // numbers
 import bigNumber from "./components/big-number";
 // devices
@@ -58,8 +64,8 @@ export const COMPONENTS: Component[] = [
   // scenes
   hookStrike, scrollStop, productOrbit, statTrio, checklist, fourSteps, quoteCard, countdown, nowLive, endCard,
   // elements
-  beatSlam, wordRotator, weightWave, echoStack, flyThrough,
-  focusPull, lightSweep, maskRise, terminalType, decode,
+  beatSlam, kineticStack, typeMarquee, charCascade, imageType, wordRotator, weightWave, echoStack, flyThrough,
+  focusPull, lightSweep, maskRise, barWipe, splitFlap, terminalType, decode,
   bigNumber, risingBars, ringMeter,
   captionKaraoke, captionPop,
   phoneHero, browserDrop, floatingCards,

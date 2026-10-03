@@ -1,5 +1,5 @@
 import { E, P, clamp, defineComponent, pr, spring, SPRING, tw, type SoundCue } from "@motioneasy/engine";
-import { blockWindow, maskRise, stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style, heroWord } from "../kit";
 import { SCREENS } from "../demo";
 import { drawBrowser, drawClick, drawCursor } from "../parts";
 
@@ -17,6 +17,7 @@ export default defineComponent<Props>({
   description: "A browser window drops into place with a 3D tilt, the URL types itself, the page glides down, and a cursor flies in and clicks your call to action.",
   tags: ["website", "browser", "cursor", "product", "saas"],
   added: "2026-10-03",
+  camera: "drift",
   featured: true,
   theme: { mode: "light", lighting: 0.6, grain: 0.25, vignette: 0.25 },
   notes: "Use a real screenshot of your site (2× resolution looks best). Point the click at your real CTA.",
@@ -63,7 +64,7 @@ export default defineComponent<Props>({
     // Headline + window are centred as one group.
     const groupH = h + (L ? L.height + headGap : 0);
     const wy = c.cy - groupH / 2 + (L ? L.height + headGap : 0) + h / 2;
-    stage(c, { kind: "studio", focus: [c.cx, wy] });
+    stage(c, { word: heroWord(p.headline), kind: "studio", focus: [c.cx, wy] });
     if (L) {
       const u = pr(t, 0.4, 1.2, E.out);
       const top = wy - h / 2 - L.height - headGap;

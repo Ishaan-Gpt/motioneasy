@@ -23,6 +23,8 @@ export interface RenderEnv {
   quality: "preview" | "export";
   seed: number;
   pool: CanvasPool;
+  /** The shot camera applied around the component (scale k about the centre, then offset x, y). */
+  cam?: { k: number; x: number; y: number };
 }
 
 export interface Layer {

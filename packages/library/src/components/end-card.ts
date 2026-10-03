@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING } from "@motioneasy/engine";
-import { lineWindow, maskRise, stage, style } from "../kit";
+import { lineWindow, maskRise, stage, style, heroWord } from "../kit";
 import { BRAND, CLIPS } from "../demo";
 import { drawPill } from "../parts";
 
@@ -14,6 +14,7 @@ export default defineComponent<Props>({
   description: "The last three seconds, done properly: your clip keeps playing in a card, the line lands, the link springs in, and a small bouncing cue points to the bio.",
   tags: ["end card", "cta", "outro", "follow", "link in bio"],
   added: "2026-10-03",
+  camera: "push-out",
   featured: true,
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
   notes: "Close every post with one ask. Add music credits here if your track needs them.",
@@ -37,7 +38,7 @@ export default defineComponent<Props>({
   render(c, p) {
     const T = c.theme;
     const t = c.t;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const V = c.vertical;
     const cardW = V ? 520 : c.W * 0.26, cardH = cardW * (600 / 432);
     const L = c.fit(p.headline, style(c, V ? 92 : 80, { fontParam: p.font, weight: 750 }), V ? c.safe.w : c.W * 0.5, 300, { maxLines: 3, align: V ? "center" : "left" });

@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, mix, pr, spring, SPRING, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 
 type Props = { title: string; labels: string[]; values: string[]; hero: number; suffix: string; stagger: number; font: string };
 
@@ -40,7 +40,7 @@ export default defineComponent<Props>({
     const n = Math.min(p.labels.length, p.values.length);
     const vals = p.values.slice(0, n).map((v) => Number(String(v).replace(/[^\d.-]/g, "")) || 0);
     const max = Math.max(1, ...vals);
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.title), kind: "soft" });
     const V = c.vertical;
     const chartW = c.safe.w, chartH = V ? 900 : c.H * 0.5;
     const L = p.title ? c.fit(p.title, style(c, V ? 84 : 66, { fontParam: p.font, weight: 750 }), c.safe.w, 200, { maxLines: 2, balance: true }) : null;

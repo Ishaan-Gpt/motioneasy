@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING, tw } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { stage, style, heroWord } from "../kit";
 import { drawClick, drawCursor, drawPill } from "../parts";
 
 type Props = { headline: string; label: string; done: string; url: string; font: string };
@@ -37,7 +37,7 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     const V = c.vertical;
-    stage(c, { kind: "soft" });
+    stage(c, { word: heroWord(p.headline), kind: "soft" });
     const L = p.headline ? c.fit(p.headline, style(c, V ? 108 : 88, { fontParam: p.font, weight: 750 }), c.safe.w * 0.9, 260, { maxLines: 2, align: "center" }) : null;
     const by = c.cy + (L ? 60 : 0);
     if (L) {

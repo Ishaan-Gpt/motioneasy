@@ -8,7 +8,8 @@ import { FORMATS, type FormatId } from "./formats";
 import { hash, rand } from "./math";
 import type { MediaProvider } from "./media";
 import type { Props } from "./params";
-import { CAPTIONSEASY, resolveTheme, type Brand, type Theme } from "./theme";
+import { CAPTIONSEASY, resolveTheme, type Brand, type CameraMove, type Theme } from "./theme";
+import { glide, logLerp } from "./math";
 import { alpha, mix } from "./color";
 
 export interface FrameOpts {
@@ -56,13 +57,22 @@ export function drawRaw(ctx: Ctx2D, comp: Component, props: Props, t: number, o:
     seed: hash(comp.id),
     pool: o.pool,
   };
+  const lt = Math.min(dur, Math.max(0, t * speed));
+  const move: CameraMove = comp.theme === false ? "still" : theme.camera === "auto" ? comp.camera ?? "push-in" : theme.camera;
+  const cam = shotCamera(move, theme.cameraAmount, dur > 0 ? lt / dur : 0, F.w, F.h, env.seed);
+  env.cam = cam;
   ctx.save();
   ctx.setTransform(s, 0, 0, s, 0, 0);
   ctx.globalAlpha = 1;
   ctx.globalCompositeOperation = "source-over";
   ctx.fillStyle = theme.bg;
   ctx.fillRect(0, 0, F.w, F.h);
-  const rc = new RC(ctx, s, F.w, F.h, Math.min(dur, Math.max(0, t * speed)), env, F.safe);
+  if (cam.k !== 1 || cam.x || cam.y) {
+    ctx.translate(F.w / 2 + cam.x, F.h / 2 + cam.y);
+    ctx.scale(cam.k, cam.k);
+    ctx.translate(-F.w / 2, -F.h / 2);
+  }
+  const rc = new RC(ctx, s, F.w, F.h, lt, env, F.safe);
   try {
     comp.render(rc, props);
   } catch (e) {
@@ -75,6 +85,23 @@ export function drawRaw(ctx: Ctx2D, comp: Component, props: Props, t: number, o:
   }
   ctx.restore();
   return theme;
+}
+
+/**
+ * The shot camera: a slow push or drift over the whole component. It is already moving on the first frame
+ * and still moving on the last (cut in and out on motion), and scale moves in log space. Scale stays ≥ 1,
+ * so full-bleed backgrounds never show an edge.
+ */
+export function shotCamera(move: CameraMove, amount: number, p: number, W: number, H: number, seed: number) {
+  const g = glide(p);
+  const a = Math.max(0, amount);
+  if (move === "push-in") return { k: logLerp(1, 1 + 0.045 * a, g), x: 0, y: 0 };
+  if (move === "push-out") return { k: logLerp(1 + 0.06 * a, 1, g), x: 0, y: 0 };
+  if (move === "drift") {
+    const dir = rand(seed) < 0.5 ? -1 : 1;
+    return { k: 1 + 0.028 * a, x: (g - 0.5) * W * 0.02 * a * dir, y: (g - 0.5) * H * 0.006 * a };
+  }
+  return { k: 1, x: 0, y: 0 };
 }
 
 let accum: { canvas: AnyCanvas; ctx: Ctx2D } | null = null;
