@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FORMATS, FORMAT_IDS, SYNTH_SOUNDS } from "@motioneasy/engine";
+import { FORMATS, FORMAT_IDS, SYNTH_SOUNDS, allSounds } from "@motioneasy/engine";
 import { COMPONENTS, TRANSITION_IDS } from "@motioneasy/library";
 import { DocsNav } from "@/components/docs/docs-nav";
 import { TLink } from "@/components/site/motion";
@@ -148,7 +148,7 @@ export default function Page() {
               rows={[
                 [<C key="e">packages/engine</C>, "Canvas renderer, timing (easing, springs, keyframes, beat grid), text layout, 3D camera, WebGL blur, media decode, synthesised sound, -14 LUFS mixer, live player and MP4/WebM exporter."],
                 [<C key="l">packages/library</C>, `${COMPONENTS.length} components (${scenes} scenes, ${COMPONENTS.length - scenes} elements), ${TRANSITION_IDS.length} transitions, the post sequencer and the prompt generator.`],
-                [<C key="c">cli/</C>, "bundle, stills (contact sheets), render (specs to MP4, verified) and shot (site screenshots)."],
+                [<C key="c">cli/</C>, "bundle, stills (contact sheets), render (specs to MP4, verified), shot (site screenshots) and sounds (CC0 recordings)."],
                 [<C key="w">apps/web</C>, "This site: library, component studio, Compose, Sounds and these docs."],
               ]}
             />
@@ -267,13 +267,14 @@ node cli/render.mjs posts/my-post.json     # MP4 → out/my-post/vertical.mp4 (+
                 [<C key="s">node cli/stills.mjs [ids…|spec.json]</C>, "Contact sheet per component or spec → out/stills/<name>.png. No ids = every component.", "--format, --frames 8, --scale 0.5, --props '{…}'"],
                 [<C key="r">node cli/render.mjs spec.json…</C>, "Renders to out/<id>/<format>.mp4 + poster, then checks it with ffprobe (size, fps, duration ±1 frame) and measures loudness.", "--format, --all-formats, --scale, --quality high|balanced|small, --fps, --component <id> --props"],
                 [<C key="h">node cli/shot.mjs /path…</C>, "Screenshots of the site for review → out/shots/.", "--base, --mobile, --full, --scroll, --wait, --click"],
+                [<C key="so">node cli/sounds.mjs</C>, "Imports the curated CC0 recordings (trimmed, 48 kHz, peak -1 dBFS) and regenerates the sound manifest and credits.", "--freesound (needs FREESOUND_API_KEY; adds curated CC0 searches)"],
               ]}
             />
           </Section>
 
           <Section id="sound" title="Sound">
             <p>
-              Components cue sounds on their own timeline: a riser ends exactly on the hit, a whoosh peaks with the camera. There are {SYNTH_SOUNDS.length} sounds designed in code (they stretch to fit and carry no licence strings); any audio file works too, as <C>url:path</C>. The export mixer normalises to <strong>-14 LUFS</strong> with a limiter keeping true peaks under -1 dBTP. Browse and download them on the <TLink href="/sounds/" label="Sounds" className="link-draw font-semibold">Sounds</TLink> page.
+              Components cue sounds on their own timeline: a riser ends exactly on the hit, a whoosh peaks with the camera. There are {SYNTH_SOUNDS.length} sounds designed in code (they stretch to fit and carry no licence strings) and {allSounds().filter((s) => s.kind === "sample").length} CC0 recordings; any audio file works too, as <C>url:path</C>. Recordings live in <C>packages/engine/assets/sounds</C> with a generated manifest and <C>CREDITS.md</C>. The export mixer normalises to <strong>-14 LUFS</strong> with a limiter keeping true peaks under -1 dBTP. Browse and download them on the <TLink href="/sounds/" label="Sounds" className="link-draw font-semibold">Sounds</TLink> page.
             </p>
           </Section>
 

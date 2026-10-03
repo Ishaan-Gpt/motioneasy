@@ -1,6 +1,8 @@
 // The sound library: every sound a component can cue, with the metadata the site shows.
 // "synth" sounds are generated (see synth.ts); "sample" sounds are CC0 recordings shipped with the site.
 
+import { SAMPLE_SOUNDS } from "./samples.gen";
+
 export type SoundCategory = "whoosh" | "impact" | "riser" | "tonal" | "ui" | "foley" | "fx" | "music";
 
 export interface SoundInfo {
@@ -61,5 +63,5 @@ export function registerSounds(list: SoundInfo[]) {
   for (const s of list) if (!extra.some((e) => e.id === s.id)) extra.push(s);
 }
 
-export const allSounds = () => [...SYNTH_SOUNDS, ...extra];
+export const allSounds = () => [...SYNTH_SOUNDS, ...SAMPLE_SOUNDS, ...extra];
 export const soundInfo = (id: string) => allSounds().find((s) => s.id === id);

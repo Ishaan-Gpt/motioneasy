@@ -6,6 +6,7 @@
 import { SOUND_CATEGORIES, allSounds, cueBuffer, cuesOf, defaultProps, toWav, type SoundCategory, type SoundInfo } from "@motioneasy/engine";
 import { COMPONENTS, MUSIC, TRANSITIONS, TRANSITION_IDS } from "@motioneasy/library";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Waveform } from "@/components/audio/waveform";
 import { TLink } from "@/components/site/motion";
 import { useToast } from "@/components/site/toast";
 import { CodeBlock } from "@/components/studio/code";
@@ -147,7 +148,7 @@ export function SoundsView() {
                   Use in a post
                 </TLink>
               </div>
-              <audio controls preload="none" src={`/${m.src}`} className="w-full" />
+              <Waveform src={m.src} height={64} />
               <p className="help">{m.credit}</p>
             </div>
           ))}

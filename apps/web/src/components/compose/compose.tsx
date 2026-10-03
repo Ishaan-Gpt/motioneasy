@@ -13,6 +13,7 @@ import {
   type ClipSpec, type MusicSpec, type PostSpec, type TransitionId,
 } from "@motioneasy/library";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { Waveform } from "@/components/audio/waveform";
 import { ControlPanel } from "@/components/controls/panel";
 import { PlayerCanvas, Transport, type PlayerState } from "@/components/player/player-canvas";
 import { CodeBlock } from "@/components/studio/code";
@@ -392,7 +393,7 @@ export function Compose() {
                 </>
               )}
 
-              {tab === "post" && <PostPanel draft={draft} update={update} />}
+              {tab === "post" && <PostPanel draft={draft} update={update} length={total} />}
 
               {tab === "spec" && (
                 <div className="space-y-3">
@@ -490,7 +491,7 @@ function Timeline({ draft, timeline, time, sel, onPick, onAdd }: { draft: Draft;
   );
 }
 
-function PostPanel({ draft, update }: { draft: Draft; update: (fn: (d: Draft) => Draft) => void }) {
+function PostPanel({ draft, update, length }: { draft: Draft; update: (fn: (d: Draft) => Draft) => void; length: number }) {
   const file = useRef<HTMLInputElement>(null);
   const m = draft.music;
   const setMusic = (patch: Partial<MusicSpec> | null) => update((d) => ({ ...d, music: patch === null ? null : { ...(d.music ?? { src: "" }), ...patch } as MusicSpec }));
@@ -534,6 +535,11 @@ function PostPanel({ draft, update }: { draft: Draft; update: (fn: (d: Draft) =>
         />
         {m && (
           <>
+            <div>
+              <div className="label mb-1.5">Which part plays</div>
+              <Waveform key={m.src} src={m.src} height={52} region={{ start: m.offset ?? 0, length: Math.max(0.5, length) }} onRegion={(s) => setMusic({ offset: s })} />
+              <p className="help mt-1">Drag the red window: it is the {length.toFixed(1)}s of the track under your post.</p>
+            </div>
             <Slider label="Music volume" min={0} max={1} step={0.05} value={m.gain ?? 0.55} onChange={(v) => setMusic({ gain: v })} />
             <Slider label="Start inside the track" unit="s" min={0} max={180} step={0.5} value={m.offset ?? 0} onChange={(v) => setMusic({ offset: v })} />
             <Slider label="Fade out" unit="s" min={0} max={4} step={0.1} value={m.fadeOut ?? 1.2} onChange={(v) => setMusic({ fadeOut: v })} />
