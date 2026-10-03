@@ -1,0 +1,51 @@
+{
+  "id": "v-vert-captionseasy-34-02",
+  "title": "Just post. · classic",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "classic",
+  "seed": 34,
+  "clips": [
+    {
+      "component": "echo-stack",
+      "props": {
+        "text": "Just *post.*"
+      }
+    },
+    {
+      "component": "phone-hero",
+      "props": {
+        "media": "media/hero/gereon.mp4",
+        "headline": "Captions that *move.*"
+      }
+    },
+    {
+      "component": "checklist",
+      "props": {
+        "headline": "Every word, *perfectly timed.*",
+        "items": [
+          "Free",
+          "Open source",
+          "Runs on your machine",
+          "33 caption looks",
+          "Every word timed"
+        ]
+      }
+    },
+    {
+      "component": "click-cta",
+      "props": {
+        "headline": "Whisper runs on *your machine.*",
+        "url": "captionseasy.com"
+      },
+      "transition": "blur"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Funkorama.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Funkorama\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: classic; echo-stack → phone-hero → checklist → click-cta; signature blur"
+}

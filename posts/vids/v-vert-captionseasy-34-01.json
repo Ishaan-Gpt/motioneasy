@@ -1,0 +1,50 @@
+{
+  "id": "v-vert-captionseasy-34-01",
+  "title": "Made for creators. · how-to",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "how-to",
+  "seed": 34,
+  "clips": [
+    {
+      "component": "word-rotator",
+      "props": {
+        "prefix": "Made for",
+        "words": [
+          "creators.",
+          "podcasters.",
+          "teachers.",
+          "founders."
+        ],
+        "variant": "drum"
+      }
+    },
+    {
+      "component": "mask-rise",
+      "props": {
+        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 33 looks.*"
+      },
+      "transition": "wipe"
+    },
+    {
+      "component": "stat-trio",
+      "transition": "push"
+    },
+    {
+      "component": "end-card",
+      "props": {
+        "media": "media/hero/william.mp4",
+        "logo": "media/brand/captionseasy-logo.svg",
+        "headline": "Stop timing captions.\n*Start posting.*",
+        "url": "captionseasy.com"
+      }
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: how-to; word-rotator → mask-rise → end-card; signature wipe"
+}

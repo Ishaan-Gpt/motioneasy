@@ -73,6 +73,7 @@ for (const f of readdirSync(hero)) if (/\.(mp4|webp|json)$/.test(f)) copy(`sourc
 const looks = join(ROOT, "sources/looks");
 for (const f of readdirSync(looks)) if (/\.(mp4|webp|json)$/.test(f)) copy(`sources/looks/${f}`, `looks/${f}`);
 for (const f of readdirSync(join(ROOT, "sources/brand"))) copy(`sources/brand/${f}`, `brand/${f}`);
+if (existsSync(join(ROOT, "sources/mevora"))) for (const f of readdirSync(join(ROOT, "sources/mevora"))) copy(`sources/mevora/${f}`, `mevora/${f}`);
 for (const f of readdirSync(join(ROOT, "assets/audio/music"))) if (/\.mp3$/.test(f)) copy(`assets/audio/music/${f}`, `music/${f}`);
 const shots = { hero: "01-hero.png", product: "02-product.png", looks: "03-looks.png", cta: "05-cta.png" };
 ensure(join(MEDIA_OUT, "screens"));
