@@ -37,3 +37,5 @@ launch-remotion/out/
 # raw screen captures (source media belongs in assets/ or sources/)
 *.mkv
 *.log
+# ...except the engine's CC0 recordings (source assets the engine ships)
+!packages/engine/assets/sounds/*.wav
