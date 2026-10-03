@@ -56,9 +56,9 @@ const COMPONENT_SPEC = `{
   "format": "vertical",
   "fps": 60,
   "props": {
-    "question": "Still timing captions\\nby hand?",
+    "line": "Still timing captions\\nby hand?",
     "strike": "by hand?",
-    "replacement": "*in one click.*",
+    "replace": "*in one click.*",
     "mode": "light",
     "sound": true
   }
@@ -70,7 +70,7 @@ const POST_SPEC = `{
   "format": "vertical",
   "fps": 60,
   "clips": [
-    { "component": "hook-strike", "props": { "question": "Still timing captions\\nby hand?" } },
+    { "component": "hook-strike", "props": { "line": "Still timing captions\\nby hand?" } },
     { "component": "caption-karaoke", "transition": "whip" },
     { "component": "stat-trio", "transition": { "type": "push", "duration": 0.4 }, "duration": 3.5 },
     { "component": "end-card", "transition": "zoom" }
@@ -267,6 +267,7 @@ node cli/render.mjs posts/my-post.json     # MP4 → out/my-post/vertical.mp4 (+
                 [<C key="s">node cli/stills.mjs [ids…|spec.json]</C>, "Contact sheet per component or spec → out/stills/<name>.png. No ids = every component.", "--format, --frames 8, --scale 0.5, --props '{…}'"],
                 [<C key="r">node cli/render.mjs spec.json…</C>, "Renders to out/<id>/<format>.mp4 + poster, then checks it with ffprobe (size, fps, duration ±1 frame) and measures loudness.", "--format, --all-formats, --scale, --quality high|balanced|small, --fps, --component <id> --props"],
                 [<C key="h">node cli/shot.mjs /path…</C>, "Screenshots of the site for review → out/shots/.", "--base, --mobile, --full, --scroll, --wait, --click"],
+                [<C key="pv">node cli/previews.mjs [ids…]</C>, "Renders the library card previews (silent 4:5 loop + poster) and previews.json. Skips components whose sources haven't changed.", "--force"],
                 [<C key="so">node cli/sounds.mjs</C>, "Imports the curated CC0 recordings (trimmed, 48 kHz, peak -1 dBFS) and regenerates the sound manifest and credits.", "--freesound (needs FREESOUND_API_KEY; adds curated CC0 searches)"],
               ]}
             />

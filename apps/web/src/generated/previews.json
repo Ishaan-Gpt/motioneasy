@@ -1,1 +1,262 @@
-{}
+{
+ "hook-strike": {
+  "video": "/previews/hook-strike.mp4",
+  "poster": "/previews/hook-strike.webp",
+  "hash": "bc3d639a8a5f30e9"
+ },
+ "scroll-stop": {
+  "video": "/previews/scroll-stop.mp4",
+  "poster": "/previews/scroll-stop.webp",
+  "hash": "dffa8ed74e0da98b"
+ },
+ "product-orbit": {
+  "video": "/previews/product-orbit.mp4",
+  "poster": "/previews/product-orbit.webp",
+  "hash": "505d6dbcfd70a16e"
+ },
+ "stat-trio": {
+  "video": "/previews/stat-trio.mp4",
+  "poster": "/previews/stat-trio.webp",
+  "hash": "6af1eee67e0362e1"
+ },
+ "checklist": {
+  "video": "/previews/checklist.mp4",
+  "poster": "/previews/checklist.webp",
+  "hash": "2cef1d83c7144995"
+ },
+ "four-steps": {
+  "video": "/previews/four-steps.mp4",
+  "poster": "/previews/four-steps.webp",
+  "hash": "4bf0059ab7c01444"
+ },
+ "quote-card": {
+  "video": "/previews/quote-card.mp4",
+  "poster": "/previews/quote-card.webp",
+  "hash": "794cefbbcffeeaa7"
+ },
+ "countdown": {
+  "video": "/previews/countdown.mp4",
+  "poster": "/previews/countdown.webp",
+  "hash": "b3c76948c3af982f"
+ },
+ "now-live": {
+  "video": "/previews/now-live.mp4",
+  "poster": "/previews/now-live.webp",
+  "hash": "58f37fd6c7e64739"
+ },
+ "end-card": {
+  "video": "/previews/end-card.mp4",
+  "poster": "/previews/end-card.webp",
+  "hash": "c4248ceac246093f"
+ },
+ "beat-slam": {
+  "video": "/previews/beat-slam.mp4",
+  "poster": "/previews/beat-slam.webp",
+  "hash": "9db3c50d6f4be3d5"
+ },
+ "word-rotator": {
+  "video": "/previews/word-rotator.mp4",
+  "poster": "/previews/word-rotator.webp",
+  "hash": "a1cfb8874989d7b3"
+ },
+ "weight-wave": {
+  "video": "/previews/weight-wave.mp4",
+  "poster": "/previews/weight-wave.webp",
+  "hash": "ec11aeaf8e21a91b"
+ },
+ "echo-stack": {
+  "video": "/previews/echo-stack.mp4",
+  "poster": "/previews/echo-stack.webp",
+  "hash": "d41d81deee37e9d2"
+ },
+ "fly-through": {
+  "video": "/previews/fly-through.mp4",
+  "poster": "/previews/fly-through.webp",
+  "hash": "f53445ba9baf63a8"
+ },
+ "focus-pull": {
+  "video": "/previews/focus-pull.mp4",
+  "poster": "/previews/focus-pull.webp",
+  "hash": "2567754c47312795"
+ },
+ "light-sweep": {
+  "video": "/previews/light-sweep.mp4",
+  "poster": "/previews/light-sweep.webp",
+  "hash": "d391adb6780de6b6"
+ },
+ "mask-rise": {
+  "video": "/previews/mask-rise.mp4",
+  "poster": "/previews/mask-rise.webp",
+  "hash": "13793eb86fc28ce1"
+ },
+ "terminal-type": {
+  "video": "/previews/terminal-type.mp4",
+  "poster": "/previews/terminal-type.webp",
+  "hash": "5f430a401c52f088"
+ },
+ "decode": {
+  "video": "/previews/decode.mp4",
+  "poster": "/previews/decode.webp",
+  "hash": "905abae8f7e42f67"
+ },
+ "big-number": {
+  "video": "/previews/big-number.mp4",
+  "poster": "/previews/big-number.webp",
+  "hash": "b98a78137b4b8078"
+ },
+ "rising-bars": {
+  "video": "/previews/rising-bars.mp4",
+  "poster": "/previews/rising-bars.webp",
+  "hash": "0268d76b699ba9b4"
+ },
+ "ring-meter": {
+  "video": "/previews/ring-meter.mp4",
+  "poster": "/previews/ring-meter.webp",
+  "hash": "10576928ccf6be61"
+ },
+ "caption-karaoke": {
+  "video": "/previews/caption-karaoke.mp4",
+  "poster": "/previews/caption-karaoke.webp",
+  "hash": "56833ad66f344ca7"
+ },
+ "caption-pop": {
+  "video": "/previews/caption-pop.mp4",
+  "poster": "/previews/caption-pop.webp",
+  "hash": "70d75e3926fbcfb3"
+ },
+ "phone-hero": {
+  "video": "/previews/phone-hero.mp4",
+  "poster": "/previews/phone-hero.webp",
+  "hash": "000f337b7fa34c1d"
+ },
+ "browser-drop": {
+  "video": "/previews/browser-drop.mp4",
+  "poster": "/previews/browser-drop.webp",
+  "hash": "98f0199a8bbdb01f"
+ },
+ "floating-cards": {
+  "video": "/previews/floating-cards.mp4",
+  "poster": "/previews/floating-cards.webp",
+  "hash": "77ab73a65b4a931d"
+ },
+ "coverflow-3d": {
+  "video": "/previews/coverflow-3d.mp4",
+  "poster": "/previews/coverflow-3d.webp",
+  "hash": "776ed36f941ed388"
+ },
+ "swipe-stack": {
+  "video": "/previews/swipe-stack.mp4",
+  "poster": "/previews/swipe-stack.webp",
+  "hash": "7cd998fc959b93db"
+ },
+ "infinite-wall": {
+  "video": "/previews/infinite-wall.mp4",
+  "poster": "/previews/infinite-wall.webp",
+  "hash": "59ddf9fd3ce85a4d"
+ },
+ "before-after": {
+  "video": "/previews/before-after.mp4",
+  "poster": "/previews/before-after.webp",
+  "hash": "ccff6f480c6b8ce0"
+ },
+ "grid-assemble": {
+  "video": "/previews/grid-assemble.mp4",
+  "poster": "/previews/grid-assemble.webp",
+  "hash": "d2ced7768bbb4b7c"
+ },
+ "cinematic-still": {
+  "video": "/previews/cinematic-still.mp4",
+  "poster": "/previews/cinematic-still.webp",
+  "hash": "67d2214783fea45c"
+ },
+ "lower-third": {
+  "video": "/previews/lower-third.mp4",
+  "poster": "/previews/lower-third.webp",
+  "hash": "a10f62920ec34fd2"
+ },
+ "click-cta": {
+  "video": "/previews/click-cta.mp4",
+  "poster": "/previews/click-cta.webp",
+  "hash": "7e6b40d7fe4cdf70"
+ },
+ "callout": {
+  "video": "/previews/callout.mp4",
+  "poster": "/previews/callout.webp",
+  "hash": "7e41056bda56bdd6"
+ },
+ "notification-stack": {
+  "video": "/previews/notification-stack.mp4",
+  "poster": "/previews/notification-stack.webp",
+  "hash": "9429f783586c34a3"
+ },
+ "tr-whip": {
+  "video": "/previews/tr-whip.mp4",
+  "poster": "/previews/tr-whip.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-zoom": {
+  "video": "/previews/tr-zoom.mp4",
+  "poster": "/previews/tr-zoom.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-push": {
+  "video": "/previews/tr-push.mp4",
+  "poster": "/previews/tr-push.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-slide": {
+  "video": "/previews/tr-slide.mp4",
+  "poster": "/previews/tr-slide.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-iris": {
+  "video": "/previews/tr-iris.mp4",
+  "poster": "/previews/tr-iris.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-wipe": {
+  "video": "/previews/tr-wipe.mp4",
+  "poster": "/previews/tr-wipe.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-shutter": {
+  "video": "/previews/tr-shutter.mp4",
+  "poster": "/previews/tr-shutter.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-flash": {
+  "video": "/previews/tr-flash.mp4",
+  "poster": "/previews/tr-flash.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-blur": {
+  "video": "/previews/tr-blur.mp4",
+  "poster": "/previews/tr-blur.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "tr-cut": {
+  "video": "/previews/tr-cut.mp4",
+  "poster": "/previews/tr-cut.webp",
+  "hash": "4dcb53aa2bab5532"
+ },
+ "light-stage": {
+  "video": "/previews/light-stage.mp4",
+  "poster": "/previews/light-stage.webp",
+  "hash": "5349da61cc75ef38"
+ },
+ "grid-horizon": {
+  "video": "/previews/grid-horizon.mp4",
+  "poster": "/previews/grid-horizon.webp",
+  "hash": "88d309821acaa8fa"
+ },
+ "logo-reveal": {
+  "video": "/previews/logo-reveal.mp4",
+  "poster": "/previews/logo-reveal.webp",
+  "hash": "9cb0152cd337a294"
+ },
+ "logo-bars": {
+  "video": "/previews/logo-bars.mp4",
+  "poster": "/previews/logo-bars.webp",
+  "hash": "a469175c85b82c51"
+ }
+}
