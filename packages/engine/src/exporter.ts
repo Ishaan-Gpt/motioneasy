@@ -2,10 +2,10 @@
 // Nothing leaves the machine; no server, no LLM.
 
 import { CanvasPool, createCanvas, get2d } from "./canvas";
-import { cuesOf, durationOf, mediaKeys, type Component } from "./component";
+import { cuesOf, durationOf, mediaOf, type Component } from "./component";
 import { pixelSize, type FormatId } from "./formats";
 import { loadFonts } from "./fonts";
-import { ExportMedia, mediaRefs } from "./media";
+import { ExportMedia } from "./media";
 import { mixCues, toWav, type SoundCue } from "./audio/mix";
 import type { Props } from "./params";
 import { renderFrame } from "./render";
@@ -67,7 +67,7 @@ export async function exportVideo(o: ExportOptions): Promise<ExportResult> {
   report({ phase: "prepare", progress: 0 });
   await loadFonts(getAssetBase());
   const media = new ExportMedia();
-  await media.prepare(mediaRefs(o.props, mediaKeys(o.comp.schema)), Math.max(w, h));
+  await media.prepare(mediaOf(o.comp, o.props), Math.max(w, h));
   check();
 
   // ── codecs ──
@@ -157,7 +157,7 @@ export async function exportStill(o: { comp: Component; props: Props; format: Fo
   const { w, h } = pixelSize(o.format, o.scale ?? 1);
   await loadFonts(getAssetBase());
   const media = new ExportMedia();
-  await media.prepare(mediaRefs(o.props, mediaKeys(o.comp.schema)), Math.max(w, h));
+  await media.prepare(mediaOf(o.comp, o.props), Math.max(w, h));
   const canvas = createCanvas(w, h);
   const ctx = get2d(canvas);
   const pool = new CanvasPool();

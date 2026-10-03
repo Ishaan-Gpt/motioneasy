@@ -22,13 +22,15 @@ export function highlight(code: string, lang: "ts" | "json" | "md" | "html") {
       .join("\n");
   }
   const tokens: string[] = [];
-  const stash = (html: string) => `\u0000${tokens.push(html) - 1}\u0000`;
+  // Placeholder indices are written in private-use characters, never digits, so the number pass below
+  // can't rewrite them.
+  const stash = (html: string) => `\u0000${String(tokens.push(html) - 1).replace(/\d/g, (d) => String.fromCharCode(0xe000 + Number(d)))}\u0000`;
   let s = esc(code);
   s = s.replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/|&lt;!--[\s\S]*?--&gt;)/g, (m) => stash(`<span style="color:#7A7A70;font-style:italic">${m}</span>`));
   s = s.replace(/("(?:[^"\\\n]|\\.)*"|'(?:[^'\\\n]|\\.)*'|`(?:[^`\\]|\\.)*`)/g, (m) => stash(`<span style="color:#D9C7A8">${m}</span>`));
   if (lang === "ts") s = s.replace(KW, (m) => stash(`<span style="color:#F0D7FF">${m}</span>`));
   s = s.replace(/\b(\d+(?:\.\d+)?)\b/g, (m) => stash(`<span style="color:#FFD9A8">${m}</span>`));
-  return s.replace(/\u0000(\d+)\u0000/g, (_, i) => tokens[Number(i)]);
+  return s.replace(/\u0000([-]+)\u0000/g, (_, i: string) => tokens[Number(i.replace(/[-]/g, (c) => String(c.charCodeAt(0) - 0xe000)))]);
 }
 
 export function CodeBlock({ code, lang, className = "", maxH = "60vh" }: { code: string; lang: "ts" | "json" | "md" | "html"; className?: string; maxH?: string }) {

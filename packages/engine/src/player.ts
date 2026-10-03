@@ -1,10 +1,10 @@
 // Live preview player: renders a component into a <canvas> at display resolution, in sync with audio.
 
 import { CanvasPool } from "./canvas";
-import { cuesOf, durationOf, mediaKeys, type Component } from "./component";
+import { cuesOf, durationOf, mediaOf, type Component } from "./component";
 import { FORMATS, type FormatId } from "./formats";
 import { fontsReady, loadFonts } from "./fonts";
-import { PreviewMedia, mediaRefs } from "./media";
+import { PreviewMedia } from "./media";
 import { LiveAudio, prepareCues } from "./audio/mix";
 import type { Props } from "./params";
 import { renderFrame } from "./render";
@@ -87,6 +87,8 @@ export class Player {
     await loadFonts(getAssetBase());
     await this.syncMedia();
     void prepareCues(cuesOf(comp, props, this.format));
+    // Loading while playing (an editor swapping the composition): the old cues must not keep sounding.
+    if (this.playing) this.restartAudio();
     this.ready = true;
     this.invalidate();
     this.emit();
@@ -94,7 +96,7 @@ export class Player {
 
   private async syncMedia() {
     if (!this.comp) return;
-    const refs = mediaRefs(this.props, mediaKeys(this.comp.schema));
+    const refs = mediaOf(this.comp, this.props);
     const key = refs.join("|");
     if (key === this.refs) return;
     this.refs = key;

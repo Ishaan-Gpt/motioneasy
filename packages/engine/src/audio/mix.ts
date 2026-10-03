@@ -203,17 +203,25 @@ export async function mixCues(cues: SoundCue[], duration: number, o: MixOptions 
     schedule(ctx, bus, c, b, Math.max(0, c.at), from);
   });
   const out = await ctx.startRendering();
-  const lufs = integratedLufs(out);
-  if (Number.isFinite(lufs)) {
-    const target = o.lufs ?? -14;
-    const gainDb = Math.min(o.maxBoostDb ?? 12, target - lufs);
+  // Normalise, limit, re-measure: limiting a peaky mix (voice + music) costs loudness, so a single pass
+  // lands short of the target. The sample ceiling sits at -2 dBFS so inter-sample peaks and AAC
+  // overshoot stay under -1 dBTP.
+  const target = o.lufs ?? -14;
+  let boost = 0;
+  for (let pass = 0; pass < 4; pass++) {
+    const lufs = integratedLufs(out);
+    if (!Number.isFinite(lufs)) break;
+    const gainDb = Math.min((o.maxBoostDb ?? 12) - boost, target - lufs);
+    if (Math.abs(gainDb) < 0.2 && pass > 0) break;
+    boost += gainDb;
     const k = Math.pow(10, gainDb / 20);
     for (let ch = 0; ch < out.numberOfChannels; ch++) {
       const d = out.getChannelData(ch);
       for (let i = 0; i < d.length; i++) d[i] *= k;
     }
+    limit(out, -2);
   }
-  limit(out, -1);
+  limit(out, -2);
   // Short fade at the very end so a cut-off tail never clicks.
   const f = Math.min(len, Math.round(0.012 * SAMPLE_RATE));
   for (let ch = 0; ch < out.numberOfChannels; ch++) {

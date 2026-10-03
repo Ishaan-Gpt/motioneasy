@@ -51,3 +51,9 @@ export const LOOKS = [
 ].map((id) => `media/looks/${id}.mp4`);
 
 export const MEDIA_CREDITS = Object.values(CLIPS).map((c) => c.credit);
+
+/** Music beds for posts (from assets/audio/music). CC-BY: the credit must ship with the post. */
+export const MUSIC = [
+  { id: "funkorama", name: "Funkorama", mood: "Upbeat funk", src: "media/music/kevin-macleod_Funkorama.mp3", credit: '"Funkorama" by Kevin MacLeod (incompetech.com), CC-BY 4.0' },
+  { id: "inspired", name: "Inspired", mood: "Bright, motivational", bpm: 120.19, src: "media/music/kevin-macleod_Inspired.mp3", credit: '"Inspired" by Kevin MacLeod (incompetech.com), CC-BY 4.0' },
+] as { id: string; name: string; mood: string; bpm?: number; src: string; credit: string }[];

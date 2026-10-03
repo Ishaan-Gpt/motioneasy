@@ -2,7 +2,7 @@
 // so making the next post is editing values, not writing code.
 
 import {
-  P, cuesOf, defineComponent, drawRaw, durationOf, finish, propsFor, resolveTheme, CAPTIONSEASY,
+  P, cuesOf, defineComponent, drawRaw, durationOf, finish, mediaOf, propsFor, resolveTheme, CAPTIONSEASY,
   type Component, type FormatId, type Props, type SoundCue,
 } from "@motioneasy/engine";
 import { componentById } from "./registry";
@@ -106,6 +106,7 @@ export function buildSequence(spec: PostSpec): Component {
     params: { _: P.bool(true, "internal", { advanced: true }) },
     duration: () => duration,
     sounds: (p) => cues(p),
+    media: () => clips.flatMap((k) => mediaOf(k.comp, k.props)),
     render(c) {
       const t = c.t;
       const active = clips.filter((k) => t >= k.start && t < k.start + k.dur);

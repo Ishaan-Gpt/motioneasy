@@ -4,7 +4,7 @@
 // text, colour, media, timing or sound never needs code or an LLM.
 
 import { FONTS, FONT_IDS, guessKind, hintKind, type ParamDef, type ParamGroup, type ParamSchema, type Props } from "@motioneasy/engine";
-import { BRAND, CLIPS, LOOKS, SCREENS } from "@motioneasy/library";
+import { BRAND, CLIPS, LOOKS, RAW, SCREENS } from "@motioneasy/library";
 import { useMemo, useRef, useState } from "react";
 
 const GROUP_ORDER: { id: ParamGroup; name: string }[] = [
@@ -300,6 +300,7 @@ function useUpload(onFile: (url: string) => void) {
 
 const DEMO: { group: string; items: string[] }[] = [
   { group: "Creator clips (captioned)", items: Object.values(CLIPS).map((c) => c.src) },
+  { group: "Creator clips (no captions)", items: Object.values(RAW).map((c) => c.src) },
   { group: "Product screens", items: Object.values(SCREENS) },
   { group: "Caption looks", items: LOOKS },
   { group: "Brand", items: [BRAND.logo, BRAND.icon, BRAND.wordmark, BRAND.logoLight] },

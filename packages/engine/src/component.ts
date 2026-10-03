@@ -7,6 +7,7 @@ import { FORMAT_IDS, type FormatId } from "./formats";
 import { P, coerce, defaults, type ParamSchema, type Props } from "./params";
 import type { SoundCue } from "./audio/mix";
 import { themeParams, type ThemeDefaults } from "./theme";
+import { mediaRefs } from "./media";
 
 export type Group = "scenes" | "elements";
 
@@ -26,6 +27,8 @@ export interface ComponentDef<Pr extends Props = Props> {
   theme?: ThemeDefaults | false;
   sounds?: (p: Pr, info: { dur: number; format: FormatId }) => SoundCue[];
   render: (c: RC, p: Pr) => void;
+  /** Extra media this component draws that isn't in a media param (e.g. the clips inside a post). */
+  media?: (p: Pr) => string[];
   /** Poster frame as a fraction of the duration. */
   poster?: number;
   /** Sub-frame motion blur samples on export (0 = component does its own blur). */
@@ -87,6 +90,9 @@ export const defaultProps = (c: Component) => defaults(c.schema);
 
 /** Keys of params that hold media (for preloading). */
 export const mediaKeys = (schema: ParamSchema) => Object.entries(schema).filter(([, d]) => d.type === "media" || d.type === "mediaList").map(([k]) => k);
+
+/** Every media ref a component will draw with these props (what the player and exporter preload). */
+export const mediaOf = (c: Component, props: Props): string[] => [...new Set([...mediaRefs(props, mediaKeys(c.schema)), ...(c.media?.(props) ?? [])])];
 
 // ── Specs: the JSON a post / prompt / CLI passes around ───────────────────
 export interface ComponentSpec {
