@@ -1,5 +1,5 @@
 import { E, P, clamp, defineComponent, pr, spring, SPRING, tw, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style } from "../kit";
 import { SCREENS } from "../demo";
 import { drawBrowser, drawClick, drawCursor } from "../parts";
 
@@ -67,10 +67,8 @@ export default defineComponent<Props>({
     if (L) {
       const u = pr(t, 0.4, 1.2, E.out);
       const top = wy - h / 2 - L.height - headGap;
-      c.save();
-      c.clipRect(0, top - L.size * 0.3, c.W, L.height + L.size * 0.8);
-      c.drawLayout(L, c.cx - L.width / 2, top + (1 - u) * L.size * 1.2, { color: T.fg, emColor: T.accent });
-      c.restore();
+      const win = blockWindow(L);
+      maskRise(c, top + win.top, win.h, u, () => c.drawLayout(L, c.cx - L.width / 2, top, { color: T.fg, emColor: T.accent }));
     }
     // Drop: from above, tilted back, onto the table with a spring.
     const drop = Math.min(1.02, spring(t - 0.05, SPRING.firm));

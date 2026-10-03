@@ -40,13 +40,19 @@ export default defineComponent<Props>({
     const T = c.theme;
     const t = c.t;
     stage(c, { kind: "soft" });
-    const k = c.vertical ? 6.2 : 5.2; // scale of the mark
-    const markW = (BAR_W * 3 + BAR_GAP * 2) * k;
-    const wmInfo = c.mediaInfo(p.wordmark);
-    const wmH = 96 * k * 0.62;
-    const wmW = wmInfo ? (wmH * wmInfo.w) / wmInfo.h : wmH * 5;
     const slide = pr(t, 1.5, 2.1, E.ramp);
-    const totalW = markW + 40 + wmW;
+    const wmInfo = c.mediaInfo(p.wordmark);
+    const wmAspect = wmInfo ? wmInfo.w / wmInfo.h : 5;
+    // The mark starts big; as the wordmark slides out the lockup shrinks until it fits the safe width.
+    const k0 = c.vertical ? 6.2 : 5.2;
+    // Sized from the width visible right now, so the half-revealed wordmark never leaves the frame.
+    const unitW = BAR_W * 3 + BAR_GAP * 2 + 6.5 + (p.wordmark ? 96 * 0.62 * wmAspect * slide : 0);
+    const k = Math.min(k0, (c.safe.w * 0.92) / unitW);
+    const markW = (BAR_W * 3 + BAR_GAP * 2) * k;
+    const wmH = 96 * k * 0.62;
+    const wmW = wmH * wmAspect;
+    const gap = 6.5 * k;
+    const totalW = markW + gap + wmW;
     const markX = c.cx - markW / 2 + slide * (-(totalW / 2) + markW / 2);
     const base = c.cy + 45 * k;
     for (let i = 0; i < 3; i++) {
@@ -58,7 +64,7 @@ export default defineComponent<Props>({
       if (h > 0.5) c.rrect(x, base - h, BAR_W * k, h, (BAR_W * k) / 2, p.colors[i] ?? T.fg);
     }
     if (p.wordmark && slide > 0) {
-      const wx = markX + markW + 40;
+      const wx = markX + markW + gap;
       c.save();
       c.clipRect(wx - 10, base - wmH * 1.6, wmW * slide + 20, wmH * 2.2);
       c.media(p.wordmark, wx - (1 - slide) * 60, base - wmH * 1.05, wmW, wmH, { fit: "contain", key: "wm" });

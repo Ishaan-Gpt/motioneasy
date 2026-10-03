@@ -1,7 +1,7 @@
 // Shared look-and-feel for components: lighting stages, text with effects, word helpers.
 // Keeping these here makes every component read the same and keeps the lighting consistent.
 
-import { alpha, fbm1, mix, parseRich, type RC, type TextLayout, type TextOpts, type TextStyle, type WordBox } from "@motioneasy/engine";
+import { alpha, fbm1, mix, parseRich, type LineBox, type RC, type TextLayout, type TextOpts, type TextStyle, type WordBox } from "@motioneasy/engine";
 
 export type StageKind = "soft" | "spot" | "horizon" | "studio" | "flat";
 
@@ -93,6 +93,30 @@ export function textFx(c: RC, L: TextLayout, x: number, y: number, o: FxOpts = {
   c.with({ x, y, scale, sx: o.sx, sy: o.sy, rotate: o.rotate }, () =>
     c.drawLayer(layer, -L.width * ax, -L.height * ay, { blur: blur / Math.max(0.2, scale), alpha: o.alpha }),
   );
+}
+
+/** Clip window of one laid-out line, relative to the block top: room for accent ascenders and descenders. */
+export function lineWindow(line: LineBox, size: number) {
+  const s = Math.max(size, ...line.words.map((w) => w.size));
+  return { top: line.y - s * 1.1, h: s * 1.42 };
+}
+
+/** Clip window of a whole layout, relative to the block top. */
+export function blockWindow(L: TextLayout) {
+  const s = Math.max(L.size, ...L.words.map((w) => w.size));
+  return { top: L.cap - s * 1.1, h: L.height - L.cap + s * 1.42 };
+}
+
+/**
+ * Mask rise: `draw` slides up into the window [top, top + h) as u goes 0 → 1. It starts a full window
+ * below, so nothing shows before the reveal (not even tall accent glyphs).
+ */
+export function maskRise(c: RC, top: number, h: number, u: number, draw: () => void, o: { x?: number; w?: number } = {}) {
+  if (u <= 0) return;
+  c.save();
+  c.clipRect(o.x ?? 0, top, o.w ?? c.W, h);
+  c.with({ y: (1 - u) * h * 1.04 }, draw);
+  c.restore();
 }
 
 /** Base type style from the theme + a size; accent words use the brand's accent face. */

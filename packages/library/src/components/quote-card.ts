@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { lineWindow, maskRise, stage, style } from "../kit";
 import { RAW } from "../demo";
 import { drawAvatar } from "../parts";
 
@@ -40,7 +40,7 @@ export default defineComponent<Props>({
     const V = c.vertical;
     const serif = p.font === "instrument" || p.font === "fraunces";
     const L = c.fit(p.quote, style(c, V ? 110 : 90, { fontParam: p.font, weight: serif ? 400 : 650, lineHeight: 1.08, em: { font: T.accentFont, italic: true, weight: 400, scale: serif ? 1 : 1.1 } }), c.safe.w, c.safe.h * 0.55, {});
-    const avR = V ? 64 : 54;
+    const avR = V ? 76 : 62;
     const blockH = L.height + 160 + avR * 2;
     const top = c.cy - blockH / 2 + 40;
     // Quote marks
@@ -51,10 +51,8 @@ export default defineComponent<Props>({
     for (const line of L.lines) {
       const at = START + 0.3 + line.index * 0.16;
       const u = pr(t, at, at + 0.8, E.out);
-      c.save();
-      c.clipRect(0, top + line.y - L.size * 1.0, c.W, L.size * 1.35);
-      c.with({ y: (1 - u) * L.size * 1.2 }, () => line.words.forEach((w) => c.word(w, c.safe.x, top, { color: T.fg, emColor: T.accent })));
-      c.restore();
+      const win = lineWindow(line, L.size);
+      maskRise(c, top + win.top, win.h, u, () => line.words.forEach((w) => c.word(w, c.safe.x, top, { color: T.fg, emColor: T.accent })));
     }
     // Author
     const au = pr(t, START + 1.4, START + 2.0, E.out);
@@ -65,10 +63,12 @@ export default defineComponent<Props>({
       c.circle(c.safe.x + avR, ay, avR + 4, T.bg);
       c.restore();
       drawAvatar(c, c.safe.x + avR, ay, avR, p.author, T.fg, T.bg, p.avatar);
-      const N = c.layout(p.author, { font: T.font, size: V ? 44 : 38, weight: 750, tracking: -0.02 });
-      const R = c.layout(p.role, { font: T.font, size: V ? 32 : 28, weight: 500, tracking: -0.01 });
-      c.drawLayout(N, c.safe.x + avR * 2 + 30, ay - N.cap - 8, { color: T.fg });
-      c.drawLayout(R, c.safe.x + avR * 2 + 30, ay + 14, { color: T.soft });
+      // Attribution in the brand's display sans: a serif quote reads best against a solid name.
+      const nameFont = serif ? c.brand.fonts.display : T.font;
+      const N = c.layout(p.author, { font: nameFont, size: V ? 52 : 44, weight: 750, tracking: -0.02 });
+      const R = c.layout(p.role, { font: nameFont, size: V ? 36 : 30, weight: 500, tracking: -0.01 });
+      c.drawLayout(N, c.safe.x + avR * 2 + 34, ay - N.cap - 10, { color: T.fg });
+      c.drawLayout(R, c.safe.x + avR * 2 + 34, ay + 18, { color: T.soft });
     });
   },
 });

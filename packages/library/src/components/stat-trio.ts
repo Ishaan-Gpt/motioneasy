@@ -51,7 +51,7 @@ export default defineComponent<Props>({
     const gap = 28;
     const cols = V ? 1 : n;
     const cw = V ? c.safe.w : (c.safe.w - gap * (n - 1)) / n;
-    const chh = V ? Math.min(250, (c.safe.h - (H ? H.height + 100 : 0) - gap * (n - 1)) / n) : c.H * 0.42;
+    const chh = V ? Math.min(290, (c.safe.h - (H ? H.height + 100 : 0) - gap * (n - 1)) / n) : c.H * 0.42;
     const blockH = (H ? H.height + 90 : 0) + (V ? n * chh + (n - 1) * gap : chh);
     const top = c.cy - blockH / 2;
     if (H) {
@@ -76,10 +76,13 @@ export default defineComponent<Props>({
         const numStr = `${s.prefix}${v.toFixed(s.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${s.suffix}`;
         const nsize = V ? chh * 0.52 : chh * 0.34;
         const N = c.layout(numStr, { font: T.font, size: nsize, weight: 750, tracking: -0.045 });
-        const lab = c.fit(s.label, { font: T.font, size: V ? 36 : 30, weight: 550, tracking: -0.01, lineHeight: 1.2 }, V ? cw - N.width - 120 : cw - 70, chh * 0.5, { maxLines: 2 });
+        // Lay the label out against the final number so it doesn't shift while the count runs.
+        const finalStr = `${s.prefix}${s.value.toFixed(s.decimals).replace(/\B(?=(\d{3})+(?!\d))/g, ",")}${s.suffix}`;
+        const numW = Math.max(c.layout(finalStr, { font: T.font, size: nsize, weight: 750, tracking: -0.045 }).width, nsize * 1.2);
+        const lab = c.fit(s.label, { font: T.font, size: V ? 46 : 42, weight: 600, tracking: -0.015, lineHeight: 1.15 }, V ? cw - numW - 44 * 2 - 34 : cw - 70, chh * 0.5, { maxLines: 2, balance: true });
         if (V) {
           c.drawLayout(N, x + 44, y + chh / 2 - N.cap / 2, { color: ink });
-          c.drawLayout(lab, x + 44 + Math.max(N.width, nsize * 1.2) + 34, y + chh / 2 - lab.height / 2, { color: hero ? alpha(T.bg, 0.75) : T.soft });
+          c.drawLayout(lab, x + 44 + numW + 34, y + chh / 2 - lab.height / 2, { color: hero ? alpha(T.bg, 0.75) : T.soft });
         } else {
           c.drawLayout(N, x + 36, y + 40, { color: ink });
           c.drawLayout(lab, x + 36, y + chh - lab.height - 40, { color: hero ? alpha(T.bg, 0.75) : T.soft });

@@ -1,5 +1,5 @@
 import { E, P, alpha, breathe, defineComponent, mix, pr, tw } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style } from "../kit";
 import { CLIPS } from "../demo";
 import { PHONE, drawPhone, phoneIn3D, phoneSlab } from "../parts";
 
@@ -51,11 +51,9 @@ export default defineComponent<Props>({
     if (hasHead) {
       const L = c.fit(p.headline, style(c, c.vertical ? 104 : 88, { fontParam: p.font, weight: 750 }), c.safe.w * 0.92, 140, { maxLines: 1 });
       const u = pr(t, 0.9, 1.8, E.out);
-      c.save();
       const top = c.cy + py - fh / 2 - L.height - (c.vertical ? 90 : 60);
-      c.clipRect(0, top - L.size * 0.3, c.W, L.size * 1.5);
-      c.drawLayout(L, c.cx - L.width / 2, top + (1 - u) * L.size * 1.2, { color: T.fg, emColor: T.accent });
-      c.restore();
+      const win = blockWindow(L);
+      maskRise(c, top + win.top, win.h, u, () => c.drawLayout(L, c.cx - L.width / 2, top, { color: T.fg, emColor: T.accent }));
     }
     const ry = tw(t, 0, 1.4, 38, -8, E.cine) + breathe(t, 2, 7 * p.orbit, 0.25) + Math.sin(t * 0.55) * 4 * p.orbit * intro;
     const rx = tw(t, 0, 1.4, 22, 3, E.cine) + Math.cos(t * 0.45) * 2 * p.orbit * intro;

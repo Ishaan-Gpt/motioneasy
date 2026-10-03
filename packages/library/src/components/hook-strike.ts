@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, pr } from "@motioneasy/engine";
-import { stage, style, textFx } from "../kit";
+import { lineWindow, maskRise, stage, style, textFx } from "../kit";
 import { drawScribble } from "../parts";
 
 type Props = { line: string; strike: string; replace: string; size: number; font: string; weight: number };
@@ -48,10 +48,8 @@ export default defineComponent<Props>({
     // Line rises in.
     for (const line of L.lines) {
       const u = pr(t, RISE + line.index * 0.12, RISE + line.index * 0.12 + 0.7, E.out);
-      c.save();
-      c.clipRect(0, oy + line.y - L.size * 1.0, c.W, L.size * 1.32);
-      c.with({ y: (1 - u) * L.size * 1.2 }, () => line.words.forEach((w) => c.word(w, ox, oy, { color: T.fg, emColor: T.accent, alpha: struck(w.text) ? 1 - 0.55 * pr(t, STRIKE + 0.2, STRIKE + 0.6) : 1 })));
-      c.restore();
+      const win = lineWindow(line, L.size);
+      maskRise(c, oy + win.top, win.h, u, () => line.words.forEach((w) => c.word(w, ox, oy, { color: T.fg, emColor: T.accent, alpha: struck(w.text) ? 1 - 0.55 * pr(t, STRIKE + 0.2, STRIKE + 0.6) : 1 })));
     }
     // Strike: find the struck run and scribble across it.
     const hits = L.words.filter((w) => struck(w.text));

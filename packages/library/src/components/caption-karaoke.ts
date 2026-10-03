@@ -52,7 +52,7 @@ export default defineComponent<Props>({
     const size = (c.vertical ? 82 : 66) * p.size;
     const font = p.font === "brand" ? T.font : (p.font as typeof T.font);
     const txt = page.words.map((w) => (p.uppercase ? w.text.toUpperCase() : w.text)).join(" ");
-    const L = c.fit(txt, { font, size, weight: 800, tracking: -0.02 }, c.safe.w, size * 2.6, { maxLines: 2, align: "center" });
+    const L = c.fit(txt, { font, size, weight: 800, tracking: -0.02, wordSpacing: 0.18 }, c.safe.w, size * 2.6, { maxLines: 2, align: "center" });
     const ox = c.cx - L.width / 2, oy = c.H * p.position - L.height / 2;
     const inU = pr(t, page.s - 0.08, page.s + 0.12, E.out);
     // The active word and the pill's eased position between words.
@@ -60,7 +60,7 @@ export default defineComponent<Props>({
     if (ai < 0) ai = t < page.words[0].s ? 0 : page.words.length - 1;
     const box = (i: number) => {
       const w = L.words[i];
-      const pad = w.size * 0.16;
+      const pad = w.size * 0.13;
       return { x: ox + w.x - pad, y: oy + w.y - w.size * 0.82, w: w.w + pad * 2, h: w.size * 1.12 };
     };
     const prev = Math.max(0, ai - 1);

@@ -43,7 +43,7 @@ export default defineComponent<Props>({
     stage(c, { kind: "soft" });
     const V = c.vertical;
     const chartW = c.safe.w, chartH = V ? 900 : c.H * 0.5;
-    const L = p.title ? c.fit(p.title, style(c, V ? 84 : 66, { fontParam: p.font, weight: 750 }), c.safe.w, 200, { maxLines: 2 }) : null;
+    const L = p.title ? c.fit(p.title, style(c, V ? 84 : 66, { fontParam: p.font, weight: 750 }), c.safe.w, 200, { maxLines: 2, balance: true }) : null;
     const top = c.cy - (chartH + (L ? L.height + 100 : 0)) / 2;
     if (L) {
       const u = pr(t, 0.05, 0.7, E.out);

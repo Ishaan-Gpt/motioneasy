@@ -1,5 +1,5 @@
 import { E, P, alpha, clamp, defineComponent, mix, pr, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { lineWindow, stage, style } from "../kit";
 import { drawMarker, drawScribble } from "../parts";
 
 type Props = { text: string; align: "left" | "center"; stagger: number; mark: "marker" | "box" | "underline" | "none"; markColor: string; size: number; font: string; weight: number; hold: number };
@@ -82,7 +82,8 @@ export default defineComponent<Props>({
       if (u <= 0) continue;
       const last = line.words[line.words.length - 1];
       const lx = ox + line.x - 20, lw = line.w + 40 + (last ? last.size * 0.3 : 0);
-      const top = oy + line.y - L.size * 1.0, h = L.size * 1.32;
+      const win = lineWindow(line, L.size);
+      const top = oy + win.top, h = win.h;
       c.save();
       c.clipRect(lx, top, lw, h);
       const dy = (1 - u) * h * 1.05;

@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, mix, pr, spring, SPRING } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style } from "../kit";
 import { BRAND } from "../demo";
 import { drawPill } from "../parts";
 
@@ -65,10 +65,8 @@ export default defineComponent<Props>({
       const Tg = c.fit(p.tagline, style(c, c.vertical ? 64 : 54, { fontParam: p.font, weight: 650 }), c.safe.w * 0.9, 180, { maxLines: 2, align: "center" });
       const u = pr(t, 1.5, 2.3, E.out);
       const ty = cy + lh / 2 + (c.vertical ? 90 : 60);
-      c.save();
-      c.clipRect(0, ty - 10, c.W, Tg.height + Tg.size * 0.6);
-      c.drawLayout(Tg, c.cx - Tg.width / 2, ty + (1 - u) * Tg.height * 1.3, { color: T.fg, emColor: T.accent });
-      c.restore();
+      const win = blockWindow(Tg);
+      maskRise(c, ty + win.top, win.h, u, () => c.drawLayout(Tg, c.cx - Tg.width / 2, ty, { color: T.fg, emColor: T.accent }));
       if (p.url) {
         const k = Math.max(0, spring(t - 2.3, SPRING.pop));
         c.with({ x: c.cx, y: ty + Tg.height + (c.vertical ? 110 : 80), scale: k }, () => drawPill(c, 0, 0, p.url, { size: c.vertical ? 36 : 30, fill: T.fg, color: T.bg }));

@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING, tw, type SoundCue } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { blockWindow, maskRise, stage, style } from "../kit";
 import { CLIPS } from "../demo";
 import { PHONE, drawGlassCard, drawPhone, phoneIn3D, phoneSlab } from "../parts";
 
@@ -45,10 +45,8 @@ export default defineComponent<Props>({
       const L = c.fit(p.headline, style(c, V ? 100 : 82, { fontParam: p.font, weight: 750 }), c.safe.w, 160, { maxLines: 1 });
       const u = pr(t, 0.7, 1.5, E.out);
       const top = c.cy + py - (PHONE.h * scale) / 2 - L.height - (V ? 90 : 50);
-      c.save();
-      c.clipRect(0, top - L.size * 0.3, c.W, L.size * 1.5);
-      c.drawLayout(L, c.cx - L.width / 2, top + (1 - u) * L.size * 1.2, { color: T.fg, emColor: T.accent });
-      c.restore();
+      const win = blockWindow(L);
+      maskRise(c, top + win.top, win.h, u, () => c.drawLayout(L, c.cx - L.width / 2, top, { color: T.fg, emColor: T.accent }));
     }
     const ry = tw(t, 0, 1.3, 50, 0, E.cine) + Math.sin(t * 0.5) * 9 * intro;
     const rx = tw(t, 0, 1.3, 18, 2, E.cine);
@@ -64,11 +62,13 @@ export default defineComponent<Props>({
       const at = CHIPS_AT + i * 0.45;
       const k = Math.max(0, spring(t - at, SPRING.pop));
       if (k <= 0) return;
-      const anchorY = c.cy + py - (PHONE.h * scale) * 0.3 + (i / Math.max(1, n - 1)) * (PHONE.h * scale) * 0.55;
+      // Chips sit around the top half of the phone and below the caption band, never over the captions.
+      const frac = n === 1 ? 0.3 : n >= 3 && i === n - 1 ? 0.95 : 0.12 + (i / Math.max(1, n >= 3 ? n - 2 : n - 1)) * 0.36;
+      const anchorY = c.cy + py - (PHONE.h * scale) / 2 + frac * PHONE.h * scale;
       const side = left(i) ? -1 : 1;
       const anchorX = c.cx + side * (PHONE.w * scale) * 0.32;
-      const F = c.layout(f, { font: T.font, size: V ? 34 : 28, weight: 650, tracking: -0.01 });
-      const cw = F.width + 56, ch = F.cap + 52;
+      const F = c.layout(f, { font: T.font, size: V ? 44 : 34, weight: 650, tracking: -0.01 });
+      const cw = F.width + 68, ch = F.cap + 62;
       const chipX = c.cx + side * ((PHONE.w * scale) / 2 + (V ? 30 : 80)) - (side < 0 ? cw : 0);
       const cx = Math.max(c.safe.x - 30, Math.min(c.safe.x + c.safe.w + 30 - cw, chipX));
       const cy = anchorY - ch / 2 - 40;

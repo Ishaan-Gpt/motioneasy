@@ -1,5 +1,5 @@
 import { E, P, alpha, defineComponent, pr, spring, SPRING } from "@motioneasy/engine";
-import { stage, style } from "../kit";
+import { lineWindow, maskRise, stage, style } from "../kit";
 import { BRAND, CLIPS } from "../demo";
 import { drawPill } from "../parts";
 
@@ -61,10 +61,8 @@ export default defineComponent<Props>({
     }
     for (const line of L.lines) {
       const u = pr(t, 0.8 + line.index * 0.12, 1.5 + line.index * 0.12, E.out);
-      c.save();
-      c.clipRect(0, ty + line.y - L.size, c.W, L.size * 1.35);
-      c.with({ y: (1 - u) * L.size * 1.1 }, () => line.words.forEach((w) => c.word(w, tx, ty, { color: T.fg, emColor: T.accent })));
-      c.restore();
+      const win = lineWindow(line, L.size);
+      maskRise(c, ty + win.top, win.h, u, () => line.words.forEach((w) => c.word(w, tx, ty, { color: T.fg, emColor: T.accent })));
     }
     const py = ty + L.height + (V ? 110 : 90);
     const k = Math.max(0, spring(t - 1.6, SPRING.pop));

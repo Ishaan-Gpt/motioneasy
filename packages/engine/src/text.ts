@@ -15,6 +15,8 @@ export interface TextStyle {
   tracking?: number;
   /** Line height as a multiple of size. */
   lineHeight?: number;
+  /** Extra space between words, in em (room for per-word boxes and pills). */
+  wordSpacing?: number;
   /** Style for *accent* words. */
   em?: Partial<{ font: FontId; weight: number; italic: boolean; scale: number; tracking: number }>;
   uppercase?: boolean;
@@ -164,6 +166,8 @@ export interface LayoutOpts {
   maxWidth?: number;
   align?: "left" | "center" | "right";
   maxLines?: number;
+  /** Even out line lengths when the text wraps (no orphans). Default: on for centred text. */
+  balance?: boolean;
 }
 
 const lcache = new Map<string, TextLayout>();
@@ -172,6 +176,11 @@ export function layoutText(input: string, style: TextStyle, opts: LayoutOpts = {
   const key = JSON.stringify([input, style, opts]);
   const hit = lcache.get(key);
   if (hit) return hit;
+  if ((opts.balance ?? opts.align === "center") && opts.maxWidth !== undefined && Number.isFinite(opts.maxWidth)) {
+    const out = balanced(input, style, opts);
+    lcache.set(key, out);
+    return out;
+  }
 
   const tokens = parseRich(style.uppercase ? input.toUpperCase() : input);
   const maxW = opts.maxWidth ?? Infinity;
@@ -191,7 +200,7 @@ export function layoutText(input: string, style: TextStyle, opts: LayoutOpts = {
     const w = wordWidth(tok.text, st.font, st.size, st.weight, st.italic, st.tracking);
     // The gap before a word takes the narrower of the two neighbouring styles (mono spaces are wide).
     const prev = lines[lines.length - 1].words.at(-1);
-    const space = Math.min(spaceOf(st), prev ? spaceOf(resolveStyle(style, prev.em)) : Infinity);
+    const space = Math.min(spaceOf(st), prev ? spaceOf(resolveStyle(style, prev.em)) : Infinity) + (style.wordSpacing ?? 0) * style.size;
     let line = lines[lines.length - 1];
     const needed = line.words.length ? line.w + space + w : w;
     if (line.words.length && needed > maxW) {
@@ -242,15 +251,39 @@ export function layoutText(input: string, style: TextStyle, opts: LayoutOpts = {
   return layout;
 }
 
+/** The narrowest wrap width that keeps the same number of lines, so the lines come out even. */
+function balanced(input: string, style: TextStyle, opts: LayoutOpts): TextLayout {
+  const plain = { ...opts, balance: false };
+  const full = layoutText(input, style, plain);
+  if (full.lines.length < 2) return full;
+  let lo = Math.max(0, ...full.words.map((w) => w.w));
+  let hi = opts.maxWidth!;
+  for (let i = 0; i < 12 && hi - lo > 1; i++) {
+    const mid = (lo + hi) / 2;
+    if (layoutText(input, style, { ...plain, maxWidth: mid }).lines.length <= full.lines.length) hi = mid;
+    else lo = mid;
+  }
+  return layoutText(input, style, { ...plain, maxWidth: Math.ceil(hi) });
+}
+
 /** Largest size (≤ style.size) at which the text fits the box. */
-export function fitText(input: string, style: TextStyle, maxWidth: number, maxHeight: number, opts: { minSize?: number; maxLines?: number; align?: LayoutOpts["align"] } = {}) {
+export function fitText(input: string, style: TextStyle, maxWidth: number, maxHeight: number, opts: { minSize?: number; maxLines?: number; align?: LayoutOpts["align"]; balance?: boolean } = {}): TextLayout {
   const key = JSON.stringify(["fit", input, style, maxWidth, maxHeight, opts]);
   const hit = lcache.get(key);
   if (hit) return hit;
+  // Authored line breaks are intent: shrink a little rather than wrap inside an authored line.
+  const authored = input.split("\n").length;
+  if (authored > 1 && (!opts.maxLines || opts.maxLines > authored)) {
+    const kept = fitText(input, style, maxWidth, maxHeight, { ...opts, maxLines: authored, minSize: Math.max(opts.minSize ?? 0, style.size * 0.72) });
+    if (kept.lines.length <= authored && kept.height <= maxHeight && Math.max(0, ...kept.lines.map((l) => l.w)) <= maxWidth + 0.5) {
+      lcache.set(key, kept);
+      return kept;
+    }
+  }
   let lo = opts.minSize ?? style.size * 0.2;
   let hi = style.size;
   const fits = (size: number) => {
-    const l = layoutText(input, { ...style, size }, { maxWidth, align: opts.align });
+    const l = layoutText(input, { ...style, size }, { maxWidth, align: opts.align, balance: false });
     const longest = Math.max(0, ...l.words.map((w) => w.w));
     return l.height <= maxHeight && longest <= maxWidth + 0.5 && (!opts.maxLines || l.lines.length <= opts.maxLines);
   };
@@ -265,7 +298,7 @@ export function fitText(input: string, style: TextStyle, maxWidth: number, maxHe
       } else hi = mid;
     }
   }
-  const out = layoutText(input, { ...style, size: Math.floor(best * 10) / 10 }, { maxWidth, align: opts.align });
+  const out = layoutText(input, { ...style, size: Math.floor(best * 10) / 10 }, { maxWidth, align: opts.align, balance: opts.balance });
   lcache.set(key, out);
   return out;
 }

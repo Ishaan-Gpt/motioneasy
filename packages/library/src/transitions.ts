@@ -58,8 +58,9 @@ export const TRANSITIONS: Record<TransitionId, TransitionDef> = {
     draw: (c, A, B, u) => {
       const a = pr(u, 0, 0.55, E.in);
       const b = pr(u, 0.45, 1, E.out);
-      if (u < 0.55) full(c, A, { scale: 1 + a * 1.6, blur: a * 22, alpha: 1 - pr(u, 0.4, 0.55) });
-      if (u > 0.45) full(c, B, { scale: 0.7 + b * 0.3, blur: (1 - b) * 18, alpha: pr(u, 0.45, 0.6) });
+      // B lands zoomed in and settles to 1 (always fills the frame), under A as A flies past.
+      if (u > 0.45) full(c, B, { scale: 1 + (1 - b) * 0.6, blur: (1 - b) * 18 });
+      if (u < 0.55) full(c, A, { scale: 1 + a * 1.6, blur: a * 22, alpha: 1 - pr(u, 0.45, 0.55) });
     },
   },
   iris: {

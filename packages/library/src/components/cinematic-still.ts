@@ -1,6 +1,6 @@
 import { E, P, alpha, defineComponent, pr, tw } from "@motioneasy/engine";
-import { style } from "../kit";
-import { CLIPS } from "../demo";
+import { blockWindow, maskRise, style } from "../kit";
+import { RAW } from "../demo";
 
 type Props = { media: string | null; eyebrow: string; title: string; ratio: number; push: number; panX: number; focusX: number; focusY: number; font: string };
 
@@ -17,7 +17,7 @@ export default defineComponent<Props>({
   theme: { mode: "dark", lighting: 0.5, grain: 0.55, vignette: 0.7 },
   notes: "For story openers and chapter cards. Works with a photo or a slow clip.",
   params: {
-    media: P.media(CLIPS.rusita.src, "Shot", "any"),
+    media: P.media(RAW.mckensie.src, "Shot", "any"),
     eyebrow: P.text("Chapter one", "Eyebrow", { maxLength: 30 }),
     title: P.text("Where it *started.*", "Title", { maxLength: 50 }),
     ratio: P.number(2.39, "Letterbox ratio", { min: 1.5, max: 2.76, step: 0.01, group: "style", help: "2.39 is anamorphic widescreen." }),
@@ -60,9 +60,7 @@ export default defineComponent<Props>({
       c.drawLayout(eb, x, base - L.height - eb.height - 34 + (1 - u1) * 16, { color: alpha("#FFFFEB", 0.75), alpha: u1 });
       c.line(x, base - L.height - 46, x + 60 * u1, base - L.height - 46, alpha("#FFFFEB", 0.6), 2, "butt");
     }
-    c.save();
-    c.clipRect(0, base - L.height - L.size * 0.25, c.W, L.height + L.size * 0.6);
-    c.drawLayout(L, x, base - L.height + (1 - u2) * L.size * 1.1, { color: "#FFFFEB", emColor: "#FFFFEB" });
-    c.restore();
+    const win = blockWindow(L);
+    maskRise(c, base - L.height + win.top, win.h, u2, () => c.drawLayout(L, x, base - L.height, { color: "#FFFFEB", emColor: "#FFFFEB" }));
   },
 });

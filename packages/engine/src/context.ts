@@ -352,7 +352,7 @@ export class RC {
   layout(text: string, style: TextStyle, opts?: LayoutOpts): TextLayout {
     return layoutText(text, style, opts);
   }
-  fit(text: string, style: TextStyle, maxW: number, maxH: number, opts?: { minSize?: number; maxLines?: number; align?: LayoutOpts["align"] }) {
+  fit(text: string, style: TextStyle, maxW: number, maxH: number, opts?: { minSize?: number; maxLines?: number; align?: LayoutOpts["align"]; balance?: boolean }) {
     return fitText(text, style, maxW, maxH, opts);
   }
 
@@ -506,7 +506,8 @@ export class RC {
     const ph = Math.max(1, Math.ceil((h + pad * 2) * res));
     const { canvas, ctx } = this.env.pool.acquire(pw, ph);
     ctx.setTransform(res, 0, 0, res, pad * res, pad * res);
-    const child = new RC(ctx, res, w, h, this.t, this.env);
+    // A full-frame layer keeps the frame's safe box (transitions draw whole shots into layers).
+    const child = new RC(ctx, res, w, h, this.t, this.env, w === this.W && h === this.H ? this.safe : undefined);
     draw(child);
     ctx.setTransform(1, 0, 0, 1, 0, 0);
     return { canvas, w, h, res, pad, pw, ph };
