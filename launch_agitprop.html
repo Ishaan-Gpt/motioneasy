@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CapsEasy - Constructivist Agitprop</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;800&display=swap');
+    
+    :root {
+      --cream: #ffffeb;
+      --ink: #1a1a1a;
+      --deep-green: #034f46;
+      --lavender: #f0d7ff;
+    }
+    
+    body {
+      margin: 0; padding: 0;
+      background: var(--cream);
+      overflow: hidden;
+      font-family: 'Anton', sans-serif; /* Bold agitprop style */
+      color: var(--ink);
+    }
+    
+    #canvas {
+      position: absolute;
+      width: 1920px;
+      height: 1080px;
+      transform-origin: top left;
+      overflow: hidden;
+    }
+    
+    .clip {
+      position: absolute;
+      width: 100%; height: 100%;
+      top: 0; left: 0;
+      opacity: 0; /* Hidden by default until GSAP takes over */
+    }
+
+    .wedge {
+      position: absolute;
+      width: 200%; height: 200%;
+      background: var(--deep-green);
+      top: -50%; left: -50%;
+      transform-origin: center;
+    }
+
+    h1 {
+      font-size: 240px;
+      line-height: 0.9;
+      margin: 0;
+      text-transform: uppercase;
+      white-space: pre-wrap;
+    }
+    
+    .video-frame {
+      position: absolute;
+      top: 50%; left: 50%;
+      width: 1200px; height: 675px;
+      border: 12px solid var(--ink);
+      box-shadow: 40px 40px 0 var(--ink);
+      overflow: hidden;
+    }
+    
+    video { width: 100%; height: 100%; object-fit: cover; }
+    
+  </style>
+</head>
+<body>
+  <div id="canvas">
+    
+    <!-- SHOT 1: Hook -->
+    <div id="shot1" class="clip">
+      <div class="wedge" id="wedge1" style="transform: rotate(15deg) translateY(-200%);"></div>
+      <div style="position:absolute; top:200px; left:150px; width:1600px;">
+        <h1 id="text1">STOP TIMING<br>CAPTIONS.</h1>
+      </div>
+    </div>
+    
+    <!-- SHOT 2: Upload Action -->
+    <div id="shot2" class="clip">
+      <div class="video-frame" id="frame2" style="border-color: var(--deep-green); box-shadow: 40px 40px 0 var(--deep-green);">
+        <video src="components/captured-ui/clips/02_upload_process.mp4" autoplay loop muted></video>
+      </div>
+      <div style="position:absolute; bottom:100px; left:150px;">
+        <h1 id="text2" style="font-size: 150px; color: var(--cream); -webkit-text-stroke: 4px var(--ink);">JUST UPLOAD.</h1>
+      </div>
+    </div>
+    
+    <!-- SHOT 3: Engine -->
+    <div id="shot3" class="clip" style="background: var(--deep-green);">
+      <div style="position:absolute; top:200px; left:200px;">
+        <h1 id="text3" style="color: var(--cream);">ON-DEVICE<br>WHISPER AI.</h1>
+      </div>
+      <div class="video-frame" id="frame3" style="width: 800px; height: 450px; top:60%; left:70%;">
+        <video src="components/captured-ui/clips/03_transcription_playback.mp4" autoplay loop muted></video>
+      </div>
+    </div>
+    
+    <!-- SHOT 4: Core Value (Looks) -->
+    <div id="shot4" class="clip" style="background: var(--ink);">
+      <div class="wedge" id="wedge4" style="background: var(--cream); transform: rotate(-25deg) translateY(200%);"></div>
+      <div style="position:absolute; top:0; left:0; width:100%; height:100%; opacity:0.3; background:url('components/captured-ui/screenshots/contact-sheet.jpg') repeat-y; background-size: 100%;" id="scrollbg"></div>
+      <div style="position:absolute; top:150px; left:150px;">
+        <h1 id="text4" style="color: var(--cream);">33 STUNNING<br>LOOKS.</h1>
+      </div>
+      <div class="video-frame" id="frame4" style="border-color: var(--cream); box-shadow: -40px 40px 0 var(--lavender);">
+        <video src="components/captured-ui/clips/04_looks_and_export.mp4" autoplay loop muted></video>
+      </div>
+    </div>
+    
+    <!-- SHOT 5: CTA -->
+    <div id="shot5" class="clip" style="background: var(--lavender);">
+      <div style="position:absolute; top:250px; left:200px; width: 1500px; text-align: center;">
+        <h1 id="text5">MP4 + SRT.<br>FREE FOREVER.</h1>
+        <img src="sources/brand/captionseasy-wordmark.svg" style="width: 600px; margin-top: 100px;" id="logo">
+      </div>
+    </div>
+    
+    <!-- Audio for Stage 6 Mix -->
+    <audio id="bgm" src="assets/audio/music/kevin-macleod_Inspired.mp3" preload="auto"></audio>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script>
+    // Scale canvas to fit window
+    const scale = Math.min(window.innerWidth / 1920, window.innerHeight / 1080);
+    document.getElementById('canvas').style.transform = `scale(${scale})`;
+
+    // Initialize GSAP Timeline
+    window.__timelines = window.__timelines || {};
+    const tl = gsap.timeline({ paused: true });
+    window.__timelines["main"] = tl;
+
+    // Strict 128 BPM Beat Grid (Bar = 1.875s)
+    // Shot 1 (Hook) - 0 to 3.75s
+    tl.set("#shot1", { opacity: 1 }, 0);
+    tl.to("#wedge1", { y: "0%", duration: 0.8, ease: "expo.out" }, 0);
+    tl.from("#text1", { x: -200, opacity: 0, duration: 1.2, ease: "expo.out" }, 0.4);
+    tl.to("#shot1", { x: "-100%", duration: 0.8, ease: "power4.inOut" }, 3.75); // Cut on Bar 2
+
+    // Shot 2 (Upload Action) - 3.75s to 9.375s
+    tl.set("#shot2", { opacity: 1 }, 3.75);
+    tl.from("#shot2", { x: "100%", duration: 0.8, ease: "power4.inOut" }, 3.75);
+    tl.from("#frame2", { scale: 0.5, rotation: 10, duration: 1.2, ease: "expo.out" }, 4.0);
+    tl.from("#text2", { y: 100, opacity: 0, duration: 1, ease: "expo.out" }, 4.5);
+    tl.to("#shot2", { opacity: 0, duration: 0 }, 9.375); // Hard cut on Bar 5
+
+    // Shot 3 (Engine) - 9.375s to 16.875s
+    tl.set("#shot3", { opacity: 1 }, 9.375);
+    tl.from("#shot3", { clipPath: "circle(0% at 50% 50%)", duration: 1.5, ease: "power4.inOut" }, 9.375);
+    tl.from("#text3", { y: 100, opacity: 0, duration: 1, ease: "expo.out" }, 10.0);
+    tl.from("#frame3", { x: 200, opacity: 0, duration: 1.5, ease: "expo.out" }, 10.3);
+    tl.to("#shot3", { opacity: 0, duration: 0 }, 16.875); // Hard cut on Bar 9
+
+    // Shot 4 (Looks Core Value) - 16.875s to 26.25s
+    tl.set("#shot4", { opacity: 1 }, 16.875);
+    tl.to("#wedge4", { y: "0%", duration: 1.2, ease: "expo.out" }, 16.875);
+    tl.to("#scrollbg", { backgroundPosition: "0px -2000px", duration: 9.375, ease: "none" }, 16.875);
+    tl.from("#text4", { scale: 1.5, opacity: 0, duration: 1.2, ease: "expo.out" }, 17.0);
+    tl.from("#frame4", { y: 200, opacity: 0, duration: 1.2, ease: "expo.out" }, 17.5);
+    tl.to("#shot4", { opacity: 0, duration: 0.8, ease: "expo.inOut" }, 25.45); // Pre-cut easing
+
+    // Shot 5 (CTA) - 26.25s to 30s
+    tl.set("#shot5", { opacity: 1 }, 26.25);
+    tl.from("#shot5", { scale: 0.8, opacity: 0, duration: 0.8, ease: "expo.inOut" }, 26.25);
+    tl.from("#text5", { y: 100, opacity: 0, duration: 1, ease: "expo.out" }, 26.7);
+    tl.from("#logo", { scale: 0, rotation: -10, duration: 1, ease: "elastic.out(1, 0.5)" }, 27.0);
+
+    // Click anywhere to play (browser autoplay policy)
+    document.body.addEventListener("click", () => {
+      document.getElementById("bgm").play();
+      tl.play(0);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,233 @@
+[a] How it works
+[a] Controls
+[a] No install
+[a] Sign in
+[a] Start free
+[span] Don’t edit,
+[span] just upload.
+[p] Animated captions for your Shorts, Reels and TikToks, made right in your browser. 20+ viral looks, every word editable, no install and no watermark.
+[a] Caption your first video free
+[a] See how it works
+[a] Clips: Wikimedia Commons, CC BY / BY-SA
+[h2] From camera roll to
+[em] captioned
+[h2] in four moves.
+[p] Step
+[h3] Upload the take
+[p] One MP4, straight from your camera roll. No timeline setup, no project files, no plugins.
+[span] drop your clip here
+[span] take-07_final.mp4
+[p] Step
+[h3] Every word gets a timestamp
+[p] Speech-to-text runs at word level, so the engine knows exactly when each syllable lands — and you can clean up the transcript before anything is styled.
+[span] 00:00.42
+[span] the first three seconds decide
+[span] 00:02.10
+[span] whether anyone stays,
+[span] 00:03.65
+[span] so make them unmistakable.
+[p] Step
+[h3] Pick a look, direct the frame
+[p] Choose from distinct cinematic styles, then drag the caption box anywhere in the frame and tune the hero and body text independently.
+[span] Hormozi Box
+[span] Karaoke Fill
+[span] Beast Bounce
+[span] Emerald
+[span] caption box · drag me
+[p] Step
+[h3] Render and post
+[p] A deterministic Remotion pipeline burns the animation into a crisp 1080p vertical MP4. What you previewed is exactly what exports.
+[span] remotion render · 1080×1920 · 60fps
+[span] 100% ready
+[span] Export burned-in MP4
+[span] Download MP4
+[h2] Automatic,
+[em] until you disagree.
+[p] AI creates the baseline in seconds. You keep frame-by-frame control over every word, break, position, and motion curve.
+[span] layout
+[h3] The caption box is yours
+[p] Drag and resize the caption region anywhere in the frame — clear of faces, product shots, or platform UI. The render honours it to the pixel.
+[span] timeline
+[h3] Timing you can re-cut
+[p] A word-level timeline lets you nudge any word's in and out points when the delivery needs a different beat than the transcript suggests.
+[span] transcript
+[h3] Clean the transcript first
+[p] Fix names, drop filler words, and merge fragments before styling — so the animation never amplifies a typo.
+[span] typography
+[h3] Hero and body, styled apart
+[p] The emphasized word and the supporting line carry independent fonts, sizes, and colours. Tune one without disturbing the other.
+[span] exports
+[h3] Every export, kept
+[p] Each render lands in the project's export history with its settings, so last week's look is one click to reproduce.
+[h2] Four reasons it feels
+[em] effortless.
+[span] Transcription
+[span] / 04
+[span] timing.
+[b] Word-level timestamps,
+[span] not sentence blocks.
+[b] Nothing to install:
+[span] it runs in the tab you already have open.
+[b] Drag any word
+[span] on the timeline to nudge it by a frame.
+[span] Now speaking
+[div] Now
+[div] start
+[div] 00:00.15
+[div] end
+[div] 00:00.55
+[span] 400
+[span] words ·
+[span] 6.1
+[span] whisper · in your browser
+[span] no install · no per-minute bill
+[span] Captions track
+[span] 00:00.00
+[span] Now
+[span] site
+[span] Looks
+[span] / 04
+[span] one click.
+[b] Switch any time:
+[span] edits, splits and positions stay put.
+[b] Tweak everything:
+[span] font, size, stroke, shadow, motion speed.
+[b] Save your own
+[span] as a brand look and reuse it on every video.
+[span] Neon Glow
+[span] Pick a look
+[span] auto
+[span] Jumping Box
+[span] Caps · Box highlight
+[span] Bouncy Single Word
+[span] One word · 3D shadow
+[span] Karaoke Fill
+[span] Full line · Colour sweep
+[span] Yellow Highlighter
+[span] Card · Marker
+[span] Neon Glow
+[span] Glow · Retro
+[span] 3-Line Stagger
+[span] 3 lines · Big middle word
+[span] Same transcript, same timing, new style.
+[span] live render
+[span] Export
+[span] / 04
+[span] zero re-encode.
+[b] ProRes 4444 or WebM
+[span] with a real alpha channel.
+[b] With the free desktop helper,
+[span] at full quality, no watermark.
+[b] Or skip video entirely:
+[span] SRT, VTT, ASS and TXT in one click.
+[span] captions.mov
+[span] alpha layer
+[span] your-footage.mp4
+[span] untouched
+[div] MP4
+[div] Captions burned in, ready to post
+[div] MOV
+[div] ProRes 4444 with alpha
+[div] WebM
+[div] Transparent, web-light
+[div] SRT · VTT · ASS
+[div] Plain subtitles, instant
+[span] Emphasis
+[span] / 04
+[span] that pop.
+[b] Picked automatically,
+[span] favouring numbers, names and strong words.
+[b] Always yours:
+[span] click any word to make it the hero.
+[b] Hero and body text
+[span] style independently: font, size, colour.
+[span] Cards
+[span] 1 / 8
+[span] 00.00
+[span] just
+[span] being
+[span] back
+[span] 01.83
+[span] home
+[span] it's
+[span] like
+[span] 03.28
+[span] you
+[span] know
+[span] it's
+[span] 03.88
+[span] free
+[span] and
+[span] 04.40
+[span] natural
+[span] for
+[span] 04.92
+[span] talk
+[span] tattoo
+[span] 05.52
+[span] and
+[span] talk
+[span] like
+[span] 06.16
+[span] the
+[span] way
+[span] hero word
+[span] ≤ 3 words / card
+[span] This card's hero:
+[b] being
+[span] picked by the engine
+[h2] Nothing to install.
+[em] It runs in your browser.
+[p] Captions are written, styled and exported right in the tab you have open, on your phone or your laptop. No app, no plugin, no per-minute bill. Editing in Premiere, Resolve or Final Cut? The optional free desktop helper adds transparent ProRes and WebM caption overlays.
+[div] desktop helper — optional
+[p] # macOS / Linux
+[span] curl
+[span] -fsSL
+[span] https://captionseasy.vercel.app
+[span] /install.sh | bash
+[p] # Windows (PowerShell, Command Prompt or Win+R)
+[span] powershell
+[span] -ExecutionPolicy Bypass -c "irm
+[span] https://captionseasy.vercel.app
+[span] /install.ps1 | iex"
+[p] Dependencies installed.
+[p] Transparent exports enabled.
+[p] Paired · Watching for new videos
+[h2] Good questions.
+[span] Questions
+[span] Will CaptionsEasy work with vertical 9:16 Shorts, Reels, and TikToks?
+[span] How is CaptionsEasy different from basic CapCut or Premiere captions?
+[span] Do I need to install anything?
+[span] Can I customize the font, colors, and keyframe animations?
+[span] Does it support Hindi, Hinglish, and regional accents?
+[span] What export formats are supported?
+[span] Answer
+[span] Instant clarification
+[h4] Will CaptionsEasy work with vertical 9:16 Shorts, Reels, and TikToks?
+[div] Yes! CaptionsEasy is optimized specifically for short-form portrait video (9:16) as well as traditional widescreen (16:9). All kinetic motion keyframes adjust dynamically to fit your framing, with safe-zone clearance for platform UI buttons.
+[span] CaptionsEasy
+[span] Runs in your browser
+[h2] Now,
+[em] captivate.
+[p] Your next video deserves captions people actually watch. Start free, in under a minute.
+[a] Create free captions
+[a] How it works
+[a] Looks gallery
+[a] Local Companion
+[a] Precision controls
+[h4] CREATORS
+[a] TikTok & Shorts
+[a] Instagram Reels
+[a] Hinglish & Multi-lingual
+[a] Transparent Overlays
+[h4] RESOURCES
+[a] Frequently asked questions
+[a] Companion setup
+[a] Project studio
+[a] Sign in to app
+[a] Terms of service
+[a] Privacy policy
+[a] Cookie policy
+[span] Captions
+[span] CaptionsEasy. All rights reserved.
+[span] Zero Server Cost · Local Hardware-Accelerated Rendering

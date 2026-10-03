@@ -25,3 +25,15 @@ Thumbs.db
 # Mixkit/Pixabay site-licensed audio: free to use in videos, not for raw redistribution
 mixkit-*.mp3
 pixabay-*.mp3
+
+# MotionEasy workspace: build output and generated files
+out/
+.next/
+*.tsbuildinfo
+next-env.d.ts
+apps/web/public/engine/
+apps/web/public/media/
+launch-remotion/out/
+# raw screen captures (source media belongs in assets/ or sources/)
+*.mkv
+*.log
