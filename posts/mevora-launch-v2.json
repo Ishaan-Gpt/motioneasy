@@ -1,0 +1,226 @@
+{
+  "id": "mevora-launch-v2",
+  "title": "Mevora Studio launch reel",
+  "format": "landscape",
+  "fps": 60,
+  "look": {
+    "mode": "light",
+    "bg": "#f3e8da",
+    "fg": "#211e1b",
+    "accent": "#8b633d",
+    "grain": 0.5,
+    "lighting": 0.5
+  },
+  "clips": [
+    {
+      "component": "beat-slam",
+      "props": {
+        "text": "Objects with *presence.*",
+        "variant": "punch",
+        "bpm": 119.95,
+        "size": 1.15,
+        "hold": 0.5
+      },
+      "duration": 2.421
+    },
+    {
+      "component": "infinite-wall",
+      "props": {
+        "speed": 1.3,
+        "media": [
+          "media/mevora/abstract-face-hand-vase-white.jpg",
+          "media/mevora/lattice-bloom-vase-white-black.jpg",
+          "media/mevora/teardrop-arch-sculptural-vase-black-white.jpg",
+          "media/mevora/textured-flared-sculptural-vase-white.jpg",
+          "media/mevora/black-diamond-mesh-decorative-vase-black.jpg",
+          "media/mevora/geometric-facet-sculptural-vase-black.jpg",
+          "media/mevora/spiral-texture-sculptural-vase-black.jpg",
+          "media/mevora/ribbed-decorative-vase-off-white.jpg",
+          "media/mevora/elegant-long-neck-bud-vase-white.jpg",
+          "media/mevora/abstract-face-hand-vase-white.jpg",
+          "media/mevora/lattice-bloom-vase-white-black.jpg",
+          "media/mevora/teardrop-arch-sculptural-vase-black-white.jpg",
+          "media/mevora/textured-flared-sculptural-vase-white.jpg",
+          "media/mevora/black-diamond-mesh-decorative-vase-black.jpg",
+          "media/mevora/geometric-facet-sculptural-vase-black.jpg"
+        ],
+        "headline": "Meet *Mevora Studio.*",
+        "cols": 5,
+        "dive": true
+      },
+      "duration": 4.552,
+      "transition": "whip"
+    },
+    {
+      "component": "logo-reveal",
+      "props": {
+        "speed": 1.3,
+        "logo": "media/mevora/logo.svg",
+        "tagline": "3D-printed, *by design.*",
+        "url": "mevorastudio.com"
+      },
+      "duration": 4.502,
+      "transition": "zoom"
+    },
+    {
+      "component": "coverflow-3d",
+      "props": {
+        "speed": 1.25,
+        "media": [
+          "media/mevora/abstract-face-hand-vase-white.jpg",
+          "media/mevora/lattice-bloom-vase-white-black.jpg",
+          "media/mevora/teardrop-arch-sculptural-vase-black-white.jpg",
+          "media/mevora/textured-flared-sculptural-vase-white.jpg",
+          "media/mevora/black-diamond-mesh-decorative-vase-black.jpg",
+          "media/mevora/geometric-facet-sculptural-vase-black.jpg",
+          "media/mevora/spiral-texture-sculptural-vase-black.jpg",
+          "media/mevora/ribbed-decorative-vase-off-white.jpg",
+          "media/mevora/elegant-long-neck-bud-vase-white.jpg"
+        ],
+        "labels": [],
+        "showLabels": false,
+        "title": "The *collection.*",
+        "step": 0.7503126302626094,
+        "advances": 4
+      },
+      "duration": 4.602,
+      "transition": "push"
+    },
+    {
+      "component": "word-rotator",
+      "props": {
+        "speed": 1.2,
+        "prefix": "Objects for",
+        "words": [
+          "the home.",
+          "the desk.",
+          "*gifting.*"
+        ],
+        "hold": 1.0004168403501459,
+        "mode": "dark",
+        "bg": "#211e1b",
+        "fg": "#f3e8da",
+        "accent": "#e7d2bb"
+      },
+      "duration": 4.552,
+      "transition": "slide"
+    },
+    {
+      "component": "floating-cards",
+      "props": {
+        "speed": 1.3,
+        "media": [
+          "media/mevora/mevora-print-home.webp",
+          "media/mevora/mevora-feature-closeup.webp",
+          "media/mevora/mevora-glossy-vase-retina-transparent.webp"
+        ],
+        "headline": "Made to be noticed *up close.*"
+      },
+      "duration": 4.422,
+      "transition": "zoom"
+    },
+    {
+      "component": "swipe-stack",
+      "props": {
+        "speed": 1.2,
+        "media": [
+          "media/mevora/abstract-face-hand-vase-white.jpg",
+          "media/mevora/lattice-bloom-vase-white-black.jpg",
+          "media/mevora/teardrop-arch-sculptural-vase-black-white.jpg",
+          "media/mevora/textured-flared-sculptural-vase-white.jpg",
+          "media/mevora/black-diamond-mesh-decorative-vase-black.jpg",
+          "media/mevora/geometric-facet-sculptural-vase-black.jpg"
+        ],
+        "labels": [],
+        "title": "One considered *object* at a time.",
+        "step": 0.7503126302626094
+      },
+      "duration": 6.603,
+      "transition": "whip"
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "speed": 1.3,
+        "media": "media/mevora/mevora-about-studio-object.webp",
+        "eyebrow": "3D-printed",
+        "title": "Made with *intention.*"
+      },
+      "duration": 4.552,
+      "transition": "iris"
+    },
+    {
+      "component": "grid-assemble",
+      "props": {
+        "speed": 1.3,
+        "media": [
+          "media/mevora/abstract-face-hand-vase-white.jpg",
+          "media/mevora/lattice-bloom-vase-white-black.jpg",
+          "media/mevora/teardrop-arch-sculptural-vase-black-white.jpg",
+          "media/mevora/textured-flared-sculptural-vase-white.jpg",
+          "media/mevora/black-diamond-mesh-decorative-vase-black.jpg",
+          "media/mevora/geometric-facet-sculptural-vase-black.jpg",
+          "media/mevora/spiral-texture-sculptural-vase-black.jpg",
+          "media/mevora/ribbed-decorative-vase-off-white.jpg",
+          "media/mevora/elegant-long-neck-bud-vase-white.jpg"
+        ],
+        "headline": "Form. Detail. *Making.*"
+      },
+      "duration": 4.552,
+      "transition": "shutter"
+    },
+    {
+      "component": "big-number",
+      "props": {
+        "speed": 1.3,
+        "value": 599,
+        "from": 0,
+        "prefix": "₹",
+        "suffix": "",
+        "label": "Featured pieces start here",
+        "count": 1.0004168403501459,
+        "mode": "dark",
+        "bg": "#211e1b",
+        "fg": "#f3e8da",
+        "accent": "#e7d2bb"
+      },
+      "duration": 4.502,
+      "transition": "wipe"
+    },
+    {
+      "component": "click-cta",
+      "props": {
+        "speed": 1.2,
+        "headline": "Find something that *belongs.*",
+        "label": "Shop the collection",
+        "done": "mevorastudio.com",
+        "url": "mevorastudio.com"
+      },
+      "duration": 4.362,
+      "transition": "push"
+    },
+    {
+      "component": "end-card",
+      "props": {
+        "speed": 1.1,
+        "media": "media/mevora/mevora-feature-closeup.webp",
+        "logo": "media/mevora/logo.svg",
+        "headline": "Objects with\n*presence.*",
+        "url": "mevorastudio.com",
+        "follow": "@MEVORASTUDIO",
+        "credit": "Music: \"Inspired\" by Kevin MacLeod (CC BY 4.0)"
+      },
+      "duration": 6.003,
+      "transition": "flash"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.6,
+    "offset": 20.49,
+    "fadeIn": 0.1,
+    "fadeOut": 1.5,
+    "credit": "\"Volatile Reaction\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "Brand from mevorastudio.com: ivory #f3e8da, ink #211e1b, bronze #8b633d. bpm 119.95 (beat 0.5s); clip starts snapped to bars. Facts only from the site: tagline, home/desk/gifting, 'made to be noticed up close', 'made with intention', featured pieces from ₹599."
+}
