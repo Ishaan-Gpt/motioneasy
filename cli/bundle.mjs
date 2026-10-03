@@ -41,8 +41,14 @@ console.log(`bundle   engine/motioneasy.js ${(statSync(join(ENGINE_OUT, "motione
 // 2. engine assets
 cpSync(join(ROOT, "packages/engine/assets"), ENGINE_OUT, { recursive: true });
 
-// 3. component sources (for the Code tab and prompts)
+// 3. component sources (for the Code tab and prompts); every component file must be registered
 const compDir = join(ROOT, "packages/library/src/components");
+const registry = readFileSync(join(ROOT, "packages/library/src/registry.ts"), "utf8");
+const unregistered = readdirSync(compDir).filter((f) => f.endsWith(".ts") && !registry.includes(`./components/${f.replace(/\.ts$/, "")}"`));
+if (unregistered.length) {
+  console.error(`bundle   ✗ not registered in packages/library/src/registry.ts: ${unregistered.join(", ")}`);
+  process.exit(1);
+}
 const sources = {};
 for (const f of readdirSync(compDir).filter((f) => f.endsWith(".ts"))) {
   const src = readFileSync(join(compDir, f), "utf8");

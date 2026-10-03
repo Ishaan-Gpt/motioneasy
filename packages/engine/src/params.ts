@@ -74,16 +74,25 @@ export function coerce(schema: ParamSchema, input: Props | undefined): { props: 
     switch (d.type) {
       case "text":
         if (typeof v !== "string") bad("expected text");
-        else props[k] = d.maxLength ? v.slice(0, d.maxLength) : v;
+        else {
+          props[k] = d.maxLength ? v.slice(0, d.maxLength) : v;
+          if (d.maxLength && v.length > d.maxLength) issues.push(`prop "${k}": trimmed to ${d.maxLength} characters`);
+        }
         break;
       case "list":
       case "mediaList":
         if (!Array.isArray(v) || v.some((x) => typeof x !== "string")) bad("expected a list of text");
-        else props[k] = v.slice(0, d.max ?? 99);
+        else {
+          props[k] = v.slice(0, d.max ?? 99);
+          if (v.length > (d.max ?? 99)) issues.push(`prop "${k}": kept the first ${d.max ?? 99} items`);
+        }
         break;
       case "number":
         if (typeof v !== "number" || !Number.isFinite(v)) bad("expected a number");
-        else props[k] = Math.min(d.max, Math.max(d.min, v));
+        else {
+          props[k] = Math.min(d.max, Math.max(d.min, v));
+          if (props[k] !== v) issues.push(`prop "${k}": ${v} is outside ${d.min}–${d.max}, clamped to ${props[k]}`);
+        }
         break;
       case "bool":
         if (typeof v !== "boolean") bad("expected true/false");
