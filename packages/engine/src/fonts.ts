@@ -1,7 +1,7 @@
 // Bundled typefaces. Rendering waits until every face is loaded, so text measures and draws the same
 // way on every run. Components refer to faces by id ("jakarta", "instrument", ...), never by family.
 
-export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono";
+export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono" | "geist" | "archivo";
 
 export interface FontInfo {
   id: FontId;
@@ -11,6 +11,8 @@ export interface FontInfo {
   weights: [number, number];
   italic: boolean;
   files: { file: string; style: "normal" | "italic" }[];
+  /** Fixed font-stretch for the face (variable width fonts): the browser sets the wdth axis from it. */
+  stretch?: string;
   /** Optical tweaks: tracking (em) that looks right at display sizes. */
   displayTracking: number;
 }
@@ -52,6 +54,14 @@ export const FONTS: Record<FontId, FontInfo> = {
     id: "mono", label: "JetBrains Mono", family: "ME Mono", kind: "mono", weights: [100, 800], italic: false, displayTracking: 0,
     files: [{ file: "jetbrains-mono-latin-wght-normal.woff2", style: "normal" }],
   },
+  geist: {
+    id: "geist", label: "Geist", family: "ME Geist", kind: "sans", weights: [100, 900], italic: false, displayTracking: -0.035,
+    files: [{ file: "geist-latin-wght-normal.woff2", style: "normal" }],
+  },
+  archivo: {
+    id: "archivo", label: "Archivo Expanded", family: "ME Archivo", kind: "sans", weights: [100, 900], italic: false, displayTracking: -0.02, stretch: "125%",
+    files: [{ file: "archivo-latin-wdth-normal.woff2", style: "normal" }],
+  },
 };
 
 export const FONT_IDS = Object.keys(FONTS) as FontId[];
@@ -92,6 +102,7 @@ export function loadFonts(base: string): Promise<void> {
       const face = new FontFace(f.family, `url("${src}") format("woff2")`, {
         weight: f.weights[0] === f.weights[1] ? String(f.weights[0]) : `${f.weights[0]} ${f.weights[1]}`,
         style: file.style,
+        ...(f.stretch ? { stretch: f.stretch } : {}),
         display: "block",
       });
       jobs.push(

@@ -81,6 +81,12 @@ export interface ThemeDefaults {
   grain?: number;
   vignette?: number;
   backdrop?: (typeof BACKDROPS)[number];
+  camera?: CameraMove | "auto";
+  /** Palette defaults (prompt kits carry their own art direction instead of the brand's). */
+  bg?: string;
+  fg?: string;
+  accent?: string;
+  glow?: string;
 }
 
 /** The Look group every component gets. */
@@ -90,10 +96,10 @@ export function themeParams(d: ThemeDefaults = {}): ParamSchema {
       { value: "light", label: "Light (cream)" },
       { value: "dark", label: "Dark (ink)" },
     ], { group: "look" }),
-    bg: P.color("auto", "Background"),
-    fg: P.color("auto", "Text"),
-    accent: P.color("auto", "Accent"),
-    glow: P.color("auto", "Light tint"),
+    bg: P.color(d.bg ?? "auto", "Background"),
+    fg: P.color(d.fg ?? "auto", "Text"),
+    accent: P.color(d.accent ?? "auto", "Accent"),
+    glow: P.color(d.glow ?? "auto", "Light tint"),
     lighting: P.number(d.lighting ?? 0.6, "Lighting", { min: 0, max: 1, step: 0.05, group: "look" }),
     grain: P.number(d.grain ?? 0.35, "Film grain", { min: 0, max: 1, step: 0.05, group: "look" }),
     vignette: P.number(d.vignette ?? 0.3, "Vignette", { min: 0, max: 1, step: 0.05, group: "look" }),
@@ -110,7 +116,7 @@ export function themeParams(d: ThemeDefaults = {}): ParamSchema {
       { value: "frame", label: "Framed panel" },
     ], { group: "look", help: "The layer behind the content: structure and colour so a shot is never an empty field." }),
     backdropWord: P.text("", "Backdrop word", { group: "look", maxLength: 24, advanced: true, help: "Word for the Giant type backdrop. Empty = the headline's accent word." }),
-    camera: P.select("auto", "Camera", [
+    camera: P.select(d.camera ?? "auto", "Camera", [
       { value: "auto", label: "Auto" },
       { value: "push-in", label: "Push in" },
       { value: "push-out", label: "Push out" },

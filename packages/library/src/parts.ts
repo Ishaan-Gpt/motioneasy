@@ -239,3 +239,29 @@ export function drawAvatar(c: RC, cx: number, cy: number, r: number, initials: s
   }
   c.restore();
 }
+
+// ── Placeholders ───────────────────────────────────────────────────────────
+/**
+ * A labelled empty slot (templates ship blank): a soft tone with fine diagonal hatching and a small
+ * mono label saying what goes here. Reads as intentional, never as broken media.
+ */
+export function drawPlaceholder(c: RC, x: number, y: number, w: number, h: number, label: string, o: { radius?: number; tone?: string; ink?: string } = {}) {
+  const tone = o.tone ?? mix(c.theme.bg, c.theme.fg, 0.08);
+  const ink = o.ink ?? c.theme.fg;
+  c.save();
+  c.clipRRect(x, y, w, h, o.radius ?? 0);
+  c.rect(x, y, w, h, tone);
+  const step = Math.max(10, Math.min(w, h) / 14);
+  for (let k = -h; k < w; k += step) c.line(x + k, y + h, x + k + h, y, alpha(ink, 0.06), 1.5, "butt");
+  c.restore();
+  c.strokeRRect(x + 0.75, y + 0.75, w - 1.5, h - 1.5, o.radius ?? 0, alpha(ink, 0.18), 1.5);
+  const size = Math.max(11, Math.min(26, Math.min(w, h) * 0.075));
+  const L = c.layout(label.toUpperCase(), { font: "mono", size, weight: 600, tracking: 0.06 });
+  if (L.width < w * 0.92) c.drawLayout(L, x + w / 2 - L.width / 2, y + h / 2 - L.cap / 2, { color: alpha(ink, 0.45) });
+}
+
+/** Media when a ref is set, otherwise a labelled placeholder in the same box. */
+export function mediaOr(c: RC, ref: string | null | undefined, x: number, y: number, w: number, h: number, label: string, o: Parameters<RC["media"]>[5] & { tone?: string; ink?: string } = {}) {
+  if (ref) c.media(ref, x, y, w, h, o);
+  else drawPlaceholder(c, x, y, w, h, label, { radius: o.radius, tone: o.tone, ink: o.ink });
+}

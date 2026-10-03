@@ -2,6 +2,7 @@
 // Components split: Scenes are complete beats you can post; Elements are the parts scenes are made of.
 
 import type { Group } from "@motioneasy/engine";
+import { KIT_CATEGORIES } from "./kits";
 
 export interface Category {
   id: string;
@@ -13,6 +14,7 @@ export interface Category {
 export const GROUPS: { id: Group; name: string; blurb: string }[] = [
   { id: "scenes", name: "Scenes", blurb: "Complete, ready-to-post beats: hooks, reveals, proof, end cards." },
   { id: "elements", name: "Elements", blurb: "The building blocks: type, media, devices, overlays, transitions, light." },
+  { id: "kits", name: "Prompt kits", blurb: "Famous launch and motion prompts, rebuilt shot by shot in their original form, as blank templates." },
 ];
 
 export const CATEGORIES: Category[] = [
@@ -35,5 +37,7 @@ export const CATEGORIES: Category[] = [
   { id: "backgrounds", group: "elements", name: "Backgrounds & Light", blurb: "Stages, light pools, grids, loops." },
   { id: "logos", group: "elements", name: "Logo Stings", blurb: "Your mark, revealed with care." },
 ];
+
+CATEGORIES.push(...KIT_CATEGORIES);
 
 export const categoryById = (id: string) => CATEGORIES.find((c) => c.id === id);

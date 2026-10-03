@@ -48,6 +48,7 @@ import gridHorizon from "./components/grid-horizon";
 import logoReveal from "./components/logo-reveal";
 import logoBars from "./components/logo-bars";
 import { TRANSITION_COMPONENTS } from "./components/transition-demos";
+import { KIT_COMPONENTS } from "./kits";
 // scenes
 import hookStrike from "./components/hook-strike";
 import scrollStop from "./components/scroll-stop";
@@ -74,6 +75,7 @@ export const COMPONENTS: Component[] = [
   ...TRANSITION_COMPONENTS,
   lightStage, gridHorizon,
   logoReveal, logoBars,
+  ...KIT_COMPONENTS,
 ] as unknown as Component[];
 
 export const componentById = (id: string) => COMPONENTS.find((c) => c.id === id);

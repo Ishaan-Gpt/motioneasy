@@ -55,6 +55,17 @@ for (const f of readdirSync(compDir).filter((f) => f.endsWith(".ts"))) {
   const id = src.match(/id:\s*"([^"]+)"/)?.[1];
   if (id) sources[id] = { file: `packages/library/src/components/${f}`, code: src };
 }
+// Prompt kits keep all of a prompt's components in one file; each id maps to that file.
+const kitDir = join(ROOT, "packages/library/src/kits");
+const kitIndex = readFileSync(join(kitDir, "index.ts"), "utf8");
+for (const f of readdirSync(kitDir).filter((f) => f.endsWith(".ts") && !["index.ts", "types.ts", "shared.ts"].includes(f))) {
+  if (!kitIndex.includes(`./${f.replace(/\.ts$/, "")}"`)) {
+    console.error(`bundle   ✗ kit not registered in packages/library/src/kits/index.ts: ${f}`);
+    process.exit(1);
+  }
+  const src = readFileSync(join(kitDir, f), "utf8");
+  for (const m of src.matchAll(/\n\s+id: "([a-z0-9-]+)",\r?\n\s+name:/g)) sources[m[1]] = { file: `packages/library/src/kits/${f}`, code: src };
+}
 ensure(join(WEB, "src/generated"));
 writeFileSync(join(WEB, "src/generated/sources.json"), JSON.stringify(sources));
 console.log(`sources  ${Object.keys(sources).length} components`);

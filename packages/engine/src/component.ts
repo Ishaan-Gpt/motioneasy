@@ -11,7 +11,7 @@ import { SYNTHS } from "./audio/synth";
 import { themeParams, type CameraMove, type ThemeDefaults } from "./theme";
 import { mediaRefs } from "./media";
 
-export type Group = "scenes" | "elements";
+export type Group = "scenes" | "elements" | "kits";
 
 export interface ComponentDef<Pr extends Props = Props> {
   id: string;
