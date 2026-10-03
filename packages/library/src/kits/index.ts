@@ -4,10 +4,11 @@ import type { Category } from "../categories";
 import type { Kit, PromptSource } from "./types";
 import prompts from "./prompts.json";
 import { spotifyFilm } from "./spotify-film";
+import { keynoteOneTake } from "./keynote-one-take";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
