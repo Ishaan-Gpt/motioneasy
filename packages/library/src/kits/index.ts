@@ -5,10 +5,11 @@ import type { Kit, PromptSource } from "./types";
 import prompts from "./prompts.json";
 import { spotifyFilm } from "./spotify-film";
 import { keynoteOneTake } from "./keynote-one-take";
+import { minimalLaunch } from "./minimal-launch";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
