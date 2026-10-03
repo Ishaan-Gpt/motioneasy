@@ -39,6 +39,9 @@ export interface PostSpec {
   /** Post-level props (sound on/off, volume). */
   props?: Props;
   notes?: string;
+  /** Set by remix: the post shape and seed it came from (the variety audit compares them). */
+  recipe?: string;
+  seed?: number;
 }
 
 interface Built {

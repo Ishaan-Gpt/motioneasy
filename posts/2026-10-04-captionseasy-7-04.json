@@ -1,0 +1,58 @@
+{
+  "id": "2026-10-04-captionseasy-7-04",
+  "title": "Made for creators. · show-and-tell",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "show-and-tell",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "word-rotator",
+      "props": {
+        "prefix": "Made for",
+        "words": [
+          "creators.",
+          "podcasters.",
+          "teachers.",
+          "founders."
+        ],
+        "variant": "drum"
+      }
+    },
+    {
+      "component": "product-orbit",
+      "props": {
+        "media": "media/hero/omar.mp4",
+        "headline": "Meet *CaptionsEasy.*",
+        "features": [
+          "Whisper on your machine",
+          "33 caption looks",
+          "MP4 export in the browser"
+        ]
+      }
+    },
+    {
+      "component": "mask-rise",
+      "props": {
+        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 33 looks.*"
+      }
+    },
+    {
+      "component": "end-card",
+      "props": {
+        "media": "media/hero/jesse.mp4",
+        "logo": "media/brand/captionseasy-logo.svg",
+        "headline": "Free. Open source.\n*On your machine.*",
+        "url": "captionseasy.com"
+      },
+      "transition": "slide"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: show-and-tell; word-rotator → product-orbit → mask-rise → end-card; signature slide"
+}

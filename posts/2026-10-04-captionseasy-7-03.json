@@ -1,0 +1,47 @@
+{
+  "id": "2026-10-04-captionseasy-7-03",
+  "title": "Post more. · how-to",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "how-to",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "echo-stack",
+      "props": {
+        "text": "Post *more.*"
+      }
+    },
+    {
+      "component": "checklist",
+      "props": {
+        "headline": "Your clips *stay yours.*",
+        "items": [
+          "Free",
+          "Open source",
+          "Runs on your machine",
+          "33 caption looks",
+          "Every word timed",
+          "MP4 export in the browser"
+        ]
+      },
+      "transition": "iris"
+    },
+    {
+      "component": "logo-reveal",
+      "props": {
+        "logo": "media/brand/captionseasy-logo.svg",
+        "tagline": "Stop timing captions. *Start posting.*",
+        "url": "captionseasy.com"
+      },
+      "duration": 5
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Funkorama.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Funkorama\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: how-to; echo-stack → checklist → logo-reveal; signature iris"
+}

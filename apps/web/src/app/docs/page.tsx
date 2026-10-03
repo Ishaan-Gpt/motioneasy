@@ -268,6 +268,7 @@ node cli/render.mjs posts/my-post.json     # MP4 → out/my-post/vertical.mp4 (+
                 [<C key="r">node cli/render.mjs spec.json…</C>, "Renders to out/<id>/<format>.mp4 + poster, then checks it with ffprobe (size, fps, duration ±1 frame) and measures loudness.", "--format, --all-formats, --scale, --quality high|balanced|small, --fps, --component <id> --props"],
                 [<C key="h">node cli/shot.mjs /path…</C>, "Screenshots of the site for review → out/shots/.", "--base, --mobile, --full, --scroll, --wait, --click"],
                 [<C key="pv">node cli/previews.mjs [ids…]</C>, "Renders the library card previews (silent 4:5 loop + poster) and previews.json. Skips components whose sources haven't changed.", "--force"],
+                [<C key="rx">node cli/remix.mjs deck.json</C>, "A copy deck + seed → N varied post specs (hook → body → proof → CTA), checked against the variety rules. Then render them.", "--count, --seed, --out posts/remix, --prefix, --format, --no-history, --dry"],
                 [<C key="so">node cli/sounds.mjs</C>, "Imports the curated CC0 recordings (trimmed, 48 kHz, peak -1 dBFS) and regenerates the sound manifest and credits.", "--freesound (needs FREESOUND_API_KEY; adds curated CC0 searches)"],
               ]}
             />

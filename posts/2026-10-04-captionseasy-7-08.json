@@ -1,0 +1,42 @@
+{
+  "id": "2026-10-04-captionseasy-7-08",
+  "title": "No cloud. No waiting room. · demo-first",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "demo-first",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "before-after",
+      "props": {
+        "before": "media/hero/sam.raw.mp4",
+        "after": "media/hero/sam.mp4",
+        "headline": "No cloud. *No waiting room.*"
+      }
+    },
+    {
+      "component": "big-number",
+      "props": {
+        "value": 33,
+        "prefix": "",
+        "suffix": "",
+        "label": "caption looks"
+      },
+      "transition": "wipe"
+    },
+    {
+      "component": "click-cta",
+      "props": {
+        "headline": "Free and *open source.*",
+        "url": "captionseasy.com"
+      }
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: demo-first; before-after → big-number → click-cta; signature wipe"
+}

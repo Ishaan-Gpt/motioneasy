@@ -1,0 +1,52 @@
+{
+  "id": "2026-10-04-captionseasy-7-02",
+  "title": "Free and open source. · demo-first",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "demo-first",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "infinite-wall",
+      "props": {
+        "media": [
+          "media/hero/aisha.mp4",
+          "media/hero/gianna.mp4",
+          "media/hero/jesse.mp4",
+          "media/hero/omar.mp4",
+          "media/hero/rusita.mp4",
+          "media/hero/sam.mp4",
+          "media/hero/sol.mp4",
+          "media/hero/william.mp4",
+          "media/hero/gereon.mp4",
+          "media/hero/mckensie.mp4"
+        ],
+        "headline": "Free and *open source.*"
+      }
+    },
+    {
+      "component": "big-number",
+      "props": {
+        "value": 33,
+        "prefix": "",
+        "suffix": "",
+        "label": "caption looks"
+      },
+      "transition": "whip"
+    },
+    {
+      "component": "logo-bars",
+      "props": {
+        "wordmark": "media/brand/captionseasy-wordmark.svg",
+        "tagline": "Stop timing captions."
+      }
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: demo-first; infinite-wall → big-number → logo-bars; signature whip"
+}

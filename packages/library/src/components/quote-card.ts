@@ -20,7 +20,7 @@ export default defineComponent<Props>({
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
   notes: "Real quotes from real people only. A short clip of the speaker as the avatar makes it believable.",
   params: {
-    quote: P.text("That's a very nice thing, because you have *experienced* people on site.", "Quote", { multiline: true, maxLength: 200 }),
+    quote: P.text("That's a very nice thing, because you have *experienced* Wikipedians on site.", "Quote", { multiline: true, maxLength: 200 }),
     author: P.text("Gereon", "Name", { maxLength: 40 }),
     role: P.text("Wikitongues speaker", "Role", { maxLength: 60 }),
     avatar: P.media(RAW.gereon.src, "Avatar (photo or clip)", "any"),

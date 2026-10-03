@@ -5,3 +5,4 @@ export * from "./kit";
 export * from "./sequence";
 export * from "./transitions";
 export * from "./prompt";
+export * from "./remix";
