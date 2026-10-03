@@ -9,7 +9,7 @@
     "build": "pnpm bundle && pnpm --filter @motioneasy/web build",
     "bundle": "node cli/bundle.mjs",
     "typecheck": "pnpm -r typecheck",
-    "test": "pnpm -r test",
+    "test": "node cli/test.mjs",
     "render": "node cli/render.mjs",
     "stills": "node cli/stills.mjs",
     "previews": "node cli/previews.mjs",
