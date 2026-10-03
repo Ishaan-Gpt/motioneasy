@@ -166,26 +166,8 @@
         ],
         "headline": "Form. Detail. *Making.*"
       },
-      "duration": 4.552,
-      "transition": "shutter"
-    },
-    {
-      "component": "big-number",
-      "props": {
-        "speed": 1.3,
-        "value": 599,
-        "from": 0,
-        "prefix": "₹",
-        "suffix": "",
-        "label": "Featured pieces start here",
-        "count": 1.0004168403501459,
-        "mode": "dark",
-        "bg": "#211e1b",
-        "fg": "#f3e8da",
-        "accent": "#e7d2bb"
-      },
       "duration": 4.502,
-      "transition": "wipe"
+      "transition": "shutter"
     },
     {
       "component": "click-cta",
