@@ -1,0 +1,269 @@
+{
+  "id": "mevora-drop-vertical",
+  "title": "Mevora Studio — the collection, fast (9:16)",
+  "format": "vertical",
+  "fps": 30,
+  "look": {
+    "mode": "light",
+    "bg": "#f3e8da",
+    "fg": "#211e1b",
+    "accent": "#8b633d",
+    "grain": 0.35,
+    "lighting": 0.4
+  },
+  "clips": [
+    {
+      "component": "char-cascade",
+      "props": {
+        "text": "Objects with *presence.*",
+        "variant": "rise",
+        "hold": 0.5,
+        "size": 1.2
+      },
+      "duration": 2.2
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-lattice-vase.jpg",
+        "eyebrow": "Mevora Studio",
+        "title": "The new *collection.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "zoom",
+        "duration": 0.25
+      },
+      "duration": 1.4
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-spiral-stone.jpg",
+        "eyebrow": "Vases",
+        "title": "Sculpted *in layers.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "whip",
+        "duration": 0.2
+      },
+      "duration": 1.3
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-hands-face.jpg",
+        "eyebrow": "Sculptures",
+        "title": "Made *to be seen.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "slide",
+        "duration": 0.2
+      },
+      "duration": 1.3
+    },
+    {
+      "component": "split-flap",
+      "props": {
+        "text": "NEW\nDROP",
+        "tile": "#211e1b",
+        "hold": 0.4
+      },
+      "transition": {
+        "type": "flash",
+        "duration": 0.15
+      },
+      "duration": 1.6
+    },
+    {
+      "component": "coverflow-3d",
+      "props": {
+        "media": [
+          "media/mevora/d-sage-vase.jpg",
+          "media/mevora/d-black-flare.jpg",
+          "media/mevora/d-white-urn.jpg",
+          "media/mevora/d-black-mesh.jpg",
+          "media/mevora/d-cream-bloom.jpg",
+          "media/mevora/d-black-facet.jpg"
+        ],
+        "labels": [
+          "Sage",
+          "Flare",
+          "Urn",
+          "Mesh",
+          "Bloom",
+          "Facet"
+        ],
+        "title": "Vases\n*for every shelf.*",
+        "speed": 1.5
+      },
+      "transition": {
+        "type": "push",
+        "duration": 0.3
+      },
+      "duration": 2.6
+    },
+    {
+      "component": "product-orbit",
+      "props": {
+        "media": "media/mevora/d-hands-face-2.jpg",
+        "headline": "Sculpted *to be seen.*",
+        "features": [
+          "3D-printed objects",
+          "Vases · sculptures · decor",
+          "Made to be displayed"
+        ],
+        "speed": 1.5
+      },
+      "transition": {
+        "type": "iris",
+        "duration": 0.3
+      },
+      "duration": 2.6
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-lion.jpg",
+        "eyebrow": "Decor",
+        "title": "Bold *silhouettes.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "zoom",
+        "duration": 0.25
+      },
+      "duration": 1.1
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-golden-diya.jpg",
+        "eyebrow": "Gifts",
+        "title": "For every *occasion.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "whip",
+        "duration": 0.2
+      },
+      "duration": 1.1
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-night-pair.jpg",
+        "eyebrow": "Pairs",
+        "title": "Better *together.*",
+        "speed": 2,
+        "focusY": 0.45
+      },
+      "transition": {
+        "type": "push",
+        "duration": 0.2
+      },
+      "duration": 1.1
+    },
+    {
+      "component": "type-marquee",
+      "props": {
+        "text": "Made to *stand out.*",
+        "echo": "MEVORA",
+        "rows": 6,
+        "speed": 1.6,
+        "hold": 0.5
+      },
+      "transition": {
+        "type": "slide",
+        "duration": 0.25
+      },
+      "duration": 1.8
+    },
+    {
+      "component": "cinematic-still",
+      "props": {
+        "media": "media/mevora/d-luxe-bouquet.jpg",
+        "eyebrow": "Mevora Studio",
+        "title": "Quiet *luxury.*",
+        "speed": 2,
+        "focusY": 0.4
+      },
+      "transition": {
+        "type": "flash",
+        "duration": 0.15
+      },
+      "duration": 1.5
+    },
+    {
+      "component": "floating-cards",
+      "props": {
+        "media": [
+          "media/mevora/d-donut-black.jpg",
+          "media/mevora/d-teardrop-pair.jpg",
+          "media/mevora/d-black-orb.jpg"
+        ],
+        "headline": "Black. White. *Bold.*",
+        "speed": 1.5
+      },
+      "transition": {
+        "type": "shutter",
+        "duration": 0.3
+      },
+      "duration": 2.3
+    },
+    {
+      "component": "bar-wipe",
+      "props": {
+        "text": "Pick one.\nPlace it.\n*Love it.*",
+        "hold": 0.4
+      },
+      "transition": "cut",
+      "duration": 2.1
+    },
+    {
+      "component": "click-cta",
+      "props": {
+        "headline": "Find something that *belongs.*",
+        "label": "Shop the collection",
+        "done": "mevorastudio.com",
+        "url": "mevorastudio.com",
+        "speed": 1.5
+      },
+      "transition": {
+        "type": "blur",
+        "duration": 0.3
+      },
+      "duration": 2.4
+    },
+    {
+      "component": "logo-reveal",
+      "props": {
+        "logo": "media/mevora/logo.svg",
+        "tagline": "3D-printed, *by design.*",
+        "url": "mevorastudio.com",
+        "speed": 1.3
+      },
+      "transition": {
+        "type": "zoom",
+        "duration": 0.3
+      },
+      "duration": 2.4
+    }
+  ],
+  "music": {
+    "src": "media/music/library/delightful-d.mp3",
+    "gain": 0.6,
+    "offset": 18.124,
+    "fadeIn": 0.02,
+    "fadeOut": 1.2,
+    "credit": "\"Delightful D\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "Mevora Studio vertical reel from the owner's Drive product shots (used with permission). Copy limited to the brand file and the site's own claims."
+}
