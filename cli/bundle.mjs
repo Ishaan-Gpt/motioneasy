@@ -64,7 +64,7 @@ for (const f of readdirSync(kitDir).filter((f) => f.endsWith(".ts") && !["index.
     process.exit(1);
   }
   const src = readFileSync(join(kitDir, f), "utf8");
-  for (const m of src.matchAll(/\n\s+id: "([a-z0-9-]+)",\r?\n\s+name:/g)) sources[m[1]] = { file: `packages/library/src/kits/${f}`, code: src };
+  for (const m of src.matchAll(/\bid: "([a-z0-9-]+)",\s*name:/g)) sources[m[1]] = { file: `packages/library/src/kits/${f}`, code: src };
 }
 ensure(join(WEB, "src/generated"));
 writeFileSync(join(WEB, "src/generated/sources.json"), JSON.stringify(sources));
