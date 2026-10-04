@@ -15,10 +15,11 @@ import { buildTheFloor } from "./build-the-floor";
 import { tanstackAI } from "./tanstack-ai";
 import { notchBrowser } from "./notch-browser";
 import { motionReel } from "./motion-reel";
+import { productShowreel } from "./product-showreel";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel, productShowreel];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
