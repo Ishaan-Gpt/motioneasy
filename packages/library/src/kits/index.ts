@@ -13,10 +13,11 @@ import { pokedexMorph } from "./pokedex-morph";
 import { techhallaBumper } from "./techhalla-bumper";
 import { buildTheFloor } from "./build-the-floor";
 import { tanstackAI } from "./tanstack-ai";
+import { notchBrowser } from "./notch-browser";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
