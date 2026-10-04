@@ -10,10 +10,12 @@ import { uiMorphLoop } from "./ui-morph-loop";
 import { makermap } from "./makermap";
 import { spritesPromo } from "./sprites-promo";
 import { pokedexMorph } from "./pokedex-morph";
+import { techhallaBumper } from "./techhalla-bumper";
+import { buildTheFloor } from "./build-the-floor";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
