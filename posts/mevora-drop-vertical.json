@@ -251,7 +251,7 @@
         "speed": 1.3
       },
       "transition": {
-        "type": "zoom",
+        "type": "recede",
         "duration": 0.3
       },
       "duration": 2.4
