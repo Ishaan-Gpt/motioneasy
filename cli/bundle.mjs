@@ -58,7 +58,7 @@ for (const f of readdirSync(compDir).filter((f) => f.endsWith(".ts"))) {
 // Prompt kits keep all of a prompt's components in one file; each id maps to that file.
 const kitDir = join(ROOT, "packages/library/src/kits");
 const kitIndex = readFileSync(join(kitDir, "index.ts"), "utf8");
-for (const f of readdirSync(kitDir).filter((f) => f.endsWith(".ts") && !["index.ts", "types.ts", "shared.ts"].includes(f))) {
+for (const f of readdirSync(kitDir).filter((f) => f.endsWith(".ts") && !["index.ts", "types.ts", "shared.ts", "morph.ts"].includes(f))) {
   if (!kitIndex.includes(`./${f.replace(/\.ts$/, "")}"`)) {
     console.error(`bundle   ✗ kit not registered in packages/library/src/kits/index.ts: ${f}`);
     process.exit(1);

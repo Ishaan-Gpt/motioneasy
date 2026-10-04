@@ -6,10 +6,11 @@ import prompts from "./prompts.json";
 import { spotifyFilm } from "./spotify-film";
 import { keynoteOneTake } from "./keynote-one-take";
 import { minimalLaunch } from "./minimal-launch";
+import { uiMorphLoop } from "./ui-morph-loop";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
