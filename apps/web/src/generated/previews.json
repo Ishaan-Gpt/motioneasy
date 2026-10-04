@@ -730,5 +730,317 @@
   "poster": "/previews/makermap-end.webp",
   "hash": "791f12d30671cda5",
   "format": "square"
+ },
+ "sprites-connect": {
+  "video": "/previews/sprites-connect.mp4",
+  "poster": "/previews/sprites-connect.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-check": {
+  "video": "/previews/sprites-check.mp4",
+  "poster": "/previews/sprites-check.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-prompt": {
+  "video": "/previews/sprites-prompt.mp4",
+  "poster": "/previews/sprites-prompt.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-research": {
+  "video": "/previews/sprites-research.mp4",
+  "poster": "/previews/sprites-research.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-approval": {
+  "video": "/previews/sprites-approval.mp4",
+  "poster": "/previews/sprites-approval.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-budget": {
+  "video": "/previews/sprites-budget.mp4",
+  "poster": "/previews/sprites-budget.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-autopilot": {
+  "video": "/previews/sprites-autopilot.mp4",
+  "poster": "/previews/sprites-autopilot.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-channels": {
+  "video": "/previews/sprites-channels.mp4",
+  "poster": "/previews/sprites-channels.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-roas": {
+  "video": "/previews/sprites-roas.mp4",
+  "poster": "/previews/sprites-roas.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-pause": {
+  "video": "/previews/sprites-pause.mp4",
+  "poster": "/previews/sprites-pause.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "sprites-return": {
+  "video": "/previews/sprites-return.mp4",
+  "poster": "/previews/sprites-return.webp",
+  "hash": "5c73b96561723af2",
+  "format": "square"
+ },
+ "pokedex-ready": {
+  "video": "/previews/pokedex-ready.mp4",
+  "poster": "/previews/pokedex-ready.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-scan": {
+  "video": "/previews/pokedex-scan.mp4",
+  "poster": "/previews/pokedex-scan.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-profile": {
+  "video": "/previews/pokedex-profile.mp4",
+  "poster": "/previews/pokedex-profile.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-volume": {
+  "video": "/previews/pokedex-volume.mp4",
+  "poster": "/previews/pokedex-volume.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-shiny-tabs": {
+  "video": "/previews/pokedex-shiny-tabs.mp4",
+  "poster": "/previews/pokedex-shiny-tabs.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-stats": {
+  "video": "/previews/pokedex-stats.mp4",
+  "poster": "/previews/pokedex-stats.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-search": {
+  "video": "/previews/pokedex-search.mp4",
+  "poster": "/previews/pokedex-search.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "pokedex-team-return": {
+  "video": "/previews/pokedex-team-return.mp4",
+  "poster": "/previews/pokedex-team-return.webp",
+  "hash": "4873f4e0a1eb3a46",
+  "format": "square"
+ },
+ "techhalla-stop-scrolling": {
+  "video": "/previews/techhalla-stop-scrolling.mp4",
+  "poster": "/previews/techhalla-stop-scrolling.webp",
+  "hash": "0618f1f31c7b996f",
+  "format": "square"
+ },
+ "techhalla-scramble-thesis": {
+  "video": "/previews/techhalla-scramble-thesis.mp4",
+  "poster": "/previews/techhalla-scramble-thesis.webp",
+  "hash": "0618f1f31c7b996f",
+  "format": "square"
+ },
+ "techhalla-mask-wipe": {
+  "video": "/previews/techhalla-mask-wipe.mp4",
+  "poster": "/previews/techhalla-mask-wipe.webp",
+  "hash": "0618f1f31c7b996f",
+  "format": "square"
+ },
+ "techhalla-proof-flash": {
+  "video": "/previews/techhalla-proof-flash.mp4",
+  "poster": "/previews/techhalla-proof-flash.webp",
+  "hash": "0618f1f31c7b996f",
+  "format": "square"
+ },
+ "techhalla-brand-lock": {
+  "video": "/previews/techhalla-brand-lock.mp4",
+  "poster": "/previews/techhalla-brand-lock.webp",
+  "hash": "0618f1f31c7b996f",
+  "format": "square"
+ },
+ "floor-lintel": {
+  "video": "/previews/floor-lintel.mp4",
+  "poster": "/previews/floor-lintel.webp",
+  "hash": "869af66cf1229a68",
+  "format": "square"
+ },
+ "floor-suspended-load": {
+  "video": "/previews/floor-suspended-load.mp4",
+  "poster": "/previews/floor-suspended-load.webp",
+  "hash": "869af66cf1229a68",
+  "format": "square"
+ },
+ "floor-voice-support": {
+  "video": "/previews/floor-voice-support.mp4",
+  "poster": "/previews/floor-voice-support.webp",
+  "hash": "869af66cf1229a68",
+  "format": "square"
+ },
+ "floor-level": {
+  "video": "/previews/floor-level.mp4",
+  "poster": "/previews/floor-level.webp",
+  "hash": "869af66cf1229a68",
+  "format": "square"
+ },
+ "floor-platform-loop": {
+  "video": "/previews/floor-platform-loop.mp4",
+  "poster": "/previews/floor-platform-loop.webp",
+  "hash": "869af66cf1229a68",
+  "format": "square"
+ },
+ "tanstack-signal-network": {
+  "video": "/previews/tanstack-signal-network.mp4",
+  "poster": "/previews/tanstack-signal-network.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-chat-providers": {
+  "video": "/previews/tanstack-chat-providers.mp4",
+  "poster": "/previews/tanstack-chat-providers.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-modality-stream": {
+  "video": "/previews/tanstack-modality-stream.mp4",
+  "poster": "/previews/tanstack-modality-stream.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-agents-mcp": {
+  "video": "/previews/tanstack-agents-mcp.mp4",
+  "poster": "/previews/tanstack-agents-mcp.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-agui-live": {
+  "video": "/previews/tanstack-agui-live.mp4",
+  "poster": "/previews/tanstack-agui-live.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-resumable-stream": {
+  "video": "/previews/tanstack-resumable-stream.mp4",
+  "poster": "/previews/tanstack-resumable-stream.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "tanstack-reveal": {
+  "video": "/previews/tanstack-reveal.mp4",
+  "poster": "/previews/tanstack-reveal.webp",
+  "hash": "fa448fb4b977a82b",
+  "format": "landscape"
+ },
+ "notch-hook-wipe": {
+  "video": "/previews/notch-hook-wipe.mp4",
+  "poster": "/previews/notch-hook-wipe.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-spin-list": {
+  "video": "/previews/notch-spin-list.mp4",
+  "poster": "/previews/notch-spin-list.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-window-pile": {
+  "video": "/previews/notch-window-pile.mp4",
+  "poster": "/previews/notch-window-pile.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-fly-through": {
+  "video": "/previews/notch-fly-through.mp4",
+  "poster": "/previews/notch-fly-through.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-pill": {
+  "video": "/previews/notch-pill.mp4",
+  "poster": "/previews/notch-pill.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-browser-panel": {
+  "video": "/previews/notch-browser-panel.mp4",
+  "poster": "/previews/notch-browser-panel.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-checklist": {
+  "video": "/previews/notch-checklist.mp4",
+  "poster": "/previews/notch-checklist.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "notch-wordmark": {
+  "video": "/previews/notch-wordmark.mp4",
+  "poster": "/previews/notch-wordmark.webp",
+  "hash": "41868ad89788fd15",
+  "format": "landscape"
+ },
+ "reel-genesis": {
+  "video": "/previews/reel-genesis.mp4",
+  "poster": "/previews/reel-genesis.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-wordmark-collapse": {
+  "video": "/previews/reel-wordmark-collapse.mp4",
+  "poster": "/previews/reel-wordmark-collapse.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-easing-lab": {
+  "video": "/previews/reel-easing-lab.mp4",
+  "poster": "/previews/reel-easing-lab.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-shape-morph": {
+  "video": "/previews/reel-shape-morph.mp4",
+  "poster": "/previews/reel-shape-morph.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-truchet-wave": {
+  "video": "/previews/reel-truchet-wave.mp4",
+  "poster": "/previews/reel-truchet-wave.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-point-cloud": {
+  "video": "/previews/reel-point-cloud.mp4",
+  "poster": "/previews/reel-point-cloud.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-kinetic-words": {
+  "video": "/previews/reel-kinetic-words.mp4",
+  "poster": "/previews/reel-kinetic-words.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
+ },
+ "reel-end-lockup": {
+  "video": "/previews/reel-end-lockup.mp4",
+  "poster": "/previews/reel-end-lockup.webp",
+  "hash": "84f5151dc064fd4e",
+  "format": "landscape"
  }
 }
