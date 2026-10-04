@@ -3,6 +3,7 @@
   "title": "Mevora Studio launch reel",
   "format": "landscape",
   "fps": 60,
+  "revises": "mevora-launch",
   "look": {
     "mode": "light",
     "bg": "#f3e8da",

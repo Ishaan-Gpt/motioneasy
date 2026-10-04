@@ -42,6 +42,8 @@ export interface PostSpec {
   /** Set by remix: the post shape and seed it came from (the variety audit compares them). */
   recipe?: string;
   seed?: number;
+  /** Id of the post this one replaces (a cut of the same video); the variety audit does not compare the two. */
+  revises?: string;
 }
 
 interface Built {

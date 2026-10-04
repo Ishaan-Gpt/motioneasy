@@ -283,7 +283,8 @@ export function remix(deck: Deck, o: RemixOptions): RemixResult {
 export function auditPosts(posts: PostSpec[]): string[] {
   const out: string[] = [];
   posts.forEach((p, i) => {
-    const q = posts[i - 1];
+    const prev = posts[i - 1];
+    const q = prev && (p.revises === prev.id || prev.revises === p.id) ? undefined : prev;
     const tr = p.clips.map((c) => (typeof c.transition === "string" ? c.transition : c.transition?.type)).filter((t): t is TransitionId => !!t && t !== "cut");
     const counts = tr.reduce<Record<string, number>>((a, t) => ((a[t] = (a[t] ?? 0) + 1), a), {});
     for (const [t, k] of Object.entries(counts)) if (k >= 3) out.push(`${p.id}: transition "${t}" used ${k} times`);
