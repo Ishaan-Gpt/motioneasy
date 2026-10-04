@@ -21,7 +21,7 @@ mkdirSync(PUB, { recursive: true });
 // A preview is stale when the engine, the shared library code or the component's own file changes.
 const files = (dir) => readdirSync(dir, { recursive: true }).map((f) => join(dir, f)).filter((f) => statSync(f).isFile() && /\.(ts|json)$/.test(f)).sort();
 const shared = createHash("sha1");
-for (const f of [...files(join(ROOT, "packages/engine/src")), ...["kit", "parts", "demo", "captions", "transitions", "transcripts"].map((n) => join(ROOT, `packages/library/src/${n}.ts`))])
+for (const f of [...files(join(ROOT, "packages/engine/src")), ...["kit", "parts", "demo", "captions", "transitions", "transcripts", "backdrops", "kits/shared", "kits/morph"].map((n) => join(ROOT, `packages/library/src/${n}.ts`))])
   shared.update(readFileSync(f));
 const base = shared.digest("hex");
 const sources = JSON.parse(readFileSync(join(ROOT, "apps/web/src/generated/sources.json"), "utf8"));
@@ -44,13 +44,17 @@ try {
     const t0 = Date.now();
     const meta = await host.page.evaluate(
       async ({ id, scale }) => {
-        const spec = { component: id, format: "portrait", fps: 30 };
-        const r = await MotionEasy.render(spec, { scale, quality: "small", audio: false });
+        // Each preview renders in the component's own format: 4:5 when it has one, else square, else 16:9.
+        const comp = MotionEasy.components.find((c) => c.id === id);
+        const fmts = comp?.formats ?? ["portrait"];
+        const format = fmts.includes("portrait") ? "portrait" : fmts.includes("square") ? "square" : fmts[0];
+        const spec = { component: id, format, fps: 30 };
+        const r = await MotionEasy.render(spec, { scale: format === "landscape" ? scale * 0.75 : scale, quality: "small", audio: false });
         await fetch(`/__out?path=${encodeURIComponent(`apps/web/public/previews/${id}.raw.mp4`)}`, { method: "POST", body: r.blob });
         const res = MotionEasy.resolve(spec);
         const png = await MotionEasy.still(spec, r.duration * (res.comp.poster ?? 0.5), scale);
         await fetch(`/__out?path=${encodeURIComponent(`apps/web/public/previews/${id}.poster.png`)}`, { method: "POST", body: png });
-        return { duration: r.duration, frames: r.frames };
+        return { duration: r.duration, frames: r.frames, format };
       },
       { id, scale: SCALE },
     );
@@ -59,7 +63,7 @@ try {
     execFileSync("ffmpeg", ["-v", "error", "-y", "-i", png, "-c:v", "libwebp", "-quality", "78", join(PUB, `${id}.webp`)]);
     rmSync(raw);
     rmSync(png);
-    out[id] = { video: `/previews/${id}.mp4`, poster: `/previews/${id}.webp`, hash };
+    out[id] = { video: `/previews/${id}.mp4`, poster: `/previews/${id}.webp`, hash, format: meta.format };
     made++;
     const kb = (statSync(join(PUB, `${id}.mp4`)).size + statSync(join(PUB, `${id}.webp`)).size) / 1024;
     console.log(`preview  ${id.padEnd(20)} ${meta.duration.toFixed(1)}s ${String(meta.frames).padStart(4)} frames  ${kb.toFixed(0).padStart(4)} KB  ${((Date.now() - t0) / 1000).toFixed(1)}s`);

@@ -8,6 +8,7 @@ import { TLink } from "./motion";
 
 const LINKS = [
   { href: "/library/", label: "Library" },
+  { href: "/kits/", label: "Prompt kits" },
   { href: "/compose/", label: "Compose" },
   { href: "/sounds/", label: "Sounds" },
   { href: "/docs/", label: "Docs" },

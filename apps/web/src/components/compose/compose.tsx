@@ -9,7 +9,7 @@ import {
   type Component, type FormatId, type Player, type Props,
 } from "@motioneasy/engine";
 import {
-  CATEGORIES, COMPONENTS, MUSIC, TRANSITIONS, TRANSITION_IDS, buildPostPrompt, buildSequence, categoryById, componentById, layoutPost,
+  CATEGORIES, COMPONENTS, MUSIC, TRANSITIONS, TRANSITION_IDS, buildPostPrompt, buildSequence, categoryById, componentById, kitById, layoutPost,
   type ClipSpec, type MusicSpec, type PostSpec, type TransitionId,
 } from "@motioneasy/library";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -137,9 +137,16 @@ export function Compose() {
   const [exporting, setExporting] = useState(false);
   const [busy, setBusy] = useState("");
 
-  // Restore the last draft from this browser (uploads can't survive a reload, so they come back empty).
+  // Open a prompt kit's template from #template=<kit-id>; otherwise restore the last draft from this
+  // browser (uploads can't survive a reload, so they come back empty).
   useEffect(() => {
     try {
+      const kitId = new URLSearchParams(window.location.hash.slice(1)).get("template");
+      const kit = kitId ? kitById(kitId) : undefined;
+      if (kit) {
+        setDraft(draftFrom(kit.template));
+        return;
+      }
       const saved = localStorage.getItem(STORE);
       if (saved) setDraft(draftFrom(JSON.parse(saved)));
     } catch {

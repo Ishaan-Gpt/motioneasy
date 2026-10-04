@@ -8,10 +8,12 @@ import { keynoteOneTake } from "./keynote-one-take";
 import { minimalLaunch } from "./minimal-launch";
 import { uiMorphLoop } from "./ui-morph-loop";
 import { makermap } from "./makermap";
+import { spritesPromo } from "./sprites-promo";
+import { pokedexMorph } from "./pokedex-morph";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 

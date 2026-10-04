@@ -1,6 +1,6 @@
 "use client";
 
-import { defaultProps, durationOf, type Component } from "@motioneasy/engine";
+import { componentFormats, defaultProps, durationOf, type Component } from "@motioneasy/engine";
 import { categoryById } from "@motioneasy/library";
 import { useEffect, useMemo, useRef, useState } from "react";
 import previews from "@/generated/previews.json";
@@ -8,7 +8,7 @@ import { PlayerCanvas } from "@/components/player/player-canvas";
 import { TLink } from "@/components/site/motion";
 import type { Player } from "@motioneasy/engine";
 
-const PREVIEWS = previews as Record<string, { video: string; poster: string }>;
+const PREVIEWS = previews as Record<string, { video: string; poster: string; format?: string }>;
 
 /** Library card: pre-rendered loop if available, else the live engine (poster frame, plays on hover). */
 export function ComponentCard({ comp, index = 0 }: { comp: Component; index?: number }) {
@@ -20,6 +20,10 @@ export function ComponentCard({ comp, index = 0 }: { comp: Component; index?: nu
   const [player, setPlayer] = useState<Player | null>(null);
   const props = useMemo(() => defaultProps(comp), [comp]);
   const dur = useMemo(() => durationOf(comp, props), [comp, props]);
+  // Kit shots exist only in their film's format (16:9 or 1:1): shown whole on a dark mat.
+  const own = componentFormats(comp);
+  const fmt = own.includes("portrait") ? "portrait" : own.includes("square") ? "square" : own[0];
+  const fit = fmt === "portrait" ? "object-cover" : "object-contain bg-[#151514]";
 
   useEffect(() => {
     const io = new IntersectionObserver(([e]) => e.isIntersecting && setVisible(true), { rootMargin: "200px" });
@@ -64,11 +68,11 @@ export function ComponentCard({ comp, index = 0 }: { comp: Component; index?: nu
         {pre ? (
           <>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={pre.poster} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
-            <video ref={video} src={visible ? pre.video : undefined} muted loop playsInline preload="none" className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-300 ${hover ? "opacity-100" : "opacity-0"}`} />
+            <img src={pre.poster} alt="" className={`absolute inset-0 h-full w-full ${fit}`} loading="lazy" />
+            <video ref={video} src={visible ? pre.video : undefined} muted loop playsInline preload="none" className={`absolute inset-0 h-full w-full ${fit} transition-opacity duration-300 ${hover ? "opacity-100" : "opacity-0"}`} />
           </>
         ) : visible ? (
-          <PlayerCanvas comp={comp} props={props} format="portrait" muted startAt="poster" maxScale={0.5} rounded={0} className="absolute inset-0 !h-full !w-full" onPlayer={setPlayer} />
+          <PlayerCanvas comp={comp} props={props} format={fmt} muted startAt="poster" maxScale={0.5} rounded={0} className={fmt === "portrait" ? "absolute inset-0 !h-full !w-full" : "absolute inset-x-0 top-1/2 !h-auto !w-full -translate-y-1/2"} onPlayer={setPlayer} />
         ) : null}
         <div className="pointer-events-none absolute inset-x-0 bottom-0 flex items-end justify-between p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
           <span className="rounded-full bg-cream/90 px-2.5 py-1 text-[11px] font-bold backdrop-blur">{dur.toFixed(1)}s</span>
