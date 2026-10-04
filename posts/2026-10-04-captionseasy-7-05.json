@@ -1,0 +1,47 @@
+{
+  "id": "2026-10-04-captionseasy-7-05",
+  "title": "Your captions live on someone's server? · how-to",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "how-to",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "hook-strike",
+      "props": {
+        "line": "Your captions live\non someone's server?",
+        "strike": "on someone's server?",
+        "replace": "*on your machine.*"
+      }
+    },
+    {
+      "component": "four-steps",
+      "props": {
+        "title": "33 caption looks. *One click each.*",
+        "steps": [
+          "Drop in a clip|Upload it in your browser.",
+          "Whisper transcribes it|On your own machine. No cloud.",
+          "Pick one of 33 looks|Style the frame, time every word.",
+          "Export the MP4|Right in the browser."
+        ]
+      },
+      "duration": 5.5
+    },
+    {
+      "component": "logo-reveal",
+      "props": {
+        "logo": "media/brand/captionseasy-logo.svg",
+        "tagline": "Stop timing captions. *Start posting.*",
+        "url": "captionseasy.com"
+      },
+      "transition": "iris"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Funkorama.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Funkorama\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: how-to; hook-strike → four-steps → logo-reveal; signature iris"
+}

@@ -1,0 +1,25 @@
+{
+  "name": "motioneasy",
+  "private": true,
+  "version": "0.1.0",
+  "description": "A deterministic motion component library for social video: pick, tweak, export.",
+  "type": "module",
+  "scripts": {
+    "dev": "pnpm --filter @motioneasy/web dev",
+    "build": "pnpm bundle && pnpm --filter @motioneasy/web build",
+    "bundle": "node cli/bundle.mjs",
+    "typecheck": "pnpm -r typecheck",
+    "test": "node cli/test.mjs",
+    "render": "node cli/render.mjs",
+    "stills": "node cli/stills.mjs",
+    "previews": "node cli/previews.mjs",
+    "sounds": "node cli/sounds.mjs",
+    "remix": "node cli/remix.mjs",
+    "gallery": "node cli/stills.mjs --gallery",
+    "audit": "node cli/audit.mjs",
+    "music": "node cli/music.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

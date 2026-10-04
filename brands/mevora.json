@@ -1,0 +1,9 @@
+{
+  "id": "mevora",
+  "name": "Mevora Studio",
+  "url": "mevorastudio.com",
+  "tagline": "Objects with *presence.*",
+  "palette": { "bg": "#f3e8da", "paper": "#fbf7f1", "ink": "#211e1b", "accent": "#8b633d", "cocoa": "#5d402b", "sand": "#e7d2bb" },
+  "logo": "media/mevora/logo.svg",
+  "source": "colours, copy and images from mevorastudio.com (owner's site, used with permission)"
+}

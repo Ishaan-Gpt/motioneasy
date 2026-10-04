@@ -1,0 +1,9 @@
+packages:
+  - packages/*
+  - apps/*
+  - cli
+allowBuilds:
+  esbuild: true
+  sharp: true
+  "@tailwindcss/oxide": true
+  unrs-resolver: true

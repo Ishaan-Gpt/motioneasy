@@ -1,0 +1,55 @@
+{
+  "id": "2026-10-04-captionseasy-7-07",
+  "title": "Whisper runs on your machine. · proof-first",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "proof-first",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "checklist",
+      "props": {
+        "headline": "Whisper runs on *your machine.*",
+        "items": [
+          "Free",
+          "Open source",
+          "Runs on your machine",
+          "33 caption looks",
+          "Every word timed"
+        ]
+      }
+    },
+    {
+      "component": "coverflow-3d",
+      "props": {
+        "media": [
+          "media/hero/aisha.mp4",
+          "media/hero/gianna.mp4",
+          "media/hero/jesse.mp4",
+          "media/hero/omar.mp4",
+          "media/hero/rusita.mp4",
+          "media/hero/sam.mp4",
+          "media/hero/sol.mp4"
+        ],
+        "labels": [],
+        "showLabels": false,
+        "title": "Captions that *move.*"
+      }
+    },
+    {
+      "component": "logo-bars",
+      "props": {
+        "wordmark": "media/brand/captionseasy-wordmark.svg",
+        "tagline": "Stop timing captions."
+      },
+      "transition": "zoom"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Funkorama.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Funkorama\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: proof-first; checklist → coverflow-3d → logo-bars; signature zoom"
+}

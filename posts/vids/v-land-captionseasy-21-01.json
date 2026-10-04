@@ -1,0 +1,67 @@
+{
+  "id": "v-land-captionseasy-21-01",
+  "title": "Captions for Reels. · classic",
+  "format": "landscape",
+  "fps": 60,
+  "recipe": "classic",
+  "seed": 21,
+  "clips": [
+    {
+      "component": "word-rotator",
+      "props": {
+        "prefix": "Captions for",
+        "words": [
+          "Reels.",
+          "Shorts.",
+          "TikToks.",
+          "podcasts."
+        ],
+        "variant": "slide"
+      }
+    },
+    {
+      "component": "coverflow-3d",
+      "props": {
+        "media": [
+          "media/hero/aisha.mp4",
+          "media/hero/gianna.mp4",
+          "media/hero/jesse.mp4",
+          "media/hero/omar.mp4",
+          "media/hero/rusita.mp4",
+          "media/hero/sam.mp4",
+          "media/hero/sol.mp4"
+        ],
+        "labels": [],
+        "showLabels": false,
+        "title": "Free and *open source.*"
+      }
+    },
+    {
+      "component": "stat-trio",
+      "props": {
+        "headline": "Your clips *stay yours.*",
+        "stats": [
+          "33|caption looks",
+          "0|cloud servers needed",
+          "$0|to use it"
+        ]
+      }
+    },
+    {
+      "component": "logo-reveal",
+      "props": {
+        "logo": "media/brand/captionseasy-logo.svg",
+        "tagline": "Stop timing captions. *Start posting.*",
+        "url": "captionseasy.com"
+      },
+      "transition": "blur"
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: classic; word-rotator → coverflow-3d → stat-trio → logo-reveal; signature blur"
+}

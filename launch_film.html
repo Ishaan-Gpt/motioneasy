@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-width=1.0">
+    <title>CapsEasy 30s Launch Film</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: #ffffeb; /* Cream */
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1a1a1a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #camera {
+            position: absolute;
+            width: 1920px;
+            height: 1080px;
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        #logo-container {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        #wordmark {
+            width: 500px;
+            height: auto;
+        }
+
+        #the-pill {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #1a1a1a;
+            border-radius: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            color: #ffffeb;
+            font-size: 56px;
+            font-weight: 600;
+            white-space: nowrap;
+            z-index: 20;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        #browser-window {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 1600px;
+            height: 900px;
+            background-color: white;
+            border-radius: 24px;
+            box-shadow: 0 40px 100px rgba(0,0,0,0.15);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            z-index: 5;
+            opacity: 0;
+        }
+
+        #browser-header {
+            height: 60px;
+            background-color: #f5f5f7;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            border-bottom: 1px solid #e5e5ea;
+            flex-shrink: 0;
+        }
+
+        .browser-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .dot-red { background-color: #ff5f56; }
+        .dot-yellow { background-color: #ffbd2e; }
+        .dot-green { background-color: #27c93f; }
+
+        #browser-content {
+            flex: 1;
+            position: relative;
+            background: #1a1a1a;
+        }
+
+        #video-player {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        /* Kinetic Typography Overlays */
+        .kinetic-text {
+            position: absolute;
+            font-size: 64px;
+            font-weight: 700;
+            color: #1a1a1a;
+            background: #ffffeb;
+            padding: 16px 32px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            z-index: 50;
+            clip-path: inset(100% 0 0 0); /* Masked reveal */
+            opacity: 0;
+        }
+
+        #text-upload { top: 200px; left: 100px; }
+        #text-whisper { top: 400px; right: 100px; }
+        #text-looks { bottom: 150px; left: 100px; color: #ffffeb; background: #1a1a1a; }
+
+        #payoff-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #f0d7ff; /* Lavender */
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .payoff-line {
+            font-size: 96px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -0.04em;
+            color: #1a1a1a;
+            clip-path: inset(100% 0 0 0);
+        }
+
+        #bg-flood {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #1a1a1a;
+            z-index: 4;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(0);
+        }
+    </style>
+</head>
+<body>
+
+<div id="camera">
+    
+    <div id="bg-flood"></div>
+
+    <div id="logo-container">
+        <img id="wordmark" src="sources/brand/captionseasy-wordmark.svg" alt="CapsEasy" />
+    </div>
+
+    <div id="the-pill">Stop timing captions.</div>
+
+    <div id="browser-window">
+        <div id="browser-header">
+            <div class="browser-dot dot-red"></div>
+            <div class="browser-dot dot-yellow"></div>
+            <div class="browser-dot dot-green"></div>
+        </div>
+        <div id="browser-content">
+            <video id="video-player" muted playsinline>
+                <source src="components/captured-ui/clips/master_clean_ui.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Kinetic overlays floating around the browser in 3D space -->
+    <div id="text-upload" class="kinetic-text">Don't edit. Just upload.</div>
+    <div id="text-whisper" class="kinetic-text">On-device Whisper AI.</div>
+    <div id="text-looks" class="kinetic-text">33 stunning looks.</div>
+
+    <div id="payoff-screen">
+        <div id="payoff-line1" class="payoff-line">MP4 + SRT.</div>
+        <div id="payoff-line2" class="payoff-line">In your browser.</div>
+        <div id="payoff-line3" class="payoff-line">Free forever.</div>
+    </div>
+
+</div>
+
+<!-- Audio element (plays in sync if user interacts) -->
+<audio id="bg-audio" src="assets/audio/music/kevin-macleod_Inspired.mp3" preload="auto"></audio>
+
+<script>
+    // --- PHYSICS ENGINE ---
+    function spring(t, stiffness = 100, damping = 15) {
+        if (t <= 0) return 0;
+        const omega0 = Math.sqrt(stiffness);
+        const zeta = damping / (2 * Math.sqrt(stiffness));
+        if (zeta < 1) {
+            const omegaD = omega0 * Math.sqrt(1 - zeta * zeta);
+            return 1 - Math.exp(-zeta * omega0 * t) * (Math.cos(omegaD * t) + (zeta * omega0 / omegaD) * Math.sin(omegaD * t));
+        } else {
+            return 1 - Math.exp(-omega0 * t) * (1 + omega0 * t);
+        }
+    }
+    const lerp = (a, b, t) => a + (b - a) * t;
+
+    // --- DOM NODES ---
+    const dom = {
+        cam: document.getElementById('camera'),
+        wm: document.getElementById('wordmark'),
+        pill: document.getElementById('the-pill'),
+        flood: document.getElementById('bg-flood'),
+        browser: document.getElementById('browser-window'),
+        vid: document.getElementById('video-player'),
+        aud: document.getElementById('bg-audio'),
+        tUpload: document.getElementById('text-upload'),
+        tWhisper: document.getElementById('text-whisper'),
+        tLooks: document.getElementById('text-looks'),
+        payoff: document.getElementById('payoff-screen'),
+        p1: document.getElementById('payoff-line1'),
+        p2: document.getElementById('payoff-line2'),
+        p3: document.getElementById('payoff-line3')
+    };
+
+    // --- TIMING ---
+    // 128 BPM -> 0.46875s per beat
+    const beat = 60 / 128;
+    
+    // Absolute Time Map
+    const T = {
+        intro: 0,
+        pillReveal: beat * 2,    // 0.93s
+        flood: beat * 5,         // 2.34s
+        browserIn: beat * 6,     // 2.81s
+        vidStart: beat * 7,      // 3.28s -> Start master_clean_ui.mp4 (duration 27.6s)
+        
+        // Match these to the UI video events (video time + vidStart)
+        // Video 0s-4s: Overview
+        // Video 4s: Upload (Abs time: 7.28s ~ beat 15.5)
+        textUpload: beat * 16,
+        
+        // Video 10s: Transcription (Abs time: 13.28s ~ beat 28.3)
+        camTranscribe: beat * 28,
+        textWhisper: beat * 30,
+        
+        // Video 17.5s: Looks (Abs time: 20.78s ~ beat 44.3)
+        camLooks: beat * 44,
+        textLooks: beat * 46,
+
+        // Video 27s: Export click (Abs time: 30.28s ~ beat 64.6)
+        payoffFlood: beat * 64,
+        p1: beat * 66,
+        p2: beat * 68,
+        p3: beat * 70,
+        
+        end: beat * 76
+    };
+
+    let videoStarted = false;
+
+    // --- MAIN SEEK LOOP ---
+    window.seek = function(t) {
+        
+        // 1. Intro -> Pill
+        let sWm = 1 - spring(Math.max(0, t - T.pillReveal), 120, 15);
+        dom.wm.style.transform = `scale(${sWm})`;
+        dom.wm.style.opacity = sWm > 0.01 ? 1 : 0;
+
+        let sPill = spring(Math.max(0, t - T.pillReveal), 150, 12);
+        
+        // 2. Pill -> Flood -> Browser
+        let sFlood = spring(Math.max(0, t - T.flood), 100, 15);
+        let sBrowser = spring(Math.max(0, t - T.browserIn), 120, 12);
+
+        // Mix Pill
+        if (t < T.browserIn) {
+            dom.pill.style.opacity = sPill > 0.01 ? 1 : 0;
+            dom.pill.style.width = `${lerp(20, 700, sPill)}px`;
+            dom.pill.style.height = `${lerp(20, 120, sPill)}px`;
+            dom.pill.style.transform = `translate(-50%, -50%) scale(${lerp(1, 0, Math.max(0, sFlood*1.5))})`;
+            dom.flood.style.transform = `translate(-50%, -50%) scale(${lerp(0, 400, sFlood)})`;
+        } else {
+            dom.pill.style.opacity = 0;
+        }
+
+        // Mix Browser
+        dom.browser.style.opacity = sBrowser > 0.01 ? 1 : 0;
+        dom.browser.style.transform = `translate(-50%, -50%) scale(${lerp(1.1, 1, sBrowser)})`;
+
+        // Video Sync (if absolute time dictates, we force sync, otherwise let play)
+        if (t >= T.vidStart && t < T.payoffFlood) {
+            if (!videoStarted) {
+                dom.vid.currentTime = 0;
+                dom.vid.play().catch(()=>{});
+                dom.aud.currentTime = t;
+                dom.aud.play().catch(()=>{});
+                videoStarted = true;
+            }
+        }
+
+        // Camera Dynamics (Zooming in to emphasize UI elements)
+        let camScale = 1;
+        let camX = 0;
+        let camY = 0;
+
+        // Zoom 1: Whisper transcription (Center zoom)
+        let sCam1 = spring(Math.max(0, t - T.camTranscribe), 60, 12);
+        // Zoom 2: Looks panel (Zoom out and right)
+        let sCam2 = spring(Math.max(0, t - T.camLooks), 60, 12);
+        // Zoom 3: Reset for payoff
+        let sCam3 = spring(Math.max(0, t - T.payoffFlood - beat*2), 60, 12);
+
+        if (t > T.camTranscribe && t < T.camLooks) {
+            camScale = lerp(1, 1.2, sCam1);
+            camY = lerp(0, 100, sCam1); // pan down a bit to see transcript
+        } else if (t >= T.camLooks && t < T.payoffFlood - beat*2) {
+            camScale = lerp(1.2, 1.4, sCam2);
+            camX = lerp(0, -300, sCam2); // pan right to see looks sidebar
+            camY = lerp(100, 0, sCam2);
+        } else if (t >= T.payoffFlood - beat*2) {
+            camScale = lerp(1.4, 1, sCam3);
+            camX = lerp(-300, 0, sCam3);
+            camY = 0;
+        }
+        dom.cam.style.transform = `translate(${camX}px, ${camY}px) scale(${camScale})`;
+
+        // Kinetic Text Overlays
+        const animateText = (el, tTrigger, tOut) => {
+            let sIn = spring(Math.max(0, t - tTrigger), 150, 12);
+            let sOut = spring(Math.max(0, t - tOut), 150, 12);
+            let s = sIn - sOut;
+            if (s > 0.01) {
+                el.style.opacity = 1;
+                el.style.clipPath = `inset(${lerp(100, 0, s)}% 0 0 0)`;
+                el.style.transform = `translateY(${lerp(40, 0, s)}px)`;
+            } else {
+                el.style.opacity = 0;
+            }
+        };
+
+        animateText(dom.tUpload, T.textUpload, T.camTranscribe);
+        animateText(dom.tWhisper, T.textWhisper, T.camLooks);
+        animateText(dom.tLooks, T.textLooks, T.payoffFlood);
+
+        // Payoff
+        let sPayoff = spring(Math.max(0, t - T.payoffFlood), 80, 12);
+        dom.payoff.style.opacity = sPayoff;
+        
+        let sP1 = spring(Math.max(0, t - T.p1), 120, 12);
+        let sP2 = spring(Math.max(0, t - T.p2), 120, 12);
+        let sP3 = spring(Math.max(0, t - T.p3), 120, 12);
+
+        const applyPayoff = (el, s) => {
+            el.style.clipPath = `inset(${lerp(100, 0, s)}% 0 0 0)`;
+            el.style.transform = `translateY(${lerp(50, 0, s)}px)`;
+        };
+        applyPayoff(dom.p1, sP1);
+        applyPayoff(dom.p2, sP2);
+        applyPayoff(dom.p3, sP3);
+    };
+
+    // --- PLAYBACK ENGINE ---
+    let startTime = null;
+    let isPlaying = false;
+    let reqId;
+
+    function renderLoop(now) {
+        if (!isPlaying) return;
+        if (!startTime) startTime = now;
+        
+        let t = (now - startTime) / 1000;
+        
+        if (t > T.end) {
+            // Loop sequence
+            startTime = now;
+            videoStarted = false;
+            dom.vid.currentTime = 0;
+            dom.aud.currentTime = 0;
+            t = 0;
+        }
+
+        window.seek(t);
+        reqId = requestAnimationFrame(renderLoop);
+    }
+
+    // Play on click to allow audio
+    document.body.addEventListener('click', () => {
+        if (!isPlaying) {
+            isPlaying = true;
+            document.body.style.cursor = 'none'; // hide cursor for clean viewing
+            startTime = performance.now();
+            requestAnimationFrame(renderLoop);
+        } else {
+            isPlaying = false;
+            document.body.style.cursor = 'default';
+            cancelAnimationFrame(reqId);
+            dom.vid.pause();
+            dom.aud.pause();
+        }
+    });
+
+    // Initial render at t=0
+    window.seek(0);
+</script>
+
+<!-- Click to start overlay -->
+<div id="start-overlay" style="position: absolute; width: 100%; height: 100%; z-index: 1000; display: flex; justify-content: center; align-items: center; background: rgba(255,255,235,0.9); color: #1a1a1a; font-size: 32px; font-weight: 600; cursor: pointer;">
+    Click anywhere to play the 30s Launch Film with audio
+</div>
+<script>
+    document.body.addEventListener('click', () => {
+        document.getElementById('start-overlay').style.display = 'none';
+    }, {once: true});
+</script>
+</body>
+</html>

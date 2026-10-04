@@ -36,3 +36,8 @@ Per SOURCES.md, files from Pixabay, Mixkit, Sonniss, ZapSplat, Uppbeat, and
 the YouTube Audio Library are downloaded to local disk and used in finished
 films, but their licenses forbid redistributing the raw files, so they are
 never committed here.
+- `music/kevin-macleod_VolatileReaction.mp3`
+  Track: "Volatile Reaction" by Kevin MacLeod.
+  Source: https://incompetech.com/music/royalty-free/mp3-royaltyfree/Volatile%20Reaction.mp3
+  License: Creative Commons Attribution 4.0 (CC-BY 4.0).
+  Required credit: "Volatile Reaction" by Kevin MacLeod (incompetech.com), CC-BY 4.0.

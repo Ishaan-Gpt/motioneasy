@@ -1,0 +1,166 @@
+{
+  "$comment": "Copy deck for cli/remix.mjs. Verified facts only (BRIEF.md): free, open source, local-first; Whisper runs on your machine, no cloud needed; 33 caption looks; time every word; MP4 export in the browser. No invented numbers, no testimonials (none exist yet).",
+  "id": "captionseasy",
+  "name": "CaptionsEasy",
+  "url": "captionseasy.com",
+  "tagline": "Stop timing captions. *Start posting.*",
+  "hooks": [
+    {
+      "line": "Still timing captions\nby hand?",
+      "strike": "by hand?",
+      "replace": "*in one click.*"
+    },
+    {
+      "line": "Your captions live\non someone's server?",
+      "strike": "on someone's server?",
+      "replace": "*on your machine.*"
+    },
+    {
+      "line": "Typing subtitles\nline by line?",
+      "strike": "line by line?",
+      "replace": "*Let Whisper do it.*"
+    },
+    {
+      "line": "Paying monthly\nfor captions?",
+      "strike": "Paying monthly",
+      "replace": "*Free. Open source.*"
+    }
+  ],
+  "claims": [
+    "Every word, *perfectly timed.*",
+    "Whisper runs on *your machine.*",
+    "33 caption looks. *One click each.*",
+    "Free and *open source.*",
+    "No cloud. *No waiting room.*",
+    "Captions that *move.*",
+    "Your clips *stay yours.*"
+  ],
+  "shorts": [
+    "Post *more.*",
+    "Just *post.*",
+    "Caption *anything.*",
+    "No *cloud.*"
+  ],
+  "features": [
+    "Whisper on your machine",
+    "33 caption looks",
+    "MP4 export in the browser",
+    "Free and open source",
+    "Every word timed"
+  ],
+  "stats": [
+    "33|caption looks",
+    "0|cloud servers needed",
+    "$0|to use it"
+  ],
+  "steps": [
+    "Drop in a clip|Upload it in your browser.",
+    "Whisper transcribes it|On your own machine. No cloud.",
+    "Pick one of 33 looks|Style the frame, time every word.",
+    "Export the MP4|Right in the browser."
+  ],
+  "checklist": [
+    "Free",
+    "Open source",
+    "Runs on your machine",
+    "33 caption looks",
+    "Every word timed",
+    "MP4 export in the browser"
+  ],
+  "rotators": [
+    {
+      "prefix": "Captions for",
+      "words": [
+        "Reels.",
+        "Shorts.",
+        "TikToks.",
+        "podcasts."
+      ]
+    },
+    {
+      "prefix": "Made for",
+      "words": [
+        "creators.",
+        "podcasters.",
+        "teachers.",
+        "founders."
+      ]
+    }
+  ],
+  "quotes": [],
+  "cta": [
+    "Stop timing captions.\n*Start posting.*",
+    "Free. Open source.\n*On your machine.*",
+    "33 looks.\n*Pick yours.*"
+  ],
+  "media": {
+    "clips": [
+      "media/hero/aisha.mp4",
+      "media/hero/gianna.mp4",
+      "media/hero/jesse.mp4",
+      "media/hero/omar.mp4",
+      "media/hero/rusita.mp4",
+      "media/hero/sam.mp4",
+      "media/hero/sol.mp4",
+      "media/hero/william.mp4",
+      "media/hero/gereon.mp4",
+      "media/hero/mckensie.mp4"
+    ],
+    "talking": [
+      "media/hero/omar.raw.mp4",
+      "media/hero/sam.raw.mp4",
+      "media/hero/gereon.raw.mp4",
+      "media/hero/mckensie.raw.mp4"
+    ],
+    "screens": [
+      "media/screens/hero.jpg",
+      "media/screens/looks.jpg",
+      "media/screens/product.jpg"
+    ],
+    "pairs": [
+      {
+        "before": "media/hero/omar.raw.mp4",
+        "after": "media/hero/omar.mp4"
+      },
+      {
+        "before": "media/hero/sam.raw.mp4",
+        "after": "media/hero/sam.mp4"
+      },
+      {
+        "before": "media/hero/gereon.raw.mp4",
+        "after": "media/hero/gereon.mp4"
+      },
+      {
+        "before": "media/hero/mckensie.raw.mp4",
+        "after": "media/hero/mckensie.mp4"
+      }
+    ],
+    "logo": "media/brand/captionseasy-logo.svg",
+    "wordmark": "media/brand/captionseasy-wordmark.svg",
+    "barMark": true
+  },
+  "music": [
+    {
+      "src": "media/music/kevin-macleod_Funkorama.mp3",
+      "gain": 0.45,
+      "fadeOut": 1.2,
+      "credit": "\"Funkorama\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+    },
+    {
+      "src": "media/music/kevin-macleod_Inspired.mp3",
+      "gain": 0.45,
+      "fadeOut": 1.2,
+      "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+    }
+  ],
+  "musicMood": [
+    "uplifting",
+    "groove",
+    "driving"
+  ],
+  "words": [
+    "LOOKS",
+    "TIMED",
+    "CAPTIONS"
+  ]
+}

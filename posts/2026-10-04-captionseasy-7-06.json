@@ -1,0 +1,45 @@
+{
+  "id": "2026-10-04-captionseasy-7-06",
+  "title": "Karaoke Pill · demo-first",
+  "format": "vertical",
+  "fps": 60,
+  "recipe": "demo-first",
+  "seed": 7,
+  "clips": [
+    {
+      "component": "caption-karaoke",
+      "props": {
+        "media": "media/hero/gereon.raw.mp4"
+      },
+      "duration": 5.5
+    },
+    {
+      "component": "stat-trio",
+      "props": {
+        "headline": "Every word, *perfectly timed.*",
+        "stats": [
+          "33|caption looks",
+          "0|cloud servers needed",
+          "$0|to use it"
+        ]
+      },
+      "transition": "whip"
+    },
+    {
+      "component": "end-card",
+      "props": {
+        "media": "media/hero/gereon.mp4",
+        "logo": "media/brand/captionseasy-logo.svg",
+        "headline": "Stop timing captions.\n*Start posting.*",
+        "url": "captionseasy.com"
+      }
+    }
+  ],
+  "music": {
+    "src": "media/music/kevin-macleod_Inspired.mp3",
+    "gain": 0.45,
+    "fadeOut": 1.2,
+    "credit": "\"Inspired\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "remix: demo-first; caption-karaoke → stat-trio → end-card; signature whip"
+}

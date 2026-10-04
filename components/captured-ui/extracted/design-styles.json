@@ -1,0 +1,346 @@
+{
+  "typography": [
+    {
+      "role": "display",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "89.6px",
+      "fontWeight": "700",
+      "lineHeight": "80.64px",
+      "letterSpacing": "-4.48px",
+      "color": "#1A1A1A",
+      "sampleText": "Don’t edit,just upload."
+    },
+    {
+      "role": "heading",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "60px",
+      "fontWeight": "700",
+      "lineHeight": "75px",
+      "letterSpacing": "-1.5px",
+      "color": "#1A1A1A",
+      "sampleText": "From camera roll to captioned in four moves."
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Instrument Serif",
+      "fontSize": "60px",
+      "fontWeight": "400",
+      "lineHeight": "60px",
+      "letterSpacing": "normal",
+      "color": "#1A1A1A",
+      "sampleText": "Good questions."
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "48px",
+      "fontWeight": "700",
+      "lineHeight": "60px",
+      "letterSpacing": "-1.2px",
+      "color": "#1A1A1A",
+      "sampleText": "Automatic, until you disagree."
+    },
+    {
+      "role": "heading-2",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "40px",
+      "fontWeight": "700",
+      "lineHeight": "42px",
+      "letterSpacing": "-1.2px",
+      "color": "#1A1A1A",
+      "sampleText": "Four reasons it feels effortless."
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "24px",
+      "fontWeight": "700",
+      "lineHeight": "32px",
+      "letterSpacing": "normal",
+      "color": "#1A1A1A",
+      "sampleText": "Upload the take"
+    },
+    {
+      "role": "heading-4",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "20px",
+      "fontWeight": "700",
+      "lineHeight": "27.5px",
+      "letterSpacing": "normal",
+      "color": "#1A1A1A",
+      "sampleText": "Will CaptionsEasy work with vertical 9:16 Shorts, Reels, and"
+    },
+    {
+      "role": "heading-3",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "18px",
+      "fontWeight": "700",
+      "lineHeight": "28px",
+      "letterSpacing": "normal",
+      "color": "#1A1A1A",
+      "sampleText": "The caption box is yours"
+    },
+    {
+      "role": "body",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "17px",
+      "fontWeight": "500",
+      "lineHeight": "27.625px",
+      "letterSpacing": "normal",
+      "color": "lab(9.26329 0 0 / 0.7)",
+      "sampleText": "Animated captions for your Shorts, Reels and TikToks, made r"
+    },
+    {
+      "role": "link",
+      "fontFamily": "Plus Jakarta Sans",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "lineHeight": "24px",
+      "letterSpacing": "normal",
+      "color": "#1A1A1A",
+      "sampleText": ""
+    },
+    {
+      "role": "heading-4",
+      "fontFamily": "ui-monospace",
+      "fontSize": "12px",
+      "fontWeight": "700",
+      "lineHeight": "16px",
+      "letterSpacing": "1.2px",
+      "color": "lab(9.26318 0 0 / 0.5)",
+      "sampleText": "PRODUCT"
+    },
+    {
+      "role": "code",
+      "fontFamily": "ui-monospace",
+      "fontSize": "12px",
+      "fontWeight": "400",
+      "lineHeight": "16px",
+      "letterSpacing": "normal",
+      "color": "lab(9.26318 0 0 / 0.6)",
+      "sampleText": "drop your clip here"
+    }
+  ],
+  "spacing": {
+    "observed": [
+      1,
+      4,
+      6,
+      8,
+      12,
+      14,
+      16,
+      20,
+      24,
+      28,
+      40,
+      48,
+      64,
+      128
+    ],
+    "baseUnit": 4
+  },
+  "radius": [
+    "12px",
+    "3.35544e+07px"
+  ],
+  "shadows": [
+    {
+      "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.25) 0px 25px 50px -12px",
+      "count": 11
+    },
+    {
+      "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "count": 7
+    },
+    {
+      "value": "rgba(26, 26, 26, 0.07) 0px 0px 0px 1px, rgba(26, 26, 26, 0.28) 0px 40px 80px -30px",
+      "count": 4
+    },
+    {
+      "value": "rgb(26, 26, 26) 0px 0px 0px 6px, rgba(255, 255, 255, 0.12) 0px 0px 0px 7px, rgba(26, 26, 26, 0.55) 0px 30px 60px -18px",
+      "count": 3
+    },
+    {
+      "value": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(26, 26, 26, 0.25) 0px 8px 30px -12px",
+      "count": 1
+    }
+  ],
+  "buttons": [
+    {
+      "label": "Jumping BoxCaps · Box highlight",
+      "background": "#FFFFEB",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#1A1A1A",
+      "padding": "10px 12px",
+      "borderRadius": "12px",
+      "border": "1px solid rgba(26, 26, 26, 0.1)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "57.25px"
+    },
+    {
+      "label": "Yellow HighlighterCard · Marker",
+      "background": "#1A1A1A",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#1A1A1A",
+      "padding": "10px 12px",
+      "borderRadius": "12px",
+      "border": "1px solid rgb(26, 26, 26)",
+      "boxShadow": "rgba(26, 26, 26, 0.6) 0px 14px 30px -14px",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "57.25px"
+    },
+    {
+      "label": "Will CaptionsEasy work with vertical 9:1",
+      "background": "lab(75.6954 -52.188 16.7595 / 0.2)",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "#FFFFEB",
+      "padding": "16px",
+      "borderRadius": "12px",
+      "border": "1px solid lab(75.6954 -52.188 16.7595 / 0.4)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "fontSize": "15px",
+      "fontWeight": "700",
+      "height": "75.25px"
+    },
+    {
+      "label": "How is CaptionsEasy different from basic",
+      "background": "transparent",
+      "backgroundImage": "",
+      "backdropFilter": "",
+      "color": "lab(99.6019 -2.50477 9.59764 / 0.75)",
+      "padding": "16px",
+      "borderRadius": "12px",
+      "border": "1px solid rgba(0, 0, 0, 0)",
+      "boxShadow": "none",
+      "fontSize": "15px",
+      "fontWeight": "400",
+      "height": "75.25px"
+    }
+  ],
+  "cards": [],
+  "nav": {
+    "label": "navigation",
+    "background": "lab(99.6019 -2.50477 9.59764 / 0.85)",
+    "backgroundImage": "",
+    "backdropFilter": "blur(12px)",
+    "color": "#1A1A1A",
+    "padding": "10px 16px",
+    "borderRadius": "16px",
+    "border": "1px solid lab(9.26318 0 0 / 0.1)",
+    "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(26, 26, 26, 0.25) 0px 8px 30px -12px",
+    "fontSize": "16px",
+    "fontWeight": "400",
+    "height": "62px"
+  },
+  "chips": [
+    {
+      "label": "Start free →",
+      "background": "transparent",
+      "color": "#1A1A1A",
+      "padding": "1px",
+      "borderRadius": "9999px",
+      "border": "0px solid rgb(26, 26, 26)",
+      "boxShadow": "none",
+      "fontSize": "16px",
+      "fontWeight": "400",
+      "height": "40px"
+    },
+    {
+      "label": "Start free →",
+      "background": "#F0D7FF",
+      "color": "#1A1A1A",
+      "padding": "8px 16px",
+      "borderRadius": "3.35544e+07px",
+      "border": "1px solid lab(9.26318 0 0 / 0.3)",
+      "boxShadow": "none",
+      "fontSize": "14px",
+      "fontWeight": "700",
+      "height": "38px"
+    },
+    {
+      "label": "1",
+      "background": "#1A1A1A",
+      "color": "#FFFFEB",
+      "padding": "0px",
+      "borderRadius": "3.35544e+07px",
+      "border": "0px solid rgb(255, 255, 235)",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgb(255, 255, 235) 0px 0px 0px 4px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.1) 0px 1px 2px -1px",
+      "fontSize": "12px",
+      "fontWeight": "700",
+      "height": "32px"
+    },
+    {
+      "label": "take-07_final.mp4",
+      "background": "#FFFFEB",
+      "color": "#0F3D2E",
+      "padding": "4px 12px",
+      "borderRadius": "3.35544e+07px",
+      "border": "1px solid lab(9.26318 0 0 / 0.1)",
+      "boxShadow": "none",
+      "fontSize": "11px",
+      "fontWeight": "600",
+      "height": "26.5px"
+    }
+  ],
+  "statCells": [],
+  "tabs": [],
+  "backgrounds": [
+    {
+      "value": "radial-gradient(70% 110% at 82% 45%, rgba(255, 169, 70, 0.22) 0%, rgba(255, 169, 70, 0.07) 45%, rgba(0, 0, 0, 0) 78%)",
+      "area": 711360
+    },
+    {
+      "value": "radial-gradient(70% 110% at 82% 45%, rgba(52, 211, 153, 0.16) 0%, rgba(52, 211, 153, 0.05) 45%, rgba(0, 0, 0, 0) 75%)",
+      "area": 711360
+    },
+    {
+      "value": "radial-gradient(circle at 50% 120%, rgba(52, 211, 153, 0.35), rgba(0, 0, 0, 0) 60%)",
+      "area": 552384
+    },
+    {
+      "value": "radial-gradient(70% 110% at 82% 45%, rgba(240, 215, 255, 0.85) 0%, rgba(240, 215, 255, 0.35) 45%, rgba(0, 0, 0, 0) 78%)",
+      "area": 711360
+    },
+    {
+      "value": "radial-gradient(70% 110% at 82% 45%, rgba(228, 228, 208, 0.9) 0%, rgba(228, 228, 208, 0.35) 50%, rgba(0, 0, 0, 0) 80%)",
+      "area": 711360
+    },
+    {
+      "value": "linear-gradient(in oklab, rgba(0, 0, 0, 0) 0%, rgb(255, 255, 235) 100%)",
+      "area": 122880
+    }
+  ],
+  "glass": [
+    {
+      "backdropFilter": "blur(8px)",
+      "background": "oklab(0.994695 -0.00752622 0.0249966 / 0.6)",
+      "border": "1px solid lab(9.26318 0 0 / 0.1)",
+      "borderRadius": "24px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(26, 26, 26, 0.3) 0px 20px 50px -35px",
+      "area": 706896
+    },
+    {
+      "backdropFilter": "blur(12px)",
+      "background": "lab(99.6019 -2.50477 9.59764 / 0.85)",
+      "border": "1px solid lab(9.26318 0 0 / 0.1)",
+      "borderRadius": "16px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(26, 26, 26, 0.25) 0px 8px 30px -12px",
+      "area": 71424
+    },
+    {
+      "backdropFilter": "blur(8px)",
+      "background": "oklab(0.994695 -0.00752622 0.0249966 / 0.85)",
+      "border": "1px solid lab(9.26318 0 0 / 0.08)",
+      "borderRadius": "16px",
+      "boxShadow": "rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(26, 26, 26, 0.35) 0px 18px 40px -20px",
+      "area": 36210
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@motioneasy/cli",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "typecheck": "echo cli: no typecheck"
+  },
+  "dependencies": {
+    "esbuild": "0.25.10",
+    "playwright-core": "1.56.1"
+  }
+}
