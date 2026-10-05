@@ -9,7 +9,7 @@
 
 1. **Goal:** make social posts (Reels, Shorts, TikToks, LinkedIn/X video, stills) for CaptionsEasy and later other
    brands in minutes, deterministically, with very few tokens.
-2. **How:** 58 reusable **components** (+ 12 transitions) (pure render functions of time + props, drawn on a canvas). A post is a
+2. **How:** 58 reusable **components** (+ 13 transitions) (pure render functions of time + props, drawn on a canvas). A post is a
    small **JSON spec**: a list of clips (component + changed props + transition), plus music. Pick, tweak, export.
 3. **Engine:** TypeScript + canvas 2D/WebGL in the browser and in a headless Chromium (Playwright) for the CLI.
    Next.js site for browsing/composing. Same spec → same frame in preview, site export and CLI render.
@@ -138,13 +138,16 @@ Dependency rule: `engine` ← `library` ← (`apps/web`, `cli`). Nothing imports
 
 ## 8. Status
 
-Done: engine, 58 components + 12 transitions, compose page, sounds, docs, previews, remix, audit, schema tests.
+Done: engine, 58 components + 13 transitions (pixel-block dissolve added 2026-10-05), compose page, sounds, docs, previews, remix, audit, schema tests.
 2026-10-04: motion overhaul — shot camera, 8 backdrops, motion-rule helpers, 6 new type blocks (char-cascade,
 kinetic-stack, type-marquee, image-type, bar-wipe, split-flap), match + recede transitions, recorded sound kit
 (59 CC0 recordings), 32-track tagged music library.
 Prompt kits: 12 kits / 114 components from 13 of the 43 main prompts (spotify-film, keynote-one-take, minimal-launch,
 ui-morph-loop, makermap, sprites-promo, pokedex-morph, techhalla-bumper, build-the-floor, tanstack-ai, notch-browser,
-motion-reel); /kits pages on the site. Remaining 30 prompts in progress, then the sound library deep-dive and the
+motion-reel); /kits pages on the site.
+2026-10-05: bloom-reel kit (18 components) backtracked from a motion-design showreel (docs/reference/showreel-nour-aldin.md);
+CaptionsEasy 9:16 template in posts/2026-10-05-captionseasy-bloom-reel.json, cuts on the beat of "Realizer" (125 BPM,
+music offset 0.453 puts the kick on the grid). Fonts anton + pacifico bundled for its metal/script bookend. Remaining 30 prompts in progress, then the sound library deep-dive and the
 gauravsbuilding / claude-launchvideo references (new branch).
 Next: Posts group in the site (`/compose/#post=<id>`), render + review the 8 example posts, dedicated list titles in the
 deck, lazy AAC encoder, mobile pass on the component page, Tone.js beds, optional Remotion adapter / agent API / Vercel deploy.

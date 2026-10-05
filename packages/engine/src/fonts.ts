@@ -1,7 +1,7 @@
 // Bundled typefaces. Rendering waits until every face is loaded, so text measures and draws the same
 // way on every run. Components refer to faces by id ("jakarta", "instrument", ...), never by family.
 
-export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono" | "geist" | "archivo";
+export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono" | "geist" | "archivo" | "anton" | "pacifico";
 
 export interface FontInfo {
   id: FontId;
@@ -57,6 +57,14 @@ export const FONTS: Record<FontId, FontInfo> = {
   geist: {
     id: "geist", label: "Geist", family: "ME Geist", kind: "sans", weights: [100, 900], italic: false, displayTracking: -0.035,
     files: [{ file: "geist-latin-wght-normal.woff2", style: "normal" }],
+  },
+  anton: {
+    id: "anton", label: "Anton", family: "ME Anton", kind: "sans", weights: [400, 400], italic: false, displayTracking: -0.005,
+    files: [{ file: "anton-latin-400-normal.woff2", style: "normal" }],
+  },
+  pacifico: {
+    id: "pacifico", label: "Pacifico", family: "ME Pacifico", kind: "serif", weights: [400, 400], italic: false, displayTracking: 0,
+    files: [{ file: "pacifico-latin-400-normal.woff2", style: "normal" }],
   },
   archivo: {
     id: "archivo", label: "Archivo Expanded", family: "ME Archivo", kind: "sans", weights: [100, 900], italic: false, displayTracking: -0.02, stretch: "125%",

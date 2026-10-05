@@ -1,0 +1,160 @@
+{
+  "id": "2026-10-05-captionseasy-bloom-reel",
+  "title": "CaptionsEasy — Showreel 2026 (bloom reel, 9:16)",
+  "format": "vertical",
+  "fps": 60,
+  "clips": [
+    {
+      "component": "bloom-bookend",
+      "props": {
+        "lead": 0,
+        "duration": 4.479
+      }
+    },
+    {
+      "component": "bloom-keycap-ring",
+      "props": {
+        "duration": 3.1893
+      },
+      "transition": {
+        "type": "pixel",
+        "duration": 0.32
+      }
+    },
+    {
+      "component": "bloom-pill-menu",
+      "props": {
+        "duration": 3.9891
+      },
+      "transition": {
+        "type": "flash",
+        "duration": 0.3
+      }
+    },
+    {
+      "component": "bloom-highlight-headline",
+      "props": {
+        "duration": 2.3994
+      }
+    },
+    {
+      "component": "bloom-neon-orbit",
+      "props": {
+        "duration": 3.8391
+      }
+    },
+    {
+      "component": "bloom-chrome-word",
+      "props": {
+        "duration": 2.3994
+      }
+    },
+    {
+      "component": "bloom-rim-dashboard",
+      "props": {
+        "duration": 3.3592
+      }
+    },
+    {
+      "component": "bloom-card-carousel",
+      "props": {
+        "duration": 2.8793
+      }
+    },
+    {
+      "component": "bloom-icon-menu",
+      "props": {
+        "duration": 2.3994
+      }
+    },
+    {
+      "component": "bloom-phone-pop",
+      "props": {
+        "duration": 2.8793
+      }
+    },
+    {
+      "component": "bloom-shield-pulse",
+      "props": {
+        "duration": 1.9195
+      }
+    },
+    {
+      "component": "bloom-card-stream",
+      "props": {
+        "duration": 3.8391
+      }
+    },
+    {
+      "component": "bloom-glass-portrait",
+      "props": {
+        "duration": 2.3994
+      }
+    },
+    {
+      "component": "bloom-glow-cards",
+      "props": {
+        "duration": 1.9195
+      }
+    },
+    {
+      "component": "bloom-flat-desk",
+      "props": {
+        "duration": 3.3592
+      }
+    },
+    {
+      "component": "bloom-pendulum",
+      "props": {
+        "duration": 2.5494
+      }
+    },
+    {
+      "component": "bloom-arch-type",
+      "props": {
+        "duration": 3.0293
+      },
+      "transition": {
+        "type": "flash",
+        "duration": 0.3
+      }
+    },
+    {
+      "component": "bloom-pixel-card",
+      "props": {
+        "duration": 3.5192
+      }
+    },
+    {
+      "component": "bloom-bookend",
+      "props": {
+        "word": "START",
+        "script": "posting.",
+        "pill": "Free",
+        "line1": "captionseasy.com",
+        "line2": "Stop timing captions.",
+        "lead": 0.4799,
+        "fadeOut": 0.9,
+        "credits": [
+          "CaptionsEasy © 2026",
+          "Music: \"Realizer\" by Kevin MacLeod (incompetech.com), CC BY 4.0",
+          "Footage: Wikitongues via Wikimedia Commons, CC BY / CC BY-SA"
+        ],
+        "duration": 6.8784
+      },
+      "transition": {
+        "type": "pixel",
+        "duration": 0.32
+      }
+    }
+  ],
+  "music": {
+    "src": "media/music/library/realizer.mp3",
+    "gain": 0.62,
+    "offset": 0.453,
+    "fadeIn": 0.05,
+    "fadeOut": 1.2,
+    "credit": "\"Realizer\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "Backtracked from a 2026 motion-design showreel (docs/reference/showreel-nour-aldin.md) and rebuilt for CaptionsEasy at 9:16: bookends, one bloom per dark shot, dark/light alternation, cuts on the beat of a 125 BPM bed. Facts from BRIEF.md only. Footage: Wikitongues via Wikimedia Commons (CC BY 3.0 / CC BY-SA 4.0)."
+}

@@ -1,9 +1,9 @@
 // Transitions between two rendered clips. Each is a pure function of progress u (0..1) and draws in
 // reference units onto the context. A and B are full-frame layers of the outgoing and incoming clip.
 
-import { E, alpha, logLerp, mix, pr, type Layer, type RC, type SoundCue } from "@motioneasy/engine";
+import { E, alpha, logLerp, mix, noise1, pr, rand, type Layer, type RC, type SoundCue } from "@motioneasy/engine";
 
-export type TransitionId = "cut" | "whip" | "push" | "zoom" | "iris" | "flash" | "blur" | "slide" | "shutter" | "wipe" | "match" | "recede";
+export type TransitionId = "cut" | "whip" | "push" | "zoom" | "iris" | "flash" | "blur" | "slide" | "shutter" | "wipe" | "match" | "recede" | "pixel";
 
 export interface TransitionDef {
   id: TransitionId;
@@ -179,6 +179,11 @@ export const TRANSITIONS: Record<TransitionId, TransitionDef> = {
       c.restore();
     },
   },
+  pixel: {
+    id: "pixel", name: "Pixel blocks", description: "The frame breaks into clustered square blocks with a lit green edge and resolves into the next shot.", duration: 0.32,
+    sounds: (len) => [{ at: 0, sound: "fs.fx.dsgnrythm-glitch-stutter-one", gain: 0.32, role: "glitch" }, { at: len * 0.1, sound: "whoosh.swipe", gain: 0.45, role: "pixel" }],
+    draw: (c, A, B, u) => pixelDissolve(c, A, B, u),
+  },
   recede: {
     id: "recede", name: "Recede", description: "This shot shrinks into a card and slides away, revealing the next one already pushing in behind it.", duration: 0.7,
     sounds: (len) => [{ at: len * 0.15, sound: "whoosh.swipe", gain: 0.55, role: "leave" }],
@@ -199,5 +204,32 @@ export const TRANSITIONS: Record<TransitionId, TransitionDef> = {
     },
   },
 };
+
+/** Square-block dissolve: the cut breaks into clustered blocks, a lit edge of green blocks rides the front. */
+function pixelDissolve(c: RC, A: Layer, B: Layer, u: number) {
+  const cell = Math.round(c.short * 0.046);
+  const cols = Math.ceil(c.W / cell), rows = Math.ceil(c.H / cell);
+  const front = E.inOut(u) * 1.24 - 0.12;
+  full(c, A);
+  const lit: [number, number, number][] = [];
+  c.save();
+  c.ctx.beginPath();
+  for (let j = 0; j < rows; j++) {
+    for (let i = 0; i < cols; i++) {
+      // clustered order: smooth noise field + per-cell jitter, so blocks go in patches like the reference
+      const k = 0.62 * (0.5 + 0.5 * noise1(i * 0.21 + j * 0.37 * 1.7, j * 0.31)) + 0.38 * rand(i * 7919 + j * 104729);
+      const d = front - k;
+      if (d > 0) c.ctx.rect(i * cell, j * cell, cell + 0.5, cell + 0.5);
+      if (Math.abs(d) < 0.07) lit.push([i, j, 1 - Math.abs(d) / 0.07]);
+    }
+  }
+  c.ctx.clip();
+  full(c, B);
+  c.restore();
+  for (const [i, j, k] of lit) {
+    const g = rand(i * 31 + j * 977);
+    c.rect(i * cell, j * cell, cell, cell, alpha(g < 0.55 ? "#34D399" : g < 0.8 ? "#A7F3D0" : "#FFFFFF", 0.85 * k));
+  }
+}
 
 export const TRANSITION_IDS = Object.keys(TRANSITIONS) as TransitionId[];

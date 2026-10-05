@@ -13,3 +13,5 @@ subsets (from Fontsource). They are bundled so every render uses the exact same 
 | jetbrains-mono-latin-wght-normal.woff2 | JetBrains Mono (100–800) | JetBrains |
 | geist-latin-wght-normal.woff2 | Geist (100–900) | Vercel |
 | archivo-latin-wdth-normal.woff2 | Archivo (100–900, wdth 62–125; used at 125) | Omnibus-Type |
+| anton-latin-400-normal.woff2 | Anton (400) | Vernon Adams |
+| pacifico-latin-400-normal.woff2 | Pacifico (400) | Vernon Adams, Jacques Le Bailly |
