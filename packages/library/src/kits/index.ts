@@ -17,10 +17,11 @@ import { notchBrowser } from "./notch-browser";
 import { motionReel } from "./motion-reel";
 import { productShowreel } from "./product-showreel";
 import { journeyReel } from "./journey-reel";
+import { oneTakeKit } from "./one-take";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel, productShowreel, journeyReel];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel, productShowreel, journeyReel, oneTakeKit];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 

@@ -2,6 +2,7 @@
 // "synth" sounds are generated (see synth.ts); "sample" sounds are CC0 recordings shipped with the site.
 
 import { SAMPLE_SOUNDS } from "./samples.gen";
+import { VIRAL_SOUNDS } from "./samples.viral";
 
 export type SoundCategory = "whoosh" | "impact" | "riser" | "tonal" | "ui" | "foley" | "fx" | "music";
 
@@ -65,7 +66,7 @@ export function registerSounds(list: SoundInfo[]) {
   for (const s of list) if (!extra.some((e) => e.id === s.id)) extra.push(s);
 }
 
-export const allSounds = () => [...SYNTH_SOUNDS, ...SAMPLE_SOUNDS, ...extra];
+export const allSounds = () => [...SYNTH_SOUNDS, ...VIRAL_SOUNDS, ...SAMPLE_SOUNDS, ...extra];
 export const soundInfo = (id: string) => allSounds().find((s) => s.id === id);
 
 /**
@@ -74,28 +75,30 @@ export const soundInfo = (id: string) => allSounds().find((s) => s.id === id);
  * seed, so repeated cues vary). Roles without a good recording stay synthesised.
  */
 const RECORDED_FOR: Record<string, string[]> = {
-  "whoosh.air": ["fs.whoosh.digital-whoosh-soft", "fs.whoosh.whoosh2", "fs.whoosh.swosh-whoosh-air-cut"],
-  "whoosh.whip": ["fs.whoosh.swoosh", "fs.whoosh.swsh-badminton-racquet-recor", "fs.whoosh.wooden-stick-swing-1-4"],
+  "whoosh.air": ["viral.woosh", "fs.whoosh.digital-whoosh-soft", "fs.whoosh.whoosh2", "fs.whoosh.swosh-whoosh-air-cut"],
+  "whoosh.whip": ["viral.woosh", "fs.whoosh.swoosh", "fs.whoosh.swsh-badminton-racquet-recor", "fs.whoosh.wooden-stick-swing-1-4"],
   "whoosh.deep": ["fs.whoosh.cinematic-woosh-sfx-011", "fs.whoosh.cinematic-woosh-sfx-010", "fs.whoosh.electric-transition"],
-  "whoosh.swipe": ["fs.whoosh.swoosh-v2", "fs.foley.fh-paper-swipe-surface2-shor", "fs.whoosh.whoosh-fx"],
+  "whoosh.swipe": ["viral.woosh", "fs.whoosh.swoosh-v2", "fs.foley.fh-paper-swipe-surface2-shor", "fs.whoosh.whoosh-fx"],
   "impact.sub": ["fs.impact.drama-boom-02-192khz-32fp-ve", "fs.impact.sound-design-elements-impact"],
-  "impact.punch": ["fs.impact.punch2", "fs.impact.hit"],
+  "impact.punch": ["viral.finger-snap", "fs.impact.punch2", "fs.impact.hit"],
   "impact.land": ["fs.impact.soft-hit", "fs.impact.soft-impact-pillow-hit", "kenney.drop"],
   "impact.trailer": ["fs.impact.sound-design-elements-impact", "fs.impact.plasma-impact-one"],
-  "riser.build": ["fs.riser.riser-sound-effect-short", "fs.riser.lunar-short-uplifter-fx-3"],
+  "riser.build": ["viral.riser", "viral.ui-riser", "fs.riser.riser-sound-effect-short", "fs.riser.lunar-short-uplifter-fx-3"],
   "riser.reverse": ["fs.riser.reverse-cymbal", "fs.riser.wow-rev-noise"],
   "tonal.shimmer": ["fs.tonal.fashion-shimmer-luxury-runwa"],
   "tonal.chime": ["fs.tonal.chime-ping", "fs.tonal.chime-improper", "kenney.glass"],
   "tonal.notify": ["fs.tonal.soft-notifications-bell-ding", "kenney.confirm"],
   "ui.click": ["fs.ui.mouse-2-button-fast-click", "kenney.mouse", "kenney.click"],
   "ui.tick": ["kenney.tick", "kenney.select"],
-  "ui.pop": ["fs.ui.pop-9", "fs.ui.pop-4", "fs.ui.bubble-pop"],
-  "foley.key": ["fs.foley.typewriter", "fs.foley.typewriter-snippet-02"],
+  "ui.pop": ["viral.ui-animations", "fs.ui.pop-9", "fs.ui.pop-4", "fs.ui.bubble-pop"],
+  "foley.key": ["viral.typing", "fs.foley.typewriter", "fs.foley.typewriter-snippet-02"],
   "foley.shutter": ["fs.foley.pentax-k1000-camera-shutter"],
   "fx.glitch": ["fs.fx.gritch-glitch-snippets-fx-pe", "fs.fx.dsgnrythm-glitch-stutter-one"],
 };
 
 export function recordedFor(id: string, seed = 0): SoundInfo | null {
   const have = (RECORDED_FOR[id] ?? []).map(soundInfo).filter((s): s is SoundInfo => !!s && s.kind === "sample");
-  return have.length ? have[Math.abs(Math.floor(seed)) % have.length] : null;
+  const viral = have.filter((s) => s.id.startsWith("viral."));
+  const pool = viral.length ? viral : have;
+  return pool.length ? pool[Math.abs(Math.floor(seed)) % pool.length] : null;
 }
