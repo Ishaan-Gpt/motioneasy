@@ -289,7 +289,8 @@ export function auditPosts(posts: PostSpec[]): string[] {
     const counts = tr.reduce<Record<string, number>>((a, t) => ((a[t] = (a[t] ?? 0) + 1), a), {});
     for (const [t, k] of Object.entries(counts)) if (k >= 3) out.push(`${p.id}: transition "${t}" used ${k} times`);
     if (q && p.recipe && p.recipe === q.recipe) out.push(`${p.id}: same recipe as ${q.id} (${p.recipe})`);
-    if (q && p.clips[0]?.component === q.clips[0]?.component) out.push(`${p.id}: same opener as ${q.id} (${p.clips[0]?.component})`);
+    // single-clip films (one scene-driven component) open on their own first shot, so the opener rule is for edited posts
+    if (q && p.clips.length > 1 && q.clips.length > 1 && p.clips[0]?.component === q.clips[0]?.component) out.push(`${p.id}: same opener as ${q.id} (${p.clips[0]?.component})`);
     if (q && p.music?.src && p.music.src === q.music?.src) out.push(`${p.id}: same music as ${q.id}`);
     const { clips } = layoutPost(p);
     const d = clips.map((c) => c.dur);

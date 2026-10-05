@@ -1,0 +1,861 @@
+{
+ "id": "editorial-skills",
+ "title": "3 Claude Code skills \u2014 editorial rebuild",
+ "format": "vertical",
+ "fps": 30,
+ "clips": [
+  {
+   "component": "editorial-film",
+   "props": {
+    "film": {
+     "shots": [
+      {
+       "at": 0,
+       "cut": "none",
+       "push": 0.02,
+       "dir": "down"
+      },
+      {
+       "at": 3.804,
+       "cut": "dip",
+       "push": 0.015,
+       "dir": "down"
+      },
+      {
+       "at": 5.576,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "down"
+      },
+      {
+       "at": 12.781,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "up"
+      },
+      {
+       "at": 19.735,
+       "cut": "dip",
+       "push": 0.015,
+       "dir": "down"
+      },
+      {
+       "at": 22.728,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "down"
+      },
+      {
+       "at": 26.826,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "down"
+      },
+      {
+       "at": 33.86,
+       "cut": "dip",
+       "push": 0.03,
+       "dir": "down"
+      },
+      {
+       "at": 35.44,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "up"
+      },
+      {
+       "at": 43.179,
+       "cut": "pan",
+       "push": 0.012,
+       "dir": "down"
+      },
+      {
+       "at": 49.656,
+       "cut": "dip",
+       "push": 0.02,
+       "dir": "down"
+      }
+     ],
+     "items": [
+      {
+       "shot": 0,
+       "kind": "prop",
+       "media": "media/editorial/a-01.png",
+       "at": 0.0,
+       "x": 0.13,
+       "y": 0.1,
+       "w": 0.3,
+       "rot": -14,
+       "from": "top"
+      },
+      {
+       "shot": 0,
+       "kind": "prop",
+       "media": "media/editorial/a-02.png",
+       "at": 0.15,
+       "x": 0.86,
+       "y": 0.07,
+       "w": 0.2,
+       "rot": 12,
+       "from": "top"
+      },
+      {
+       "shot": 0,
+       "kind": "text",
+       "at": 0.02,
+       "y": 0.33,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "3 Claude *Code*",
+         "size": "m",
+         "times": [
+          0.02,
+          0.304,
+          0.656
+         ]
+        },
+        {
+         "text": "Skills",
+         "size": "xl",
+         "times": [
+          0.906
+         ],
+         "pop": true
+        },
+        {
+         "text": "that make you look like a",
+         "size": "s",
+         "times": [
+          1.395,
+          1.576,
+          1.77,
+          1.895,
+          2.133,
+          2.304
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 0,
+       "kind": "typebox",
+       "text": "designer overnight",
+       "at": 2.372,
+       "x": 0.5,
+       "y": 0.535,
+       "size": 0.03,
+       "cps": 22
+      },
+      {
+       "shot": 1,
+       "kind": "text",
+       "at": 3.804,
+       "y": 0.27,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "First",
+         "size": "s",
+         "times": [
+          3.804
+         ],
+         "weight": 500
+        },
+        {
+         "text": "TASTE SKILL",
+         "size": "l",
+         "times": [
+          4.508,
+          4.815
+         ],
+         "caps": true
+        }
+       ],
+       "label": true
+      },
+      {
+       "shot": 1,
+       "kind": "ui",
+       "ui": "product",
+       "title": "Taste Skill",
+       "glyph": "spark",
+       "media": "media/editorial/a-03.png",
+       "at": 4.254,
+       "x": 0.5,
+       "y": 0.52,
+       "w": 0.44,
+       "h": 0.2
+      },
+      {
+       "shot": 2,
+       "kind": "bar",
+       "at": 5.576,
+       "y": 0.2,
+       "w": 0.62,
+       "glyph": "spark"
+      },
+      {
+       "shot": 2,
+       "kind": "phone",
+       "ui": "chat",
+       "title": "Welcome",
+       "at": 5.675999999999999,
+       "x": 0.7,
+       "y": 0.5,
+       "w": 0.2
+      },
+      {
+       "shot": 2,
+       "kind": "bar",
+       "at": 5.826,
+       "y": 0.8,
+       "w": 0.4,
+       "media": "media/editorial/a-01.png"
+      },
+      {
+       "shot": 2,
+       "kind": "text",
+       "at": 5.576,
+       "y": 0.38,
+       "x": 0.06,
+       "align": "left",
+       "lines": [
+        {
+         "text": "AI-built interfaces",
+         "size": "s",
+         "times": [
+          5.576,
+          6.145
+         ],
+         "weight": 700
+        },
+        {
+         "text": "all give themselves *away.*",
+         "size": "s",
+         "times": [
+          6.826,
+          7.088,
+          7.281,
+          7.77
+         ],
+         "weight": 700
+        }
+       ]
+      },
+      {
+       "shot": 2,
+       "kind": "list",
+       "x": 0.06,
+       "y": 0.47,
+       "items": [
+        {
+         "text": "same fonts",
+         "t": 8.542
+        },
+        {
+         "text": "same gradients",
+         "t": 9.633
+        },
+        {
+         "text": "made-by-a-machine look",
+         "t": 10.951
+        }
+       ]
+      },
+      {
+       "shot": 3,
+       "kind": "text",
+       "at": 12.781,
+       "y": 0.3,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Taste Skill fixes it",
+         "size": "s",
+         "times": [
+          12.781,
+          13.065,
+          13.429,
+          13.838
+         ],
+         "weight": 600
+        },
+        {
+         "text": "at the *root.*",
+         "size": "l",
+         "times": [
+          14.031,
+          14.179,
+          14.247
+         ]
+        }
+       ],
+       "out": 14.926
+      },
+      {
+       "shot": 3,
+       "kind": "text",
+       "at": 14.976,
+       "y": 0.3,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "It gives Claude real",
+         "size": "s",
+         "times": [
+          14.976,
+          15.101,
+          15.351,
+          15.749
+         ]
+        },
+        {
+         "text": "DESIGN JUDGMENT",
+         "size": "l",
+         "times": [
+          16.01,
+          16.397
+         ],
+         "caps": true
+        }
+       ]
+      },
+      {
+       "shot": 3,
+       "kind": "disc",
+       "media": "media/editorial/a-04.png",
+       "at": 16.863,
+       "x": 0.5,
+       "y": 0.55,
+       "size": 0.085
+      },
+      {
+       "shot": 3,
+       "kind": "text",
+       "at": 16.863,
+       "y": 0.68,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "so the result looks like a",
+         "size": "s",
+         "times": [
+          16.863,
+          17.045,
+          17.135,
+          17.579,
+          17.84,
+          17.999
+         ]
+        },
+        {
+         "text": "HUMAN DESIGNER",
+         "size": "l",
+         "times": [
+          18.033,
+          18.351
+         ],
+         "caps": true
+        },
+        {
+         "text": "touched it.",
+         "size": "s",
+         "times": [
+          18.829,
+          19.147
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 4,
+       "kind": "text",
+       "at": 19.735,
+       "y": 0.22,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Second",
+         "size": "s",
+         "times": [
+          19.735
+         ],
+         "weight": 500
+        },
+        {
+         "text": "EMIL KOWALSKI'S",
+         "size": "l",
+         "times": [
+          20.667,
+          21.065
+         ],
+         "caps": true
+        },
+        {
+         "text": "MOTION SKILL.",
+         "size": "l",
+         "times": [
+          21.633,
+          21.974
+         ],
+         "caps": true
+        }
+       ],
+       "label": true
+      },
+      {
+       "shot": 4,
+       "kind": "ui",
+       "ui": "profile",
+       "title": "Emil Kowalski",
+       "at": 20.335,
+       "x": 0.5,
+       "y": 0.55,
+       "w": 0.34,
+       "h": 0.24
+      },
+      {
+       "shot": 5,
+       "kind": "phone",
+       "media": "media/editorial/a-07.png",
+       "at": 22.628,
+       "x": 0.5,
+       "y": 0.4,
+       "w": 0.24,
+       "from": "top"
+      },
+      {
+       "shot": 5,
+       "kind": "text",
+       "at": 22.728,
+       "y": 0.72,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Static screens feel *flat,*",
+         "size": "s",
+         "times": [
+          22.728,
+          23.103,
+          23.546,
+          23.784
+         ],
+         "weight": 700
+        }
+       ]
+      },
+      {
+       "shot": 5,
+       "kind": "list",
+       "x": 0.3,
+       "y": 0.77,
+       "items": [
+        {
+         "text": "nothing moves",
+         "t": 24.728
+        },
+        {
+         "text": "nothing reacts",
+         "t": 25.637
+        }
+       ]
+      },
+      {
+       "shot": 6,
+       "kind": "text",
+       "at": 26.826,
+       "y": 0.14,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "One command, and Claude adds",
+         "size": "s",
+         "times": [
+          26.826,
+          27.076,
+          27.599,
+          27.781,
+          28.133
+         ]
+        },
+        {
+         "text": "REAL MOTION",
+         "size": "l",
+         "times": [
+          28.429,
+          28.645
+         ],
+         "caps": true
+        }
+       ]
+      },
+      {
+       "shot": 6,
+       "kind": "ui",
+       "ui": "site",
+       "dark": true,
+       "media": "media/editorial/a-06.png",
+       "at": 27.326,
+       "x": 0.5,
+       "y": 0.42,
+       "w": 0.46,
+       "h": 0.28
+      },
+      {
+       "shot": 6,
+       "kind": "list",
+       "x": 0.1,
+       "y": 0.64,
+       "items": [
+        {
+         "text": "deliberate easing",
+         "t": 29.679,
+         "glyph": "curve"
+        },
+        {
+         "text": "animations with a purpose",
+         "t": 30.815,
+         "glyph": "drop"
+        },
+        {
+         "text": "interfaces that feel alive",
+         "t": 32.065,
+         "glyph": "grid"
+        }
+       ]
+      },
+      {
+       "shot": 7,
+       "kind": "text",
+       "at": 33.86,
+       "y": 0.38,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Third",
+         "size": "s",
+         "times": [
+          33.86
+         ],
+         "weight": 500
+        },
+        {
+         "text": "IMPECCABLE",
+         "size": "l",
+         "times": [
+          34.372
+         ],
+         "caps": true
+        }
+       ],
+       "label": true
+      },
+      {
+       "shot": 7,
+       "kind": "capsules",
+       "at": 34.46,
+       "n": 3,
+       "x": 0.5
+      },
+      {
+       "shot": 8,
+       "kind": "text",
+       "at": 35.44,
+       "y": 0.14,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "A FULL COMMAND SET",
+         "size": "m",
+         "times": [
+          35.44,
+          35.508,
+          35.758,
+          35.974,
+          36.076
+         ],
+         "caps": true
+        },
+        {
+         "text": "covering",
+         "size": "s",
+         "times": [
+          36.531
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 8,
+       "kind": "list",
+       "x": 0.07,
+       "y": 0.34,
+       "size": 0.03,
+       "items": [
+        {
+         "text": "Typography",
+         "t": 36.679
+        },
+        {
+         "text": "Color",
+         "t": 37.883
+        },
+        {
+         "text": "Spacing",
+         "t": 38.61
+        },
+        {
+         "text": "Layout",
+         "t": 39.395
+        }
+       ]
+      },
+      {
+       "shot": 8,
+       "kind": "ui",
+       "ui": "dashboard",
+       "title": "$23,880.90",
+       "at": 36.879000000000005,
+       "x": 0.7,
+       "y": 0.45,
+       "w": 0.3,
+       "h": 0.36,
+       "rot": 4
+      },
+      {
+       "shot": 8,
+       "kind": "typebox",
+       "text": "a whole design system",
+       "at": 40.224,
+       "x": 0.5,
+       "y": 0.7,
+       "size": 0.03,
+       "cps": 26
+      },
+      {
+       "shot": 8,
+       "kind": "text",
+       "at": 41.395,
+       "y": 0.79,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "handed to Claude at *once.*",
+         "size": "s",
+         "times": [
+          41.395,
+          41.792,
+          41.895,
+          42.247,
+          42.36
+         ],
+         "weight": 700
+        }
+       ]
+      },
+      {
+       "shot": 9,
+       "kind": "text",
+       "at": 43.179,
+       "y": 0.24,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "run",
+         "size": "s",
+         "times": [
+          43.179
+         ],
+         "weight": 500
+        },
+        {
+         "text": "/polish",
+         "size": "xl",
+         "times": [
+          43.44,
+          43.792
+         ],
+         "pop": true
+        },
+        {
+         "text": "before you ship, and",
+         "size": "s",
+         "times": [
+          44.19,
+          44.485,
+          44.565,
+          45.406
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 9,
+       "kind": "prop",
+       "media": "media/editorial/a-12.png",
+       "at": 45.792,
+       "x": 0.78,
+       "y": 0.78,
+       "w": 0.3,
+       "rot": -8,
+       "from": "right"
+      },
+      {
+       "shot": 9,
+       "kind": "text",
+       "at": 45.485,
+       "y": 0.5,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Claude *sweeps*",
+         "size": "l",
+         "times": [
+          45.485,
+          45.792
+         ]
+        },
+        {
+         "text": "your entire UI",
+         "size": "s",
+         "times": [
+          46.19,
+          46.304,
+          46.701
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 9,
+       "kind": "text",
+       "at": 47.69,
+       "y": 0.66,
+       "x": 0.08,
+       "align": "left",
+       "lines": [
+        {
+         "text": "Tightening",
+         "size": "m",
+         "times": [
+          47.69
+         ]
+        },
+        {
+         "text": "every loose detail",
+         "size": "s",
+         "times": [
+          48.133,
+          48.372,
+          48.61
+         ]
+        }
+       ]
+      },
+      {
+       "shot": 10,
+       "kind": "text",
+       "at": 49.656,
+       "y": 0.36,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "Save this",
+         "size": "s",
+         "times": [
+          49.656,
+          49.974
+         ],
+         "weight": 500
+        },
+        {
+         "text": "FOR YOUR NEXT BUILD",
+         "size": "l",
+         "times": [
+          50.224,
+          50.36,
+          50.485,
+          50.781
+         ],
+         "caps": true
+        }
+       ],
+       "label": true
+      },
+      {
+       "shot": 10,
+       "kind": "prop",
+       "media": "media/editorial/a-01.png",
+       "at": 49.856,
+       "x": 0.5,
+       "y": 0.6,
+       "w": 0.24,
+       "rot": 0,
+       "from": "bottom"
+      },
+      {
+       "shot": 10,
+       "kind": "text",
+       "at": 51.52,
+       "y": 0.8,
+       "x": 0.5,
+       "align": "center",
+       "lines": [
+        {
+         "text": "and *follow* for more",
+         "size": "m",
+         "times": [
+          51.52,
+          51.622,
+          52.008,
+          52.156
+         ],
+         "weight": 700
+        }
+       ]
+      }
+     ],
+     "watermark": "motioneasy",
+     "accent": "#111111",
+     "sfx": [
+      [
+       0.0,
+       "viral.woosh",
+       0.35
+      ],
+      [
+       48.756,
+       "viral.ui-riser",
+       0.4
+      ]
+     ]
+    },
+    "duration": 53.82
+   }
+  }
+ ],
+ "music": {
+  "src": "media/editorial/clone-mix.mp3",
+  "gain": 1,
+  "offset": 0,
+  "fadeIn": 0,
+  "fadeOut": 0.6,
+  "credit": "Voice: Microsoft Edge neural TTS (Brian). Bed: \"Newer Wave\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+ },
+ "notes": "Craft rebuild of a reference editorial Short (examples/video-ref); original script wording, voice, music and images."
+}
