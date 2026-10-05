@@ -91,7 +91,7 @@ const RECORDED_FOR: Record<string, string[]> = {
   "ui.click": ["fs.ui.mouse-2-button-fast-click", "kenney.mouse", "kenney.click"],
   "ui.tick": ["kenney.tick", "kenney.select"],
   "ui.pop": ["viral.ui-animations", "fs.ui.pop-9", "fs.ui.pop-4", "fs.ui.bubble-pop"],
-  "foley.key": ["viral.typing", "fs.foley.typewriter", "fs.foley.typewriter-snippet-02"],
+  "foley.key": ["viral.key-1", "viral.key-2", "viral.key-3", "viral.key-4", "viral.key-5", "viral.key-6", "fs.foley.typewriter", "fs.foley.typewriter-snippet-02"],
   "foley.shutter": ["fs.foley.pentax-k1000-camera-shutter"],
   "fx.glitch": ["fs.fx.gritch-glitch-snippets-fx-pe", "fs.fx.dsgnrythm-glitch-stutter-one"],
 };

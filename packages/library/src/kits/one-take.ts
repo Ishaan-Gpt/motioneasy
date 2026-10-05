@@ -255,7 +255,12 @@ const oneTake = defineComponent<{ scene: unknown; duration: number; step: number
     const sc = p.scene as Scene;
     const cues: SoundCue[] = [];
     if (p.autoSfx) {
-      (sc.captions ?? []).forEach((cp, i) => cues.push({ at: cp.at, sound: "viral.typing", gain: 0.32, seed: i, role: "typing" }));
+      // one keystroke per word, at the moment that word appears
+      let k = 0;
+      (sc.captions ?? []).forEach((cp) => {
+        const words = `${cp.top ?? ""} ${cp.bottom ?? ""}`.split(/\s+/).filter(Boolean);
+        words.forEach((_, n) => cues.push({ at: cp.at + n * p.step, sound: `viral.key-${(k++ % 6) + 1}`, gain: 0.38, seed: k, role: "type" }));
+      });
       const keys = sc.camera ?? [];
       for (let i = 1; i < keys.length; i++) {
         const a = keys[i - 1], b = keys[i];
