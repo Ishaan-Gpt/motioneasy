@@ -85,6 +85,7 @@ const looks = join(ROOT, "sources/looks");
 for (const f of readdirSync(looks)) if (/\.(mp4|webp|json)$/.test(f)) copy(`sources/looks/${f}`, `looks/${f}`);
 for (const f of readdirSync(join(ROOT, "sources/brand"))) copy(`sources/brand/${f}`, `brand/${f}`);
 if (existsSync(join(ROOT, "sources/mevora"))) for (const f of readdirSync(join(ROOT, "sources/mevora"))) copy(`sources/mevora/${f}`, `mevora/${f}`);
+if (existsSync(join(ROOT, "sources/journey"))) for (const f of readdirSync(join(ROOT, "sources/journey"))) copy(`sources/journey/${f}`, `journey/${f}`);
 for (const f of readdirSync(join(ROOT, "assets/audio/music"))) if (/\.mp3$/.test(f)) copy(`assets/audio/music/${f}`, `music/${f}`);
 // full-quality library when fetched locally, else the committed 32 kbps web copies (CI / Vercel)
 const lib = existsSync(join(ROOT, "assets/audio/music/library")) ? "assets/audio/music/library" : "assets/audio/music/web";

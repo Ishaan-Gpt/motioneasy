@@ -16,10 +16,11 @@ import { tanstackAI } from "./tanstack-ai";
 import { notchBrowser } from "./notch-browser";
 import { motionReel } from "./motion-reel";
 import { productShowreel } from "./product-showreel";
+import { journeyReel } from "./journey-reel";
 
 export * from "./types";
 
-export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel, productShowreel];
+export const KITS: Kit[] = [spotifyFilm, keynoteOneTake, minimalLaunch, uiMorphLoop, makermap, spritesPromo, pokedexMorph, techhallaBumper, buildTheFloor, tanstackAI, notchBrowser, motionReel, productShowreel, journeyReel];
 
 export const KIT_COMPONENTS: Component[] = KITS.flatMap((k) => k.components);
 
