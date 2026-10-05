@@ -331,86 +331,88 @@ const oneTake = defineComponent<{ scene: unknown; duration: number; step: number
 // ── template: CaptionsEasy, one take ────────────────────────────────────────────────────────────────
 const M = (f: string) => `media/ceshot/${f}`;
 const LK = (f: string) => `media/looks/${f}.mp4`;
+const ST: [number, number][] = [[0, 0], [0.55, 0.55], [0, 1.1], [0.55, 1.65], [0, 2.2], [0.55, 2.8], [0, 3.4], [0.55, 3.95], [0.25, 4.6]];
+const at = (i: number, dx: number, dy: number) => ({ x: ST[i][0] + dx, y: ST[i][1] + dy });
+const person = (i: number, f: string, from: string, t: number, dx = 0, h = 0.64, extra: Partial<Layer> = {}): Layer => ({ kind: "image", media: M(`${f}.png`), ...at(i, dx, 0.5 - h / 2 + 0.08), h, w: h * 0.76, in: t, from, dist: 0.18, dur: 0.6, sfx: false, ...extra });
 const SCENE: Scene = {
-  glows: [[-0.2, -0.2, 0.55, PEACH, 0.7], [0.4, 0.4, 0.5, LILAC, 0.8], [0.0, 1.4, 0.6, LILAC, 0.7], [0.6, 2.4, 0.55, PEACH, 0.6], [0.9, 3.3, 0.6, LILAC, 0.75], [-0.1, 4.3, 0.6, PEACH, 0.6], [0.3, 5.4, 0.7, LILAC, 0.8]],
+  glows: [[-0.15, -0.2, 0.5, PEACH, 0.75], [0.7, 0.5, 0.45, LILAC, 0.8], [-0.1, 1.2, 0.5, PEACH, 0.6], [0.7, 1.7, 0.45, LILAC, 0.7], [-0.1, 2.2, 0.55, LILAC, 0.8], [0.7, 2.8, 0.5, PEACH, 0.6], [-0.1, 3.4, 0.5, LILAC, 0.7], [0.7, 3.95, 0.5, PEACH, 0.7], [0.25, 4.6, 0.6, LILAC, 0.85]],
   camera: [
-    [0, 0, -0.04, 1.14, 0], [3.0, 0, 0.02, 1.0, 0],
-    [3.5, 0.66, 0.36, 1.05, 2], [5.05, 0.68, 0.38, 1.0, 0],
-    [5.55, 0.3, 1.15, 1.28, -2], [6.85, 0.3, 1.16, 1.16, 0],
-    [7.25, -0.35, 1.72, 1.0, 0], [7.9, -0.35, 1.71, 1.04, 0],
-    [8.35, 0.25, 2.45, 1.0, -3], [11.05, 0.25, 2.5, 1.07, 0],
-    [11.6, 0.95, 3.22, 0.9, 0], [14.45, 0.95, 3.26, 0.97, 0],
-    [15.0, 0.3, 4.0, 1.1, 2], [17.25, 0.3, 4.02, 1.05, 0],
-    [17.75, -0.3, 4.6, 1.15, 0], [18.95, -0.3, 4.62, 1.2, 0],
-    [19.95, 0.28, 2.6, 0.2, 0], [20.55, 0.28, 2.65, 0.21, 0],
-    [21.5, 0.3, 5.45, 1.0, 0], [23.6, 0.3, 5.47, 1.05, 0],
+    [0, 0, 0, 1.12, 0], [3.05, 0, 0.01, 1.0, 0],
+    [3.45, 0.55, 0.55, 1.06, 2], [5.0, 0.55, 0.56, 1.0, 0],
+    [5.4, 0, 1.1, 1.1, -2], [6.75, 0, 1.11, 1.04, 0],
+    [7.1, 0.55, 1.65, 1.0, 0], [7.85, 0.55, 1.66, 1.05, 0],
+    [8.25, 0, 2.2, 1.0, -2], [11.05, 0, 2.23, 1.08, 0],
+    [11.45, 0.55, 2.8, 0.95, 0], [14.4, 0.55, 2.82, 1.0, 0],
+    [14.8, 0, 3.4, 1.06, 2], [17.2, 0, 3.41, 1.02, 0],
+    [17.6, 0.55, 3.95, 1.1, 0], [18.95, 0.55, 3.96, 1.16, 0],
+    [19.75, 0.27, 2.3, 0.21, 0], [20.45, 0.27, 2.33, 0.22, 0],
+    [21.25, 0.25, 4.6, 1.0, 0], [23.6, 0.25, 4.61, 1.06, 0],
   ],
   layers: [
-    { kind: "path", x: 0, y: 0, pts: [[0, 0.2], [0.66, 0.4], [0.3, 1.15], [-0.35, 1.72], [0.25, 2.45], [0.95, 3.22], [0.3, 4.0], [-0.3, 4.6], [0.3, 5.45]], fill: [0.2, 22], z: 0.95, sfx: false },
-    ...([[0.35, 0.75, "orb", 0.035], [0.05, 0.85, "chip", "00:01.2"], [-0.05, 1.45, "orb", 0.03], [0.0, 2.05, "chip", "whisper"], [0.6, 2.85, "orb", 0.04], [0.7, 3.65, "chip", "look 07"], [0.0, 4.35, "orb", 0.03], [0.05, 5.0, "chip", "export"], [0.7, 1.5, "orb", 0.025], [-0.45, 2.6, "orb", 0.03]] as [number, number, string, number | string][]).map(([x, y, k, v], i) => (k === "orb" ? { kind: "orb", x, y, r: v as number, z: 1.35, in: 0, from: "none", sfx: false } : { kind: "chip", text: v as string, x, y, z: 1.3, size: 0.02, color: LILAC, in: 0, from: "none", sfx: false }) as Layer),
-    // 1 · hours of timing
-    { kind: "image", media: M("me.png"), x: -0.04, y: 0.3, w: 0.62, in: 0.0, from: "up", dist: 0.12, sfx: false },
-    { kind: "icon", glyph: "clock", x: 0.18, y: -0.1, r: 0.05, in: 0.75, from: "pop" },
-    { kind: "card", x: 0, y: 0.38, w: 0.5, h: 0.13, in: 1.25, from: "down", dist: 0.1, z: 1.04 },
-    { kind: "track", x: 0, y: 0.41, w: 0.44, in: 1.3, from: "blur", fill: [1.4, 3.2], z: 1.04 },
-    { kind: "chip", text: "word", z: 1.04, x: -0.14, y: 0.36, in: 2.52, from: "down", dist: 0.08, sfx: "viral.ui-animations" },
-    { kind: "chip", text: "by", z: 1.04, x: 0, y: 0.36, in: 2.7, from: "down", dist: 0.08, sfx: false },
-    { kind: "chip", text: "word.", z: 1.04, x: 0.14, y: 0.36, in: 2.86, from: "down", dist: 0.08, sfx: false },
-    // 2 · every reel, every short
-    { kind: "phone", media: LK("bold_pill"), x: 0.54, y: 0.42, w: 0.2, rot: -6, in: 3.35, from: "right", dist: 0.4, z: 1.05 },
-    { kind: "phone", media: LK("karaoke_fill"), x: 0.8, y: 0.45, w: 0.2, rot: 6, in: 4.3, from: "right", dist: 0.4, z: 1.1 },
-    { kind: "chip", text: "Reel", x: 0.54, y: 0.66, in: 3.75, from: "pop", color: LILAC },
-    { kind: "chip", text: "Short", x: 0.8, y: 0.69, in: 4.7, from: "pop", color: LILAC },
-    // 3 · then I found CaptionsEasy
-    { kind: "orb", x: 0.3, y: 1.1, r: 0.17, in: 5.3, from: "pop", z: 0.98 },
-    { kind: "image", media: "media/brand/captionseasy-logo.svg", x: 0.3, y: 1.1, w: 0.36, in: 5.85, from: "scale", sfx: false, z: 1.02 },
-    // 4 · drop in a clip
-    { kind: "card", x: -0.35, y: 1.76, w: 0.42, h: 0.24, glyph: "dashed", text: "Drop your clip here", in: 6.8, from: "blur" },
-    { kind: "chip", text: "clip.mp4", x: -0.35, y: 1.74, in: 7.1, from: "up", dist: 0.3, color: LILAC, sfx: "viral.finger-snap" },
-    { kind: "bar", x: -0.35, y: 1.83, w: 0.3, h: 0.014, in: 7.3, from: "blur", fill: [7.35, 8.0] },
-    // 5 · whisper, local, no cloud
-    { kind: "icon", glyph: "mic", x: 0.1, y: 2.43, r: 0.065, in: 8.05, from: "pop" },
-    { kind: "wave", x: 0.33, y: 2.43, w: 0.24, h: 0.07, in: 8.25, from: "left", dist: 0.1 },
-    { kind: "pill", text: "Whisper · on your machine", glyph: "check", x: 0.25, y: 2.58, in: 9.4, from: "pop", size: 0.024 },
-    { kind: "icon", glyph: "cloud-x", x: 0.42, y: 2.72, r: 0.05, in: 10.45, from: "pop", sfx: "viral.finger-snap" },
-    // 6 · 33 looks, every word on time
-    ...["minimal_pro", "beast_bounce", "neon_sign", "luxe_serif", "highlighter_card", "gradient_pop", "comic_burst", "hormozi_box", "glow_stack_classic"].map((f, i) => ({ kind: "image", media: LK(f), x: 0.95 + ((i % 3) - 1) * 0.15, y: 3.18 + (Math.floor(i / 3) - 1) * 0.2, w: 0.135, h: 0.18, r: 0.015, in: 11.55 + i * 0.07, from: "pop", sfx: i % 3 === 0 ? "viral.ui-animations" : (false as const) } as Layer)),
-    { kind: "track", x: 0.95, y: 3.5, w: 0.44, in: 12.9, from: "blur", fill: [13.0, 14.3] },
-    ...["every", "word", "lands", "on", "time."].map((w, i) => ({ kind: "chip", text: w, x: 0.95 - 0.18 + i * 0.09, y: 3.45, size: 0.02, in: [13.0, 13.22, 13.48, 13.8, 13.95][i] + 0.25, from: "down", dist: 0.05, color: i === 4 ? LILAC : INK, sfx: false } as Layer)),
-    // 7 · export in the browser
-    { kind: "card", x: 0.3, y: 4.0, w: 0.44, h: 0.22, text: "captionseasy.com/app", size: 0.018, in: 14.7, from: "blur" },
-    { kind: "button", text: "Export MP4", glyph: "download", x: 0.3, y: 3.98, press: 15.4, in: 14.85, from: "pop" },
-    { kind: "bar", x: 0.3, y: 4.06, w: 0.34, h: 0.014, in: 15.45, from: "blur", fill: [15.5, 16.6] },
-    { kind: "icon", glyph: "check", x: 0.48, y: 3.92, r: 0.035, in: 16.65, from: "pop", color: "#2E9E6A" },
-    // 8 · free and open source
-    { kind: "text", text: "$0", font: "serif", x: -0.36, y: 4.56, size: 0.16, in: 17.45, from: "scale", color: GOLD, sfx: "viral.finger-snap" },
-    { kind: "pill", text: "Open source", glyph: "code", x: -0.2, y: 4.68, in: 18.2, from: "pop" },
-    // 9 · end lockup
-    { kind: "orb", x: 0.3, y: 5.35, r: 0.12, in: 21.2, from: "pop" },
-    { kind: "image", media: M("me.png"), x: 0.3, y: 5.34, w: 0.22, circle: true, in: 21.3, from: "scale", sfx: false },
-    { kind: "image", media: "media/brand/captionseasy-logo.svg", x: 0.3, y: 5.62, w: 0.3, in: 21.7, from: "blur", sfx: false },
-    { kind: "pill", text: "captionseasy.com", x: 0.3, y: 5.74, in: 22.1, from: "pop", size: 0.022 },
+    { kind: "path", x: 0, y: 0, pts: ST.map(([x, y]) => [x, y + 0.05]), fill: [0.3, 21], z: 0.9, sfx: false },
+    // 1 · hours timing captions (tired at the laptop, the stopwatch ticking above)
+    person(0, "tired", "up", 0.0, -0.02),
+    { kind: "image", media: M("stopwatch.png"), ...at(0, 0.17, -0.12), w: 0.2, z: 1.18, rot: 8, in: 0.7, from: "pop", sfx: "viral.ui-animations" },
+    { kind: "card", ...at(0, 0.04, 0.17), w: 0.42, h: 0.11, z: 1.06, in: 1.3, from: "right", dist: 0.3, sfx: "viral.woosh" },
+    { kind: "track", ...at(0, 0.04, 0.2), w: 0.36, z: 1.06, in: 1.35, from: "blur", fill: [1.4, 3.1], sfx: false },
+    ...["word", "by", "word."].map((w, i) => ({ kind: "chip", text: w, ...at(0, -0.08 + i * 0.12, 0.15), z: 1.06, in: [2.53, 2.72, 2.85][i], from: "down", dist: 0.06, sfx: false } as Layer)),
+    // 2 · every reel, every short (overwhelmed, phones flying in around him)
+    person(1, "overwhelmed", "down", 3.3),
+    { kind: "phone", media: LK("bold_pill"), ...at(1, -0.17, -0.02), w: 0.13, rot: -12, z: 1.12, in: 3.55, from: "left", dist: 0.35 },
+    { kind: "phone", media: LK("karaoke_fill"), ...at(1, 0.18, 0.02), w: 0.13, rot: 10, z: 1.15, in: 4.5, from: "right", dist: 0.35 },
+    // 3 · then I found CaptionsEasy (holding the phone up, the logo pops beside it)
+    person(2, "show-phone", "right", 5.25, 0.04),
+    { kind: "orb", ...at(2, -0.12, -0.17), r: 0.085, z: 1.05, in: 5.75, from: "pop", sfx: false },
+    { kind: "image", media: "media/brand/captionseasy-logo.svg", ...at(2, -0.05, -0.2), w: 0.3, z: 1.1, in: 5.9, from: "scale", sfx: false },
+    // 4 · drop in a clip (pointing at the drop zone)
+    person(3, "point", "left", 6.95, 0.06),
+    { kind: "card", ...at(3, -0.1, -0.16), w: 0.3, h: 0.17, glyph: "dashed", text: "Drop your clip", size: 0.02, z: 1.08, in: 7.0, from: "up", dist: 0.2, sfx: "viral.woosh" },
+    { kind: "chip", text: "clip.mp4", ...at(3, -0.1, -0.16), color: LILAC, z: 1.1, in: 7.2, from: "up", dist: 0.25, sfx: "viral.finger-snap" },
+    { kind: "bar", ...at(3, -0.1, -0.1), w: 0.22, h: 0.012, z: 1.08, in: 7.3, from: "blur", fill: [7.35, 7.95], sfx: false },
+    // 5 · Whisper on your machine, no cloud (the mic, a waveform, the locked cloud)
+    { kind: "image", media: M("mic.png"), ...at(4, -0.12, 0.08), h: 0.42, w: 0.26, z: 1.05, in: 8.1, from: "down", dist: 0.25, sfx: "viral.woosh" },
+    { kind: "wave", ...at(4, 0.12, 0.02), w: 0.22, h: 0.08, z: 1.08, in: 8.4, from: "left", dist: 0.12, sfx: false },
+    { kind: "pill", text: "Whisper · on your machine", glyph: "check", ...at(4, 0.08, 0.2), size: 0.022, z: 1.12, in: 9.45, from: "pop" },
+    { kind: "image", media: M("cloud-lock.png"), ...at(4, 0.14, -0.13), w: 0.2, z: 1.15, in: 10.45, from: "pop", sfx: "viral.finger-snap" },
+    // 6 · 33 looks, every word on time (looks grid, him with arms crossed)
+    ...["minimal_pro", "beast_bounce", "neon_sign", "luxe_serif", "highlighter_card", "gradient_pop"].map((f, i) => ({ kind: "image", media: LK(f), ...at(5, -0.17 + (i % 3) * 0.13, -0.12 + Math.floor(i / 3) * 0.19), w: 0.12, h: 0.17, r: 0.012, z: 1.02 + (i % 2) * 0.04, in: 11.5 + i * 0.07, from: "pop", sfx: i % 2 === 0 ? "viral.ui-animations" : (false as const) } as Layer)),
+    person(5, "arms-crossed", "right", 12.8, 0.17, 0.46, { z: 1.12 }),
+    ...["every", "word", "lands", "on", "time."].map((w, i) => ({ kind: "chip", text: w, ...at(5, -0.2 + i * 0.085, 0.2), size: 0.019, z: 1.16, in: [13.25, 13.47, 13.73, 14.06, 14.2][i], from: "down", dist: 0.05, color: i === 4 ? LILAC : INK, sfx: false } as Layer)),
+    // 7 · export the MP4 in the browser (button, progress, a paper plane takes off)
+    { kind: "card", ...at(6, 0, -0.04), w: 0.44, h: 0.2, text: "captionseasy.com/app", size: 0.017, z: 1.04, in: 14.75, from: "up", dist: 0.2, sfx: false },
+    { kind: "button", text: "Export MP4", glyph: "download", ...at(6, 0, -0.06), press: 15.45, z: 1.06, in: 14.95, from: "pop" },
+    { kind: "bar", ...at(6, 0, 0.02), w: 0.34, h: 0.013, z: 1.06, in: 15.5, from: "blur", fill: [15.55, 16.6], sfx: false },
+    { kind: "image", media: M("paper-plane.png"), ...at(6, 0.12, 0.2), w: 0.22, z: 1.2, in: 16.6, out: 17.3, from: "left", dist: 0.3, sfx: "viral.woosh" },
+    // 8 · free and open source (fist pump, $0)
+    person(7, "fist-pump", "down", 17.45, 0.05),
+    { kind: "text", text: "$0", font: "serif", ...at(7, -0.1, -0.15), size: 0.15, color: GOLD, z: 1.1, in: 17.5, from: "scale", sfx: "viral.finger-snap" },
+    { kind: "pill", text: "Open source", glyph: "code", ...at(7, -0.08, -0.04), z: 1.12, in: 18.2, from: "pop" },
+    // 9 · start posting (walking toward camera, logo, url, the plane flies past)
+    { kind: "image", media: M("walk.png"), ...at(8, 0.0, 0.18), h: 0.66, w: 0.36, in: 21.1, from: "scale", sfx: false },
+    { kind: "image", media: "media/brand/captionseasy-logo.svg", ...at(8, 0, -0.205), w: 0.28, z: 1.06, in: 21.6, from: "blur", sfx: false },
+    { kind: "pill", text: "captionseasy.com", ...at(8, 0, 0.33), size: 0.022, z: 1.1, in: 22.1, from: "pop" },
+    { kind: "image", media: M("paper-plane.png"), ...at(8, 0.17, -0.1), w: 0.14, z: 1.25, rot: -10, in: 21.9, from: "left", dist: 0.4, sfx: "viral.woosh" },
   ],
   captions: [
-    { at: 0.34, top: "I used to spend", bottom: "hours", x: 0, y: -0.34 },
-    { at: 1.37, top: "timing", bottom: "captions,", x: 0, y: -0.34 },
-    { at: 2.53, top: "word by", bottom: "word.", x: 0, y: -0.34, until: 3.25 },
-    { at: 3.55, top: "Every", bottom: "reel.", x: 0.54, y: 0.12 },
-    { at: 4.52, top: "Every", bottom: "short.", x: 0.8, y: 0.12, until: 5.25 },
-    { at: 5.48, top: "Then I found", bottom: "CaptionsEasy.", x: 0.3, y: 1.36, until: 6.85 },
-    { at: 7.07, top: "Drop in", bottom: "a clip.", x: -0.35, y: 1.52, until: 7.95 },
-    { at: 8.13, top: "Whisper", bottom: "transcribes it,", x: 0.25, y: 2.24 },
-    { at: 9.42, top: "right on", bottom: "your machine.", x: 0.25, y: 2.24 },
-    { at: 10.52, top: "No", bottom: "cloud.", x: 0.25, y: 2.24, until: 11.2 },
-    { at: 11.45, top: "Pick one of", bottom: "33 looks,", x: 0.95, y: 2.84 },
-    { at: 13.02, top: "and every word", bottom: "lands on time.", x: 0.95, y: 2.84, until: 14.6 },
-    { at: 14.9, top: "Export the", bottom: "MP4,", x: 0.3, y: 3.76 },
-    { at: 16.48, top: "right in the", bottom: "browser.", x: 0.3, y: 3.76, until: 17.4 },
-    { at: 17.62, top: "Free, and", bottom: "open source.", x: -0.3, y: 4.36, until: 19.0 },
+    { at: 0.34, top: "I used to spend", bottom: "hours", ...at(0, 0, -0.35) },
+    { at: 1.37, top: "timing", bottom: "captions,", ...at(0, 0, -0.35) },
+    { at: 2.53, top: "word by", bottom: "word.", ...at(0, 0, -0.35), until: 3.2 },
+    { at: 3.55, top: "Every", bottom: "reel.", ...at(1, 0, -0.36) },
+    { at: 4.52, top: "Every", bottom: "short.", ...at(1, 0, -0.36), until: 5.2 },
+    { at: 5.48, top: "Then I found", bottom: "CaptionsEasy.", ...at(2, 0, -0.43), until: 6.8 },
+    { at: 7.07, top: "Drop in", bottom: "a clip.", ...at(3, 0, -0.38), until: 7.95 },
+    { at: 8.13, top: "Whisper", bottom: "transcribes it,", ...at(4, 0, -0.36) },
+    { at: 9.42, top: "right on", bottom: "your machine.", ...at(4, 0, -0.36) },
+    { at: 10.52, top: "No", bottom: "cloud.", ...at(4, 0, -0.36), until: 11.2 },
+    { at: 11.45, top: "Pick one of", bottom: "33 looks,", ...at(5, 0, -0.36) },
+    { at: 13.02, top: "and every word", bottom: "lands on time.", ...at(5, 0, -0.36), until: 14.55 },
+    { at: 14.9, top: "Export the", bottom: "MP4,", ...at(6, 0, -0.33) },
+    { at: 16.48, top: "right in the", bottom: "browser.", ...at(6, 0, -0.33), until: 17.4 },
+    { at: 17.62, top: "Free, and", bottom: "open source.", ...at(7, 0, -0.31), until: 19.0 },
     { at: 19.29, top: "Stop timing", bottom: "captions.", x: 0.5, y: 0.47, screen: true, size: 1.2, until: 20.75 },
-    { at: 20.83, top: "Start", bottom: "posting.", x: 0.3, y: 5.06, size: 1.15 },
+    { at: 20.83, top: "Start", bottom: "posting.", ...at(8, 0, -0.42), size: 1.15 },
   ],
-  sfx: [[4.95, "viral.riser", 0.45], [5.85, "viral.finger-snap", 0.6], [19.05, "viral.ui-riser", 0.5], [21.45, "viral.woosh", 0.6]],
+  sfx: [[4.95, "viral.riser", 0.45], [5.88, "viral.finger-snap", 0.6], [19.05, "viral.ui-riser", 0.5]],
 };
 
 const template: PostSpec = {
