@@ -10,6 +10,7 @@ import { PlayerCanvas } from "@/components/player/player-canvas";
 import { TLink } from "@/components/site/motion";
 import { CodeBlock } from "@/components/studio/code";
 import { siteUrl } from "@/lib/engine";
+import { IcDial, IcFrames, IcPlay, IcPrompt } from "./glyphs";
 
 // ── 1. The problem, told on scroll ─────────────────────────────────────────
 export function Story() {
@@ -36,8 +37,6 @@ export function Story() {
   return (
     <section ref={root} className="relative bg-ink text-cream">
       <div data-pin className="relative flex h-screen flex-col justify-center overflow-hidden px-4 md:px-8">
-        <div className="pointer-events-none absolute left-1/2 top-1/2 h-[70vmin] w-[70vmin] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-30 blur-3xl" style={{ background: "radial-gradient(circle, rgba(255,241,214,.5), transparent 60%)" }} />
-        <div className="eyebrow absolute left-4 top-24 !text-cream/50 md:left-8">Why MotionEasy</div>
         <div className="relative mx-auto grid w-full max-w-[1200px]">
           {lines.map(([a, b], i) => (
             <h2 key={i} data-line className="headline col-start-1 row-start-1 text-center text-[clamp(40px,7.5vw,112px)]" style={{ opacity: i === 0 ? 1 : 0 }}>
@@ -45,8 +44,15 @@ export function Story() {
             </h2>
           ))}
         </div>
-        <div className="absolute inset-x-4 bottom-10 h-px bg-cream/15 md:inset-x-8">
-          <div data-progress className="h-px origin-left bg-cream" />
+        <div aria-hidden className="absolute inset-x-4 bottom-10 md:inset-x-8">
+          <div className="relative h-3">
+            {Array.from({ length: 41 }, (_, i) => (
+              <span key={i} className="absolute bottom-0 w-px bg-cream" style={{ left: `${(i / 40) * 100}%`, height: i % 10 ? 4 : 10, opacity: i % 10 ? 0.15 : 0.35 }} />
+            ))}
+          </div>
+          <div className="h-px bg-cream/15">
+            <div data-progress className="h-[1.5px] origin-left bg-tally" />
+          </div>
         </div>
       </div>
     </section>
@@ -67,7 +73,6 @@ export function Hierarchy() {
     <section className="mx-auto max-w-[1440px] px-4 py-28 md:px-8 md:py-36">
       <div className="mb-14 grid gap-6 md:grid-cols-[1fr_1fr] md:items-end">
         <div data-reveal>
-          <div className="eyebrow mb-4">Organized like a library</div>
           <h2 className="headline text-[clamp(40px,5.5vw,80px)]">
             Four shelves. <em>Everything</em> has a place.
           </h2>
@@ -79,9 +84,9 @@ export function Hierarchy() {
       <div className="grid gap-px overflow-hidden rounded-[28px] border border-[var(--line)] bg-[var(--line)] md:grid-cols-4">
         {levels.map((l) => (
           <div key={l.n} data-reveal className="group relative flex min-h-[380px] flex-col bg-cream p-7 transition-colors duration-500 hover:bg-ink hover:text-cream">
-            <div className="flex items-center justify-between">
-              <span className="font-mono text-xs opacity-50">{l.n}</span>
-              <span className="text-[11px] font-semibold opacity-60">{l.count}</span>
+            <div className="flex items-start justify-between gap-4">
+              <span className="font-serif text-[30px] italic leading-none opacity-60">{l.n}</span>
+              <span className="max-w-[60%] pt-1 text-right text-[11px] font-semibold leading-snug opacity-60">{l.count}</span>
             </div>
             <h3 className="mt-14 text-[40px] font-bold tracking-[-0.05em]">{l.name}</h3>
             <p className="mt-3 text-[14px] leading-relaxed opacity-70">{l.body}</p>
@@ -110,7 +115,6 @@ export function Demo() {
     <section className="border-y border-[var(--line)] bg-sand-2/60">
       <div className="mx-auto grid max-w-[1440px] gap-12 px-4 py-28 md:px-8 lg:grid-cols-[1fr_1fr] lg:items-center">
         <div>
-          <div data-reveal className="eyebrow mb-4">Every component, every way</div>
           <h2 data-reveal className="headline text-[clamp(40px,5vw,72px)]">
             Change it here. <em>Export it here.</em>
           </h2>
@@ -168,22 +172,23 @@ export function Demo() {
 // ── 4. Deterministic by design ─────────────────────────────────────────────
 export function Deterministic() {
   const cards = [
-    { k: "Same spec, same frames", v: "Every component is a pure function of time and props. No randomness that isn't seeded, no timers, no network at render time." },
-    { k: "Any model, same result", v: "A prompt carries the exact spec, the allowed values and the render command. A small model copies it as well as a big one; nothing is left to taste." },
-    { k: "Zero tokens to tweak", v: "New words, colours or media are prop edits in the browser or in JSON. The model is only needed when the library truly lacks a piece." },
+    { I: IcFrames, k: "Same spec, same frames", v: "Every component is a pure function of time and props. No randomness that isn't seeded, no timers, no network at render time." },
+    { I: IcPrompt, k: "Any model, same result", v: "A prompt carries the exact spec, the allowed values and the render command. A small model copies it as well as a big one; nothing is left to taste." },
+    { I: IcDial, k: "Zero tokens to tweak", v: "New words, colours or media are prop edits in the browser or in JSON. The model is only needed when the library truly lacks a piece." },
   ];
   return (
     <section className="mx-auto max-w-[1440px] px-4 py-28 md:px-8 md:py-36">
       <div data-reveal className="mx-auto max-w-4xl text-center">
-        <div className="eyebrow mb-4">Deterministic by design</div>
         <h2 className="headline text-[clamp(40px,6vw,92px)]">
           The prompt carries the code. <em>The model only copies.</em>
         </h2>
       </div>
       <div className="mt-16 grid gap-4 md:grid-cols-3">
-        {cards.map((c, i) => (
-          <div key={c.k} data-reveal className="card p-7">
-            <div className="font-mono text-xs text-mute">0{i + 1}</div>
+        {cards.map((c) => (
+          <div key={c.k} data-reveal className="card group p-7">
+            <span className="grid h-12 w-12 place-items-center rounded-[14px] border border-[var(--line)] bg-sand-2 transition-transform duration-500 ease-[var(--ease-out-expo)] group-hover:-rotate-8 group-hover:scale-105">
+              <c.I width={24} height={24} />
+            </span>
             <h3 className="mt-10 text-[24px] font-bold tracking-[-0.035em]">{c.k}</h3>
             <p className="mt-3 text-[14.5px] leading-relaxed text-mute">{c.v}</p>
           </div>
@@ -215,7 +220,6 @@ export function SoundSection() {
     <section className="bg-ink text-cream">
       <div className="mx-auto grid max-w-[1440px] gap-14 px-4 py-28 md:px-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
         <div>
-          <div data-reveal className="eyebrow mb-4 !text-cream/50">Sound</div>
           <h2 data-reveal className="headline text-[clamp(40px,5vw,76px)]">
             Sound is half <em>the picture.</em>
           </h2>
@@ -239,8 +243,8 @@ export function SoundSection() {
                 }}
                 className={`group flex items-center gap-3 rounded-2xl border px-4 py-4 text-left transition-colors duration-300 ${playing === id ? "border-cream bg-cream text-ink" : "border-cream/15 hover:border-cream/50"}`}
               >
-                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full ${playing === id ? "bg-ink text-cream" : "bg-cream/10"}`}>
-                  <svg width="11" height="11" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor" /></svg>
+                <span className={`grid h-9 w-9 shrink-0 place-items-center rounded-full transition-colors ${playing === id ? "bg-tally text-cream" : "bg-cream/10 group-hover:bg-cream/20"}`}>
+                  <IcPlay width={15} height={15} />
                 </span>
                 <span>
                   <span className="block text-[14px] font-bold tracking-[-0.01em]">{s.name}</span>
@@ -262,7 +266,6 @@ export function Featured() {
     <section className="mx-auto max-w-[1440px] px-4 py-28 md:px-8">
       <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
         <div data-reveal>
-          <div className="eyebrow mb-4">From the library</div>
           <h2 className="headline text-[clamp(40px,5vw,72px)]">
             Hover to play. <em>Click to make it yours.</em>
           </h2>
@@ -300,7 +303,12 @@ export function FinalCta() {
   return (
     <section ref={root} className="mx-auto max-w-[1440px] px-4 pb-32 pt-10 md:px-8">
       <div data-big className="relative overflow-hidden rounded-[36px] bg-ink px-6 py-24 text-center text-cream md:py-32">
-        <div className="pointer-events-none absolute -bottom-40 left-1/2 h-[520px] w-[900px] -translate-x-1/2 rounded-full opacity-40 blur-3xl" style={{ background: "radial-gradient(circle, rgba(255,241,214,.55), transparent 62%)" }} />
+        <div aria-hidden className="pointer-events-none absolute inset-x-8 bottom-8 h-3 md:inset-x-14">
+          {Array.from({ length: 61 }, (_, i) => (
+            <span key={i} className="absolute bottom-0 w-px bg-cream" style={{ left: `${(i / 60) * 100}%`, height: i % 10 ? 4 : 10, opacity: i % 10 ? 0.12 : 0.3 }} />
+          ))}
+          <span className="absolute -bottom-0.5 left-[62%] h-4 w-[1.5px] bg-tally" />
+        </div>
         <h2 className="headline relative text-[clamp(44px,7vw,112px)]">
           Make the next one <em>in minutes.</em>
         </h2>

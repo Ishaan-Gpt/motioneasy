@@ -17,6 +17,8 @@
   --color-sand-3: #D2D2BF;
   --color-mute: #6E6E67;
   --color-faint: #A9A99C;
+  --color-tally: #E2552D;
+  --color-tally-ink: #B03F1E;
   --font-sans: "ME Jakarta", system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-serif: "ME Instrument", Georgia, serif;
   --font-mono: "ME Mono", ui-monospace, Consolas, monospace;
@@ -96,7 +98,7 @@ em, .accent { font-family: var(--font-serif); font-style: italic; font-weight: 4
   width: 100%; background: var(--color-cream); border: 1px solid var(--line-strong); border-radius: 10px;
   padding: 9px 12px; font-size: 14px; color: var(--color-ink); outline: none; transition: border-color 0.2s, box-shadow 0.2s;
 }
-.field:focus { border-color: var(--color-ink); box-shadow: 0 0 0 3px rgba(26, 26, 26, 0.08); }
+.field:focus { border-color: var(--color-ink); box-shadow: 0 0 0 3px rgba(226, 85, 45, 0.22); }
 textarea.field { resize: vertical; min-height: 64px; line-height: 1.45; }
 .label { font-size: 12px; font-weight: 600; letter-spacing: -0.005em; color: var(--color-ink); }
 .help { font-size: 11.5px; color: var(--color-mute); line-height: 1.4; }
