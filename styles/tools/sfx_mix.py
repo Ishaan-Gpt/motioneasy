@@ -56,13 +56,14 @@ def main():
     # min-gap: short hits closer than min_gap keep only the higher-priority one
     prio = {k: i for i, k in enumerate(R["priority"])}
     sustained = {k for k, s in M["sounds"].items() if s["align"] == "end" or k in ("ui-riser", "fast-typing")}
-    kept, taken = [], []
-    for ev in sorted(flat, key=lambda e: (prio.get(e["event"], 99), e["t"])):  # important events claim time first
+    # min-gap only stops the same event type from doubling up; a typing note under a whoosh is fine
+    # (owner rule: every word gets its typing note, never dropped)
+    kept, taken = [], {}
+    for ev in sorted(flat, key=lambda e: (prio.get(e["event"], 99), e["t"])):
         snd = ev.get("sound") or E[ev["event"]]["sounds"][0]
-        if snd in sustained:
-            kept.append(ev)
-        elif all(abs(ev["t"] - t) >= R["min_gap"] for t in taken):
-            kept.append(ev); taken.append(ev["t"])
+        same = taken.setdefault(ev["event"], [])
+        if snd in sustained or all(abs(ev["t"] - t) >= R["min_gap"] for t in same):
+            kept.append(ev); same.append(ev["t"])
     kept.sort(key=lambda e: e["t"])
 
     end = max(e["t"] for e in kept) + 4

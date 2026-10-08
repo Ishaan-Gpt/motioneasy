@@ -11,7 +11,10 @@ type Line = {
   tracking?: number; topRef?: "cap" | "asc"; bullet?: { x: number; size: number; f: number }; k?: number;
 };
 type Img = {
-  kind: "image"; src: string; cx: number; cy: number; w: number; h: number; rot?: number; spin?: number;
+  kind: "image"; src?: string; cx: number; cy: number; w: number; h: number; rot?: number; spin?: number;
+  // drawn in code instead of a file: our own asterisk, a logo badge, or a phone frame around a screen image
+  draw?: "asterisk" | "badge" | "phone"; color?: string; rays?: [number, number, number][]; core?: number;
+  logo?: string; logoScale?: number; screen?: string;
   shadow?: [number, number, number, number]; float?: [number, number, number][] | [number, number, number]; pivot?: [number, number]; f?: number; pop?: boolean; radius?: number; card?: boolean;
 };
 type Grid = { kind: "grid"; x0: number; y0: number; x1: number; y1: number; col: number; row: number; fade?: number; color?: string; dot?: number };
@@ -85,13 +88,15 @@ function drawLine(c: RC, L: Line, f: number) {
 }
 
 function sparkle(c: RC, x: number, y: number, r: number, color: string) {
+  // solid four-point star with concave sides (ref bullets), drawn as a smooth curve between the four tips
   if (r <= 0.5) return;
-  const pts: [number, number][] = [];
-  for (let i = 0; i < 16; i++) {
-    const a = (i * Math.PI) / 8 - Math.PI / 2, k = i % 4 === 0 ? 1 : i % 2 ? 0.14 : 0.3;
-    pts.push([x + Math.cos(a) * r * k, y + Math.sin(a) * r * k]);
+  const k = 0.16, ctx = c.ctx, tips: [number, number][] = [[0, -r], [r, 0], [0, r], [-r, 0]];
+  ctx.beginPath(); ctx.moveTo(x + tips[0][0], y + tips[0][1]);
+  for (let i = 0; i < 4; i++) {
+    const [ax, ay] = tips[(i + 1) % 4];
+    ctx.quadraticCurveTo(x + (tips[i][0] + ax) * k, y + (tips[i][1] + ay) * k, x + ax, y + ay);
   }
-  c.poly(pts, color);
+  ctx.closePath(); ctx.fillStyle = color; ctx.fill();
 }
 
 function drawImage(c: RC, I: Img, f: number, fps: number) {
@@ -111,9 +116,37 @@ function drawImage(c: RC, I: Img, f: number, fps: number) {
     }
     c.save();
     if (I.shadow) c.shadow(`rgba(0,0,0,${I.shadow[3]})`, I.shadow[2], I.shadow[0], I.shadow[1]);
-    c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: "contain" });
+    if (I.draw) drawn(c, I);
+    else if (I.src) c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: "contain" });
     c.restore();
   });
+}
+
+// Drawn assets (ours, no file): rays = [angle°, length px, mid width px] measured or designed; badge = filled circle
+// with a logo; phone = rounded frame, side buttons and a screen image.
+function drawn(c: RC, I: Img) {
+  if (I.draw === "asterisk") {
+    const col = I.color ?? "#C27363", core = I.core ?? I.w * 0.145;
+    c.circle(0, 0, core, col);
+    for (const [deg, len, wid] of I.rays ?? []) {
+      const a = (deg * Math.PI) / 180, ux = Math.cos(a), uy = Math.sin(a), nx = -uy, ny = ux;
+      const w0 = wid * 0.62, w1 = wid * 0.56, tip = len, cut = wid * 0.18; // gentle taper, blunt slanted tip
+      c.poly([[nx * w0, ny * w0], [ux * tip + nx * w1, uy * tip + ny * w1], [ux * (tip - cut) - nx * w1, uy * (tip - cut) - ny * w1], [-nx * w0, -ny * w0]], col);
+    }
+  } else if (I.draw === "badge") {
+    c.circle(0, 0, I.w / 2, I.color ?? "#262626");
+    const s = I.w * (I.logoScale ?? 0.58);
+    if (I.logo) c.media(I.logo, -s / 2, -s / 2, s, s, { fit: "contain" });
+  } else if (I.draw === "phone") {
+    const r = I.w * 0.16, b = I.w * 0.035;
+    c.rrect(-I.w / 2 - 3, -I.h * 0.28, 6, I.h * 0.07, 3, "#2A2A30"); // side buttons
+    c.rrect(I.w / 2 - 3, -I.h * 0.3, 6, I.h * 0.11, 3, "#2A2A30");
+    c.rrect(-I.w / 2, -I.h / 2, I.w, I.h, r, "#121216");
+    c.strokeRRect(-I.w / 2 + 1, -I.h / 2 + 1, I.w - 2, I.h - 2, r, "#3A3A42", 2);
+    if (I.screen) c.media(I.screen, -I.w / 2 + b, -I.h / 2 + b, I.w - 2 * b, I.h - 2 * b, { fit: "cover", focus: [0.5, 0], radius: r - b });
+    else c.rrect(-I.w / 2 + b, -I.h / 2 + b, I.w - 2 * b, I.h - 2 * b, r - b, "#000000");
+    c.rrect(-I.w * 0.13, -I.h / 2 + b * 1.6, I.w * 0.26, b * 1.5, b, "#000000"); // island
+  }
 }
 
 function drawGrid(c: RC, G: Grid) {
@@ -164,7 +197,7 @@ export default defineComponent<Props>({
   notes: "Timelines live next to their assets (styles/style-1/clone/<id>/timeline.json); sound is mixed outside the engine.",
   params: { timeline: P.json(DEMO, "Timeline") },
   duration: (p) => (p.timeline?.frames ?? DEMO.frames) / (p.timeline?.fps ?? 30),
-  media: (p) => (p.timeline?.scenes ?? []).flatMap((s) => s.layers.filter((l): l is Img => l.kind === "image").map((l) => l.src)),
+  media: (p) => (p.timeline?.scenes ?? []).flatMap((s) => s.layers.filter((l): l is Img => l.kind === "image").flatMap((l) => [l.src, l.logo, l.screen].filter((x): x is string => !!x))),
   render(c, p) {
     const T = p.timeline ?? DEMO, fps = T.fps ?? 30, f = c.t * fps;
     c.rect(0, 0, c.W, c.H, T.bg ?? "#F6F6F6");

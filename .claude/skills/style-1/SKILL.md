@@ -75,6 +75,11 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Sounds: 26 files flat in `sfx/` (index `sfx/README.md`). `viral.typing` ≈ `typing.mp3` (0.97) and
   `viral.ui-riser` ≈ `ui-riser.mp3` (0.91) are duplicates, kept but not mapped.
 
+- **Owner rules (2026-10-09, after the 0JZ clone):** a typing note on EVERY word as it appears on screen
+  (list words and typed-box words too), never dropped; the viral riser (`viral.ui-riser.wav`, event `viral-riser`)
+  into every new scene / big reveal; whoosh on the cut, soft landing for cards, pops for bullets. The mixer's
+  min-gap only stops the same event type doubling up. Two words on the same frame get 2 frames apart.
+
 ### 5a. Using the SFX (ready to use)
 The map is `sfx/map.json` (event → sound, alignment, level, why). Never place files by hand; describe events.
 1. Word times: `.venv-audio/Scripts/python styles/tools/words.py vo.wav words.json` (faster-whisper, local).
