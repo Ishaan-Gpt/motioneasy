@@ -46,6 +46,10 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Risers: always COMPLETE (full `riser.mp3`, 3 s) and ending exactly on the cut; only where 3 s fit. Never start
   a riser mid-sound or stop it early. No UI riser / viral riser (owner removed them).
 - Cuts get a whoosh; cards a soft landing; bullets a pop.
+- Owner 2026-10-09 (0JZ full, "remaining part messed up"): use the WHOLE SFX folder, turn by turn, placed meticulously
+  where each one fits (whoosh variants, air-cut, punch, soft-hit, snap, pops, bubble, click, water-drop, chime, notify,
+  ui-animations, fast-typing…). Riser = tension builder only: at most 1–2 per video at the biggest reveals, complete,
+  never on every cut. Never repeat the same accent sound back to back; rotate. Typing even louder (+3 dB more).
 - Music bed: `styles/style-1/music/bed.mp3` (136 BPM, rising), starting at 11.84 s (`bed.json`: owner skips the
   intro, starts on the strongest beat in 10–13 s); ~8 LU under the voice. It is 29.8 s long: for longer videos
   ask for a longer render or loop on a bar line.
@@ -61,6 +65,10 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - One still sheet per pass (16 frames) to catch overlaps; fix, render once, mix, send.
 
 **Look**
+- QUALITY NEVER DROPS OVER TIME (owner 2026-10-09). Every scene, to the last second, keeps: camera motion (zoom-in
+  /zoom-out/push/pan, never static), objects/images easing in AND out with overshoot + idle drift, a visual on screen
+  (no plain-text-only scenes longer than ~1.5 s), dense layering, cuts on motion. Text gets more easing (longer,
+  softer slide + settle). Check the LAST third of the still sheet as hard as the first.
 - Reveal: word appears light grey, slides into place, holds ~9–14 frames, then turns black (two-stage).
 - Text lines are laid out at their final positions (they don't re-centre as words arrive) in the 0JZ ref.
 - Scene changes are cuts on motion (exit with a cubic ease-in, enter with an exponential settle that lands on a

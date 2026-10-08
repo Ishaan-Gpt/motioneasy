@@ -98,7 +98,7 @@
    "sounds": [
     "typing"
    ],
-   "level_db": -21,
+   "level_db": -18,
    "why": "words fill in grey→black on the VO; refs: most frequent types 02/11, 2–3 % of frame changes, one hit per word (~0.21 s apart). Refs: ~2.2 hits/s vs ~2.9 spoken words/s, so the ref ticks per on-screen word group, not every spoken word; owner rule is one per word (revisit after listening). Owner 2026-10-09: loud and clear like the refs (SFX peaks ~10 dB under the voice). Owner 2026-10-09 (2): louder and bolder: +6 dB more, a soft click layered under each keystroke",
    "then": {
     "sound": "click",
