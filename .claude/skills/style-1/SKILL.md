@@ -1,9 +1,20 @@
 ---
 name: style-1
-description: Style 1 ("InsiderForce-style" VO explainer Short, 9:16, 60–110 s) — the single source of truth for making, reviewing and improving this one video style. Use whenever a Style 1 video is planned, built, reviewed or iterated, or when a new Style 1 reference is analysed. Holds the rules, the sound kit, the quality scorecard and the changelog; update it after every iteration.
+description: Style 1 (VO-led explainer Short, 9:16, 60–110 s, white stage + word-by-word type + pop-in assets) — a pipeline that turns ANY script/voiceover, for any topic or brand, into a video in this style; the single source of truth for making, reviewing and improving it. Use whenever a Style 1 video is planned, built, reviewed or iterated, or when a new Style 1 reference is analysed. Holds the rules, the sound kit, the quality scorecard and the changelog; update it after every iteration.
 ---
 
 # Style 1: VO-led explainer Short
+
+**What this is:** a style + pipeline, not a template of the reference videos. Input: any script or voiceover,
+plus a brand file. Output: a finished Style 1 video. The InsiderForce Shorts are only where the rules were measured;
+their content, brand, colours, CTA wording and characters are never copied.
+
+Pipeline: script/VO → word times (`words.py`) → beat + asset plan → assets (ASSETS-PIPELINE.md) → layout +
+animation presets → events.json (generated from the plan, never hand-written per video) → SFX stem (`sfx_mix.py`)
++ music + VO → render → scorecard (§8).
+
+**Brand file** (per brand, `styles/style-1/brands/<brand>.json`, todo): accent colour, watermark text, font,
+CTA pattern (keyword, lead magnet, follow line), logo. Rules below say "accent", "watermark", "CTA"; the brand fills them in.
 
 Files: workspace `styles/style-1/` (README there). Evidence: `styles/style-1/breakdowns/*.md`.
 Tools: `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
@@ -23,11 +34,11 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Grid = a dashed patch behind the hero object, not the whole frame: 108 px columns × ~92 px rows, lines #D9D9D9
   2 px dashed 6/5, 11 px dots #D7D7D7 on the crossings, fading out ~110 px past the edge [confirmed, measured].
 - Ready files: `styles/style-1/backgrounds/` (README there; regenerate with `styles/tools/backgrounds.py`).
-  Pick per beat: text → white or white-dots · hero object → offwhite-grid-panel · cards → grey.
+  Pick per beat (decided by the beat plan, for any script): text → white or white-dots · hero object → offwhite-grid-panel · cards → grey.
   Use the `overlay-*` layers to keep the grid moving slowly (drift/parallax) so the stage is never frozen.
 - Big soft drop shadows to the lower right on every object: "objects on a desk" [observed].
 - Fixed watermark (brand URL, #E0E0E0, centred at y≈1645) → `overlay-watermark.png`; content stays in the middle ~70 %.
-- One accent colour (coral in refs) + black/white/grey only [observed].
+- One accent colour (from the brand file; coral in the refs) + black/white/grey only [observed].
 - Camera: slow push / slides between topics [todo: verify frame by frame].
 
 ## 3. Typography
@@ -87,7 +98,7 @@ The map is `sfx/map.json` (event → sound, alignment, level, why). Never place 
 Mixer rules (automatic): attack/peak/end alignment per sound · 60 ms minimum between short hits, the more important
 event wins (priority in map.json) · ±1 dB variation, seeded · peaks ≤ −6 dB per hit, stem ≤ −1 dB.
 Levels assume VO around −18 dB mean; refs measured: SFX peaks ≈ 5 dB above ours before the +3 dB lift [measured].
-Demo: `specs/demo-sfx/events-ref1-0-20s.json` → `renders/demo-ref1-with-our-sfx.mp4` (ref 1 VO + music + our SFX).
+Demo (hand-made test only; real videos get events.json generated from the plan): `specs/demo-sfx/events-ref1-0-20s.json` → `renders/demo-ref1-with-our-sfx.mp4` (ref 1 VO + music + our SFX).
 - **Moderate engineering [owner rule]:** the premium originals in `sfx/` are never edited or replaced. Use
   them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
   at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.
@@ -98,7 +109,7 @@ Demo: `specs/demo-sfx/events-ref1-0-20s.json` → `renders/demo-ref1-with-our-sf
 1. 0–2 s hook: uppercase claim + cutout face + accent burst.
 2. Story / proof: screenshots, numbers, lists.
 3. Value list ("you get… + item").
-4. Fixed CTA tail: comment-keyword → lead magnet mock-up → "follow <brand>" → logo.
+4. CTA tail (pattern; wording from the brand file): comment-keyword → lead magnet mock-up → "follow <brand>" → logo.
 
 ## 7. Things that are felt but easy to miss (check every video)
 VO-locked timing · grey→black word fill · mixed-size hierarchy per sentence · overshoot pop + idle drift ·
@@ -117,7 +128,7 @@ quiet, dense SFX (felt, not heard) · identical CTA tail.
 | 7 | Stage: off-white, grid, shadows, safe area | stills |
 | 8 | Levels: voice/music/SFX gaps as §5 | `volumedetect` on stems |
 | 9 | SFX ≈ 3/s, every event has its sound, none clipped | cue list |
-| 10 | CTA tail matches | stills |
+| 10 | CTA tail follows the brand file pattern | stills |
 Target: 18/20 before posting. Log each score in the changelog.
 
 ## 9. Workflow per video

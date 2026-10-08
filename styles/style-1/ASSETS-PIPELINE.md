@@ -1,9 +1,9 @@
 # Style 1 asset pipeline (proposal v0, 2026-10-08)
 
-Goal: for every video, go from the script to on-screen assets that look like the refs, with no manual hunting,
+Goal: for ANY script or topic (not only the reference videos), go from the script to on-screen assets that look like the refs, with no manual hunting,
 no fake content and the same treatment every time.
 
-## What the refs actually use (10 InsiderForce Shorts)
+## Asset kinds the style needs (measured in the InsiderForce refs; the content itself is never reused)
 | Kind | Example in refs | Treatment |
 |---|---|---|
 | Screenshot card | GitHub repo, website, terminal, docs | real capture, dark card, radius, big soft shadow, slow drift |
@@ -11,7 +11,7 @@ no fake content and the same treatment every time.
 | Logo / icon | GitHub, Supabase, Vercel, Apple, Windows, Linux | flat logo, often in a round tile, pop-in |
 | Cutout person | the founder, B&W, background removed | B&W, accent burst behind, pop/slide in |
 | 3D prop | book (lead magnet), crown, keys | product-shot look, shadow |
-| Mascot / sprite | pixel crab ×64 | drawn in code, cascade |
+| Mascot / sprite / repeated item | pixel crab ×64 in a ref; any "N things" in a new script | drawn in code or icon ×N, cascade |
 | UI bits | speech bubble, `+` bullets, pills | drawn in code |
 
 ## The pipeline: 6 stages
