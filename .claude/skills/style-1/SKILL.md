@@ -36,6 +36,8 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Everything in a video must be OURS: no pixels, voice, music or SFX lifted from a reference. Real things
   (logos, sites, app UI) come from real sources (Simple Icons, live-site captures, Muse extract); generic things are
   drawn in code or generated (Muse prompt sheet). Say plainly what came from where.
+- Every new video uses NEW assets: never reuse assets from previous videos or `sources/` (owner face, ceshot props,
+  old clips). Website assets of the product are allowed when captured fresh (Muse). (owner 2026-10-09)
 - Save every owner correction into this skill (and Cognee) in the same turn.
 
 **Sound**
