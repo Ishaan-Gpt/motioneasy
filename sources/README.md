@@ -10,7 +10,7 @@ These are the actual production assets, not recreations.
   `.mp4`, a `.webp` poster, the `.raw.mp4` uncaptioned source, and a `.json`
   with the caption data. Ready-made social cutdowns and film inserts.
 - `looks/` — preview clips (`.mp4` + `.webp` poster) for every caption look,
-  plus `index.json`. Perfect for the "33 looks" montage in the launch film.
+  plus `index.json`. Perfect for the "30+ looks" montage in the launch film.
 - `captures/` — automated site captures (see inside for run notes).
 
 Rule: when the film needs the product, the logo, or a look, take it from
