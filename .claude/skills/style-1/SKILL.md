@@ -49,7 +49,17 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: [todo: pick].
 - SFX: about 3 hits/s; 10–12 recurring types used in every video [confirmed, approximate clustering].
 - One sound per event: word/text → click/typing; pop-in → bubble/pop; move/slide → whoosh [observed, mapping todo].
-- Premium SFX pack: owner-supplied, local only, in `styles/style-1/sfx/library/` [todo: name each type-XX].
+- Premium SFX pack: owner-supplied, local only, sliced into `sfx/library/hits/` by `styles/tools/slice_sfx.py`.
+  Index + mapping in `sfx/library/README.md`. No exact sample from the pack occurs in the refs (waveform match ≈
+  baseline), so the creator used other files; mapping below is by sound character [confirmed].
+- **Words → typing, one keystroke per word, on the word's appear time** (2 words = 2 hits). Keystrokes rotate,
+  never the same twice in a row, ±1.5 dB. Tool: `styles/tools/typing_sfx.py` [owner rule]. Typing timbre matches the
+  two most frequent ref types (type-02, type-11: ~186 of 663 hits) [confirmed].
+- UI blips (`ui-animations-01…09`) ↔ the other mid clicks (type-02/10/11): pop-ins, list items, cards [confirmed].
+- Finger snap ↔ type-00 (dark click, 56 hits): emphasis/reveal of a key word [owner likes; mapping by character].
+- Riser: build-up into a key reveal or the CTA [owner rule]. UI riser: short bright rise ↔ type-06.
+- Woosh: the original is slow (1.1 s, peak at 480 ms). Use `woosh-short` (0.45 s) or `woosh-fast` (0.30 s) [owner rule].
+- Missing from the pack (7 ref types, ~260 hits): see `sfx/library/README.md` → owner sources them.
 
 ## 6. Structure
 1. 0–2 s hook: uppercase claim + cutout face + accent burst.

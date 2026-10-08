@@ -73,3 +73,6 @@ styles/*/fonts/**/*.woff*
 styles/*/sfx/library/**/*.[mM][pP]3
 styles/*/sfx/library/**/*.[wW][aA][vV]
 styles/*/sfx/clusters.json
+styles/*/sfx/missing/
+styles/*/sfx/*.json
+styles/*/sfx/library/hits/*.json
