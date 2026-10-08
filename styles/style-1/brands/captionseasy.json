@@ -12,9 +12,9 @@
   "follow": "captionseasy.com"
  },
  "logo": "sources/brand/captionseasy-logo.svg",
- "people": "NEW only: stock or Muse-sourced real people (owner 2026-10-09: never reuse previous assets: no owner face, no sources/ceshot props)",
+ "people": "NEW stock person via Muse (request-ce1-person-poses); never the owner's face",
  "props": "NEW only: Muse prop sheet (generated); never sources/ceshot",
- "product_footage": "fresh captures of captionseasy.com by Muse (site, looks gallery, recordings); not the old sources/looks clips",
+ "product_footage": "ALLOWED: saved website assets (sources/looks/*.mp4 + .webp looks, sources/brand logo/wordmark, sources/captures of the site) and fresh site captures by Muse. NOT allowed: owner face/poses, sources/ceshot props, any other earlier media.",
  "rules": "BRIEF.md positioning: cinematic viral-style captions, no watermark, free + open source, Submagic alternative, no CapCut Pro, accurate Hinglish. Never 'automatic captions'. Competitors named in text only.",
  "style_block": "premium Pixar-clean 3D render, matte pastel lavender #F0D7FF to #C9A7F5 soft-touch plastic with brushed gold accents, soft studio key light from the top left, pure white background, no text, no logos",
  "no_previous_assets": true

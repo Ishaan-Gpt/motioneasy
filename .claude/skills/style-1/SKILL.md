@@ -37,7 +37,8 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   (logos, sites, app UI) come from real sources (Simple Icons, live-site captures, Muse extract); generic things are
   drawn in code or generated (Muse prompt sheet). Say plainly what came from where.
 - Every new video uses NEW assets: never reuse assets from previous videos or `sources/` (owner face, ceshot props,
-  old clips). Website assets of the product are allowed when captured fresh (Muse). (owner 2026-10-09)
+  old clips). The product's website assets ARE allowed: saved ones (sources/looks, sources/brand, site captures) and fresh
+  Muse captures; Claude uses them without asking. (owner 2026-10-09)
 - Save every owner correction into this skill (and Cognee) in the same turn.
 
 **Sound**
