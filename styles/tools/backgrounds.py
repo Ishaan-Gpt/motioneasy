@@ -1,6 +1,6 @@
 """Style 1 backgrounds, measured from the InsiderForce refs (see styles/style-1/backgrounds/README.md).
 
-Usage: .venv-audio/Scripts/python styles/tools/backgrounds.py [--style style-1] [--watermark "captionseasy.com"] [--font path.ttf]
+Usage: .venv-audio/Scripts/python styles/tools/backgrounds.py [--style style-1] [--watermark "<brand watermark text>"] [--font path.ttf]
 Writes 1080×1920 PNGs into styles/<style>/backgrounds/. Values live in SPEC so they can be tuned in one place.
 """
 import argparse, json

@@ -13,7 +13,7 @@ behind hero objects. Shadows belong to the objects, not the background.
 | bg-offwhite-grid-full.png | full-frame grid | variation, use sparingly |
 | bg-white-dots.png | dots only, no lines | quiet variation for text beats |
 | overlay-grid-panel.png · overlay-grid-full.png · overlay-dots.png | transparent layers | put over any tone and animate (slow drift / parallax) |
-| overlay-watermark.png | brand URL, #E0E0E0, centred at y 1645 | always on top of the background, under content |
+| overlay-watermark.png (per brand, not committed) | brand watermark text, #E0E0E0, centred at y 1645 | generate with `--watermark "<text>"` from the brand file |
 
 Measured: tones 255 / 246 / 241–242 · grid 108 px columns (1080/10) × ~92 px rows · lines #D9D9D9, 2 px, dashes
 6 on / 5 off · dots 11 px #D7D7D7 on crossings · grid fades ~110 px past the outer crossings · watermark #E0E0E0,
