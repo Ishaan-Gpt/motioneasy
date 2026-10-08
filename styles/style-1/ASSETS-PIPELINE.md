@@ -84,10 +84,12 @@ One sheet per video: `styles/style-1/assets/sheets/<video>.json`, sent to Muse a
 Owner rule (2026-10-08): assume Muse does it; whatever it can't deliver, Claude does locally (rembg cut-outs,
 yt-dlp + ffmpeg clips, Playwright captures). First round trip: screenshot request → done in ~14 min.
 
-### Open questions for Muse (owner to ask)
-1. Can you deliver transparent PNG cut-outs (logos, people, props) instead of 9:16 crops?
-2. Can you generate video (abstract/stylised motion), and in what format?
-3. Can you extract short clips (not only frames) from YouTube videos?
+### Confirmed by Muse (2026-10-08)
+1. Transparent PNG cut-outs: yes (generates or finds the subject, removes the background locally; its removal
+   model was still downloading on 2026-10-08).
+2. Video generation: yes, ~10 s per clip, up to 6 clips per request, from a text prompt or an image; longer pieces
+   are stitched. Clips come with synthesized sound → we drop it and use our own SFX/music (Style 1 sound rules).
+3. YouTube clips: yes, any subclip by timestamps (not only frames).
 
 ## Decisions needed from the owner
 1. Renderer: MotionEasy canvas engine (deterministic, already exports MP4 + audio) or Remotion.

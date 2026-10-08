@@ -11,6 +11,8 @@ plan.json:
     {"id": "logo-github",  "kind": "extract",  "type": "image", "query": "GitHub official logo mark", "cutout": true},
     {"id": "site-home",    "kind": "extract",  "type": "screenshot", "query": "https://example.com"},
     {"id": "broll-typing", "kind": "video",    "type": "video", "query": "hands typing on a backlit keyboard, dark room"},
+    {"id": "yt-clip",      "kind": "video",    "type": "video", "query": "https://youtube.com/watch?v=... subclip 00:12-00:18"},
+    {"id": "abstract-bg",  "kind": "video",    "type": "generate", "query": "slow drifting soft grey paper texture"},
     {"id": "rec-signup",   "kind": "video",    "type": "record", "query": "https://example.com - click Sign up, fill the form"}
   ]}
 
@@ -47,7 +49,12 @@ def to_request(video, style_block, it):
                               + (f" {it['variants']} variants." if it.get("variants") else "")}
     t = it.get("type") or ("video" if k == "video" else "image")
     if k == "video" and t == "generate":
-        raise ValueError(f"{rid}: Muse has no video generation type yet (ask Muse first)")
+        if REAL.search(it["query"]):
+            raise ValueError(f"{rid}: generated video can't show a real person/logo/product/UI; use extract")
+        return rid, {"id": rid, "type": "generate", "query": f"VIDEO: {it['query']}. {style_block}".strip(),
+                     "scene": it.get("use", ""), "orientation": it.get("orientation", "vertical"),
+                     "notes": "Generated video clip(s), ~10 s each (max 6 per request). Mark as AI-made. "
+                              "Audio not needed (we mute it and add our own sound)."}
     d = DELIVERY["cutout"] if it.get("cutout") else DELIVERY["screenshot"] if t == "screenshot" else \
         DELIVERY["record"] if t == "record" else DELIVERY["broll"] if t == "video" else DELIVERY["photo"]
     return rid, {"id": rid, "type": t, "query": it["query"], "scene": it.get("use", ""),
