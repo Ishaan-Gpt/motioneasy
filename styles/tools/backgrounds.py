@@ -14,6 +14,7 @@ SPEC = {
              "dot": "#D7D7D7", "dot_d": 11, "fade_px": 110},
     "panel": {"cols": 8, "rows": 9, "cx": 540, "cy": 640},   # grid patch behind the hero object
     "dots_only": {"dot_d": 6, "dot": "#E2E2E2"},
+    "plus": {"step": 90, "size": 20, "w": 2, "color": "#CACACA", "fade_px": 260},
     "watermark": {"y": 1645, "size": 74, "fill": "#E0E0E0"},
 }
 
@@ -49,6 +50,18 @@ def grid_layer(x0, y0, cols, rows, g, dots=True, lines=True, fade=True):
     return L
 
 
+def plus_layer(P):
+    """Field of small "+" marks (ref 1, 53 s), fading towards the top and bottom edges."""
+    L = Image.new("RGBA", (W, H), (0, 0, 0, 0)); d = ImageDraw.Draw(L); c = hexrgb(P["color"]) + (255,)
+    h = P["size"] / 2
+    for y in range(P["step"] // 2, H, P["step"]):
+        for x in range(W // 2 % P["step"], W, P["step"]):
+            d.line([(x - h, y), (x + h, y)], fill=c, width=P["w"]); d.line([(x, y - h), (x, y + h)], fill=c, width=P["w"])
+    m = Image.new("L", (W, H), 0); ImageDraw.Draw(m).rectangle([0, P["fade_px"], W, H - P["fade_px"]], fill=255)
+    m = m.filter(ImageFilter.GaussianBlur(P["fade_px"] * 0.5)); L.putalpha(Image.composite(L.getchannel("A"), Image.new("L", (W, H), 0), m))
+    return L
+
+
 def flat(tone): return Image.new("RGBA", (W, H), hexrgb(tone) + (255,))
 
 
@@ -71,6 +84,8 @@ def main():
         "bg-offwhite-grid-panel.png": Image.alpha_composite(flat(T["offwhite"]), panel),
         "bg-offwhite-grid-full.png": Image.alpha_composite(flat(T["offwhite"]), full),
         "bg-white-dots.png": Image.alpha_composite(flat(T["white"]), dots),
+        "bg-white-plus.png": Image.alpha_composite(flat(T["white"]), plus_layer(SPEC["plus"])),
+        "overlay-plus.png": plus_layer(SPEC["plus"]),
         "overlay-grid-panel.png": panel,          # transparent: animate (drift / scale) over any tone
         "overlay-grid-full.png": full,
         "overlay-dots.png": dots,

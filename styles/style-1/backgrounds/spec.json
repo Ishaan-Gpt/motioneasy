@@ -25,6 +25,13 @@
   "dot_d": 6,
   "dot": "#E2E2E2"
  },
+ "plus": {
+  "step": 90,
+  "size": 20,
+  "w": 2,
+  "color": "#CACACA",
+  "fade_px": 260
+ },
  "watermark": {
   "y": 1645,
   "size": 74,

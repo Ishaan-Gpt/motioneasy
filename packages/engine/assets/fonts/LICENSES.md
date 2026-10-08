@@ -15,3 +15,4 @@ subsets (from Fontsource). They are bundled so every render uses the exact same 
 | archivo-latin-wdth-normal.woff2 | Archivo (100–900, wdth 62–125; used at 125) | Omnibus-Type |
 | anton-latin-400-normal.woff2 | Anton (400) | Vernon Adams |
 | pacifico-latin-400-normal.woff2 | Pacifico (400) | Vernon Adams, Jacques Le Bailly |
+| roboto-latin-wght-*.woff2 | Roboto (100–900) | Christian Robertson |

@@ -1,7 +1,7 @@
 // Bundled typefaces. Rendering waits until every face is loaded, so text measures and draws the same
 // way on every run. Components refer to faces by id ("jakarta", "instrument", ...), never by family.
 
-export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono" | "geist" | "archivo" | "anton" | "pacifico";
+export type FontId = "jakarta" | "inter" | "bricolage" | "instrument" | "fraunces" | "mono" | "geist" | "archivo" | "anton" | "pacifico" | "roboto";
 
 export interface FontInfo {
   id: FontId;
@@ -65,6 +65,13 @@ export const FONTS: Record<FontId, FontInfo> = {
   pacifico: {
     id: "pacifico", label: "Pacifico", family: "ME Pacifico", kind: "serif", weights: [400, 400], italic: false, displayTracking: 0,
     files: [{ file: "pacifico-latin-400-normal.woff2", style: "normal" }],
+  },
+  roboto: {
+    id: "roboto", label: "Roboto", family: "ME Roboto", kind: "sans", weights: [100, 900], italic: true, displayTracking: -0.015,
+    files: [
+      { file: "roboto-latin-wght-normal.woff2", style: "normal" },
+      { file: "roboto-latin-wght-italic.woff2", style: "italic" },
+    ],
   },
   archivo: {
     id: "archivo", label: "Archivo Expanded", family: "ME Archivo", kind: "sans", weights: [100, 900], italic: false, displayTracking: -0.02, stretch: "125%",

@@ -13,11 +13,15 @@ Pipeline: script/VO → word times (`words.py`) → beat + asset plan → assets
 animation presets → events.json (generated from the plan, never hand-written per video) → SFX stem (`sfx_mix.py`)
 + music + VO → render → scorecard (§8).
 
+**Decisions (owner, 2026-10-08):** renderer = MotionEasy canvas engine (logged in LOG.md); voiceover is hybrid:
+either Claude writes the script and voices it with Kokoro (local TTS, `vo.py tts`), or the owner gives an MP3 and
+Claude studies it (`vo.py analyze`: words, pauses, beats, rate, loudness) and plans the video around it.
+
 **Brand file** (per brand, `styles/style-1/brands/<brand>.json`, todo): accent colour, watermark text, font,
 CTA pattern (keyword, lead magnet, follow line), logo. Rules below say "accent", "watermark", "CTA"; the brand fills them in.
 
 Files: workspace `styles/style-1/` (README there). Evidence: `styles/style-1/breakdowns/*.md`.
-Tools: `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
+Tools: `vo.py` (tts | analyze) · `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
 Other skills, kits, the website and the prompt corpus are OFF unless a rule here needs them; log any use in
 `styles/style-1/LOG.md` (what, which part, why).
 
@@ -33,6 +37,7 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Only white and near-white: #FFFFFF (text beats), #F6F6F6 (default), #F2F2F2 (card stacks) [confirmed, measured].
 - Grid = a dashed patch behind the hero object, not the whole frame: 108 px columns × ~92 px rows, lines #D9D9D9
   2 px dashed 6/5, 11 px dots #D7D7D7 on the crossings, fading out ~110 px past the edge [confirmed, measured].
+- A third pattern: a field of small "+" marks (20 px, #CACACA, 90 px grid) on white behind lists/icons [confirmed].
 - Ready files: `styles/style-1/backgrounds/` (README there; regenerate with `styles/tools/backgrounds.py`).
   Pick per beat (decided by the beat plan, for any script): text → white or white-dots · hero object → offwhite-grid-panel · cards → grey.
   Use the `overlay-*` layers to keep the grid moving slowly (drift/parallax) so the stage is never frozen.
@@ -42,11 +47,12 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Camera: slow push / slides between topics [todo: verify frame by frame].
 
 ## 3. Typography
-- One neo-grotesk sans (Inter/Roboto-like) [observed; exact font todo].
-- Word-by-word reveal locked to the VO: a word appears light grey and darkens to black in about 6–8 frames;
-  unspoken words remain grey (karaoke without a highlight colour) [observed in frames].
+- Font: **Roboto** (single-storey g, Roboto Y/t) [confirmed in frames]; bundled in the engine as `roboto` (OFL).
+  A brand file may override it.
+- Word-by-word reveal locked to the VO [confirmed, frame by frame at 30 fps]: the new word arrives light grey
+  (~#555 → black), slides a few px left into its slot with a decelerating ease, and darkens fully in **6–8 frames**.
+  No vertical slide. The centred line re-balances as words are added; the whole block keeps a slow drift.
 - Mixed hierarchy in one sentence: small regular words + bold/italic/UPPERCASE key words at 1.5–2× size [observed].
-- Centred block that re-balances as words arrive [observed].
 - Lists: `+` sparkle bullets, one item per spoken phrase [observed].
 - Hook: bold uppercase stacked claim, top third, first 2 s [observed].
 
@@ -141,6 +147,7 @@ Target: 18/20 before posting. Log each score in the changelog.
 - @InsiderForce top 10 Shorts (by views): `breakdowns/insiderforce.md`. Audio measured on 3 of them.
 
 ## 11. Changelog
+- 2026-10-08: Roboto added to the engine; word reveal measured; plus-mark background; Kokoro TTS + MP3 analysis (`vo.py`).
 - 2026-10-08: backgrounds measured and generated (3 tones, grid panel, dots, overlays, watermark).
 - 2026-10-08: v1 sound: 26 final SFX, event map + mixer, ref-measured triggers; woosh-short/tight were silent (fade bug) → rebuilt.
 - 2026-10-08: v0. Rules from the owner's notes + visual pass on 10 refs + audio pass on 3.

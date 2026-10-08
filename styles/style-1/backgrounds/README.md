@@ -12,6 +12,7 @@ behind hero objects. Shadows belong to the objects, not the background.
 | bg-offwhite-grid-panel.png | #F6F6F6 + grid patch (8×9 cells) centred behind the hero | a phone / product / hero object |
 | bg-offwhite-grid-full.png | full-frame grid | variation, use sparingly |
 | bg-white-dots.png | dots only, no lines | quiet variation for text beats |
+| bg-white-plus.png · overlay-plus.png | field of small "+" marks, 90 px grid, #CACACA, fades top/bottom | text / list beats (ref 1 uses it behind lists and icons) |
 | overlay-grid-panel.png · overlay-grid-full.png · overlay-dots.png | transparent layers | put over any tone and animate (slow drift / parallax) |
 | overlay-watermark.png (per brand, not committed) | brand watermark text, #E0E0E0, centred at y 1645 | generate with `--watermark "<text>"` from the brand file |
 
