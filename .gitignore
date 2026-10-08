@@ -60,6 +60,7 @@ sources/references/
 styles/*/references/**
 styles/*/music/**
 styles/*/renders/**
+styles/*/clone/**
 styles/*/videos/**
 !styles/*/videos/**/
 !styles/*/videos/**/*.txt

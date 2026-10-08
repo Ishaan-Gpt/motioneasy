@@ -56,6 +56,7 @@ import productOrbit from "./components/product-orbit";
 import statTrio from "./components/stat-trio";
 import checklist from "./components/checklist";
 import style1Video from "./components/style1-video";
+import style1Timeline from "./components/style1-timeline";
 import fourSteps from "./components/four-steps";
 import quoteCard from "./components/quote-card";
 import countdown from "./components/countdown";
@@ -65,7 +66,7 @@ import offerErase from "./components/offer-erase";
 
 export const COMPONENTS: Component[] = [
   // scenes
-  hookStrike, scrollStop, productOrbit, statTrio, checklist, style1Video, fourSteps, quoteCard, countdown, nowLive, endCard, offerErase,
+  hookStrike, scrollStop, productOrbit, statTrio, checklist, style1Video, style1Timeline, fourSteps, quoteCard, countdown, nowLive, endCard, offerErase,
   // elements
   beatSlam, kineticStack, typeMarquee, charCascade, imageType, wordRotator, weightWave, echoStack, flyThrough,
   focusPull, lightSweep, maskRise, barWipe, splitFlap, terminalType, decode,
