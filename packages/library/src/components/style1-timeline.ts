@@ -1,4 +1,4 @@
-import { E, P, defineComponent, mix, pr, sp, SPRING, wordWidth, capHeight, type FontId, type RC } from "@motioneasy/engine";
+import { E, P, defineComponent, logLerp, mix, pr, sp, SPRING, wordWidth, capHeight, type FontId, type RC } from "@motioneasy/engine";
 
 // Style 1, data-driven: a timeline of scenes measured from a reference (or written by the planner) and drawn
 // frame-exact. Built while cloning a reference Short shot for shot (styles/style-1/clone/); every number in a
@@ -15,7 +15,7 @@ type Img = {
   // drawn in code instead of a file: our own asterisk, a logo badge, or a phone frame around a screen image
   draw?: "asterisk" | "badge" | "phone"; color?: string; rays?: [number, number, number][]; core?: number;
   logo?: string; logoScale?: number; screen?: string;
-  shadow?: [number, number, number, number]; float?: [number, number, number][] | [number, number, number]; pivot?: [number, number]; f?: number; out?: number; pop?: boolean; radius?: number; card?: boolean;
+  shadow?: [number, number, number, number]; float?: [number, number, number][] | [number, number, number]; pivot?: [number, number]; f?: number; out?: number; pop?: boolean; enter?: "pop" | "rise" | "left" | "right"; vt?: number; bw?: boolean; fit?: "cover" | "contain"; focus?: [number, number]; radius?: number; card?: boolean;
 };
 type Grid = { kind: "grid"; x0: number; y0: number; x1: number; y1: number; col: number; row: number; fade?: number; color?: string; dot?: number };
 type TypeBox = {
@@ -31,6 +31,7 @@ type Scene = {
   anchor?: number; // frame where the layout sits at its measured positions (drift is zero there)
   enter?: { axis: "x" | "y"; from: number; tau: number; arrive?: number };
   exit?: { axis: "x" | "y"; to: number; frames: number };
+  cam?: [number, number]; // scale at scene start → end (e.g. [1, 1.08] push-in, [1.1, 1] pull-out), eased in log space
 };
 type Timeline = { fps: number; frames: number; bg?: string; scenes: Scene[]; watermark?: { text: string; y: number; size?: number; width?: number; color: string; weight?: number; font?: FontId } };
 type Props = { timeline: Timeline };
@@ -83,7 +84,8 @@ function drawLine(c: RC, L: Line, f: number) {
     const x = x0 + (i ? wordWidth(prefix + " ", font, size, weight, false, tracking * size) : 0);
     prefix += (i ? " " : "") + wd.w;
     if (f < wd.f) return;
-    const m = pr(f, wd.f, wd.f + 8, E.out), u = pr(f, wd.f + hold, wd.f + hold + reveal, E.inOut);
+    // softer, longer slide-in (owner 2026-10-09: more easing on text)
+    const m = pr(f, wd.f, wd.f + 12, E.out), u = pr(f, wd.f + hold, wd.f + hold + reveal, E.inOut);
     c.text(wd.w, x + (1 - m) * slide, base, { font, size, weight, tracking, align: "left", valign: "baseline" },
       { color: mix(L.grey ?? GREY, L.color ?? INK, u), alpha: pr(f, wd.f, wd.f + 3) });
   });
@@ -103,24 +105,30 @@ function sparkle(c: RC, x: number, y: number, r: number, color: string) {
 
 function drawImage(c: RC, I: Img, f: number, fps: number) {
   if (I.f !== undefined && f < I.f) return;
-  if (I.out !== undefined && f >= I.out) return;
+  if (I.out !== undefined && f >= I.out + 6) return;
+  const xo = I.out !== undefined ? pr(f, I.out, I.out + 6, E.in) : 0; // eased exit: shrink + fade over 6 frames
   const t = f / fps, local = I.f !== undefined ? (f - I.f) / fps : 1;
-  const k = I.pop ? sp(local, 0, SPRING.pop) : 1;
+  const en = I.enter ?? (I.pop ? "pop" : undefined);
+  const k = (en === "pop" ? sp(local, 0, SPRING.pop) : 1) * (1 - 0.12 * xo);
+  const ks = en && en !== "pop" ? sp(local, 0, SPRING.firm) : 1; // rise / slide: spring into place
+  const ox = en === "left" ? -(1 - ks) * 260 : en === "right" ? (1 - ks) * 260 : 0, oy = en === "rise" ? (1 - ks) * 140 : 0;
   // float: one or more [amp px, period s, phase rad] harmonics (measured fits, e.g. the phone in ref 0JZ)
   const fl = !I.float ? [] : (typeof I.float[0] === "number" ? [I.float as [number, number, number]] : (I.float as [number, number, number][]));
   const fy = fl.reduce((a, [amp, per, ph]) => a + amp * Math.sin((2 * Math.PI * t) / per + ph), 0);
   const [px, py] = I.pivot ?? [0, 0]; // rotation centre relative to the image centre
-  c.with({ x: I.cx + px, y: I.cy + fy + py, rotate: (I.rot ?? 0) + (I.spin ?? 0) * t, scale: k }, () => {
+  const vtime = (I.vt ?? 0) + (I.f !== undefined ? (f - I.f) / fps : t); // video media plays from its entry
+  c.with({ x: I.cx + px + ox, y: I.cy + fy + py + oy, rotate: (I.rot ?? 0) + (I.spin ?? 0) * t, scale: k, alpha: (1 - xo) * (en && en !== "pop" ? pr(local, 0, 0.12) : 1) }, () => {
     c.translate(-px, -py);
     if (I.card) {
       c.cardShadow(-I.w / 2, -I.h / 2, I.w, I.h, I.radius ?? 22, 0.9, 1.25);
-      c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: "cover", radius: I.radius ?? 22 });
+      c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: I.fit ?? "cover", focus: I.focus, radius: I.radius ?? 22, t: vtime });
       return;
     }
     c.save();
     if (I.shadow) c.shadow(`rgba(0,0,0,${I.shadow[3]})`, I.shadow[2], I.shadow[0], I.shadow[1]);
+    if (I.bw) c.ctx.filter = "grayscale(1) contrast(1.06)";
     if (I.draw) drawn(c, I);
-    else if (I.src) c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: "contain" });
+    else if (I.src) c.media(I.src, -I.w / 2, -I.h / 2, I.w, I.h, { fit: I.fit ?? "contain", t: vtime });
     c.restore();
   });
 }
@@ -146,7 +154,7 @@ function drawn(c: RC, I: Img) {
     c.rrect(I.w / 2 - 3, -I.h * 0.3, 6, I.h * 0.11, 3, "#2A2A30");
     c.rrect(-I.w / 2, -I.h / 2, I.w, I.h, r, "#121216");
     c.strokeRRect(-I.w / 2 + 1, -I.h / 2 + 1, I.w - 2, I.h - 2, r, "#3A3A42", 2);
-    if (I.screen) c.media(I.screen, -I.w / 2 + b, -I.h / 2 + b, I.w - 2 * b, I.h - 2 * b, { fit: "cover", focus: [0.5, 0], radius: r - b });
+    if (I.screen) c.media(I.screen, -I.w / 2 + b, -I.h / 2 + b, I.w - 2 * b, I.h - 2 * b, { fit: "cover", focus: I.focus ?? [0.5, 0], radius: r - b, t: (I.vt ?? 0) + (I.f !== undefined ? (c.t * 30 - I.f) / 30 : c.t) });
     else c.rrect(-I.w / 2 + b, -I.h / 2 + b, I.w - 2 * b, I.h - 2 * b, r - b, "#000000");
     c.rrect(-I.w * 0.13, -I.h / 2 + b * 1.6, I.w * 0.26, b * 1.5, b, "#000000"); // island
   }
@@ -215,7 +223,8 @@ export default defineComponent<Props>({
       if (S.enter.axis === "x") dx += o; else dy += o;
     }
     if (S.exit) { const u = ease3(Math.max(0, (f - (S.f1 - S.exit.frames)) / S.exit.frames)); if (S.exit.axis === "x") dx += S.exit.to * u; else dy += S.exit.to * u; }
-    const z = S.zoom, s = z ? 1 + z.a * Math.exp(-t / z.tau) + (z.b ?? 0) * Math.exp(-t / (z.tau2 ?? 1)) : 1;
+    const z = S.zoom, zc = S.cam ? logLerp(S.cam[0], S.cam[1], E.inOut((f - S.f0) / Math.max(1, S.f1 - S.f0))) : 1;
+    const s = (z ? 1 + z.a * Math.exp(-t / z.tau) + (z.b ?? 0) * Math.exp(-t / (z.tau2 ?? 1)) : 1) * zc;
     const zx = z?.cx ?? 540, zy = z?.cy ?? 960;
     c.with({ x: zx + dx, y: zy + dy, scale: s }, () => {
       c.translate(-zx, -zy);

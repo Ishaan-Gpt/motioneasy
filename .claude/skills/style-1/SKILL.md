@@ -61,6 +61,12 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 
 - Bed longer than the file: loop on a bar line (10 bars at 136 BPM) with a 0.25 s crossfade; fade out the last 1.5 s.
 
+**Assets (learned on ce-01)**
+- Muse prop SHEETS (one image, 3×3 grid) beat single requests; cut cells by distance-from-white alpha, not rembg
+  (rembg ate the lavender fills). Logos read best on a cream pill card with a soft shadow, not on a busy burst.
+- Look clips (`sources/looks`) start/loop on a blank frame: play them from 0.7 s. Big cards get a whoosh+landing;
+  small grid cards get rotating pops (keeps whooshes rare).
+
 **Speed (owner: deliver fast)**
 - Send all Muse requests in ONE batch at the start (props, captures, mock-ups); build locally while Muse works (~10 min).
 - Everything timed by OUR voice: words, text-group swaps, image entries and scene cuts all key off the first spoken

@@ -82,7 +82,7 @@ def main():
     il, _ = lufs(d / "mix.wav")
     gain = -14 - il
     for _ in range(3):  # the limiter shaves a little, so correct and re-measure (−14 ± 0.3 LUFS, ≤ −1 dBTP)
-        run("ffmpeg", "-v", "error", "-y", "-i", str(d / "mix.wav"), "-af", f"volume={gain:.2f}dB,alimiter=limit=0.85:level=false", str(d / "master.wav"))
+        run("ffmpeg", "-v", "error", "-y", "-i", str(d / "mix.wav"), "-af", f"volume={gain:.2f}dB,alimiter=limit=0.84:level=false", str(d / "master.wav"))
         fl, fp = lufs(d / "master.wav")
         if abs(fl + 14) <= 0.3: break
         gain += -14 - fl
