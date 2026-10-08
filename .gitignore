@@ -70,3 +70,6 @@ styles/*/fonts/**/*.woff*
 
 # local audio-extraction toolchain
 .venv-audio/
+styles/*/sfx/library/**/*.[mM][pP]3
+styles/*/sfx/library/**/*.[wW][aA][vV]
+styles/*/sfx/clusters.json
