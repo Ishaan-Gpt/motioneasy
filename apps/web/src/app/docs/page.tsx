@@ -56,9 +56,9 @@ const COMPONENT_SPEC = `{
   "format": "vertical",
   "fps": 60,
   "props": {
-    "line": "Still timing captions\\nby hand?",
-    "strike": "by hand?",
-    "replace": "*in one click.*",
+    "line": "Paying Submagic\\njust for captions?",
+    "strike": "Paying Submagic",
+    "replace": "*Free. Open source.*",
     "mode": "light",
     "sound": true
   }
@@ -70,7 +70,7 @@ const POST_SPEC = `{
   "format": "vertical",
   "fps": 60,
   "clips": [
-    { "component": "hook-strike", "props": { "line": "Still timing captions\\nby hand?" } },
+    { "component": "hook-strike", "props": { "line": "Your captions still\\ncarry a watermark?", "strike": "carry a watermark?", "replace": "*Not here.*" } },
     { "component": "caption-karaoke", "transition": "whip" },
     { "component": "stat-trio", "transition": { "type": "push", "duration": 0.4 }, "duration": 3.5 },
     { "component": "end-card", "transition": "zoom" }
@@ -237,7 +237,7 @@ node cli/render.mjs posts/my-post.json     # MP4 → out/my-post/vertical.mp4 (+
               Wrap words in <C>*asterisks*</C> to set them in the accent style (the brand serif, italic by default). A newline forces a line break, and authored lines are kept: text shrinks a little rather than wrap inside a line you wrote. Centred text is balanced, so you never get a lone word on the last line.
             </p>
             <CodeBlock lang="md" maxH="none" code={`"Small tool. *Big numbers.*"          → "Big numbers." in the serif accent
-"33 caption looks.\\n*Free, in your browser.*"   → two lines, exactly as written`} />
+"30+ caption looks.\\n*Free, in your browser.*"   → two lines, exactly as written`} />
           </Section>
 
           <Section id="prompts" title="Prompt format">

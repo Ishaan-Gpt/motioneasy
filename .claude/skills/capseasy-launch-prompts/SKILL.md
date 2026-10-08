@@ -15,7 +15,7 @@ ask for inputs first, show stills or a storyboard before rendering.
 
 A. Master launch films: 1. one-take keynote film (flagship), 2. minimal
 beat-grid film, 3. one-shape product story
-B. Feature spots: 4. upload-to-captions sprint, 5. 33 looks montage,
+B. Feature spots: 4. upload-to-captions sprint, 5. 30+ looks montage,
 6. "in your browser" privacy spot, 7. export payoff
 C. Brand: 8. logo reveal end card, 9. kinetic type bumper
 D. Social: 10. juicy 15s vertical promo, 11. hook-first teaser
@@ -26,7 +26,7 @@ E. Workflow: 12. two-prompt quality pass, 13. codebase-aware promo
 - Palette: cream `#ffffeb` dominant, ink `#1a1a1a`, lavender `#f0d7ff`,
   deep green `#034f46`.
 - Only verified product facts: free/open source, browser-based, no
-  install, on-device Whisper, 33 looks, MP4 + SRT export.
+  install, on-device Whisper, 30+ looks, MP4 + SRT export.
 - Real assets from `sources/` only: `sources/brand/` logos,
   `sources/hero/` clips, `sources/looks/` previews. Never redraw or fake.
 - Motion: eased springs, masked reveals, match cuts. Banned: crossfades,

@@ -1,71 +1,92 @@
 {
-  "$comment": "Copy deck for cli/remix.mjs. Verified facts only (BRIEF.md): free, open source, local-first; Whisper runs on your machine, no cloud needed; 33 caption looks; time every word; MP4 export in the browser. No invented numbers, no testimonials (none exist yet).",
+  "$comment": "Copy deck for cli/remix.mjs. Positioning (BRIEF.md, 2026-10-07): cinematic After Effects-style animated captions, no watermark, free + open source, the free alternative to Submagic, no CapCut Pro needed, accurate Hinglish. NEVER sell 'automatic captions' / transcription / Whisper. No invented numbers, no promised results, no testimonials (none exist yet).",
   "id": "captionseasy",
   "name": "CaptionsEasy",
   "url": "captionseasy.com",
-  "tagline": "Stop timing captions. *Start posting.*",
+  "tagline": "Viral captions. *Zero watermark.*",
   "hooks": [
     {
-      "line": "Still timing captions\nby hand?",
-      "strike": "by hand?",
-      "replace": "*in one click.*"
+      "line": "Still searching for\nfree animated captions?",
+      "strike": "Still searching for",
+      "replace": "*Search over.*"
     },
     {
-      "line": "Your captions live\non someone's server?",
-      "strike": "on someone's server?",
-      "replace": "*on your machine.*"
+      "line": "Still Googling\n\"free animated captions\"?",
+      "strike": "Still Googling",
+      "replace": "*Stop scrolling.*"
     },
     {
-      "line": "Typing subtitles\nline by line?",
-      "strike": "line by line?",
-      "replace": "*Let Whisper do it.*"
+      "line": "Free animated captions\ndhoondh rahe ho?",
+      "strike": "dhoondh rahe ho?",
+      "replace": "*Mil gaya.*"
     },
     {
-      "line": "Paying monthly\nfor captions?",
-      "strike": "Paying monthly",
+      "line": "Paying Submagic\njust for captions?",
+      "strike": "Paying Submagic",
       "replace": "*Free. Open source.*"
+    },
+    {
+      "line": "Buying CapCut Pro\nfor animated captions?",
+      "strike": "Buying CapCut Pro",
+      "replace": "*Not anymore.*"
+    },
+    {
+      "line": "Your captions still\ncarry a watermark?",
+      "strike": "carry a watermark?",
+      "replace": "*Not here.*"
+    },
+    {
+      "line": "Hinglish captions\nthat get it wrong?",
+      "strike": "that get it wrong?",
+      "replace": "*Bilkul sahi.*"
+    },
+    {
+      "line": "Boring white subtitles\nagain?",
+      "strike": "Boring white subtitles",
+      "replace": "*After Effects energy.*"
     }
   ],
   "claims": [
-    "Every word, *perfectly timed.*",
-    "Whisper runs on *your machine.*",
-    "33 caption looks. *One click each.*",
-    "Free and *open source.*",
-    "No cloud. *No waiting room.*",
     "Captions that *move.*",
-    "Your clips *stay yours.*"
+    "After Effects energy. *Zero After Effects.*",
+    "No watermark. *Ever.*",
+    "Hinglish? *Bilkul sahi.*",
+    "Submagic vibes. *Zero subscription.*",
+    "Skip CapCut Pro. *Keep the captions.*",
+    "30+ viral looks. *One click each.*",
+    "Free and *open source.*"
   ],
   "shorts": [
-    "Post *more.*",
-    "Just *post.*",
-    "Caption *anything.*",
-    "No *cloud.*"
+    "Go *viral.*",
+    "No *watermark.*",
+    "Bilkul *free.*",
+    "Make it *move.*"
   ],
   "features": [
-    "Whisper on your machine",
-    "33 caption looks",
-    "MP4 export in the browser",
-    "Free and open source",
-    "Every word timed"
+    "Cinematic animated captions",
+    "No watermark",
+    "Accurate Hinglish",
+    "30+ viral caption looks",
+    "Free and open source"
   ],
   "stats": [
-    "33|caption looks",
-    "0|cloud servers needed",
+    "30+|viral caption looks",
+    "0|watermarks",
     "$0|to use it"
   ],
   "steps": [
-    "Drop in a clip|Upload it in your browser.",
-    "Whisper transcribes it|On your own machine. No cloud.",
-    "Pick one of 33 looks|Style the frame, time every word.",
-    "Export the MP4|Right in the browser."
+    "Drop in your clip|Right in the browser.",
+    "Every word lands|Hinglish too, in sync.",
+    "Pick a viral look|30+ After Effects-style animations.",
+    "Export it clean|MP4, no watermark."
   ],
   "checklist": [
     "Free",
     "Open source",
-    "Runs on your machine",
-    "33 caption looks",
-    "Every word timed",
-    "MP4 export in the browser"
+    "No watermark",
+    "Accurate Hinglish",
+    "30+ animated looks",
+    "No CapCut Pro needed"
   ],
   "rotators": [
     {
@@ -82,16 +103,16 @@
       "words": [
         "creators.",
         "podcasters.",
-        "teachers.",
+        "Hinglish creators.",
         "founders."
       ]
     }
   ],
   "quotes": [],
   "cta": [
-    "Stop timing captions.\n*Start posting.*",
-    "Free. Open source.\n*On your machine.*",
-    "33 looks.\n*Pick yours.*"
+    "Viral captions.\n*Zero watermark.*",
+    "Submagic-style captions.\n*Free. Open source.*",
+    "30+ looks.\n*Pick yours.*"
   ],
   "media": {
     "clips": [
@@ -159,8 +180,8 @@
     "driving"
   ],
   "words": [
-    "LOOKS",
-    "TIMED",
-    "CAPTIONS"
+    "VIRAL",
+    "HINGLISH",
+    "FREE"
   ]
 }

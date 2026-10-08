@@ -17,6 +17,13 @@
 5. **Cheap by design:** a post = edit/emit a spec → `pnpm stills` → `pnpm render`. New component code only when
    the library truly lacks something.
 
+## 0b. CaptionsEasy positioning (owner, 2026-10-07; overrides older copy)
+
+CaptionsEasy = **cinematic, After Effects-style animated captions made to go viral, no watermark, free and open source**:
+the free alternative to Submagic, no CapCut Pro needed, accurate Hinglish. **Never sell it as "automatic captions"**
+(no "timing captions by hand", "Whisper transcribes it", "in one click" hooks). Transcription is plumbing.
+Catchy, creator-native copy only. Source of truth: BRIEF.md → decks/captionseasy.json.
+
 ## 1. Layout
 
 ```
@@ -149,5 +156,9 @@ motion-reel); /kits pages on the site.
 CaptionsEasy 9:16 template in posts/2026-10-05-captionseasy-bloom-reel.json, cuts on the beat of "Realizer" (125 BPM,
 music offset 0.453 puts the kick on the grid). Fonts anton + pacifico bundled for its metal/script bookend. Remaining 30 prompts in progress, then the sound library deep-dive and the
 gauravsbuilding / claude-launchvideo references (new branch).
+2026-10-07: CaptionsEasy repositioned (§0b, 30+ looks). 30 s landscape film `CaptionsEasy30` = v2, one continuous 3D take
+(three.js/R3F in Remotion, custom post, word-synced scratch VO) in `launch-remotion/src/ad30/v2/` (everything in `config.ts`);
+v1 kept as `CaptionsEasy30v1`. Media via `launch-remotion/scripts/prepare-ad30.sh`; render with `--gl=angle`; docs in
+`films/captionseasy-30s/`. Reference: `docs/reference/research-story-reel.md`.
 Next: Posts group in the site (`/compose/#post=<id>`), render + review the 8 example posts, dedicated list titles in the
 deck, lazy AAC encoder, mobile pass on the component page, Tone.js beds, optional Remotion adapter / agent API / Vercel deploy.

@@ -179,11 +179,11 @@ No fades, no cuts, no particles. Every transition is one object
 morphing into the next. Show me 4 stills before the full render.
 ```
 
-### 5. The 33 looks montage
+### 5. The 30+ looks montage
 
 ```text
 Make a 20-second montage of CapsEasy's caption looks, 1920x1080.
-Open on "33 looks. One clip." in ink on cream. Then a fast,
+Open on "30+ looks. One clip." in ink on cream. Then a fast,
 beat-cut wall of the real per-look preview clips from sources/looks/
 (each .mp4), a scan line sweeping across, 3 winners lifting with their
 look names. End on the full grid settling into the wordmark. Cuts on
@@ -300,7 +300,7 @@ read the product repo.
 ```text
 Make a modern slick and punchy 30-second launch video for CapsEasy.
 Read the repo first to learn the real features (browser Whisper,
-33 looks, browser MP4/SRT export, no install). Every claim on screen
+30+ looks, browser MP4/SRT export, no install). Every claim on screen
 must be true of the product. Use the real assets in sources/. Build
 it as a single HTML file rendered with Playwright at 60fps, or a
 Remotion project. Show me stills before the full render.
