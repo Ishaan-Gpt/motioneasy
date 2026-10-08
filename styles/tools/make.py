@@ -41,7 +41,9 @@ def pick_music(choice):
     if choice:
         t = next((t for t in tracks if t["id"] == choice), None)
         if t: return t["file"], t["starts"][0] if t["starts"] else 0.0, t["credit"]
-    if own: return own[0], 0.0, f"music: {own[0].name} (owner file)"
+    if own:  # a sidecar <name>.json can set the start point (owner: skip the intro, start on a strong beat)
+        side = own[0].with_suffix(".json"); st = json.loads(side.read_text(encoding="utf-8")).get("start", 0.0) if side.exists() else 0.0
+        return own[0], st, f"music: {own[0].name} (owner file, from {st:.2f} s)"
     soft = sorted([t for t in tracks if t["mood"] == "soft" and t["file"].exists()], key=lambda t: t["energy"])
     t = soft[len(soft) // 2]  # middle-energy soft bed: present but never busy
     return t["file"], t["starts"][0] if t["starts"] else 0.0, t["credit"]
