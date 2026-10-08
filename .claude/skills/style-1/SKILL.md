@@ -26,6 +26,38 @@ Other skills, kits, the website and the prompt corpus are OFF unless a rule here
 
 Status labels on every rule: **[confirmed]** measured in refs · **[observed]** seen, not measured · **[todo]** open question.
 
+## 0. Owner rules (read first, follow always; every owner correction is added here the same day)
+**Working**
+- Style 1 is a pipeline for ANY script/brand. No default brand; never CaptionsEasy unless the owner says so.
+- Other skills, kits, the website, the prompt corpus: off unless needed; log any use in `styles/style-1/LOG.md`.
+- Never self-grade. The test is the owner's eye and a side-by-side against the reference (`compare.py`).
+  A rule-based 20/20 once got a 2/10 from the owner.
+- Learn by cloning a reference first (frame-measured), then generalise. Don't over-measure: show progress early.
+- Everything in a video must be OURS: no pixels, voice, music or SFX lifted from a reference. Real things
+  (logos, sites, app UI) come from real sources (Simple Icons, live-site captures, Muse extract); generic things are
+  drawn in code or generated (Muse prompt sheet). Say plainly what came from where.
+- Save every owner correction into this skill (and Cognee) in the same turn.
+
+**Sound**
+- SFX only from `styles/style-1/sfx/` (the owner's selection). Never edit originals; at most a few trims.
+- Typing: one note on EVERY word, on the frame OUR voice says it; the word appears on screen with it. Never dropped.
+- Loud and clear like the refs: SFX peaks ~9–10 dB under the voice peaks (map levels set for this, 2026-10-09).
+- Risers: always COMPLETE (full `riser.mp3`, 3 s) and ending exactly on the cut; only where 3 s fit. Never start
+  a riser mid-sound or stop it early. No UI riser / viral riser (owner removed them).
+- Cuts get a whoosh; cards a soft landing; bullets a pop.
+- Music bed: `styles/style-1/music/bed.mp3` (136 BPM, rising), starting at 11.84 s (`bed.json`: owner skips the
+  intro, starts on the strongest beat in 10–13 s); ~8 LU under the voice. It is 29.8 s long: for longer videos
+  ask for a longer render or loop on a bar line.
+- Bed character for new beds: upbeat, rising, inspirational with suspense; ~136–138 BPM, E♭ minor (prompt in §5b).
+- Voice: Kokoro default (`vo.py` / `vo_fit.py`) or the owner's MP3.
+
+**Look**
+- Reveal: word appears light grey, slides into place, holds ~9–14 frames, then turns black (two-stage).
+- Text lines are laid out at their final positions (they don't re-centre as words arrive) in the 0JZ ref.
+- Scene changes are cuts on motion (exit with a cubic ease-in, enter with an exponential settle that lands on a
+  frame), not fades. Opening: zoom-out from ~6× with a slow tail.
+- Font per reference (Roboto in ref 1, Inter in 0JZ); size AND tracking solved from measured glyph height + width.
+
 ## 1. Format
 - 9:16, 1080×1920, 30 fps (refs) [confirmed]. 60–110 s [confirmed].
 - Voiceover drives everything: every visual event lands on a spoken word [observed].
@@ -80,6 +112,11 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   (text appears with it; list and typed-box words too), never dropped; the premium riser (`riser-short.wav`, event
   `build`) ends exactly on every cut into a new scene / big reveal (viral/UI riser removed by the owner); whoosh on the cut, soft landing for cards, pops for bullets. The mixer's
   min-gap only stops the same event type doubling up. Two words on the same frame get 2 frames apart.
+
+### 5b. Music bed prompt (owner-approved character)
+instrumental, no vocals · upbeat, inspiring tech suspense, rising energy · ~136–138 BPM, E♭ minor · pulsing 16th
+synth arpeggio, ticking hats, driving kick (four-on-the-floor in the 2nd half), staccato strings, hopeful piano/bell
+motif, risers into each 8-bar section · no breakdown, no key/tempo change · keep 1–4 kHz clear for the voice.
 
 ### 5a. Using the SFX (ready to use)
 The map is `sfx/map.json` (event → sound, alignment, level, why). Never place files by hand; describe events.
@@ -175,6 +212,9 @@ words never leave it; patterns drift; slow 4.5 % push over the whole video; obje
 - @InsiderForce top 10 Shorts (by views): `breakdowns/insiderforce.md`. Audio measured on 3 of them.
 
 ## 11. Changelog
+- 2026-10-09: 0JZ clone, first 11 s fully ours (drawn asterisks/badges/phone, Muse props + real captures, Kokoro
+  voice fitted to the ref timing, our SFX). Owner fixes: typing on spoken words + louder SFX (+8/+10 dB), complete risers only,
+  owner bed from 11.84 s. Owner rules collected in §0.
 - 2026-10-08: pipeline v1 end to end: style1-video renderer, plan.py, make.py, qa.py. First test video
   (videos/test-free-design-tools, neutral brand, Kokoro VO, 19.6 s): 19/20 → list items now fill in word by word
   (refs do this) → 20/20, −14.1 LUFS, peak −1.2 dB. Lessons: TTS default speed 1.18 (1.05 was 2.3 words/s, too

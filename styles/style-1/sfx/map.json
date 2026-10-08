@@ -1,5 +1,5 @@
 {
- "_doc": "Style 1 event → sound map. Used by styles/tools/sfx_mix.py. align: start = the sound's attack lands on t; peak = its loudest moment lands on t; end = it finishes on t (risers). level_db: target loudness (RMS of the used part, dBFS) in the SFX stem; refs sit 15–20 dB under the voice, so with VO around −18 dB these land at about −33…−40. Originals are never edited: slices are read at mix time.",
+ "_doc": "Style 1 event → sound map. Used by styles/tools/sfx_mix.py. align: start = the sound's attack lands on t; peak = its loudest moment lands on t; end = it finishes on t (risers). level_db: target loudness (RMS of the used part, dBFS) in the SFX stem; refs sit 15–20 dB under the voice, so with VO around −18 dB these land at about −33…−40. Originals are never edited: slices are read at mix time. Levels raised 2026-10-09 to match the refs: SFX peaks ~10 dB under the voice peaks (were ~17).",
  "sounds": {
   "typing": {
    "file": "typing.mp3",
@@ -98,14 +98,14 @@
    "sounds": [
     "typing"
    ],
-   "level_db": -37,
-   "why": "words fill in grey→black on the VO; refs: most frequent types 02/11, 2–3 % of frame changes, one hit per word (~0.21 s apart). Refs: ~2.2 hits/s vs ~2.9 spoken words/s, so the ref ticks per on-screen word group, not every spoken word; owner rule is one per word (revisit after listening)"
+   "level_db": -27,
+   "why": "words fill in grey→black on the VO; refs: most frequent types 02/11, 2–3 % of frame changes, one hit per word (~0.21 s apart). Refs: ~2.2 hits/s vs ~2.9 spoken words/s, so the ref ticks per on-screen word group, not every spoken word; owner rule is one per word (revisit after listening). Owner 2026-10-09: loud and clear like the refs (SFX peaks ~10 dB under the voice)"
   },
   "key-word": {
    "sounds": [
     "snap"
    ],
-   "level_db": -32,
+   "level_db": -24,
    "why": "the big bold/uppercase word in a line; dark click type-00"
   },
   "list-item": {
@@ -113,7 +113,7 @@
     "ui-blip",
     "click"
    ],
-   "level_db": -34,
+   "level_db": -26,
    "why": "'+' bullet item appears; mid clicks 10/11"
   },
   "pop": {
@@ -122,7 +122,7 @@
     "pop-9",
     "pop-4"
    ],
-   "level_db": -33,
+   "level_db": -25,
    "why": "icon / logo / mascot / prop pops in with overshoot"
   },
   "cascade": {
@@ -131,7 +131,7 @@
     "pop-4",
     "pop"
    ],
-   "level_db": -37,
+   "level_db": -29,
    "every": 2,
    "fade_db": -6,
    "why": "many items cascade (64 mascots): a pop on every 2nd item, fading 6 dB across the run so it never machine-guns"
@@ -140,18 +140,18 @@
    "sounds": [
     "bubble"
    ],
-   "level_db": -32,
+   "level_db": -24,
    "why": "speech-bubble comment appears"
   },
   "card-in": {
    "sounds": [
     "woosh-short"
    ],
-   "level_db": -33,
+   "level_db": -25,
    "then": {
     "sound": "soft-hit",
     "after": 0.0,
-    "level_db": -40
+    "level_db": -32
    },
    "why": "screenshot / card / phone enters: 6–8 % of frame changes (types 04/08), woosh peak on arrival + a soft land"
   },
@@ -159,7 +159,7 @@
    "sounds": [
     "woosh-tight"
    ],
-   "level_db": -38,
+   "level_db": -30,
    "why": "element leaves or gets pushed"
   },
   "scene": {
@@ -167,49 +167,49 @@
     "air-cut",
     "woosh-tight"
    ],
-   "level_db": -33,
+   "level_db": -25,
    "why": "topic change, ~24 % of frame changes (type-01)"
   },
   "hard-hit": {
    "sounds": [
     "punch"
    ],
-   "level_db": -29,
+   "level_db": -21,
    "why": "hook title slam / big claim; max 2 per video"
   },
   "stat": {
    "sounds": [
     "chime"
    ],
-   "level_db": -35,
+   "level_db": -27,
    "why": "a number lands (214k stars, 64 agents)"
   },
   "notify": {
    "sounds": [
     "notify"
    ],
-   "level_db": -38,
+   "level_db": -30,
    "why": "notification / message / 'comment' moment"
   },
   "accent": {
    "sounds": [
     "drop"
    ],
-   "level_db": -35,
+   "level_db": -27,
    "why": "small surprise accent, sparing"
   },
   "click-ui": {
    "sounds": [
     "mouse"
    ],
-   "level_db": -35,
+   "level_db": -27,
    "why": "cursor clicks something inside a screenshot"
   },
   "code": {
    "sounds": [
     "fast-typing"
    ],
-   "level_db": -42,
+   "level_db": -34,
    "max_len": 1.2,
    "why": "terminal / code being typed inside a screenshot"
   },
@@ -217,28 +217,28 @@
    "sounds": [
     "ui-riser"
    ],
-   "level_db": -40,
+   "level_db": -32,
    "why": "UI screen builds in"
   },
   "build": {
    "sounds": [
-    "riser-short"
+    "riser"
    ],
-   "level_db": -38,
-   "why": "riser-short (owner's premium Riser) ends exactly on the cut into a new scene / big reveal"
+   "level_db": -30,
+   "why": "owner: riser is always COMPLETE (full riser.mp3, 3 s) and ends exactly on the cut; only where 3 s fit, never cut into or stopped"
   },
   "big-build": {
    "sounds": [
     "riser"
    ],
-   "level_db": -38,
+   "level_db": -30,
    "why": "full 3 s build into the CTA; once per video"
   },
   "cta": {
    "sounds": [
     "drop-splash"
    ],
-   "level_db": -36,
+   "level_db": -28,
    "why": "Comment-keyword / lead magnet lands"
   }
  },
