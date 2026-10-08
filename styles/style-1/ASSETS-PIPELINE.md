@@ -21,7 +21,10 @@ no fake content and the same treatment every time.
    website screenshots/recordings, YouTube frames and (last resort, marked AI) generated images:
    `styles/tools/muse.py request plan.json` writes one request per file into `Asset Studio/inbox/`;
    `muse.py collect` pulls `<id>.done.json` + files from `outbox/` into `assets/muse/<id>/` with the receipt.
-   Needs the Drive folder synced locally (Google Drive for Desktop) [todo: owner]. Muse checks every ~15 min.
+   Connected 2026-10-08 through the Google Drive connector (no local sync needed): requests are created directly in
+   `Asset Studio/inbox` (folder id 1lFEkBPihd5TBRX5v3gXmr0S3J_phFpqq), receipts read from `Asset Studio/outbox`
+   (1mmKV1ELU78Lx_Jar1vlbHMI91xT6BNo5). `muse.py` stays for a locally synced folder. Muse checks every ~15 min;
+   never re-submit a pending id. Downloads land in `assets/muse/<id>/` with the receipt as asset.json.
    Local fallbacks for what Muse doesn't cover:
    - logos: Simple Icons (CC0 SVG, ~3,000 brands) → Iconify (200k+ open-licence icons) → the brand's own press kit
    - screenshots / UI: **Playwright capture of the real page** (URL from the plan); scroll / click / record video
