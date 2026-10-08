@@ -26,3 +26,10 @@ Audition clips in `sfx/missing/type-XX.wav` (4 examples each, separated from the
 | type-07 | 32 | dark, very short | |
 | type-03 | 30 | dark, very short | |
 | type-05 | 30 | bright, peak ~80 ms | |
+
+## pack2 (Google Drive, 2026-10-08; mostly Epidemic Sound: licensed, local only)
+Button Press Click (0.8 s) · Chimes UI Glitch (2.4 s) · Failure Access Denied (5.7 s) · Glass Shimmering Whoosh (8.5 s) ·
+GlitchyUI Load Charge (1.1 s) · Keyboard MacBook Period hits (4.8 s) · Keypad Input Correct Tone (1.0 s) ·
+Lightsaber (4.5 s) · Plasma Cannon Charge (5.3 s) · Sci-Fi UI Menu Open (2.2 s) · Hi-Tech GUI Reversed Metal (13.5 s) ·
+Smartphone Notification x4 (12.9 s) · Swooshes (2.2 s) · Mac Click (0.5 s) · UI 1(2) (0.3 s) · UI 15 (3.2 s) · UI 3 (0.9 s)
+Status: owner judging. Originals are never edited.

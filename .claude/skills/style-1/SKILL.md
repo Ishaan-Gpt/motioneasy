@@ -59,6 +59,10 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Finger snap ↔ type-00 (dark click, 56 hits): emphasis/reveal of a key word [owner likes; mapping by character].
 - Riser: build-up into a key reveal or the CTA [owner rule]. UI riser: short bright rise ↔ type-06.
 - Woosh: the original is slow (1.1 s, peak at 480 ms). Use `woosh-short` (0.45 s) or `woosh-fast` (0.30 s) [owner rule].
+- **Moderate engineering [owner rule]:** the premium files in `pack/`, `pack2/` are never edited or replaced. Use
+  them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
+  at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.
+- pack2 (17 files, 2026-10-08, Epidemic Sound + UI clicks): to be judged by the owner.
 - Missing from the pack (7 ref types, ~260 hits): see `sfx/library/README.md` → owner sources them.
 
 ## 6. Structure
