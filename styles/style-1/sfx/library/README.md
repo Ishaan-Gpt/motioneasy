@@ -31,3 +31,11 @@ GlitchyUI Load Charge (1.1 s) · Keyboard MacBook Period hits (4.8 s) · Keypad 
 Lightsaber (4.5 s) · Plasma Cannon Charge (5.3 s) · Sci-Fi UI Menu Open (2.2 s) · Hi-Tech GUI Reversed Metal (13.5 s) ·
 Smartphone Notification x4 (12.9 s) · Swooshes (2.2 s) · Mac Click (0.5 s) · UI 1(2) (0.3 s) · UI 15 (3.2 s) · UI 3 (0.9 s)
 Status: owner judging. Originals are never edited.
+
+## Imported from the MotionEasy library (2026-10-08, owner's pick; copied unedited into `imported/`)
+CC0 unless noted. Credits: `packages/engine/src/audio/samples.gen.ts`.
+fs.whoosh.swosh-whoosh-air-cut (qubodup) · fs.impact.punch2 (Daleonfire) · fs.impact.soft-hit (Krokulator) ·
+viral.ui-riser (owner pack) · kenney.click (Kenney) · fs.ui.pop-4 (quatricise) · fs.ui.the-best-bubble-pop-sound-fo (el_boss) ·
+fs.ui.mouse-2-button-fast-click (aphom000) · fs.ui.pop-9 (D.S.G.) · viral.typing (owner pack) · fs.foley.water-drop (florianreichelt) ·
+fs.foley.water-drop-splash (bxyorna) · fs.foley.very-fast-typing-short (Capt.Jack)
+Pending (code-generated on the site, need a WAV export at take #9): tonal.chime · tonal.notify · ui.pop
