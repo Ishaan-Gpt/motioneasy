@@ -134,7 +134,7 @@ export const LaunchFilm: React.FC = () => {
 
         <Sequence from={transcribeEnd + 20} durationInFrames={looksEnd - transcribeEnd}>
           <div style={{ position: "absolute", bottom: 150, left: 100, zIndex: 100 }}>
-            <WordReveal text="33 stunning" delay={0} style={{ fontSize: 100, fontWeight: 800, fontFamily: theme.fonts.display, color: theme.colors.primary, textShadow: "0 10px 30px rgba(255,255,255,0.8)" }} />
+            <WordReveal text="30+ stunning" delay={0} style={{ fontSize: 100, fontWeight: 800, fontFamily: theme.fonts.display, color: theme.colors.primary, textShadow: "0 10px 30px rgba(255,255,255,0.8)" }} />
             <WordReveal text="caption looks." delay={12} style={{ fontSize: 100, fontWeight: 800, fontFamily: theme.fonts.display, color: theme.colors.primary, textShadow: "0 10px 30px rgba(255,255,255,0.8)" }} />
           </div>
         </Sequence>

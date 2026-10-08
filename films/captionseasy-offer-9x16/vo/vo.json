@@ -1,0 +1,237 @@
+[
+ {
+  "id": "01",
+  "text": "Video ready hai... par captions?",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 2.784,
+  "onset": 0.16,
+  "end": 1.93,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.307,
+    "w": "Video"
+   },
+   {
+    "t": 0.414,
+    "d": 0.33,
+    "w": "ready"
+   },
+   {
+    "t": 0.755,
+    "d": 0.284,
+    "w": "hai"
+   },
+   {
+    "t": 1.141,
+    "d": 0.25,
+    "w": "par"
+   },
+   {
+    "t": 1.402,
+    "d": 0.636,
+    "w": "captions"
+   }
+  ]
+ },
+ {
+  "id": "02",
+  "text": "Boring white subtitles? Nahi.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.6,
+  "onset": 0.16,
+  "end": 2.84,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.42,
+    "w": "Boring"
+   },
+   {
+    "t": 0.527,
+    "d": 0.25,
+    "w": "white"
+   },
+   {
+    "t": 0.789,
+    "d": 0.784,
+    "w": "subtitles"
+   },
+   {
+    "t": 2.364,
+    "d": 0.523,
+    "w": "Nahi"
+   }
+  ]
+ },
+ {
+  "id": "03",
+  "text": "Thirty plus looks. Ek click mein.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.504,
+  "onset": 0.17,
+  "end": 2.69,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.284,
+    "w": "Thirty"
+   },
+   {
+    "t": 0.391,
+    "d": 0.307,
+    "w": "plus"
+   },
+   {
+    "t": 0.709,
+    "d": 0.341,
+    "w": "looks"
+   },
+   {
+    "t": 1.886,
+    "d": 0.261,
+    "w": "Ek"
+   },
+   {
+    "t": 2.159,
+    "d": 0.273,
+    "w": "click"
+   },
+   {
+    "t": 2.443,
+    "d": 0.273,
+    "w": "mein"
+   }
+  ]
+ },
+ {
+  "id": "04",
+  "text": "Hinglish bhi? Bilkul sahi.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.48,
+  "onset": 0.2,
+  "end": 2.61,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.523,
+    "w": "Hinglish"
+   },
+   {
+    "t": 0.63,
+    "d": 0.341,
+    "w": "bhi"
+   },
+   {
+    "t": 1.75,
+    "d": 0.432,
+    "w": "Bilkul"
+   },
+   {
+    "t": 2.193,
+    "d": 0.455,
+    "w": "sahi"
+   }
+  ]
+ },
+ {
+  "id": "05",
+  "text": "CapCut Pro? Zaroorat nahi.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.288,
+  "onset": 0.19,
+  "end": 2.44,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.409,
+    "w": "CapCut"
+   },
+   {
+    "t": 0.516,
+    "d": 0.341,
+    "w": "Pro"
+   },
+   {
+    "t": 1.568,
+    "d": 0.455,
+    "w": "Zaroorat"
+   },
+   {
+    "t": 2.034,
+    "d": 0.432,
+    "w": "nahi"
+   }
+  ]
+ },
+ {
+  "id": "06",
+  "text": "Zero watermark. Zero rupaye.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.84,
+  "onset": 0.16,
+  "end": 2.94,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.455,
+    "w": "Zero"
+   },
+   {
+    "t": 0.561,
+    "d": 0.648,
+    "w": "watermark"
+   },
+   {
+    "t": 2.034,
+    "d": 0.443,
+    "w": "Zero"
+   },
+   {
+    "t": 2.489,
+    "d": 0.477,
+    "w": "rupaye"
+   }
+  ]
+ },
+ {
+  "id": "07",
+  "text": "Free. Open source.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 3.024,
+  "onset": 0.25,
+  "end": 2.16,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.5,
+    "w": "Free"
+   },
+   {
+    "t": 1.284,
+    "d": 0.352,
+    "w": "Open"
+   },
+   {
+    "t": 1.648,
+    "d": 0.523,
+    "w": "source"
+   }
+  ]
+ },
+ {
+  "id": "08",
+  "text": "CaptionsEasy.",
+  "voice": "en-IN-NeerjaExpressiveNeural",
+  "dur": 1.872,
+  "onset": 0.17,
+  "end": 0.96,
+  "words": [
+   {
+    "t": 0.095,
+    "d": 0.875,
+    "w": "CaptionsEasy"
+   }
+  ]
+ }
+]

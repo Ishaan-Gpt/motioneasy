@@ -32,7 +32,7 @@ export const LooksMontage: React.FC = () => {
 
       <Sequence from={60}>
         <div style={{ position: "absolute", bottom: 150, left: 100 }}>
-          <WordReveal text="33 stunning caption looks." delay={0} style={{ fontSize: 100, fontWeight: 800, fontFamily: theme.fonts.display, color: theme.colors.bg }} />
+          <WordReveal text="30+ stunning caption looks." delay={0} style={{ fontSize: 100, fontWeight: 800, fontFamily: theme.fonts.display, color: theme.colors.bg }} />
         </div>
       </Sequence>
 

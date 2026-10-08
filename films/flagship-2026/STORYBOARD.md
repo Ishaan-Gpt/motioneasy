@@ -20,7 +20,7 @@ All footage real: hero captioned clips, looks previews, brand wordmark. No fake 
 | 14.0-20.5 | HOW 01 | Step rail "01" (deep green). Upload zone: dashed ink outline; aisha clip drops in, progress shimmer sweeps | Push from right | drop thud |
 | 20.5-27.0 | HOW 02 | "02". Waveform bars bounce; real Whisper words appear timed: "Now, that's a very nice thing…" Label: "on-device Whisper. Nothing uploads." | Masked rise per word | blip per word |
 | 27.0-34.0 | HOW 03 | "03". Same slot flips sam → gianna → aisha, look-name chips rise: "hormozi_box / karaoke_fill / pop_clean" | Spring flip (scaleX) | pop per flip |
-| 34.0-46.0 | MONTAGE | 12 looks previews cascade into a 4x3 grid on the beat, each springing from 0; grid settles, line rises: "33 looks. Zero timing." | Staggered springs | pop cascade |
+| 34.0-46.0 | MONTAGE | 12 looks previews cascade into a 4x3 grid on the beat, each springing from 0; grid settles, line rises: "30+ looks. Zero timing." | Staggered springs | pop cascade |
 | 46.0-54.0 | EXPORT | Ink button "Export" grows; chips pop: "MP4" "SRT". Line: "MP4 + SRT. In your browser. Free." | Grow + pops | click, pop, pop |
 | 54.0-60.0 | END | Wordmark SVG draws in; "Free and open source." mono; lavender pill: "start free"; music credit microcopy | Draw + rise | soft chime |
 
@@ -31,5 +31,5 @@ All footage real: hero captioned clips, looks previews, brand wordmark. No fake 
 
 ## Copy — all verified product facts
 Free and open source. Runs in the browser, no install. On-device Whisper.
-33 caption looks. Export MP4 + SRT. (Free-tier limits live on the landing
+30+ caption looks. Export MP4 + SRT. (Free-tier limits live on the landing
 page, not in the film.)

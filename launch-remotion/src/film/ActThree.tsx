@@ -292,7 +292,7 @@ export const S7Wall: React.FC = () => {
       {/* scrim + type */}
       <AbsoluteFill style={{ background: C.ink, opacity: 0.66 * tw(g, B(56.6), B(57), 0, 1, E.out) * (1 - textOut) }} />
       <div style={{ position: "absolute", top: 270, width: "100%", display: "flex", flexDirection: "column", alignItems: "center" }}>
-        <Words f={g} at={B(57)} stagger={6} outAt={B(60.1)} text="33 looks."
+        <Words f={g} at={B(57)} stagger={6} outAt={B(60.1)} text="30+ looks."
           style={{ fontFamily: SANS, fontWeight: 800, fontSize: 230, letterSpacing: "-0.055em", color: C.cream, justifyContent: "center", lineHeight: 1 }} />
         <Words f={g} at={B(58.5)} stagger={6} outAt={B(60.2)} text="One click." serifFrom={0} serifScale={1.15} serifColor={C.lav}
           style={{ fontSize: 230, color: C.lav, justifyContent: "center", lineHeight: 1 }} />

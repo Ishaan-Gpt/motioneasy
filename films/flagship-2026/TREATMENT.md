@@ -1,7 +1,7 @@
 # TREATMENT — "Stop timing captions. Start posting." (Flagship, 55.2s, 1920x1080, 60fps)
 
 Logline: the 47 minutes you waste timing captions, counted down to zero —
-then the product itself takes over: upload, on-device Whisper, 33 looks,
+then the product itself takes over: upload, on-device Whisper, 30+ looks,
 MP4 + SRT export.
 
 Arc: hook (47 minutes → 0) → core line → browser drop (real captioned clip)
@@ -20,7 +20,7 @@ Type: Instrument Serif (headlines), Manrope (UI), JetBrains Mono (labels) —
 all OFL, bundled in the project.
 
 All copy states verified CapsEasy facts (Oct 2026): free and open source,
-runs in the browser, no install, on-device Whisper, 33 caption looks,
+runs in the browser, no install, on-device Whisper, 30+ caption looks,
 export MP4 + SRT. All footage real: hero captioned clips, looks previews,
 brand wordmark. Nothing redrawn, nothing faked.
 

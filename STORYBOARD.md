@@ -49,7 +49,7 @@ Use `motif:` for a deliberate repeat, and `surprise:` in *notes* for the pattern
 - on-screen words: ON-DEVICE WHISPER
 
 ### Frame 4 · Core Value (Looks)
-- key visual: 33 looks contact sheet scrolls wildly on an inverted black background.
+- key visual: 30+ looks contact sheet scrolls wildly on an inverted black background.
 - new component: agitprop-wedge
 - moves first: Background inverts.
 - on-screen words: 33 STUNNING LOOKS
