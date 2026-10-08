@@ -1,3 +1,3 @@
 {
- "request-captionseasy-home-screenshot": {"status": "pending", "sent": "2026-10-08T17:02Z", "drive_file": "1caX8w8QIcF87a6N9YQ4CRjHYm4-mlwit"}
+ "request-captionseasy-home-screenshot": {"status": "done", "sent": "2026-10-08T17:02Z", "received": "2026-10-08T17:16Z", "files": ["captionseasy-home-desktop.png (1440x11502)", "captionseasy-home-mobile.png (780x21718)"], "notes": "below-fold lazy sections blank in full-page stitch; hero, product card, footer intact"}
 }

@@ -80,7 +80,11 @@ One sheet per video: `styles/style-1/assets/sheets/<video>.json`, sent to Muse a
    | `cascade` | many small items | staggered every 1–2 f | jiggle | `cascade` |
    | `bubble` | black pill, white text | pop | — | `bubble` |
 
-## Open questions for Muse (owner to ask)
+## Muse capabilities
+Owner rule (2026-10-08): assume Muse does it; whatever it can't deliver, Claude does locally (rembg cut-outs,
+yt-dlp + ffmpeg clips, Playwright captures). First round trip: screenshot request → done in ~14 min.
+
+### Open questions for Muse (owner to ask)
 1. Can you deliver transparent PNG cut-outs (logos, people, props) instead of 9:16 crops?
 2. Can you generate video (abstract/stylised motion), and in what format?
 3. Can you extract short clips (not only frames) from YouTube videos?
