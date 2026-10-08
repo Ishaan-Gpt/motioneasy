@@ -1,0 +1,332 @@
+[
+ {
+  "t": 0.0,
+  "event": "hard-hit"
+ },
+ {
+  "t": 0.6,
+  "event": "pop"
+ },
+ {
+  "t": 4.93,
+  "event": "scene"
+ },
+ {
+  "t": 16.0,
+  "event": "scene"
+ },
+ {
+  "t": 18.6,
+  "event": "scene"
+ },
+ {
+  "t": 7.07,
+  "event": "card-in"
+ },
+ {
+  "t": 10.47,
+  "event": "card-in"
+ },
+ {
+  "t": 17.07,
+  "event": "card-in"
+ },
+ {
+  "t": 13.07,
+  "event": "build"
+ },
+ {
+  "t": 13.07,
+  "event": "pop"
+ },
+ {
+  "t": 0.0,
+  "event": "word",
+  "text": "This"
+ },
+ {
+  "t": 0.32,
+  "event": "key-word",
+  "text": "anthropic"
+ },
+ {
+  "t": 1.08,
+  "event": "word",
+  "text": "hackathon"
+ },
+ {
+  "t": 1.52,
+  "event": "word",
+  "text": "winner"
+ },
+ {
+  "t": 1.82,
+  "event": "word",
+  "text": "just"
+ },
+ {
+  "t": 2.18,
+  "event": "word",
+  "text": "released"
+ },
+ {
+  "t": 2.56,
+  "event": "word",
+  "text": "his"
+ },
+ {
+  "t": 2.74,
+  "event": "word",
+  "text": "entire"
+ },
+ {
+  "t": 3.14,
+  "event": "word",
+  "text": "Claude"
+ },
+ {
+  "t": 3.58,
+  "event": "word",
+  "text": "code"
+ },
+ {
+  "t": 3.76,
+  "event": "word",
+  "text": "setup"
+ },
+ {
+  "t": 4.06,
+  "event": "word",
+  "text": "for"
+ },
+ {
+  "t": 4.36,
+  "event": "word",
+  "text": "free."
+ },
+ {
+  "t": 4.98,
+  "event": "word",
+  "text": "His"
+ },
+ {
+  "t": 5.14,
+  "event": "word",
+  "text": "name"
+ },
+ {
+  "t": 5.44,
+  "event": "word",
+  "text": "is"
+ },
+ {
+  "t": 5.72,
+  "event": "word",
+  "text": "Afan"
+ },
+ {
+  "t": 6.2,
+  "event": "key-word",
+  "text": "Mustafa."
+ },
+ {
+  "t": 7.14,
+  "event": "word",
+  "text": "He"
+ },
+ {
+  "t": 7.26,
+  "event": "word",
+  "text": "entered"
+ },
+ {
+  "t": 7.48,
+  "event": "word",
+  "text": "the"
+ },
+ {
+  "t": 7.64,
+  "event": "word",
+  "text": "Anthropic"
+ },
+ {
+  "t": 8.12,
+  "event": "word",
+  "text": "X"
+ },
+ {
+  "t": 8.5,
+  "event": "word",
+  "text": "Forum"
+ },
+ {
+  "t": 8.8,
+  "event": "word",
+  "text": "Ventures"
+ },
+ {
+  "t": 9.22,
+  "event": "word",
+  "text": "hackathon"
+ },
+ {
+  "t": 9.76,
+  "event": "word",
+  "text": "in"
+ },
+ {
+  "t": 9.9,
+  "event": "word",
+  "text": "New"
+ },
+ {
+  "t": 10.02,
+  "event": "word",
+  "text": "York,"
+ },
+ {
+  "t": 10.56,
+  "event": "word",
+  "text": "built"
+ },
+ {
+  "t": 10.72,
+  "event": "word",
+  "text": "a"
+ },
+ {
+  "t": 10.9,
+  "event": "word",
+  "text": "full"
+ },
+ {
+  "t": 11.16,
+  "event": "word",
+  "text": "AI"
+ },
+ {
+  "t": 11.5,
+  "event": "word",
+  "text": "product"
+ },
+ {
+  "t": 11.96,
+  "event": "word",
+  "text": "called"
+ },
+ {
+  "t": 12.28,
+  "event": "key-word",
+  "text": "Zenith"
+ },
+ {
+  "t": 12.72,
+  "event": "word",
+  "text": "Chat"
+ },
+ {
+  "t": 13.02,
+  "event": "word",
+  "text": "in"
+ },
+ {
+  "t": 13.28,
+  "event": "word",
+  "text": "just"
+ },
+ {
+  "t": 13.48,
+  "event": "stat",
+  "text": "eight"
+ },
+ {
+  "t": 13.78,
+  "event": "word",
+  "text": "hours"
+ },
+ {
+  "t": 14.2,
+  "event": "word",
+  "text": "using"
+ },
+ {
+  "t": 14.52,
+  "event": "word",
+  "text": "nothing"
+ },
+ {
+  "t": 14.9,
+  "event": "word",
+  "text": "but"
+ },
+ {
+  "t": 15.14,
+  "event": "key-word",
+  "text": "Claude"
+ },
+ {
+  "t": 15.52,
+  "event": "word",
+  "text": "code."
+ },
+ {
+  "t": 16.18,
+  "event": "word",
+  "text": "The"
+ },
+ {
+  "t": 16.28,
+  "event": "word",
+  "text": "repo"
+ },
+ {
+  "t": 16.56,
+  "event": "word",
+  "text": "is"
+ },
+ {
+  "t": 16.78,
+  "event": "word",
+  "text": "called"
+ },
+ {
+  "t": 17.04,
+  "event": "key-word",
+  "text": "Everything"
+ },
+ {
+  "t": 17.54,
+  "event": "word",
+  "text": "Claude"
+ },
+ {
+  "t": 18.12,
+  "event": "word",
+  "text": "Code."
+ },
+ {
+  "t": 18.76,
+  "event": "word",
+  "text": "It"
+ },
+ {
+  "t": 18.88,
+  "event": "word",
+  "text": "now"
+ },
+ {
+  "t": 19.08,
+  "event": "word",
+  "text": "has"
+ },
+ {
+  "t": 19.32,
+  "event": "word",
+  "text": "over"
+ },
+ {
+  "t": 19.54,
+  "event": "stat",
+  "text": "214"
+ }
+]

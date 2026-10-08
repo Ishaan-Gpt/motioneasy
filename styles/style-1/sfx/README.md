@@ -5,7 +5,7 @@ Originals are never edited: the craft is when, where and how much. New candidate
 
 | File | Source | Use |
 |---|---|---|
-| typing.mp3 | owner pack | words: one note per word, synced (`styles/tools/typing_sfx.py`) |
+| typing.mp3 | owner pack | words: one note per word, synced (`styles/tools/sfx_mix.py` (event `word`)) |
 | ui-animations.mp3 | owner pack | pop-ins, list items, cards (one blip at a time by start offset) |
 | finger-snap.mp3 · finger-snap-tight.wav | owner pack (+ 0.6 s cut) | key-word emphasis |
 | riser.mp3 · riser-short.wav | owner pack (+ last 1.4 s) | build into a reveal / CTA |

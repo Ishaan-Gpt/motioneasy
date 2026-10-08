@@ -6,7 +6,7 @@ description: Style 1 ("InsiderForce-style" VO explainer Short, 9:16, 60–110 s)
 # Style 1: VO-led explainer Short
 
 Files: workspace `styles/style-1/` (README there). Evidence: `styles/style-1/breakdowns/*.md`.
-Tools: `styles/tools/fetch.py` (download refs), `styles/tools/extract.py` (voice/music/SFX split, cues, BPM, song id).
+Tools: `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
 Other skills, kits, the website and the prompt corpus are OFF unless a rule here needs them; log any use in
 `styles/style-1/LOG.md` (what, which part, why).
 
@@ -48,15 +48,41 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - One soft music bed for the whole video, the same track across the channel [confirmed: similarity 0.85–0.94].
   Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: [todo: pick].
 - SFX: about 3 hits/s; 10–12 recurring types used in every video [confirmed, approximate clustering].
-- One sound per event: word/text → click/typing; pop-in → bubble/pop; move/slide → whoosh [observed, mapping todo].
-- Premium pack 1: 6 originals + max 4 variations, flat in `sfx/` with the imported picks (only final selections live there) [owner rule].
-  Index in `sfx/README.md`. No exact pack sample occurs in the refs; mapping is by sound character.
-- **Words → typing, one note per word, on the word's appear time** (2 words = 2 notes). Notes are taken from
-  `sfx/typing.mp3` at mix time, never the same twice in a row. Tool: `styles/tools/typing_sfx.py` [owner rule].
-  Typing matches the two most frequent ref types (type-02, type-11) [confirmed].
-- UI Animations ↔ the other mid clicks: pop-ins, list items, cards. Finger snap ↔ dark click type-00: key words.
-- Riser / riser-short: into a big reveal or the CTA [owner rule]. UI riser: short bright rise.
-- Woosh original is slow (peak at ~480 ms): use woosh-short / woosh-tight for moves [owner rule].
+- What triggers SFX in the refs [confirmed, 663 hits / 3 refs]: frame change at the hit is 2–3 % for 9 of 12 types
+  (a word or small icon), 6–8 % for 2 types (a card/object entering), ~24 % for 1 type (topic change). Hits come in
+  runs ~0.21 s apart. Refs tick ~2.2/s while the VO says ~2.9 words/s → they tick per on-screen word group.
+- Sounds: 26 files flat in `sfx/` (index `sfx/README.md`). `viral.typing` ≈ `typing.mp3` (0.97) and
+  `viral.ui-riser` ≈ `ui-riser.mp3` (0.91) are duplicates, kept but not mapped.
+
+### 5a. Using the SFX (ready to use)
+The map is `sfx/map.json` (event → sound, alignment, level, why). Never place files by hand; describe events.
+1. Word times: `.venv-audio/Scripts/python styles/tools/words.py vo.wav words.json` (faster-whisper, local).
+2. Write `events.json`: one entry per on-screen event, `{"t": <s>, "event": <name>}`; words also get `"text"`.
+3. Render the stem: `.venv-audio/Scripts/python styles/tools/sfx_mix.py events.json sfx.wav` → mix under VO + music.
+
+| Event | When | Sound (rotates) | Level |
+|---|---|---|---|
+| `word` | each word appears (owner rule: one note per word) | typing.mp3 note, never same twice | −37 |
+| `key-word` | the big bold/UPPERCASE word | finger-snap-tight | −32 |
+| `list-item` | "+" bullet item appears | ui-animations blip / kenney.click | −34 |
+| `pop` | icon, logo, mascot, prop pops in | ui.pop → pop-9 → pop-4 | −33 |
+| `cascade` | many items arrive (`count`, `spacing`) | pop on every 2nd item, fades 6 dB | −37 |
+| `bubble` | speech-bubble comment | bubble pop | −32 |
+| `card-in` | screenshot / card / phone enters | woosh-short (peak on arrival) + soft-hit | −33 |
+| `slide-out` | element leaves / is pushed | woosh-tight | −38 |
+| `scene` | topic change (big frame change) | air-cut / woosh-tight | −33 |
+| `hard-hit` | hook slam, biggest claim (max 2 per video) | punch2 | −29 |
+| `stat` | a number lands | tonal.chime | −35 |
+| `notify` · `click-ui` · `accent` | message moment · cursor click in a UI · rare surprise | notify · mouse click · water drop | −38 / −35 / −35 |
+| `code` | code/terminal typing inside a screenshot (≤1.2 s) | very-fast-typing | −42 |
+| `ui-reveal` | UI screen builds in | ui-riser | −40 |
+| `build` · `big-build` | build that ENDS on t (pair with hard-hit/key-word at t) · once, into the CTA | riser-short · riser | −38 |
+| `cta` | comment-keyword / lead magnet lands | water-drop-splash | −36 |
+
+Mixer rules (automatic): attack/peak/end alignment per sound · 60 ms minimum between short hits, the more important
+event wins (priority in map.json) · ±1 dB variation, seeded · peaks ≤ −6 dB per hit, stem ≤ −1 dB.
+Levels assume VO around −18 dB mean; refs measured: SFX peaks ≈ 5 dB above ours before the +3 dB lift [measured].
+Demo: `specs/demo-sfx/events-ref1-0-20s.json` → `renders/demo-ref1-with-our-sfx.mp4` (ref 1 VO + music + our SFX).
 - **Moderate engineering [owner rule]:** the premium originals in `sfx/` are never edited or replaced. Use
   them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
   at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.
@@ -99,4 +125,5 @@ Target: 18/20 before posting. Log each score in the changelog.
 - @InsiderForce top 10 Shorts (by views): `breakdowns/insiderforce.md`. Audio measured on 3 of them.
 
 ## 11. Changelog
+- 2026-10-08: v1 sound: 26 final SFX, event map + mixer, ref-measured triggers; woosh-short/tight were silent (fade bug) → rebuilt.
 - 2026-10-08: v0. Rules from the owner's notes + visual pass on 10 refs + audio pass on 3.
