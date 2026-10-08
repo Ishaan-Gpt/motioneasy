@@ -9,19 +9,18 @@ description: Style 1 (VO-led explainer Short, 9:16, 60–110 s, white stage + wo
 plus a brand file. Output: a finished Style 1 video. The InsiderForce Shorts are only where the rules were measured;
 their content, brand, colours, CTA wording and characters are never copied.
 
-Pipeline: script/VO → word times (`words.py`) → beat + asset plan → assets (ASSETS-PIPELINE.md) → layout +
-animation presets → events.json (generated from the plan, never hand-written per video) → SFX stem (`sfx_mix.py`)
-+ music + VO → render → scorecard (§8).
+Pipeline (all built, see §9): VO (`vo.py`) → storyboard (Claude) → `plan.py` (timing, plan.json, events.json,
+muse-plan.json) → assets (ASSETS-PIPELINE.md, Muse) → `make.py` (engine render + SFX + music + master) → `qa.py` (§8).
 
 **Decisions (owner, 2026-10-08):** renderer = MotionEasy canvas engine (logged in LOG.md); voiceover is hybrid:
 either Claude writes the script and voices it with Kokoro (local TTS, `vo.py tts`), or the owner gives an MP3 and
 Claude studies it (`vo.py analyze`: words, pauses, beats, rate, loudness) and plans the video around it.
 
-**Brand file** (per brand, `styles/style-1/brands/<brand>.json`, todo): accent colour, watermark text, font,
+**Brand file** (per brand, `styles/style-1/brands/<brand>.json`; `neutral.json` is the default, no watermark): accent colour, watermark text, font,
 CTA pattern (keyword, lead magnet, follow line), logo. Rules below say "accent", "watermark", "CTA"; the brand fills them in.
 
 Files: workspace `styles/style-1/` (README there). Evidence: `styles/style-1/breakdowns/*.md`.
-Tools: `vo.py` (tts | analyze) · `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
+Tools: `vo.py` (tts | analyze) · `plan.py` · `make.py` · `qa.py` · `muse.py` · `backgrounds.py` · `fetch.py` (download refs) · `extract.py` (voice/music/SFX split, cues, BPM, song id) · `words.py` (word times) · `sfx_mix.py` (events → SFX stem), all in `styles/tools/`.
 Other skills, kits, the website and the prompt corpus are OFF unless a rule here needs them; log any use in
 `styles/style-1/LOG.md` (what, which part, why).
 
@@ -68,7 +67,7 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 ## 5. Sound
 - Mix levels (mean): voice −17…−20 dB, music ≈ 6–8 dB under the voice, SFX ≈ 15–20 dB under the voice [confirmed, 3 refs].
 - One soft music bed for the whole video, the same track across the channel [confirmed: similarity 0.85–0.94].
-  Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: [todo: pick].
+  Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: an owner file in `music/`, else a middle-energy soft track from the MotionEasy library (`make.py`, CC-BY credit in credits.txt) [default].
 - SFX: about 3 hits/s; 10–12 recurring types used in every video [confirmed, approximate clustering].
 - What triggers SFX in the refs [confirmed, 663 hits / 3 refs]: frame change at the hit is 2–3 % for 9 of 12 types
   (a word or small icon), 6–8 % for 2 types (a card/object entering), ~24 % for 1 type (topic change). Hits come in
@@ -122,31 +121,58 @@ VO-locked timing · grey→black word fill · mixed-size hierarchy per sentence 
 paper shadows on off-white + dot grid · single accent colour · no dead air · near-zero hard cuts ·
 quiet, dense SFX (felt, not heard) · identical CTA tail.
 
-## 8. Quality scorecard (score 0–2 each, review every render)
-| # | Check | How |
+## 8. Quality scorecard (automated by `qa.py`; 0–2 each, target ≥ 18/20 before posting)
+| # | Check | How `qa.py` measures it |
 |---|---|---|
-| 1 | Hook lands in < 2 s | stills at 0–2 s |
-| 2 | Every visual event on a VO word | timeline vs transcript |
-| 3 | Word reveal grey→black, 6–8 f | frame strip |
-| 4 | Hierarchy: key word 1.5–2× | stills |
-| 5 | Pop overshoot + idle drift on all objects | frame strip |
-| 6 | No 1.5 s stretch without a new element | event list |
-| 7 | Stage: off-white, grid, shadows, safe area | stills |
-| 8 | Levels: voice/music/SFX gaps as §5 | `volumedetect` on stems |
-| 9 | SFX ≈ 3/s, every event has its sound, none clipped | cue list |
-| 10 | CTA tail follows the brand file pattern | stills |
-Target: 18/20 before posting. Log each score in the changelog.
+| 1 | Hook lands in < 2 s | first word time + beat 1 layout = hook |
+| 2 | Every visual event on a VO word | every object time matches a word (±60 ms) |
+| 3 | Word reveal grey→black, 6–8 f | renderer constant (REVEAL = 7/30 s); eyeball the still sheet |
+| 4 | Hierarchy: a key word per beat | each text beat has a `*` word |
+| 5 | Pop overshoot + idle drift on all objects | renderer (springs + breathe); eyeball |
+| 6 | No 1.5 s stretch without a new element | gaps between words/items/objects |
+| 7 | Stage: allowed bg, no overlaps, watermark band clear | rough boxes per beat |
+| 8 | Levels: music 6–9 LU under the voice | LUFS of stems × applied gains |
+| 9 | SFX 2–3.5/s, master −14 ±0.5 LUFS, peak ≤ −1 dB | events + make-report |
+| 10 | CTA tail follows the brand pattern | last beat layout = cta |
+Checks 3 and 5 are rule-based, so a 20/20 still needs a look at the still sheet and a full watch.
 
-## 9. Workflow per video
-1. Script + VO (or VO first) → word timestamps.
-2. Plan the events on the word timeline (text, pops, cards, list items), each with its SFX.
-3. Build, render, run the scorecard, fix, and render again.
-4. Append to the changelog: what changed, score, what was learned → promote lessons into §1–7.
+## 9. Workflow per video (hybrid voiceover)
+Folder: `styles/style-1/videos/<slug>/` (script, storyboard, plan, events, stems, final MP4; media git-ignored).
+1. **Voice.** Script route: write `script.txt` (blank line = new beat; true claims only) →
+   `vo.py tts script.txt <dir>` (Kokoro, voice am_michael, speed 1.18 → ~2.6–2.9 words/s like the refs).
+   MP3 route: `vo.py analyze owner.mp3 <dir>`; read `vo-report.json` + `beats.json` (pace, pauses, beats) first.
+   Both give `vo.wav`, `words.json`, `beats.json`.
+2. **Storyboard** (Claude, the taste step): `storyboard.json`, one entry per spoken beat:
+   `layout` (hook · text · list · card · phone · icons · cutout · cascade · cta), `lines` with markup
+   (`*` key 1.7× · `_` small · `/` italic · `^` UPPER · `!` accent · `|` line break; spoken words only, in order),
+   optional `list` (spoken phrases), `objects` (`kind`, `asset`, `at` = the word it lands on), `bg`, `text_y`, `list_y`.
+   Rules: beat 1 = hook (uppercase claim + one object, < 2 s) · a key word in every beat · vary layouts, never
+   the same layout three beats in a row · one idea per beat · last beat = cta. Assets: id → `src`, or a Muse item
+   (`kind` generate | extract | video, query/prompt) → `plan.py` writes `muse-plan.json`, `muse.py build` it, upload.
+3. **Plan:** `plan.py storyboard.json words.json <dir>` → plan.json (render), events.json (SFX), muse-plan.json.
+   It must report 0 tokens not matched to the VO; fix the storyboard wording until it does.
+4. **Look:** `node cli/stills.mjs <dir>/<slug>.json --frames 12` (spec is written by make.py; run plan + make
+   `--no-render` once, or write it by hand) and read the sheet: overflow, overlaps, empty beats.
+5. **Make:** `make.py <dir> [--music <file|library id>]` → `<slug>.mp4` + `credits.txt` (CC-BY credit if a
+   library bed is used: put it in the post description). Owner music in `styles/style-1/music/` wins.
+6. **Score:** `qa.py <dir>` → fix whatever is under 2, re-run 3–6. Then watch it once, full screen, with sound.
+7. **Log:** one changelog line (video, score, what was learned); promote lessons into §1–7.
+
+Layout zones (plan.py ZONES; fractions of the frame): text y / object y / object width / default bg —
+hook .08/.60/.62 offwhite · text .30 (.34 alone)/.60/.50 white · list .13 + items .30/.70/.60 white-plus ·
+card .08/.53/.84 grey · phone .64/.33/.40 offwhite-grid-panel · icons .24/.55/.20 white-dots (a row spreads evenly) ·
+cutout .08/.58/.62 offwhite · cascade .12/.56/.80 white · cta .08/.56/.50 offwhite. Watermark band y 1590–1700 stays clear.
+Renderer: `packages/library/src/components/style1-video.ts` (text auto-shrinks to the safe width and incoming
+words never leave it; patterns drift; slow 4.5 % push over the whole video; objects spring in and breathe).
 
 ## 10. References analysed
 - @InsiderForce top 10 Shorts (by views): `breakdowns/insiderforce.md`. Audio measured on 3 of them.
 
 ## 11. Changelog
+- 2026-10-08: pipeline v1 end to end: style1-video renderer, plan.py, make.py, qa.py. First test video
+  (videos/test-free-design-tools, neutral brand, Kokoro VO, 19.6 s): 19/20 → list items now fill in word by word
+  (refs do this) → 20/20, −14.1 LUFS, peak −1.2 dB. Lessons: TTS default speed 1.18 (1.05 was 2.3 words/s, too
+  slow); a growing word must not push the line out of the safe area; two-pass master.
 - 2026-10-08: Roboto added to the engine; word reveal measured; plus-mark background; Kokoro TTS + MP3 analysis (`vo.py`).
 - 2026-10-08: backgrounds measured and generated (3 tones, grid panel, dots, overlays, watermark).
 - 2026-10-08: v1 sound: 26 final SFX, event map + mixer, ref-measured triggers; woosh-short/tight were silent (fade bug) → rebuilt.

@@ -1,0 +1,13 @@
+# Style 1 pipeline test, neutral topic, no brand. Claims checked: Blender and Inkscape are free and open source; Figma has a free plan.
+Most people think great design takes expensive software.
+It doesn't.
+
+Here are three free tools the pros actually use.
+
+One. Blender. Full 3D, free and open source.
+
+Two. Inkscape. Vector graphics, no subscription.
+
+Three. Figma. It has a free plan for solo work.
+
+Save this, and follow for more.

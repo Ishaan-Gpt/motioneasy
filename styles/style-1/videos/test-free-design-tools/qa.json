@@ -1,0 +1,65 @@
+{
+ "total": 20,
+ "checks": [
+  {
+   "n": 1,
+   "check": "Hook lands in < 2 s",
+   "points": 2,
+   "note": "first word 0.00 s, layout hook"
+  },
+  {
+   "n": 2,
+   "check": "Every visual event on a VO word",
+   "points": 2,
+   "note": "0 objects not on a word"
+  },
+  {
+   "n": 3,
+   "check": "Word reveal grey→black 6–8 f",
+   "points": 2,
+   "note": "renderer constant REVEAL = 7/30 s (verify on the still sheet)"
+  },
+  {
+   "n": 4,
+   "check": "Hierarchy: a key word per beat",
+   "points": 2,
+   "note": "beats without a key word: []"
+  },
+  {
+   "n": 5,
+   "check": "Pop overshoot + idle drift",
+   "points": 2,
+   "note": "renderer: springs + breathe on every object"
+  },
+  {
+   "n": 6,
+   "check": "No 1.5 s without a new element",
+   "points": 2,
+   "note": "longest gap 1.42 s"
+  },
+  {
+   "n": 7,
+   "check": "Stage: allowed bg, no overlaps, watermark band clear",
+   "points": 2,
+   "note": "overlaps [] · watermark-band hits []"
+  },
+  {
+   "n": 8,
+   "check": "Levels: music 6–9 LU under voice",
+   "points": 2,
+   "note": "music 8.0 LU under the voice"
+  },
+  {
+   "n": 9,
+   "check": "SFX ≈ 2–3.5/s, master −14 LUFS, peak ≤ −1",
+   "points": 2,
+   "note": "3.27 SFX/s · -14.1 LUFS · peak -1.2 dB"
+  },
+  {
+   "n": 10,
+   "check": "CTA tail (brand pattern)",
+   "points": 2,
+   "note": "last beat layout: cta"
+  }
+ ]
+}

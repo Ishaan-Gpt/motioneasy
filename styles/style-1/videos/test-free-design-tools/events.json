@@ -1,0 +1,307 @@
+[
+ {
+  "t": 0.0,
+  "event": "word",
+  "text": "Most"
+ },
+ {
+  "t": 0.02,
+  "event": "hard-hit"
+ },
+ {
+  "t": 0.18,
+  "event": "word",
+  "text": "people"
+ },
+ {
+  "t": 0.52,
+  "event": "word",
+  "text": "think"
+ },
+ {
+  "t": 0.8,
+  "event": "key-word",
+  "text": "great"
+ },
+ {
+  "t": 0.8,
+  "event": "pop"
+ },
+ {
+  "t": 1.1,
+  "event": "key-word",
+  "text": "design"
+ },
+ {
+  "t": 1.62,
+  "event": "word",
+  "text": "takes"
+ },
+ {
+  "t": 1.9,
+  "event": "word",
+  "text": "expensive"
+ },
+ {
+  "t": 2.42,
+  "event": "key-word",
+  "text": "software."
+ },
+ {
+  "t": 3.4,
+  "event": "scene"
+ },
+ {
+  "t": 3.48,
+  "event": "word",
+  "text": "It"
+ },
+ {
+  "t": 3.56,
+  "event": "key-word",
+  "text": "doesn't."
+ },
+ {
+  "t": 4.2,
+  "event": "scene"
+ },
+ {
+  "t": 4.28,
+  "event": "word",
+  "text": "Here"
+ },
+ {
+  "t": 4.4,
+  "event": "word",
+  "text": "are"
+ },
+ {
+  "t": 4.54,
+  "event": "key-word",
+  "text": "three"
+ },
+ {
+  "t": 4.54,
+  "event": "pop"
+ },
+ {
+  "t": 4.78,
+  "event": "key-word",
+  "text": "free"
+ },
+ {
+  "t": 4.78,
+  "event": "pop"
+ },
+ {
+  "t": 5.0,
+  "event": "key-word",
+  "text": "tools"
+ },
+ {
+  "t": 5.0,
+  "event": "pop"
+ },
+ {
+  "t": 5.36,
+  "event": "word",
+  "text": "the"
+ },
+ {
+  "t": 5.56,
+  "event": "word",
+  "text": "pros"
+ },
+ {
+  "t": 5.78,
+  "event": "word",
+  "text": "actually"
+ },
+ {
+  "t": 6.26,
+  "event": "word",
+  "text": "use."
+ },
+ {
+  "t": 7.08,
+  "event": "scene"
+ },
+ {
+  "t": 7.16,
+  "event": "word",
+  "text": "One,"
+ },
+ {
+  "t": 7.4,
+  "event": "key-word",
+  "text": "Blender,"
+ },
+ {
+  "t": 7.4,
+  "event": "pop"
+ },
+ {
+  "t": 8.06,
+  "event": "list-item",
+  "text": "full 3D"
+ },
+ {
+  "t": 8.24,
+  "event": "word",
+  "text": "3D"
+ },
+ {
+  "t": 8.7,
+  "event": "list-item",
+  "text": "free and open source."
+ },
+ {
+  "t": 8.98,
+  "event": "word",
+  "text": "and"
+ },
+ {
+  "t": 9.18,
+  "event": "word",
+  "text": "open"
+ },
+ {
+  "t": 9.44,
+  "event": "word",
+  "text": "source."
+ },
+ {
+  "t": 10.32,
+  "event": "word",
+  "text": "Two,"
+ },
+ {
+  "t": 10.74,
+  "event": "key-word",
+  "text": "Inkscape,"
+ },
+ {
+  "t": 10.74,
+  "event": "pop"
+ },
+ {
+  "t": 11.56,
+  "event": "list-item",
+  "text": "vector graphics,"
+ },
+ {
+  "t": 11.72,
+  "event": "word",
+  "text": "graphics,"
+ },
+ {
+  "t": 12.42,
+  "event": "list-item",
+  "text": "no subscription."
+ },
+ {
+  "t": 12.52,
+  "event": "word",
+  "text": "subscription."
+ },
+ {
+  "t": 13.62,
+  "event": "word",
+  "text": "Three,"
+ },
+ {
+  "t": 14.04,
+  "event": "key-word",
+  "text": "Figma,"
+ },
+ {
+  "t": 14.04,
+  "event": "pop"
+ },
+ {
+  "t": 14.72,
+  "event": "list-item",
+  "text": "it has a free plan"
+ },
+ {
+  "t": 14.8,
+  "event": "word",
+  "text": "has"
+ },
+ {
+  "t": 14.94,
+  "event": "word",
+  "text": "a"
+ },
+ {
+  "t": 15.02,
+  "event": "word",
+  "text": "free"
+ },
+ {
+  "t": 15.2,
+  "event": "word",
+  "text": "plan"
+ },
+ {
+  "t": 15.54,
+  "event": "list-item",
+  "text": "for solo work."
+ },
+ {
+  "t": 15.72,
+  "event": "word",
+  "text": "solo"
+ },
+ {
+  "t": 16.06,
+  "event": "word",
+  "text": "work."
+ },
+ {
+  "t": 16.84,
+  "event": "scene"
+ },
+ {
+  "t": 16.84,
+  "event": "big-build"
+ },
+ {
+  "t": 16.84,
+  "event": "cta"
+ },
+ {
+  "t": 16.92,
+  "event": "key-word",
+  "text": "Save"
+ },
+ {
+  "t": 17.08,
+  "event": "word",
+  "text": "this,"
+ },
+ {
+  "t": 17.36,
+  "event": "word",
+  "text": "and"
+ },
+ {
+  "t": 17.56,
+  "event": "key-word",
+  "text": "follow"
+ },
+ {
+  "t": 17.56,
+  "event": "bubble"
+ },
+ {
+  "t": 17.88,
+  "event": "word",
+  "text": "for"
+ },
+ {
+  "t": 18.14,
+  "event": "word",
+  "text": "more."
+ }
+]

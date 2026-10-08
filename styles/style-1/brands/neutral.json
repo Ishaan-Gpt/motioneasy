@@ -1,0 +1,9 @@
+{
+ "_doc": "Default brand: no watermark, the reference accent. Copy to <brand>.json and edit; the storyboard picks it with \"brand\".",
+ "name": "neutral",
+ "accent": "#E8735A",
+ "font": "roboto",
+ "watermark": "",
+ "cta": { "keyword": "", "magnet": "", "follow": "" },
+ "style_block": "studio product render, soft key light from the top left, large soft shadow falling to the lower right, pure white seamless background, matte materials, black, white and grey with one accent #E8735A, no text, no logos, whole object in frame, centered"
+}

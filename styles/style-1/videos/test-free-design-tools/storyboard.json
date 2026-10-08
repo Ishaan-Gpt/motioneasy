@@ -1,0 +1,27 @@
+{
+ "video": "test-free-design-tools",
+ "brand": "neutral",
+ "assets": {
+  "blender":  {"src": "styles/style-1/assets/logos/blender/ready.svg"},
+  "inkscape": {"src": "styles/style-1/assets/logos/inkscape/ready.svg"},
+  "figma":    {"src": "styles/style-1/assets/logos/figma/ready.svg"}
+ },
+ "beats": [
+  {"layout": "hook", "lines": "^Most ^people ^think | *^great *^design | _takes /expensive *software.",
+   "objects": [{"kind": "burst", "at": "great", "w": 0.5, "y": 0.62}]},
+  {"layout": "text", "lines": "It | *!doesn't."},
+  {"layout": "icons", "lines": "Here are *three *free *tools | _the _pros /actually _use.",
+   "objects": [{"kind": "icon", "asset": "blender", "at": "three"}, {"kind": "icon", "asset": "inkscape", "at": "free"}, {"kind": "icon", "asset": "figma", "at": "tools"}]},
+  {"layout": "cutout", "bg": "offwhite-grid-panel", "lines": "One, | *Blender,", "text_y": 0.10,
+   "list": ["full 3D", "free and open source."], "list_y": 0.62,
+   "objects": [{"kind": "icon", "asset": "blender", "at": "Blender", "w": 0.36, "y": 0.42}]},
+  {"layout": "cutout", "bg": "offwhite-grid-panel", "lines": "Two, | *Inkscape,", "text_y": 0.10,
+   "list": ["vector graphics,", "no subscription."], "list_y": 0.62,
+   "objects": [{"kind": "icon", "asset": "inkscape", "at": "Inkscape", "w": 0.36, "y": 0.42}]},
+  {"layout": "cutout", "bg": "offwhite-grid-panel", "lines": "Three, | *Figma,", "text_y": 0.10,
+   "list": ["it has a free plan", "for solo work."], "list_y": 0.62,
+   "objects": [{"kind": "icon", "asset": "figma", "at": "Figma", "w": 0.30, "y": 0.42}]},
+  {"layout": "cta", "lines": "*Save this, | _and *follow _for /more.", "text_y": 0.30, "hold": 1.2,
+   "objects": [{"kind": "bubble", "text": "Follow for more", "at": "follow", "y": 0.62}]}
+ ]
+}

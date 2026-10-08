@@ -25,7 +25,7 @@ def tts(script, out, voice, speed):
     for i, p in enumerate(paras):
         y, sr = k.create(" ".join(p.split()), voice=voice, speed=speed, lang="en-us")
         y = librosa.resample(np.asarray(y, dtype=np.float32), orig_sr=sr, target_sr=SR)
-        parts += [y, np.zeros(int(0.45 * SR), np.float32)] if i < len(paras) - 1 else [y]
+        parts += [y, np.zeros(int(0.25 * SR), np.float32)] if i < len(paras) - 1 else [y]
     y = np.concatenate(parts)
     sf.write(out / "vo.wav", y / max(1e-9, np.abs(y).max()) * 0.89, SR)
 
@@ -63,7 +63,7 @@ def loudness(path):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["tts", "analyze"]); ap.add_argument("src"); ap.add_argument("out")
-    ap.add_argument("--voice", default="am_michael"); ap.add_argument("--speed", type=float, default=1.05)
+    ap.add_argument("--voice", default="am_michael"); ap.add_argument("--speed", type=float, default=1.18)  # refs speak ~2.9 words/s
     a = ap.parse_args()
     out = Path(a.out); out.mkdir(parents=True, exist_ok=True)
     if a.cmd == "tts":

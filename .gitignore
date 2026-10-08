@@ -60,6 +60,9 @@ sources/references/
 styles/*/references/**
 styles/*/music/**
 styles/*/renders/**
+styles/*/videos/**
+!styles/*/videos/**/
+!styles/*/videos/**/*.txt
 styles/*/assets/**
 styles/*/fonts/**/*.ttf
 styles/*/fonts/**/*.otf

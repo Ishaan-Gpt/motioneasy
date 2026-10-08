@@ -1,0 +1,82 @@
+[
+ {
+  "t": 0.0,
+  "end": 2.94,
+  "text": "Most people think great design takes expensive software.",
+  "words": 8,
+  "sentence_end": true,
+  "pause_after": 0.54
+ },
+ {
+  "t": 3.48,
+  "end": 3.92,
+  "text": "It doesn't.",
+  "words": 2,
+  "sentence_end": true,
+  "pause_after": 0.36
+ },
+ {
+  "t": 4.28,
+  "end": 6.68,
+  "text": "Here are three free tools the pros actually use.",
+  "words": 9,
+  "sentence_end": true,
+  "pause_after": 0.48
+ },
+ {
+  "t": 7.16,
+  "end": 7.7,
+  "text": "One, Blender,",
+  "words": 2,
+  "sentence_end": false,
+  "pause_after": 0.36
+ },
+ {
+  "t": 8.06,
+  "end": 9.8,
+  "text": "full 3D free and open source.",
+  "words": 6,
+  "sentence_end": true,
+  "pause_after": 0.52
+ },
+ {
+  "t": 10.32,
+  "end": 11.1,
+  "text": "Two, Inkscape,",
+  "words": 2,
+  "sentence_end": false,
+  "pause_after": 0.46
+ },
+ {
+  "t": 11.56,
+  "end": 12.94,
+  "text": "vector graphics, no subscription.",
+  "words": 4,
+  "sentence_end": true,
+  "pause_after": 0.68
+ },
+ {
+  "t": 13.62,
+  "end": 14.28,
+  "text": "Three, Figma,",
+  "words": 2,
+  "sentence_end": false,
+  "pause_after": 0.44
+ },
+ {
+  "t": 14.72,
+  "end": 16.4,
+  "text": "it has a free plan for solo work.",
+  "words": 8,
+  "sentence_end": true,
+  "pause_after": 0.52
+ },
+ {
+  "t": 16.92,
+  "end": 18.36,
+  "text": "Save this and follow for more.",
+  "words": 6,
+  "sentence_end": true,
+  "pause_after": 0
+ }
+]
