@@ -91,10 +91,6 @@
   "notify": {
    "file": "tonal.notify.wav",
    "align": "start"
-  },
-  "viral-riser": {
-   "file": "viral.ui-riser.wav",
-   "align": "start"
   }
  },
  "events": {
@@ -229,7 +225,7 @@
     "riser-short"
    ],
    "level_db": -38,
-   "why": "1.4 s build that ends on a reveal; follow with hard-hit or key-word at the same t"
+   "why": "riser-short (owner's premium Riser) ends exactly on the cut into a new scene / big reveal"
   },
   "big-build": {
    "sounds": [
@@ -244,19 +240,11 @@
    ],
    "level_db": -36,
    "why": "Comment-keyword / lead magnet lands"
-  },
-  "viral-riser": {
-   "sounds": [
-    "viral-riser"
-   ],
-   "level_db": -36,
-   "why": "owner: bright viral riser into a new scene / reveal"
   }
  },
  "rules": {
   "min_gap": 0.06,
   "priority": [
-   "viral-riser",
    "hard-hit",
    "scene",
    "card-in",
