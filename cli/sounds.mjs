@@ -66,10 +66,23 @@ const FREESOUND_QUERIES = [
   { q: "bubble pop", cat: "ui", dur: [0.05, 0.6], take: 1 },
   { q: "button click", cat: "ui", dur: [0.03, 0.4], take: 1 },
   { q: "glitch", cat: "fx", dur: [0.2, 1.5], take: 2 },
+  // 2026-10-07 · 30 s landscape film: liquid swirl, results raining in, a search bar typed key by key, the drop, glass UI.
+  { q: "liquid whoosh", cat: "whoosh", dur: [0.6, 3], take: 2 },
+  { q: "cards shuffle", cat: "foley", dur: [0.2, 2], take: 2 },
+  { q: "mechanical keyboard key", cat: "foley", dur: [0.03, 0.5], take: 2 },
+  { q: "sub drop", cat: "impact", dur: [0.8, 4], take: 2 },
+  { q: "glass ting", cat: "ui", dur: [0.1, 1.5], take: 1 },
+  { q: "light switch", cat: "ui", dur: [0.05, 0.6], take: 1 },
+  { q: "vanish", cat: "fx", dur: [0.4, 2.5], take: 1 },
+  // 2026-10-07 · 3D one-take: strings snapping, a glass marble dropping into liquid, glass cards clinking, rope creak.
+  { q: "string snap", cat: "foley", dur: [0.1, 1.5], take: 2 },
+  { q: "water drop splash", cat: "foley", dur: [0.2, 2], take: 2 },
+  { q: "glass clink", cat: "ui", dur: [0.1, 1.5], take: 2 },
+  { q: "rope creak", cat: "foley", dur: [0.3, 2.5], take: 1 },
 ];
 
 // Highly rated but wrong for product edits (instruments, creatures, cartoons, stations): skipped on every run.
-const SKIP = /fur|bamboo|insect|ukulele|metro|station|hardstyle|cartoon|furby|inside piano|shaking|distorted|scream|fart|laugh/i;
+const SKIP = /fur|bamboo|insect|ukulele|metro|station|hardstyle|cartoon|furby|inside piano|shaking|distorted|scream|fart|laugh|death|fighting/i;
 
 /** Keyless search: the public CC0-filtered results page carries id, author, title, duration and preview. */
 async function searchWeb(q, dur, n) {
@@ -105,8 +118,9 @@ function master(src, dst, maxLen = 4) {
 }
 
 const prev = existsSync(MANIFEST) ? readFileSync(MANIFEST, "utf8") : "";
-// Without --freesound, keep the Freesound sounds fetched earlier (their files stay in place).
-const kept = !process.argv.includes("--freesound") ? [...prev.matchAll(/^  (\{ id: "fs\.[^\n]*\}),\r?$/gm)].map((m) => new Function(`return ${m[1]}`)()) : [];
+// Freesound sounds fetched earlier are always kept (their files stay in place and posts reference them), so a re-fetch
+// whose search ranking shifted only adds sounds, never drops one.
+const prevFs = [...prev.matchAll(/^  (\{ id: "fs\.[^\n]*\}),\r?$/gm)].map((m) => new Function(`return ${m[1]}`)());
 const entries = [];
 
 for (const [id, name, category, description, file] of KENNEY_PICKS) {
@@ -147,6 +161,7 @@ if (process.argv.includes("--freesound")) {
   }
 }
 
+const kept = prevFs.filter((e) => !entries.some((x) => x.id === e.id));
 const line = (e) => `  { id: ${JSON.stringify(e.id)}, name: ${JSON.stringify(e.name)}, category: ${JSON.stringify(e.category)}, kind: "sample", description: ${JSON.stringify(e.description)}, file: ${JSON.stringify(e.file)}, credit: ${JSON.stringify(e.credit)}, license: "CC0", source: ${JSON.stringify(e.source)}, len: ${Number(e.len ?? 0).toFixed(3)} },`;
 writeFileSync(
   MANIFEST,
