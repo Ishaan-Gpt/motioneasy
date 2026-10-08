@@ -60,6 +60,7 @@ sources/references/
 styles/*/references/**
 styles/*/music/**
 styles/*/renders/**
+styles/*/assets/**
 styles/*/fonts/**/*.ttf
 styles/*/fonts/**/*.otf
 styles/*/fonts/**/*.woff*

@@ -17,7 +17,12 @@ no fake content and the same treatment every time.
 ## The pipeline: 6 stages
 1. **Plan.** Script + word times → an asset list. Each noun that needs a picture becomes a line:
    `{id, kind, query, when: word t, beat}`. Claude writes it; the owner can edit it before anything is fetched.
-2. **Search** (by kind, free sources first):
+2. **Search** (by kind, free sources first). **Muse** (the owner's asset-studio agent) handles stock video/images,
+   website screenshots/recordings, YouTube frames and (last resort, marked AI) generated images:
+   `styles/tools/muse.py request plan.json` writes one request per file into `Asset Studio/inbox/`;
+   `muse.py collect` pulls `<id>.done.json` + files from `outbox/` into `assets/muse/<id>/` with the receipt.
+   Needs the Drive folder synced locally (Google Drive for Desktop) [todo: owner]. Muse checks every ~15 min.
+   Local fallbacks for what Muse doesn't cover:
    - logos: Simple Icons (CC0 SVG, ~3,000 brands) → Iconify (200k+ open-licence icons) → the brand's own press kit
    - screenshots / UI: **Playwright capture of the real page** (URL from the plan); scroll / click / record video
      for live UI. Real product only (honesty rule).
