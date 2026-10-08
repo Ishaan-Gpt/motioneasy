@@ -49,16 +49,14 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: [todo: pick].
 - SFX: about 3 hits/s; 10–12 recurring types used in every video [confirmed, approximate clustering].
 - One sound per event: word/text → click/typing; pop-in → bubble/pop; move/slide → whoosh [observed, mapping todo].
-- Premium SFX pack: owner-supplied, local only, sliced into `sfx/library/hits/` by `styles/tools/slice_sfx.py`.
-  Index + mapping in `sfx/library/README.md`. No exact sample from the pack occurs in the refs (waveform match ≈
-  baseline), so the creator used other files; mapping below is by sound character [confirmed].
-- **Words → typing, one keystroke per word, on the word's appear time** (2 words = 2 hits). Keystrokes rotate,
-  never the same twice in a row, ±1.5 dB. Tool: `styles/tools/typing_sfx.py` [owner rule]. Typing timbre matches the
-  two most frequent ref types (type-02, type-11: ~186 of 663 hits) [confirmed].
-- UI blips (`ui-animations-01…09`) ↔ the other mid clicks (type-02/10/11): pop-ins, list items, cards [confirmed].
-- Finger snap ↔ type-00 (dark click, 56 hits): emphasis/reveal of a key word [owner likes; mapping by character].
-- Riser: build-up into a key reveal or the CTA [owner rule]. UI riser: short bright rise ↔ type-06.
-- Woosh: the original is slow (1.1 s, peak at 480 ms). Use `woosh-short` (0.45 s) or `woosh-fast` (0.30 s) [owner rule].
+- Premium pack 1: 6 originals in `sfx/library/pack/` + max 4 variations in `variations/` (10 total) [owner rule].
+  Index in `sfx/library/README.md`. No exact pack sample occurs in the refs; mapping is by sound character.
+- **Words → typing, one note per word, on the word's appear time** (2 words = 2 notes). Notes are taken from
+  `pack/Typing.MP3` at mix time, never the same twice in a row. Tool: `styles/tools/typing_sfx.py` [owner rule].
+  Typing matches the two most frequent ref types (type-02, type-11) [confirmed].
+- UI Animations ↔ the other mid clicks: pop-ins, list items, cards. Finger snap ↔ dark click type-00: key words.
+- Riser / riser-short: into a big reveal or the CTA [owner rule]. UI riser: short bright rise.
+- Woosh original is slow (peak at ~480 ms): use woosh-short / woosh-tight for moves [owner rule].
 - **Moderate engineering [owner rule]:** the premium files in `pack/`, `pack2/` are never edited or replaced. Use
   them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
   at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.

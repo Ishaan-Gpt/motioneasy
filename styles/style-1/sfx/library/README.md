@@ -2,18 +2,16 @@
 
 Owner's premium pack (Google Drive, 2026-10-08). Audio is local only (git-ignored); this index is tracked.
 Re-fetch: `.venv-audio/Scripts/gdown --folder <drive folder link> -O styles/style-1/sfx/library/pack`
-Slice: `.venv-audio/Scripts/python styles/tools/slice_sfx.py styles/style-1/sfx/library/pack styles/style-1/sfx/library/hits`
 
-## Hits (in `hits/`)
-| Hits | From | What | Use | Nearest ref type |
-|---|---|---|---|---|
-| `typing-01…09` | Typing | 9 single keystrokes, 18 ms each | one per word, synced (`typing_sfx.py`) | type-02 / type-11 |
-| `ui-animations-01…09` | UI Animations | 9 short UI blips, 50–330 ms | pop-ins, list items, cards | type-02 / 10 / 11 |
-| `finger-snap` | Finger Snap | single snap, 1.25 s tail | key-word emphasis | type-00 |
-| `riser` | Riser | 3.0 s build, peaks at the end | into a big reveal / CTA | (none close) |
-| `ui-riser` | UI riser | 2.1 s bright rise | short build, UI reveal | type-06 |
-| `woosh` | Woosh | 1.1 s, slow, dark | not used as is | (none close) |
-| `woosh-short` / `woosh-fast` | Woosh | 0.45 s / 0.30 s cut around the peak | moves, slides, exits | |
+## Pack 1: 6 originals (`pack/`, never edited) + 4 variations (`variations/`) = 10
+| File | Use |
+|---|---|
+| pack/Typing.MP3 | words: one note per word, synced (`styles/tools/typing_sfx.py` picks notes at mix time) |
+| pack/UI Animations.MP3 | pop-ins, list items, cards (use one blip at a time by start offset) |
+| pack/Finger Snap.MP3 · variations/finger-snap-tight.wav (0.6 s, shorter tail) | key-word emphasis |
+| pack/Riser.MP3 · variations/riser-short.wav (last 1.4 s) | build into a reveal / CTA |
+| pack/UI riser.MP3 | short bright rise, UI reveal |
+| pack/Woosh.MP3 (slow) · variations/woosh-short.wav (0.45 s) · variations/woosh-tight.wav (0.3 s) | moves, slides, exits |
 
 ## Missing: reference types with no close pack sound
 Audition clips in `sfx/missing/type-XX.wav` (4 examples each, separated from the refs; expect artefacts).
