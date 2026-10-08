@@ -19,9 +19,14 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - Something new enters every 0.5–1 s; no dead air [observed].
 
 ## 2. Stage
-- Off-white background (~#F2F2F2), never pure white; faint dot grid [observed].
+- Only white and near-white: #FFFFFF (text beats), #F6F6F6 (default), #F2F2F2 (card stacks) [confirmed, measured].
+- Grid = a dashed patch behind the hero object, not the whole frame: 108 px columns × ~92 px rows, lines #D9D9D9
+  2 px dashed 6/5, 11 px dots #D7D7D7 on the crossings, fading out ~110 px past the edge [confirmed, measured].
+- Ready files: `styles/style-1/backgrounds/` (README there; regenerate with `styles/tools/backgrounds.py`).
+  Pick per beat: text → white or white-dots · hero object → offwhite-grid-panel · cards → grey.
+  Use the `overlay-*` layers to keep the grid moving slowly (drift/parallax) so the stage is never frozen.
 - Big soft drop shadows to the lower right on every object: "objects on a desk" [observed].
-- Fixed grey watermark (brand URL) near the bottom; content stays in the middle ~70 % [observed].
+- Fixed watermark (brand URL, #E0E0E0, centred at y≈1645) → `overlay-watermark.png`; content stays in the middle ~70 %.
 - One accent colour (coral in refs) + black/white/grey only [observed].
 - Camera: slow push / slides between topics [todo: verify frame by frame].
 
@@ -125,5 +130,6 @@ Target: 18/20 before posting. Log each score in the changelog.
 - @InsiderForce top 10 Shorts (by views): `breakdowns/insiderforce.md`. Audio measured on 3 of them.
 
 ## 11. Changelog
+- 2026-10-08: backgrounds measured and generated (3 tones, grid panel, dots, overlays, watermark).
 - 2026-10-08: v1 sound: 26 final SFX, event map + mixer, ref-measured triggers; woosh-short/tight were silent (fade bug) → rebuilt.
 - 2026-10-08: v0. Rules from the owner's notes + visual pass on 10 refs + audio pass on 3.
