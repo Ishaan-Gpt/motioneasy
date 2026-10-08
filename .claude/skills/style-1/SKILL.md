@@ -57,7 +57,7 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - UI Animations ↔ the other mid clicks: pop-ins, list items, cards. Finger snap ↔ dark click type-00: key words.
 - Riser / riser-short: into a big reveal or the CTA [owner rule]. UI riser: short bright rise.
 - Woosh original is slow (peak at ~480 ms): use woosh-short / woosh-tight for moves [owner rule].
-- **Moderate engineering [owner rule]:** the premium files in `pack/`, `pack2/` are never edited or replaced. Use
+- **Moderate engineering [owner rule]:** the premium originals in `sfx/` are never edited or replaced. Use
   them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
   at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.
 - Candidates waiting to be judged: `styles/style-1/inbox/` (pack2: 17 files). Analysis clips: `references/_analysis/`.
