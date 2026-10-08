@@ -14,16 +14,43 @@ no fake content and the same treatment every time.
 | Mascot / sprite / repeated item | pixel crab ×64 in a ref; any "N things" in a new script | drawn in code or icon ×N, cascade |
 | UI bits | speech bubble, `+` bullets, pills | drawn in code |
 
+## Three kinds of asset (owner, 2026-10-08)
+Every line of the asset plan is put in exactly one kind by this rule:
+**Does it have to be a specific real thing that people would recognise?** yes → EXTRACT · no → GENERATE.
+Moving image needed → the VIDEO version of the same rule.
+
+| Kind | What | Examples | Who | Delivery |
+|---|---|---|---|---|
+| **1. Generate** | generic or stylised things a generated version can't get "wrong" | 3D props (book, crown, key, rocket), mascots, abstract shapes, scene illustrations | Muse, from the **prompt sheet** | PNG with transparent background, ≥ 2× display size, marked AI-made |
+| **2. Extract** | real things that must be exact | brand logos, real people, real products/UI, real places, real screenshots | Muse search/extract (+ local Simple Icons for logos) | logos/people/products: **transparent PNG cut-out**; screenshots: full resolution, uncropped; photos: original |
+| **3. Video** | moving footage | extract: stock b-roll, screen recordings of real sites/apps, clips from real videos · generate: abstract/stylised motion only | Muse | b-roll: 9:16 MP4; recordings: native size MP4 (we frame it in a card/phone) |
+
+Hard lines: never generate a real person, logo, product or UI (honesty rule); generated items are marked AI-made in asset.json.
+
+### The prompt sheet (kind 1)
+One sheet per video: `styles/style-1/assets/sheets/<video>.json`, sent to Muse as one request file per item
+(Muse's rule), all sharing the same **style block** so the set looks like one family:
+```
+{ "video": "<slug>",
+  "style_block": "studio product render, soft top-left key light, large soft shadow falling lower right,
+                  pure white seamless background, matte materials, black/white/grey + accent <brand accent hex>,
+                  no text, no logos, centered, whole object in frame",
+  "delivery": "PNG, transparent background (or pure white for us to key), 2048 px on the long side",
+  "items": [ { "id": "prop-ebook", "prompt": "a closed hardcover book tilted 20°, blank cover", "use": "cta lead magnet", "t": 61.2 },
+             { "id": "mascot-crab", "prompt": "...", "count": 1, "variants": 3 } ] }
+```
+`muse.py build <plan.json>` turns the whole plan (all three kinds) into request files: generate items get the style block, extract items ask for the real thing + licence, cut-outs ask for transparent PNG.
+
 ## The pipeline: 6 stages
 1. **Plan.** Script + word times → an asset list. Each noun that needs a picture becomes a line:
    `{id, kind, query, when: word t, beat}`. Claude writes it; the owner can edit it before anything is fetched.
 2. **Search** (by kind, free sources first). **Muse** (the owner's asset-studio agent) handles stock video/images,
    website screenshots/recordings, YouTube frames and (last resort, marked AI) generated images:
-   `styles/tools/muse.py request plan.json` writes one request per file into `Asset Studio/inbox/`;
-   `muse.py collect` pulls `<id>.done.json` + files from `outbox/` into `assets/muse/<id>/` with the receipt.
+   `styles/tools/muse.py build plan.json` validates and writes the request files; Claude uploads them to
+   `Asset Studio/inbox/` and later pulls `<id>.done.json` + files from `outbox/` into `assets/muse/<id>/`.
    Connected 2026-10-08 through the Google Drive connector (no local sync needed): requests are created directly in
    `Asset Studio/inbox` (folder id 1lFEkBPihd5TBRX5v3gXmr0S3J_phFpqq), receipts read from `Asset Studio/outbox`
-   (1mmKV1ELU78Lx_Jar1vlbHMI91xT6BNo5). `muse.py` stays for a locally synced folder. Muse checks every ~15 min;
+   (1mmKV1ELU78Lx_Jar1vlbHMI91xT6BNo5). Muse checks every ~15 min;
    never re-submit a pending id. Downloads land in `assets/muse/<id>/` with the receipt as asset.json.
    Local fallbacks for what Muse doesn't cover:
    - logos: Simple Icons (CC0 SVG, ~3,000 brands) → Iconify (200k+ open-licence icons) → the brand's own press kit
@@ -52,6 +79,11 @@ no fake content and the same treatment every time.
    | `prop` | 3D object + shadow | pop with overshoot | slow rotate | `pop` |
    | `cascade` | many small items | staggered every 1–2 f | jiggle | `cascade` |
    | `bubble` | black pill, white text | pop | — | `bubble` |
+
+## Open questions for Muse (owner to ask)
+1. Can you deliver transparent PNG cut-outs (logos, people, props) instead of 9:16 crops?
+2. Can you generate video (abstract/stylised motion), and in what format?
+3. Can you extract short clips (not only frames) from YouTube videos?
 
 ## Decisions needed from the owner
 1. Renderer: MotionEasy canvas engine (deterministic, already exports MP4 + audio) or Remotion.
