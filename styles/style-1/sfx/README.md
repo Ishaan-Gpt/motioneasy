@@ -22,8 +22,8 @@ Originals are never edited: the craft is when, where and how much. New candidate
 | fs.ui.pop-4.wav · fs.ui.pop-9.wav | quatricise / D.S.G., CC0 | pops |
 | fs.ui.the-best-bubble-pop-sound-fo.wav | el_boss, CC0 | bubble pop |
 | fs.foley.water-drop.wav · fs.foley.water-drop-splash.wav | florianreichelt / bxyorna, CC0 | drop accents |
-
 | tonal.chime.wav | MotionEasy synth, take 9 | bell for a logo / number landing |
 | tonal.notify.wav | MotionEasy synth, take 9 | two-note ping, notification moments |
 | ui.pop.wav | MotionEasy synth, take 9 | quick pop for chips and badges |
+
 Re-fetch owner pack: `.venv-audio/Scripts/gdown --folder <drive link> -O styles/style-1/sfx` then rename to the names above.
