@@ -24,7 +24,7 @@ export default defineComponent<Props>({
     text: P.text("LOOKS", "Word", { maxLength: 12 }),
     media: P.media(CLIPS.gianna.src, "Footage inside the type", "any"),
     open: P.bool(true, "Open into the footage", { help: "The letters become a window that opens to full frame." }),
-    sub: P.text("33 caption styles", "Small line", { maxLength: 40 }),
+    sub: P.text("30+ caption styles", "Small line", { maxLength: 40 }),
     font: P.font("brand", "Typeface"),
     weight: P.number(800, "Weight", { min: 600, max: 800, step: 50, group: "style" }),
     hold: P.number(1.2, "Hold", { min: 0.3, max: 4, step: 0.1, unit: "s" }),

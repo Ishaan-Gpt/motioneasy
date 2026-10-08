@@ -20,7 +20,7 @@ export default defineComponent<Props>({
   params: {
     value: P.number(98, "Percent", { min: 0, max: 100, step: 1, group: "content" }),
     label: P.text("word accuracy", "Label", { maxLength: 40 }),
-    caption: P.text("Whisper, on *your* machine.", "Caption", { maxLength: 60 }),
+    caption: P.text("Hinglish, *bilkul sahi.*", "Caption", { maxLength: 60 }),
     fill: P.number(2, "Fill time", { min: 0.6, max: 4, step: 0.1, unit: "s" }),
     ticks: P.bool(true, "Tick marks"),
     size: P.number(1, "Size", { min: 0.6, max: 1.3, step: 0.05, group: "style" }),

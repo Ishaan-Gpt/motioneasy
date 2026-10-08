@@ -22,7 +22,7 @@
     {
       "component": "mask-rise",
       "props": {
-        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 33 looks.*"
+        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 30+ looks.*"
       },
       "transition": "wipe"
     },

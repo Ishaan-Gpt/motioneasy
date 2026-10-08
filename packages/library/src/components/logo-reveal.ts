@@ -20,7 +20,7 @@ export default defineComponent<Props>({
   notes: "Upload your official logo file (SVG or PNG with transparency). Never redraw a brand mark.",
   params: {
     logo: P.media(BRAND.logo, "Logo", "image"),
-    tagline: P.text("Stop timing captions. *Start posting.*", "Tagline", { maxLength: 70 }),
+    tagline: P.text("Viral captions. *Zero watermark.*", "Tagline", { maxLength: 70 }),
     url: P.text("captionseasy.com", "URL pill", { maxLength: 40 }),
     size: P.number(1, "Logo size", { min: 0.4, max: 1.6, step: 0.05, group: "style" }),
     sweep: P.bool(true, "Light sweep"),

@@ -21,7 +21,7 @@ export default defineComponent<Props>({
   params: {
     media: P.media(CLIPS.aisha.src, "Clip in the card", "any"),
     logo: P.media(BRAND.logo, "Logo", "image"),
-    headline: P.text("Stop timing captions.\n*Start posting.*", "Line", { multiline: true, maxLength: 70 }),
+    headline: P.text("Viral captions.\n*Zero watermark.*", "Line", { multiline: true, maxLength: 70 }),
     url: P.text("captionseasy.com", "URL", { maxLength: 40 }),
     follow: P.text("Link in bio", "Cue", { maxLength: 30 }),
     credit: P.text("", "Credit line", { maxLength: 80, help: "e.g. Music: “Inspired” by Kevin MacLeod (CC BY 4.0)" }),

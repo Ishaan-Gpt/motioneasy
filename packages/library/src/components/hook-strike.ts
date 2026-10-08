@@ -19,9 +19,9 @@ export default defineComponent<Props>({
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
   notes: "Open with it. The struck words must appear exactly in the line.",
   params: {
-    line: P.text("Still timing captions\nby hand?", "Question", { maxLength: 60, multiline: true }),
-    strike: P.text("by hand?", "Words to strike", { maxLength: 30, help: "Must match words in the question exactly." }),
-    replace: P.text("*in one click.*", "Replacement", { maxLength: 40 }),
+    line: P.text("Paying Submagic\njust for captions?", "Question", { maxLength: 60, multiline: true }),
+    strike: P.text("Paying Submagic", "Words to strike", { maxLength: 30, help: "Must match words in the question exactly." }),
+    replace: P.text("*Free. Open source.*", "Replacement", { maxLength: 40 }),
     size: P.number(1, "Type size", { min: 0.6, max: 1.4, step: 0.05, group: "style" }),
     font: P.font("brand", "Typeface"),
     weight: P.number(800, "Weight", { min: 400, max: 800, step: 50, group: "style" }),

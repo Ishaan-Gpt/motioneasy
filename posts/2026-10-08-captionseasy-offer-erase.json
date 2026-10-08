@@ -1,0 +1,20 @@
+{
+  "id": "2026-10-08-captionseasy-offer-erase",
+  "title": "CaptionsEasy · Erase the boring · 20 s offer (9:16)",
+  "format": "vertical",
+  "fps": 60,
+  "clips": [
+    { "component": "offer-erase" }
+  ],
+  "music": {
+    "src": "media/music/library/delightful-d.mp3",
+    "gain": 0.1,
+    "offset": 0.124,
+    "fadeIn": 0.05,
+    "fadeOut": 0.6,
+    "credit": "\"Delightful D\" by Kevin MacLeod (incompetech.com), CC-BY 4.0"
+  },
+  "notes": "CaptionsEasy offer, 9:16, 20 s. Hinglish scratch VO (edge-tts) in films/captionseasy-offer-9x16/vo. Concept and shot list in films/captionseasy-offer-9x16/README.md.",
+  "recipe": "offer-erase",
+  "seed": 1
+}

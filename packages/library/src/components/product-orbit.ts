@@ -22,7 +22,7 @@ export default defineComponent<Props>({
   params: {
     media: P.media(CLIPS.jesse.src, "Screen clip", "any"),
     headline: P.text("Meet *CaptionsEasy.*", "Headline", { maxLength: 50 }),
-    features: P.list(["Whisper on your device", "33 caption looks", "MP4 + SRT export"], "Feature chips", { min: 1, max: 4, maxLength: 32 }),
+    features: P.list(["Animated captions", "No watermark", "Accurate Hinglish"], "Feature chips", { min: 1, max: 4, maxLength: 32 }),
     body: P.color("#141413", "Phone colour", { group: "style" }),
     font: P.font("brand", "Typeface"),
   },

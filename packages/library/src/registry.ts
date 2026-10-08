@@ -60,10 +60,11 @@ import quoteCard from "./components/quote-card";
 import countdown from "./components/countdown";
 import nowLive from "./components/now-live";
 import endCard from "./components/end-card";
+import offerErase from "./components/offer-erase";
 
 export const COMPONENTS: Component[] = [
   // scenes
-  hookStrike, scrollStop, productOrbit, statTrio, checklist, fourSteps, quoteCard, countdown, nowLive, endCard,
+  hookStrike, scrollStop, productOrbit, statTrio, checklist, fourSteps, quoteCard, countdown, nowLive, endCard, offerErase,
   // elements
   beatSlam, kineticStack, typeMarquee, charCascade, imageType, wordRotator, weightWave, echoStack, flyThrough,
   focusPull, lightSweep, maskRise, barWipe, splitFlap, terminalType, decode,

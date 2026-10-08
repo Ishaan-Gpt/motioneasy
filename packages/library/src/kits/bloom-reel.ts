@@ -396,7 +396,7 @@ const keycap = def({
   description: "A green glass keycap carrying the logo tumbles slowly in 3D while a sentence orbits it on a tilted ring (letters face the camera, the back half dims and sits behind the key). Green bloom, dust.",
   tags: ["3d", "keycap", "glass", "orbit", "ring text", "logo", "showreel"],
   params: {
-    ring: P.text("Stop timing captions. Start posting. ", "Ring text", { maxLength: 60 }),
+    ring: P.text("Viral captions. Zero watermark. ", "Ring text", { maxLength: 60 }),
     icon: P.media(M.appIcon, "Icon on the key", "image"),
     duration: dur(6),
   },
@@ -581,8 +581,8 @@ const highlight = def({
   description: "A white frame with a lavender bloom floor: a bold two-line headline reveals through a soft mask while a lavender highlighter bar wipes in under the accent line, and a 3D prop (the lilac mic) floats up beside it, turning slowly.",
   tags: ["light", "headline", "highlighter", "prop", "3d object", "showreel"],
   params: {
-    top: P.text("Every word,", "Line 1", { maxLength: 22 }),
-    line2: P.text("perfectly timed.", "Accent line", { maxLength: 22 }),
+    top: P.text("Captions that", "Line 1", { maxLength: 22 }),
+    line2: P.text("go viral.", "Accent line", { maxLength: 22 }),
     prop: P.media(M.mic, "Prop image", "image"),
     duration: dur(5),
   },
@@ -643,7 +643,7 @@ const neonOrbit = def({
   description: "A neon-edged waveform island with contour lines tilts and turns in 3D under a green bloom while six keywords orbit it (scaling and dimming with depth). A white flash on the beat, the island lifts and shrinks, and a two-line title pops in letter by letter out of order.",
   tags: ["neon", "3d", "orbit", "keywords", "flash", "title", "showreel"],
   params: {
-    words: P.list(["Whisper", "Your machine", "No cloud", "Every word", "Free", "Open source"], "Orbiting words", { min: 3, max: 8, maxLength: 16 }),
+    words: P.list(["Viral", "No watermark", "Hinglish", "30+ looks", "Free", "Open source"], "Orbiting words", { min: 3, max: 8, maxLength: 16 }),
     title1: P.text("Never leaves", "Title line 1", { maxLength: 18 }),
     title2: P.text("your machine.", "Title line 2 (accent)", { maxLength: 18 }),
     flashAt: P.number(beats(4), "Flash at (s)", { min: 0.5, max: 10, step: 0.01, unit: "s" }),
@@ -813,7 +813,7 @@ const dashboard = def({
   tags: ["ui", "dashboard", "3d", "dolly", "rim light", "neon", "showreel"],
   params: {
     heading: P.text("Style the frame.", "Heading", { maxLength: 24 }),
-    rows: P.list(["Whisper|Runs on your machine", "33 looks|One click each", "Every word|Timed for you", "Export MP4|Right in the browser"], "Rows (title|sub-line)", { min: 2, max: 5, maxLength: 40 }),
+    rows: P.list(["Animated|After Effects-style", "30+ looks|One click each", "Hinglish|Bilkul sahi", "No watermark|Export it clean"], "Rows (title|sub-line)", { min: 2, max: 5, maxLength: 40 }),
     duration: dur(7),
   },
   duration: (p) => p.duration,
@@ -1301,7 +1301,7 @@ const glowCards = def({
   description: "Dark frame with fine dust: four glass feature cards (glowing icon, title, sub-line), each carrying its own colour bloom, stagger in and pan slowly through the frame.",
   tags: ["cards", "features", "glass", "glow", "dark", "showreel"],
   params: {
-    cards: P.list(["Whisper|On your machine", "33 looks|One click each", "MP4|Right in the browser", "$0|Free, open source"], "Cards (title|sub-line)", { min: 2, max: 5, maxLength: 36 }),
+    cards: P.list(["Animated|After Effects-style", "30+ looks|One click each", "Hinglish|Actually accurate", "$0|No watermark, open source"], "Cards (title|sub-line)", { min: 2, max: 5, maxLength: 36 }),
     duration: dur(4),
   },
   duration: (p) => p.duration,
@@ -1346,7 +1346,7 @@ const desk = def({
   params: {
     screen: P.media(M.look("karaoke_fill"), "Laptop screen", "image"),
     phone: P.media(M.hero("mckensie"), "Phone clip", "video"),
-    note: P.text("Stop timing captions.", "Sticky note", { maxLength: 26 }),
+    note: P.text("No watermark. Ever.", "Sticky note", { maxLength: 26 }),
     chips: P.list(["every", "word", "timed"], "Caption chips", { max: 4, maxLength: 10 }),
     duration: dur(7),
   },
@@ -1613,7 +1613,7 @@ const pixelCard = def({
   params: {
     title: P.text("CaptionsEasy · Studio", "Title", { maxLength: 30 }),
     image: P.media(M.hero("sam"), "Image / clip", "any"),
-    rows: P.list(["Engine|Whisper, on your machine", "Looks|33 caption looks", "Export|MP4, in the browser", "Price|Free and open source"], "Rows (label|value)", { min: 1, max: 5, maxLength: 44 }),
+    rows: P.list(["Style|After Effects-style motion", "Looks|30+ viral caption looks", "Hinglish|Accurate, word by word", "Price|Free, no watermark"], "Rows (label|value)", { min: 1, max: 5, maxLength: 44 }),
     duration: dur(7),
   },
   duration: (p) => p.duration,
@@ -1714,7 +1714,7 @@ const PLAN = [
   T("bloom-arch-type", 6, {}, "flash"),
   T("bloom-pixel-card", 7),
   T("bloom-bookend", 14, {
-    word: "START", script: "posting.", pill: "Free", line1: "captionseasy.com", line2: "Stop timing captions.", lead: beats(1), fadeOut: 0.9,
+    word: "VIRAL", script: "captions.", pill: "Free", line1: "captionseasy.com", line2: "Zero watermark. Open source.", lead: beats(1), fadeOut: 0.9,
     credits: ["CaptionsEasy © 2026", "Music: \"Realizer\" by Kevin MacLeod (incompetech.com), CC BY 4.0", "Footage: Wikitongues via Wikimedia Commons, CC BY / CC BY-SA"],
   }, "pixel"),
 ];

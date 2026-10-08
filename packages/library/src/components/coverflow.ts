@@ -28,7 +28,7 @@ export default defineComponent<Props>({
   params: {
     media: P.mediaList(clipList(["sol", "gianna", "jesse", "aisha", "rusita", "sam", "omar"]), "Clips / images", "any", { min: 3, max: 12 }),
     labels: P.list(lookList(["sol", "gianna", "jesse", "aisha", "rusita", "sam", "omar"]), "Labels", { max: 12, help: "One label per card (shown under the centre card)." }),
-    title: P.text("33 looks.\n*One click.*", "Title", { maxLength: 60, multiline: true }),
+    title: P.text("30+ looks.\n*One click.*", "Title", { maxLength: 60, multiline: true }),
     step: P.number(1.1, "Time per card", { min: 0.5, max: 3, step: 0.05, unit: "s" }),
     advances: P.number(3, "Cards to advance", { min: 1, max: 10, step: 1 }),
     tilt: P.number(52, "Side tilt", { min: 0, max: 80, step: 1, unit: "°", group: "style" }),

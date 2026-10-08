@@ -25,7 +25,7 @@ export default defineComponent<Props>({
     wordmark: P.media(BRAND.wordmark, "Wordmark", "image"),
     bars: P.number(3, "Bars", { min: 3, max: 3, step: 1, advanced: true }),
     colors: P.list(["#1A1A1A", "#1A1A1A", "#1A1A1A"], "Bar colours", { min: 3, max: 3, help: "Hex colours for the three bars." }),
-    tagline: P.text("Stop timing captions.", "Tagline", { maxLength: 60 }),
+    tagline: P.text("Viral captions.", "Tagline", { maxLength: 60 }),
     font: P.font("brand", "Typeface"),
   },
   duration: 4.4,

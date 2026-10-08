@@ -18,10 +18,10 @@ export default defineComponent<Props>({
   camera: "drift",
   featured: true,
   theme: { mode: "dark", lighting: 0.6, grain: 0.4, vignette: 0.6 },
-  notes: "Shows scale ('33 looks', '1,000 creators'). The dive is a transition: cut to the full clip next.",
+  notes: "Shows scale ('30+ looks', '1,000 creators'). The dive is a transition: cut to the full clip next.",
   params: {
     media: P.mediaList(ALL, "Tiles", "any", { min: 3, max: 20 }),
-    headline: P.text("33 looks.\n*One click.*", "Headline", { multiline: true, maxLength: 50 }),
+    headline: P.text("30+ looks.\n*One click.*", "Headline", { multiline: true, maxLength: 50 }),
     speed: P.number(1, "Scroll speed", { min: 0, max: 3, step: 0.05 }),
     tilt: P.number(1, "Tilt", { min: 0, max: 1.6, step: 0.05, group: "style" }),
     dive: P.bool(true, "Dive into a tile at the end"),

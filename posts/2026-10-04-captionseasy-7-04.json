@@ -26,7 +26,7 @@
         "headline": "Meet *CaptionsEasy.*",
         "features": [
           "Whisper on your machine",
-          "33 caption looks",
+          "30+ caption looks",
           "MP4 export in the browser"
         ]
       }
@@ -34,7 +34,7 @@
     {
       "component": "mask-rise",
       "props": {
-        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 33 looks.*"
+        "text": "Drop in a clip.\nWhisper transcribes it.\n*Pick one of 30+ looks.*"
       }
     },
     {

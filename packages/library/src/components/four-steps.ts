@@ -18,8 +18,8 @@ export default defineComponent<Props>({
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
   notes: "Write steps as 'Title|detail'. 3–5 steps.",
   params: {
-    title: P.text("From camera roll to *captioned* in four moves.", "Title", { maxLength: 70 }),
-    steps: P.list(["Upload the take|Drop any clip into your browser.", "Every word gets a timestamp|Whisper runs on your machine.", "Pick a look, direct the frame|33 looks, one click each.", "Export and post|MP4 + SRT, no watermark."], "Steps (title|detail)", { min: 2, max: 6, maxLength: 80 }),
+    title: P.text("From raw clip to *viral captions* in four moves.", "Title", { maxLength: 70 }),
+    steps: P.list(["Drop in your clip|Right in the browser.", "Every word lands|Hinglish too, in sync.", "Pick a viral look|33 After Effects-style animations.", "Export it clean|MP4, no watermark."], "Steps (title|detail)", { min: 2, max: 6, maxLength: 80 }),
     step: P.number(1.25, "Time per step", { min: 0.6, max: 3, step: 0.05, unit: "s" }),
     font: P.font("brand", "Typeface"),
   },

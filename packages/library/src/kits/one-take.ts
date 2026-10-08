@@ -374,7 +374,7 @@ const SCENE: Scene = {
     { kind: "wave", ...at(4, 0.12, 0.02), w: 0.22, h: 0.08, z: 1.08, in: 8.4, from: "left", dist: 0.12, sfx: false },
     { kind: "pill", text: "Whisper · on your machine", glyph: "check", ...at(4, 0.08, 0.2), size: 0.022, z: 1.12, in: 9.45, from: "pop" },
     { kind: "image", media: M("cloud-lock.png"), ...at(4, 0.14, -0.13), w: 0.2, z: 1.15, in: 10.45, from: "pop", sfx: "viral.finger-snap" },
-    // 6 · 33 looks, every word on time (looks grid, him with arms crossed)
+    // 6 · 30+ looks, every word on time (looks grid, him with arms crossed)
     ...["minimal_pro", "beast_bounce", "neon_sign", "luxe_serif", "highlighter_card", "gradient_pop"].map((f, i) => ({ kind: "image", media: LK(f), ...at(5, -0.17 + (i % 3) * 0.13, -0.12 + Math.floor(i / 3) * 0.19), w: 0.12, h: 0.17, r: 0.012, z: 1.02 + (i % 2) * 0.04, in: 11.5 + i * 0.07, from: "pop", sfx: i % 2 === 0 ? "viral.ui-animations" : (false as const) } as Layer)),
     person(5, "arms-crossed", "right", 12.8, 0.17, 0.46, { z: 1.12 }),
     ...["every", "word", "lands", "on", "time."].map((w, i) => ({ kind: "chip", text: w, ...at(5, -0.2 + i * 0.085, 0.2), size: 0.019, z: 1.16, in: [13.25, 13.47, 13.73, 14.06, 14.2][i], from: "down", dist: 0.05, color: i === 4 ? LILAC : INK, sfx: false } as Layer)),
@@ -404,7 +404,7 @@ const SCENE: Scene = {
     { at: 8.13, top: "Whisper", bottom: "transcribes it,", ...at(4, 0, -0.36) },
     { at: 9.42, top: "right on", bottom: "your machine.", ...at(4, 0, -0.36) },
     { at: 10.52, top: "No", bottom: "cloud.", ...at(4, 0, -0.36), until: 11.2 },
-    { at: 11.45, top: "Pick one of", bottom: "33 looks,", ...at(5, 0, -0.36) },
+    { at: 11.45, top: "Pick one of", bottom: "30+ looks,", ...at(5, 0, -0.36) },
     { at: 13.02, top: "and every word", bottom: "lands on time.", ...at(5, 0, -0.36), until: 14.55 },
     { at: 14.9, top: "Export the", bottom: "MP4,", ...at(6, 0, -0.33) },
     { at: 16.48, top: "right in the", bottom: "browser.", ...at(6, 0, -0.33), until: 17.4 },

@@ -23,7 +23,7 @@ export interface Deck {
   shorts?: string[];
   /** Feature chips, ≤ 32 characters. */
   features: string[];
-  /** "number|label", e.g. "33|caption looks". Only real numbers. */
+  /** "number|label", e.g. "30+|caption looks". Only real numbers. */
   stats: string[];
   /** "Title|detail" steps. */
   steps?: string[];

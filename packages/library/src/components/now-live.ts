@@ -21,7 +21,7 @@ export default defineComponent<Props>({
   notes: "Announcements: launches, new features, price drops. One stamp per post.",
   params: {
     stamp: P.text("NOW LIVE", "Stamp", { maxLength: 16 }),
-    headline: P.text("33 caption looks.\n*Free, in your browser.*", "Headline", { multiline: true, maxLength: 80 }),
+    headline: P.text("30+ caption looks.\n*Free, in your browser.*", "Headline", { multiline: true, maxLength: 80 }),
     url: P.text("captionseasy.com", "URL", { maxLength: 40 }),
     tilt: P.number(-8, "Stamp tilt", { min: -20, max: 20, step: 1, unit: "°", group: "style" }),
     font: P.font("brand", "Typeface"),

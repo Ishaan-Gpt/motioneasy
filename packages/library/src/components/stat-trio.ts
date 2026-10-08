@@ -22,10 +22,10 @@ export default defineComponent<Props>({
   added: "2026-10-03",
   featured: true,
   theme: { mode: "light", lighting: 0.6, grain: 0.3, vignette: 0.25 },
-  notes: "Write stats as 'number|label', e.g. '33|caption looks'. Real numbers only.",
+  notes: "Write stats as 'number|label', e.g. '30+|caption looks'. Real numbers only.",
   params: {
     headline: P.text("Small tool. *Big numbers.*", "Headline", { maxLength: 50 }),
-    stats: P.list(["33|caption looks", "0|files uploaded to a server", "1|click to switch looks"], "Stats (number|label)", { min: 1, max: 4, maxLength: 50 }),
+    stats: P.list(["30+|caption looks", "0|files uploaded to a server", "1|click to switch looks"], "Stats (number|label)", { min: 1, max: 4, maxLength: 50 }),
     hero: P.number(1, "Hero card", { min: 1, max: 4, step: 1 }),
     stagger: P.number(0.55, "Stagger", { min: 0.2, max: 1.2, step: 0.05, unit: "s" }),
     font: P.font("brand", "Typeface"),

@@ -6,7 +6,7 @@
   "clips": [
     { "component": "kinetic-stack", "props": { "text": "Stop\ntiming\n*captions.*", "bpm": 120.06 } },
     { "component": "char-cascade", "transition": "whip", "props": { "text": "Every word, *on time.*", "variant": "drop" } },
-    { "component": "image-type", "transition": "push", "props": { "text": "LOOKS", "sub": "33 caption looks" } },
+    { "component": "image-type", "transition": "push", "props": { "text": "LOOKS", "sub": "30+ caption looks" } },
     { "component": "stat-trio", "transition": "match", "props": { "backdrop": "split" } },
     { "component": "bar-wipe", "transition": "recede", "props": { "text": "Free.\nOpen source.\n*On your machine.*", "backdrop": "grid" } },
     { "component": "type-marquee", "transition": "zoom", "props": { "text": "Post *more.*", "echo": "CAPTIONSEASY" } },

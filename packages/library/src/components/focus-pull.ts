@@ -16,8 +16,8 @@ export default defineComponent<Props>({
   theme: { mode: "light", lighting: 0.65, grain: 0.3, vignette: 0.25 },
   notes: "Use for statements that deserve a beat of silence. Pair with slow music; avoid after another blur reveal.",
   params: {
-    headline: P.text("Every word, *perfectly timed.*", "Headline", { multiline: true, maxLength: 90 }),
-    sub: P.text("Whisper runs on your machine. Nothing uploads.", "Subline", { maxLength: 120 }),
+    headline: P.text("Captions that *move.*", "Headline", { multiline: true, maxLength: 90 }),
+    sub: P.text("After Effects-style animation. No watermark. Free.", "Subline", { maxLength: 120 }),
     align: P.select("center", "Align", ["center", "left"]),
     size: P.number(1, "Type size", { min: 0.6, max: 1.4, step: 0.05, group: "style" }),
     font: P.font("brand", "Typeface"),
@@ -48,7 +48,8 @@ export default defineComponent<Props>({
     const ox = center ? c.cx - L.width / 2 : box.x;
     const oy = c.cy - blockH / 2 - (c.vertical ? 40 : 0);
 
-    stage(c, { word: heroWord(p.headline), kind: "soft", focus: [c.cx, oy + L.height / 2] });    const push = 1; // the shot camera (Camera prop) does the push
+    stage(c, { word: heroWord(p.headline), kind: "soft", focus: [c.cx, oy + L.height / 2] });
+    const push = 1; // the shot camera (Camera prop) does the push
     c.with({ x: c.cx, y: c.cy, scale: push }, () => {
       c.translate(-c.cx, -c.cy);
       const n = L.words.length;
