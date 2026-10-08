@@ -67,3 +67,6 @@ styles/*/fonts/**/*.woff*
 !styles/*/**/.gitkeep
 !styles/*/**/*.md
 !styles/*/**/*.json
+
+# local audio-extraction toolchain
+.venv-audio/
