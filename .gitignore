@@ -59,7 +59,6 @@ sources/references/
 # Style folders: notes/specs are tracked, media stays local
 styles/*/references/**
 styles/*/music/**
-styles/*/sfx/extracted/**
 styles/*/renders/**
 styles/*/fonts/**/*.ttf
 styles/*/fonts/**/*.otf
@@ -70,9 +69,6 @@ styles/*/fonts/**/*.woff*
 
 # local audio-extraction toolchain
 .venv-audio/
-styles/*/sfx/library/**/*.[mM][pP]3
-styles/*/sfx/library/**/*.[wW][aA][vV]
-styles/*/sfx/clusters.json
-styles/*/sfx/missing/
-styles/*/sfx/*.json
-styles/*/sfx/library/hits/*.json
+styles/*/sfx/*.[mM][pP]3
+styles/*/sfx/*.[wW][aA][vV]
+styles/*/inbox/

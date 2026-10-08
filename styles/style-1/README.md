@@ -8,8 +8,8 @@ off by default; anything used gets logged in `LOG.md` (which skill, which part, 
 | `references/<id>/` | source videos you drop in | no (local only) |
 | `breakdowns/<id>.md` | frame-by-frame analysis: hook, text, effects, cuts, SFX cues, song | yes |
 | `music/` | trending tracks for local test renders | no (copyrighted) |
-| `sfx/extracted/` | SFX separated from references (analysis only) | no |
-| `sfx/library/` | clean CC0 sounds chosen for this style (+ `CREDITS.md`) | yes |
+| `inbox/` | candidates not judged yet | no |
+| `sfx/` | final selected SFX only (+ `README.md` index) | index only |
 | `fonts/` | font notes; font files only if the licence allows | notes only |
 | `effects/` | one `.md` per effect: what it does, timing, paired SFX | yes |
 | `text-styles/` | caption looks, tiered premium / standard / emphasis | yes |

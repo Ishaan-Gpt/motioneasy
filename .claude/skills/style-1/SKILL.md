@@ -49,10 +49,10 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   Not identifiable by Shazam (stock or custom) [confirmed]. Our bed: [todo: pick].
 - SFX: about 3 hits/s; 10–12 recurring types used in every video [confirmed, approximate clustering].
 - One sound per event: word/text → click/typing; pop-in → bubble/pop; move/slide → whoosh [observed, mapping todo].
-- Premium pack 1: 6 originals in `sfx/library/pack/` + max 4 variations in `variations/` (10 total) [owner rule].
-  Index in `sfx/library/README.md`. No exact pack sample occurs in the refs; mapping is by sound character.
+- Premium pack 1: 6 originals + max 4 variations, flat in `sfx/` with the imported picks (only final selections live there) [owner rule].
+  Index in `sfx/README.md`. No exact pack sample occurs in the refs; mapping is by sound character.
 - **Words → typing, one note per word, on the word's appear time** (2 words = 2 notes). Notes are taken from
-  `pack/Typing.MP3` at mix time, never the same twice in a row. Tool: `styles/tools/typing_sfx.py` [owner rule].
+  `sfx/typing.mp3` at mix time, never the same twice in a row. Tool: `styles/tools/typing_sfx.py` [owner rule].
   Typing matches the two most frequent ref types (type-02, type-11) [confirmed].
 - UI Animations ↔ the other mid clicks: pop-ins, list items, cards. Finger snap ↔ dark click type-00: key words.
 - Riser / riser-short: into a big reveal or the CTA [owner rule]. UI riser: short bright rise.
@@ -60,8 +60,8 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 - **Moderate engineering [owner rule]:** the premium files in `pack/`, `pack2/` are never edited or replaced. Use
   them as they are; the craft is *when*, *where* and *how much* (start offset, length used, level). Only cut a portion
   at mix time (e.g. 2 of 9 keystrokes, the first 0.4 s of a woosh); no EQ, pitch, stretch or effects.
-- pack2 (17 files, 2026-10-08, Epidemic Sound + UI clicks): to be judged by the owner.
-- Missing from the pack (7 ref types, ~260 hits): see `sfx/library/README.md` → owner sources them.
+- Candidates waiting to be judged: `styles/style-1/inbox/` (pack2: 17 files). Analysis clips: `references/_analysis/`.
+- Missing from the pack (7 ref types, ~260 hits): see `references/_analysis/sfx-missing/` → owner sources them.
 
 ## 6. Structure
 1. 0–2 s hook: uppercase claim + cutout face + accent burst.

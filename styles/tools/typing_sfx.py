@@ -2,7 +2,7 @@
 
 Usage: .venv-audio/Scripts/python styles/tools/typing_sfx.py words.json out.wav [--style style-1] [--seed 1]
 words.json: [{"word": "You", "t": 1.20}, {"word": "get", "t": 1.42}, ...]  (t = seconds the word appears)
-2 words → 2 hits, 3 words → 3 hits. Keystrokes rotate through the notes of pack/Typing.MP3, never the same one
+2 words → 2 hits, 3 words → 3 hits. Keystrokes rotate through the notes of sfx/typing.mp3, never the same one
 twice in a row, with ±1.5 dB level variation (seeded, so the same input always gives the same file).
 """
 import argparse, json, random
@@ -18,7 +18,7 @@ def main():
     ap.add_argument("--style", default="style-1"); ap.add_argument("--seed", type=int, default=1)
     a = ap.parse_args()
     # keystrokes are read from the untouched original at mix time; nothing is written back
-    y = librosa.load(str(Path(__file__).resolve().parents[1] / a.style / "sfx/library/pack/Typing.MP3"), sr=SR)[0]
+    y = librosa.load(str(Path(__file__).resolve().parents[1] / a.style / "sfx/typing.mp3"), sr=SR)[0]
     on = librosa.onset.onset_detect(y=y, sr=SR, units="samples", backtrack=True)
     keys = [y[s:s + int(0.06 * SR)] for s in on]
     words = json.loads(Path(a.words).read_text(encoding="utf-8"))
