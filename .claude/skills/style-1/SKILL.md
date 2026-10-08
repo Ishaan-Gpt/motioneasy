@@ -41,6 +41,7 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
 **Sound**
 - SFX only from `styles/style-1/sfx/` (the owner's selection). Never edit originals; at most a few trims.
 - Typing: one note on EVERY word, on the frame OUR voice says it; the word appears on screen with it. Never dropped.
+  Loud and bold: map level raised twice (2026-10-09) and a soft click layered under every keystroke.
 - Loud and clear like the refs: SFX peaks ~9–10 dB under the voice peaks (map levels set for this, 2026-10-09).
 - Risers: always COMPLETE (full `riser.mp3`, 3 s) and ending exactly on the cut; only where 3 s fit. Never start
   a riser mid-sound or stop it early. No UI riser / viral riser (owner removed them).
@@ -50,6 +51,14 @@ Status labels on every rule: **[confirmed]** measured in refs · **[observed]** 
   ask for a longer render or loop on a bar line.
 - Bed character for new beds: upbeat, rising, inspirational with suspense; ~136–138 BPM, E♭ minor (prompt in §5b).
 - Voice: Kokoro default (`vo.py` / `vo_fit.py`) or the owner's MP3.
+
+- Bed longer than the file: loop on a bar line (10 bars at 136 BPM) with a 0.25 s crossfade; fade out the last 1.5 s.
+
+**Speed (owner: deliver fast)**
+- Send all Muse requests in ONE batch at the start (props, captures, mock-ups); build locally while Muse works (~10 min).
+- Everything timed by OUR voice: words, text-group swaps, image entries and scene cuts all key off the first spoken
+  word of their group (never the reference's frame numbers once our voice is in).
+- One still sheet per pass (16 frames) to catch overlaps; fix, render once, mix, send.
 
 **Look**
 - Reveal: word appears light grey, slides into place, holds ~9–14 frames, then turns black (two-stage).

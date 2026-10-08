@@ -8,14 +8,14 @@ type Word = { w: string; f: number };
 type Line = {
   kind: "line"; words: Word[]; font?: FontId; weight?: number; size?: number; width?: number; top: number;
   align?: "center" | "left"; cx?: number; x?: number; color?: string; grey?: string; reveal?: number; slide?: number; hold?: number;
-  tracking?: number; topRef?: "cap" | "asc"; bullet?: { x: number; size: number; f: number }; k?: number;
+  tracking?: number; topRef?: "cap" | "asc"; bullet?: { x: number; size: number; f: number }; k?: number; out?: number;
 };
 type Img = {
   kind: "image"; src?: string; cx: number; cy: number; w: number; h: number; rot?: number; spin?: number;
   // drawn in code instead of a file: our own asterisk, a logo badge, or a phone frame around a screen image
   draw?: "asterisk" | "badge" | "phone"; color?: string; rays?: [number, number, number][]; core?: number;
   logo?: string; logoScale?: number; screen?: string;
-  shadow?: [number, number, number, number]; float?: [number, number, number][] | [number, number, number]; pivot?: [number, number]; f?: number; pop?: boolean; radius?: number; card?: boolean;
+  shadow?: [number, number, number, number]; float?: [number, number, number][] | [number, number, number]; pivot?: [number, number]; f?: number; out?: number; pop?: boolean; radius?: number; card?: boolean;
 };
 type Grid = { kind: "grid"; x0: number; y0: number; x1: number; y1: number; col: number; row: number; fade?: number; color?: string; dot?: number };
 type TypeBox = {
@@ -58,6 +58,8 @@ function sizeFor(L: Line, font: FontId, weight: number, tracking: number) {
 }
 
 function drawLine(c: RC, L: Line, f: number) {
+  if (L.out !== undefined && f >= L.out + 5) return; // a later text group replaces this one
+  if (L.out !== undefined && f >= L.out) { c.save(); c.alpha(1 - (f - L.out) / 5); drawLine(c, { ...L, out: undefined }, f); c.restore(); return; }
   const font = L.font ?? "inter-std", weight = L.weight ?? 600;
   const text = L.words.map((w) => w.w).join(" ");
   let tracking = L.tracking ?? -0.02;
@@ -101,6 +103,7 @@ function sparkle(c: RC, x: number, y: number, r: number, color: string) {
 
 function drawImage(c: RC, I: Img, f: number, fps: number) {
   if (I.f !== undefined && f < I.f) return;
+  if (I.out !== undefined && f >= I.out) return;
   const t = f / fps, local = I.f !== undefined ? (f - I.f) / fps : 1;
   const k = I.pop ? sp(local, 0, SPRING.pop) : 1;
   // float: one or more [amp px, period s, phase rad] harmonics (measured fits, e.g. the phone in ref 0JZ)
